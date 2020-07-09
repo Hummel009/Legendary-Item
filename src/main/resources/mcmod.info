@@ -1,0 +1,16 @@
+[
+{
+	"modid" : "legendarium",
+	"name" : "Legendary Item 3",
+	"version" : "Version 3",
+	"credits" : "Hummel009",
+	"authorList": ["Hummel009"],
+	"description": "Legendary Items for the LOTR Mod!",
+	"logoFile" : "assets/legendarium/logo.png",
+	"url" : "",
+	"updateUrl" : "",
+	"parent" : "",
+	"dependencies": [],
+	"screenshots": []
+}
+]

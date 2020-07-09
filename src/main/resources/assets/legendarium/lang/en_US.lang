@@ -1,0 +1,110 @@
+/* WEAPON */
+item.weapon_kili.name=Kíli's Sword
+item.weapon_boromir.name=Boromir's Sword
+item.weapon_dramborleg.name=Dramborleg
+item.weapon_anguirel.name=Anguirel
+item.weapon_guthwine.name=Gúthwinë
+item.weapon_dwalin.name=Dwalin's Axe
+item.weapon_melkor.name=Grond
+item.weapon_eowyn.name=Éowyn's Sword
+item.weapon_gimli.name=Gimli's Axe
+item.weapon_aranruth.name=Aranrúth
+item.weapon_gurthang.name=Gurthang
+item.weapon_thrain.name=Thrain's Axe
+item.weapon_dagmor.name=Dagmor
+item.weapon_herugrim.name=Herugrim
+item.weapon_dain.name=Dain's Hammer
+item.weapon_barazanthual.name=Barazanthual
+item.weapon_angrist.name=Angrist 
+item.weapon_balin.name=Balin's Sword
+item.weapon_valaroma.name=Valaroma
+item.weapon_legolas.name=Legolas' Knife
+item.weapon_azog.name=Azog's Mace
+item.weapon_dori.name=Dori's Sword
+item.weapon_urfael.name=Urfael
+item.weapon_thror.name=Thrór's Axe
+item.weapon_thorin.name=Thorin's Sword
+item.weapon_narcil.name=Narsil
+item.weapon_durin.name=Durin's Axe
+
+/* ARMOUR */
+
+item.armor_elendil_chestplate.name=Elendil's Chestplate
+item.armor_elendil_boots.name=Elendil's Boots
+item.armor_elendil_legs.name=Elendil's Leggings
+item.armor_elendil_helmet.name=Elendil's Helmet
+
+item.armor_arvedui_chestplate.name=Arvedui's Chestplate
+item.armor_arvedui_helmet.name=Arvedui's Helmet
+item.armor_arvedui_boots.name=Arvedui's Boots 
+item.armor_arvedui_legs.name=Arvedui's Leggings
+
+item.armor_jiindur_boots.name=Ji Indur's Boots
+item.armor_jiindur_chestplate.name=Ji Indur's Chestplate
+item.armor_jiindur_helmet.name=Ji Indur's Helmet
+item.armor_jiindur_legs.name=Ji Indur's Leggings
+
+item.armor_khommurat_legs.name=Khommurat's Leggings
+item.armor_khommurat_chestplate.name=Khommurat's Chestplate
+item.armor_khommurat_boots.name=Khommurat's Boots
+item.armor_khommurat_helmet.name=Khommurat's Helmet
+
+item.armor_arpharazon_legs.name=Ar-Pharazôn's Leggings
+item.armor_arpharazon_helmet.name=Ar-Pharazôn's Helmet
+item.armor_arpharazon_chestplate.name=Ar-Pharazôn's Chestplate
+item.armor_arpharazon_boots.name=Ar-Pharazôn's Boots
+
+item.armor_gilgalad_legs.name=Gil Galad's Leggings
+item.armor_gilgalad_helmet.name=Gil Galad's Helmet
+item.armor_gilgalad_chestplate.name=Gil Galad's Chestplate
+item.armor_gilgalad_boots.name=Gil Galad's Boots
+
+item.armor_turgon_legs.name=Turgon's Leggings
+item.armor_turgon_helmet.name=Turgon's Helmet
+item.armor_turgon_chestplate.name=Turgon's Chestplate
+item.armor_turgon_boots.name=Turgon's Boots
+
+item.armor_isildur_chestplate.name=Isildur's Chestplate
+item.armor_isildur_boots.name=Isildur's Boots
+item.armor_isildur_helmet.name=Isildur's Helmet
+item.armor_isildur_legs.name=Isildur's Leggings
+
+item.armor_theoden_chestplate.name=Théoden's Chestplate
+item.armor_theoden_boots.name=Théoden's Boots
+item.armor_theoden_legs.name=Théoden's Leggings
+item.armor_theoden_helmet.name=Théoden's Helmet
+
+item.armor_feanor_helmet.name=Fëanor's Helmet
+item.armor_feanor_legs.name=Fëanor's Leggings
+item.armor_feanor_chestplate.name=Fëanor's Chestplate
+item.armor_feanor_boots.name=Fëanor's Boots
+
+item.armor_gimli_boots.name=Gimli's Boots
+item.armor_gimli_helmet.name=Gimli's Helmet
+item.armor_gimli_chestplate.name=Gimli's Chestplate
+item.armor_gimli_legs.name=Gimli's Leggings
+
+item.armor_anarion_boots.name=Anárion's Boots
+item.armor_anarion_helmet.name=Anárion's Helmet
+item.armor_anarion_chestplate.name=Anárion's Chestplate
+item.armor_anarion_legs.name=Anárion's Leggings
+
+item.armor_morgomir_chestplate.name=Morgomir's Chestplate
+item.armor_morgomir_legs.name=Morgomir's Leggings
+item.armor_morgomir_boots.name=Morgomir's Boots
+item.armor_morgomir_helmet.name=Morgomir's Helmet
+
+item.armor_elros_chestplate.name=Elros' Chestplate
+item.armor_elros_boots.name=Elros' Boots
+item.armor_elros_legs.name=Elros' Leggings
+item.armor_elros_helmet.name=Elros' Helmet
+
+item.armor_khamul_chestplate.name=Khamûl's Chestplate
+item.armor_khamul_boots.name=Khamûl's Boots
+item.armor_khamul_helmet.name=Khamûl's Helmet
+item.armor_khamul_legs.name=Khamûl's Leggings
+
+item.armor_boromir_chestplate.name=Boromir's Chestplate
+item.armor_boromir_legs.name=Boromir's Leggings
+item.armor_boromir_boots.name=Boromir's Boots
+item.armor_boromir_helmet.name=Boromir's Helmet

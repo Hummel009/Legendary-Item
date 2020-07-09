@@ -1,0 +1,110 @@
+/* ОРУЖИЕ */
+item.weapon_kili.name=Меч Кили
+item.weapon_boromir.name=Меч Боромира
+item.weapon_dramborleg.name=Драмборлег
+item.weapon_anguirel.name=Ангвирел
+item.weapon_guthwine.name=Гутвайн
+item.weapon_dwalin.name=Топор Двалина
+item.weapon_melkor.name=Гронд
+item.weapon_eowyn.name=Меч Эовин
+item.weapon_gimli.name=Топор Гимли
+item.weapon_aranruth.name=Аранрут
+item.weapon_gurthang.name=Гуртанг
+item.weapon_thrain.name=Секира Траина
+item.weapon_dagmor.name=Дагмор
+item.weapon_herugrim.name=Херугрим
+item.weapon_dain.name=Молот Даина
+item.weapon_barazanthual.name=Баразантуал
+item.weapon_angrist.name=Ангрист 
+item.weapon_balin.name=Меч Балина
+item.weapon_valaroma.name=Валарома
+item.weapon_legolas.name=Нож Леголаса
+item.weapon_azog.name=Булава Азога
+item.weapon_dori.name=Меч Дори
+item.weapon_urfael.name=Урфаэль
+item.weapon_thror.name=Секира Трора
+item.weapon_thorin.name=Меч Торина
+item.weapon_narcil.name=Нарсил
+item.weapon_durin.name=Секира Дурина
+
+/* СЕТЫ БРОНИ */
+
+item.armor_elendil_chestplate.name=Нагрудник Элендиля
+item.armor_elendil_boots.name=Ботинки Элендиля
+item.armor_elendil_legs.name=Поножи Элендиля
+item.armor_elendil_helmet.name=Шлем Элендиля
+
+item.armor_arvedui_chestplate.name=Нагрудник Арведуи
+item.armor_arvedui_helmet.name=Шлем Арведуи
+item.armor_arvedui_boots.name=Ботинки Арведуи
+item.armor_arvedui_legs.name=Поножи Арведуи
+
+item.armor_jiindur_boots.name=Ботинки Джи Индура
+item.armor_jiindur_chestplate.name=Нагрудник Джи Индура
+item.armor_jiindur_helmet.name=Шлем Джи Индура
+item.armor_jiindur_legs.name=Поножи Джи Индура
+
+item.armor_khommurat_legs.name=Поножи Хоммурата 
+item.armor_khommurat_chestplate.name=Нагрудник Хоммурата
+item.armor_khommurat_boots.name=Ботинки Хоммурата
+item.armor_khommurat_helmet.name=Шлем Хоммурата
+
+item.armor_arpharazon_legs.name=Поножи Ар-Фаразона
+item.armor_arpharazon_helmet.name=Шлем Ар-Фаразона
+item.armor_arpharazon_chestplate.name=Нагрудник Ар-Фаразона
+item.armor_arpharazon_boots.name=Ботинки Ар-Фаразона
+
+item.armor_gilgalad_legs.name=Поножи Гиль Галада
+item.armor_gilgalad_helmet.name=Шлем Гиль Галада
+item.armor_gilgalad_chestplate.name=Нагрудник Гиль Галада
+item.armor_gilgalad_boots.name=Ботинки Гиль Галада
+
+item.armor_turgon_legs.name=Поножи Тургона
+item.armor_turgon_helmet.name=Шлем Тургона
+item.armor_turgon_chestplate.name=Нагрудник Тургона
+item.armor_turgon_boots.name=Ботинки Тургона
+
+item.armor_isildur_chestplate.name=Нагрудник Исильдура
+item.armor_isildur_boots.name=Ботинки Исильдура
+item.armor_isildur_helmet.name=Шлем Исильдура
+item.armor_isildur_legs.name=Поножи Исильдура
+
+item.armor_theoden_chestplate.name=Нагрудник Теодена
+item.armor_theoden_boots.name=Ботинки Теодена
+item.armor_theoden_legs.name=Поножи Теодена
+item.armor_theoden_helmet.name=Шлем Теодена
+
+item.armor_feanor_helmet.name=Шлем Феанора
+item.armor_feanor_legs.name=Поножи Феанора
+item.armor_feanor_chestplate.name=Нагрудник Феанора
+item.armor_feanor_boots.name=Ботинки Феанора
+
+item.armor_gimli_boots.name=Ботинки Гимли
+item.armor_gimli_helmet.name=Шлем Гимли
+item.armor_gimli_chestplate.name=Нагрудник Гимли
+item.armor_gimli_legs.name=Поножи Гимли
+
+item.armor_anarion_boots.name=Ботинки Анариона
+item.armor_anarion_helmet.name=Шлем Анариона
+item.armor_anarion_chestplate.name=Нагрудник Анариона
+item.armor_anarion_legs.name=Поножи Анариона
+
+item.armor_morgomir_chestplate.name=Нагрудник Моргомира
+item.armor_morgomir_legs.name=Поножи Моргомира
+item.armor_morgomir_boots.name=Ботинки Моргомира
+item.armor_morgomir_helmet.name=Шлем Моргомира
+
+item.armor_elros_chestplate.name=Нагрудник Элроса
+item.armor_elros_boots.name=Ботинки Элроса
+item.armor_elros_legs.name=Поножи Элроса
+item.armor_elros_helmet.name=Шлем Элроса
+
+item.armor_khamul_chestplate.name=Нагрудник Кхамула
+item.armor_khamul_boots.name=Ботинки Кхамула
+item.armor_khamul_helmet.name=Шлем Кхамула
+item.armor_khamul_legs.name=Поножи Кхамула
+
+item.armor_boromir_chestplate.name=Нагрудник Боромира
+item.armor_boromir_legs.name=Поножи Боромира
+item.armor_boromir_boots.name=Ботинки Боромира
+item.armor_boromir_helmet.name=Шлем Боромира
