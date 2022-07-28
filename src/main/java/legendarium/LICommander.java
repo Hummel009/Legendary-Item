@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import lotr.common.item.*;
 import net.minecraft.item.*;
 
-public class LegendariumCommander {
+public class LICommander {
 	private static <T, E> T findAndInvokeMethod(Class<? super E> clazz, E instance, String methodName) {
 		return findAndInvokeMethod(new Object[0], clazz, instance, methodName);
 	}
@@ -53,10 +53,8 @@ public class LegendariumCommander {
 					} else if (instance != null) {
 						fieldObj = field.get(instance);
 					}
-					if (fieldObj != null) {
-						if (type.isAssignableFrom(fieldObj.getClass())) {
-							list.add((T) fieldObj);
-						}
+					if ((fieldObj != null) && type.isAssignableFrom(fieldObj.getClass())) {
+						list.add((T) fieldObj);
 					}
 				}
 			}

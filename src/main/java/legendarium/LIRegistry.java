@@ -6,7 +6,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import lotr.common.item.*;
 import net.minecraft.item.Item;
 
-public class LegendariumRegistry {
+public class LIRegistry {
 	public static Item weapon_angrist;
 	public static Item weapon_anguirel;
 	public static Item weapon_aranruth;
@@ -141,84 +141,84 @@ public class LegendariumRegistry {
 		weapon_thror = new LOTRItemAnduril();
 		weapon_urfael = new LOTRItemAnduril();
 
-		armor_anarion_helmet = new LegendariumArmor(LegendariumArmor.ANARION, 0);
-		armor_anarion_chestplate = new LegendariumArmor(LegendariumArmor.ANARION, 1);
-		armor_anarion_legs = new LegendariumArmor(LegendariumArmor.ANARION, 2);
-		armor_anarion_boots = new LegendariumArmor(LegendariumArmor.ANARION, 3);
+		armor_anarion_helmet = new LIArmor(LIArmor.ANARION, 0);
+		armor_anarion_chestplate = new LIArmor(LIArmor.ANARION, 1);
+		armor_anarion_legs = new LIArmor(LIArmor.ANARION, 2);
+		armor_anarion_boots = new LIArmor(LIArmor.ANARION, 3);
 
-		armor_arpharazon_helmet = new LegendariumArmor(LegendariumArmor.ARPHARAZON, 0);
-		armor_arpharazon_chestplate = new LegendariumArmor(LegendariumArmor.ARPHARAZON, 1);
-		armor_arpharazon_legs = new LegendariumArmor(LegendariumArmor.ARPHARAZON, 2);
-		armor_arpharazon_boots = new LegendariumArmor(LegendariumArmor.ARPHARAZON, 3);
+		armor_arpharazon_helmet = new LIArmor(LIArmor.ARPHARAZON, 0);
+		armor_arpharazon_chestplate = new LIArmor(LIArmor.ARPHARAZON, 1);
+		armor_arpharazon_legs = new LIArmor(LIArmor.ARPHARAZON, 2);
+		armor_arpharazon_boots = new LIArmor(LIArmor.ARPHARAZON, 3);
 
-		armor_arvedui_helmet = new LegendariumArmor(LegendariumArmor.ARVEDUI, 0);
-		armor_arvedui_chestplate = new LegendariumArmor(LegendariumArmor.ARVEDUI, 1);
-		armor_arvedui_legs = new LegendariumArmor(LegendariumArmor.ARVEDUI, 2);
-		armor_arvedui_boots = new LegendariumArmor(LegendariumArmor.ARVEDUI, 3);
+		armor_arvedui_helmet = new LIArmor(LIArmor.ARVEDUI, 0);
+		armor_arvedui_chestplate = new LIArmor(LIArmor.ARVEDUI, 1);
+		armor_arvedui_legs = new LIArmor(LIArmor.ARVEDUI, 2);
+		armor_arvedui_boots = new LIArmor(LIArmor.ARVEDUI, 3);
 
-		armor_boromir_chestplate = new LegendariumArmor(LegendariumArmor.BOROMIR, 1);
-		armor_boromir_legs = new LegendariumArmor(LegendariumArmor.BOROMIR, 2);
-		armor_boromir_boots = new LegendariumArmor(LegendariumArmor.BOROMIR, 3);
+		armor_boromir_chestplate = new LIArmor(LIArmor.BOROMIR, 1);
+		armor_boromir_legs = new LIArmor(LIArmor.BOROMIR, 2);
+		armor_boromir_boots = new LIArmor(LIArmor.BOROMIR, 3);
 
-		armor_elendil_helmet = new LegendariumArmor(LegendariumArmor.ELENDIL, 0);
-		armor_elendil_chestplate = new LegendariumArmor(LegendariumArmor.ELENDIL, 1);
-		armor_elendil_legs = new LegendariumArmor(LegendariumArmor.ELENDIL, 2);
-		armor_elendil_boots = new LegendariumArmor(LegendariumArmor.ELENDIL, 3);
+		armor_elendil_helmet = new LIArmor(LIArmor.ELENDIL, 0);
+		armor_elendil_chestplate = new LIArmor(LIArmor.ELENDIL, 1);
+		armor_elendil_legs = new LIArmor(LIArmor.ELENDIL, 2);
+		armor_elendil_boots = new LIArmor(LIArmor.ELENDIL, 3);
 
-		armor_elros_helmet = new LegendariumArmor(LegendariumArmor.ELROS, 0);
-		armor_elros_chestplate = new LegendariumArmor(LegendariumArmor.ELROS, 1);
-		armor_elros_legs = new LegendariumArmor(LegendariumArmor.ELROS, 2);
-		armor_elros_boots = new LegendariumArmor(LegendariumArmor.ELROS, 3);
+		armor_elros_helmet = new LIArmor(LIArmor.ELROS, 0);
+		armor_elros_chestplate = new LIArmor(LIArmor.ELROS, 1);
+		armor_elros_legs = new LIArmor(LIArmor.ELROS, 2);
+		armor_elros_boots = new LIArmor(LIArmor.ELROS, 3);
 
-		armor_feanor_helmet = new LegendariumArmor(LegendariumArmor.FEANOR, 0);
-		armor_feanor_chestplate = new LegendariumArmor(LegendariumArmor.FEANOR, 1);
-		armor_feanor_legs = new LegendariumArmor(LegendariumArmor.FEANOR, 2);
-		armor_feanor_boots = new LegendariumArmor(LegendariumArmor.FEANOR, 3);
+		armor_feanor_helmet = new LIArmor(LIArmor.FEANOR, 0);
+		armor_feanor_chestplate = new LIArmor(LIArmor.FEANOR, 1);
+		armor_feanor_legs = new LIArmor(LIArmor.FEANOR, 2);
+		armor_feanor_boots = new LIArmor(LIArmor.FEANOR, 3);
 
-		armor_gilgalad_helmet = new LegendariumArmor(LegendariumArmor.GILGALAD, 0);
-		armor_gilgalad_chestplate = new LegendariumArmor(LegendariumArmor.GILGALAD, 1);
-		armor_gilgalad_legs = new LegendariumArmor(LegendariumArmor.GILGALAD, 2);
-		armor_gilgalad_boots = new LegendariumArmor(LegendariumArmor.GILGALAD, 3);
+		armor_gilgalad_helmet = new LIArmor(LIArmor.GILGALAD, 0);
+		armor_gilgalad_chestplate = new LIArmor(LIArmor.GILGALAD, 1);
+		armor_gilgalad_legs = new LIArmor(LIArmor.GILGALAD, 2);
+		armor_gilgalad_boots = new LIArmor(LIArmor.GILGALAD, 3);
 
-		armor_gimli_helmet = new LegendariumArmor(LegendariumArmor.GIMLI, 0);
-		armor_gimli_chestplate = new LegendariumArmor(LegendariumArmor.GIMLI, 1);
-		armor_gimli_legs = new LegendariumArmor(LegendariumArmor.GIMLI, 2);
-		armor_gimli_boots = new LegendariumArmor(LegendariumArmor.GIMLI, 3);
+		armor_gimli_helmet = new LIArmor(LIArmor.GIMLI, 0);
+		armor_gimli_chestplate = new LIArmor(LIArmor.GIMLI, 1);
+		armor_gimli_legs = new LIArmor(LIArmor.GIMLI, 2);
+		armor_gimli_boots = new LIArmor(LIArmor.GIMLI, 3);
 
-		armor_isildur_helmet = new LegendariumArmor(LegendariumArmor.ISILDUR, 0);
-		armor_isildur_chestplate = new LegendariumArmor(LegendariumArmor.ISILDUR, 1);
-		armor_isildur_legs = new LegendariumArmor(LegendariumArmor.ISILDUR, 2);
-		armor_isildur_boots = new LegendariumArmor(LegendariumArmor.ISILDUR, 3);
+		armor_isildur_helmet = new LIArmor(LIArmor.ISILDUR, 0);
+		armor_isildur_chestplate = new LIArmor(LIArmor.ISILDUR, 1);
+		armor_isildur_legs = new LIArmor(LIArmor.ISILDUR, 2);
+		armor_isildur_boots = new LIArmor(LIArmor.ISILDUR, 3);
 
-		armor_jiindur_helmet = new LegendariumArmor(LegendariumArmor.JIINDUR, 0);
-		armor_jiindur_chestplate = new LegendariumArmor(LegendariumArmor.JIINDUR, 1);
-		armor_jiindur_legs = new LegendariumArmor(LegendariumArmor.JIINDUR, 2);
-		armor_jiindur_boots = new LegendariumArmor(LegendariumArmor.JIINDUR, 3);
+		armor_jiindur_helmet = new LIArmor(LIArmor.JIINDUR, 0);
+		armor_jiindur_chestplate = new LIArmor(LIArmor.JIINDUR, 1);
+		armor_jiindur_legs = new LIArmor(LIArmor.JIINDUR, 2);
+		armor_jiindur_boots = new LIArmor(LIArmor.JIINDUR, 3);
 
-		armor_khamul_helmet = new LegendariumArmor(LegendariumArmor.KHAMUL, 0);
-		armor_khamul_chestplate = new LegendariumArmor(LegendariumArmor.KHAMUL, 1);
-		armor_khamul_legs = new LegendariumArmor(LegendariumArmor.KHAMUL, 2);
-		armor_khamul_boots = new LegendariumArmor(LegendariumArmor.KHAMUL, 3);
+		armor_khamul_helmet = new LIArmor(LIArmor.KHAMUL, 0);
+		armor_khamul_chestplate = new LIArmor(LIArmor.KHAMUL, 1);
+		armor_khamul_legs = new LIArmor(LIArmor.KHAMUL, 2);
+		armor_khamul_boots = new LIArmor(LIArmor.KHAMUL, 3);
 
-		armor_khommurat_helmet = new LegendariumArmor(LegendariumArmor.KHOMMURAT, 0);
-		armor_khommurat_chestplate = new LegendariumArmor(LegendariumArmor.KHOMMURAT, 1);
-		armor_khommurat_legs = new LegendariumArmor(LegendariumArmor.KHOMMURAT, 2);
-		armor_khommurat_boots = new LegendariumArmor(LegendariumArmor.KHOMMURAT, 3);
+		armor_khommurat_helmet = new LIArmor(LIArmor.KHOMMURAT, 0);
+		armor_khommurat_chestplate = new LIArmor(LIArmor.KHOMMURAT, 1);
+		armor_khommurat_legs = new LIArmor(LIArmor.KHOMMURAT, 2);
+		armor_khommurat_boots = new LIArmor(LIArmor.KHOMMURAT, 3);
 
-		armor_morgomir_helmet = new LegendariumArmor(LegendariumArmor.MORGOMIR, 0);
-		armor_morgomir_chestplate = new LegendariumArmor(LegendariumArmor.MORGOMIR, 1);
-		armor_morgomir_legs = new LegendariumArmor(LegendariumArmor.MORGOMIR, 2);
-		armor_morgomir_boots = new LegendariumArmor(LegendariumArmor.MORGOMIR, 3);
+		armor_morgomir_helmet = new LIArmor(LIArmor.MORGOMIR, 0);
+		armor_morgomir_chestplate = new LIArmor(LIArmor.MORGOMIR, 1);
+		armor_morgomir_legs = new LIArmor(LIArmor.MORGOMIR, 2);
+		armor_morgomir_boots = new LIArmor(LIArmor.MORGOMIR, 3);
 
-		armor_theoden_helmet = new LegendariumArmor(LegendariumArmor.THEODEN, 0);
-		armor_theoden_chestplate = new LegendariumArmor(LegendariumArmor.THEODEN, 1);
-		armor_theoden_legs = new LegendariumArmor(LegendariumArmor.THEODEN, 2);
-		armor_theoden_boots = new LegendariumArmor(LegendariumArmor.THEODEN, 3);
+		armor_theoden_helmet = new LIArmor(LIArmor.THEODEN, 0);
+		armor_theoden_chestplate = new LIArmor(LIArmor.THEODEN, 1);
+		armor_theoden_legs = new LIArmor(LIArmor.THEODEN, 2);
+		armor_theoden_boots = new LIArmor(LIArmor.THEODEN, 3);
 
-		armor_turgon_helmet = new LegendariumArmor(LegendariumArmor.TURGON, 0);
-		armor_turgon_chestplate = new LegendariumArmor(LegendariumArmor.TURGON, 1);
-		armor_turgon_legs = new LegendariumArmor(LegendariumArmor.TURGON, 2);
-		armor_turgon_boots = new LegendariumArmor(LegendariumArmor.TURGON, 3);
+		armor_turgon_helmet = new LIArmor(LIArmor.TURGON, 0);
+		armor_turgon_chestplate = new LIArmor(LIArmor.TURGON, 1);
+		armor_turgon_legs = new LIArmor(LIArmor.TURGON, 2);
+		armor_turgon_boots = new LIArmor(LIArmor.TURGON, 3);
 
 		register(weapon_angrist, "weapon_angrist");
 		register(weapon_anguirel, "weapon_anguirel");

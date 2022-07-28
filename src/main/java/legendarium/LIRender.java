@@ -16,7 +16,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.item.Item;
 import net.minecraft.util.*;
 
-public class LegendariumRender extends LOTRRenderLargeItem {
+public class LIRender extends LOTRRenderLargeItem {
 	private static Map<String, Float> sizeFolders = new HashMap<>();
 	static {
 		sizeFolders.put("large-2x", 2.0f);
@@ -29,35 +29,11 @@ public class LegendariumRender extends LOTRRenderLargeItem {
 
 	private List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
 
-	public LegendariumRender(Item item, String dir, float f) {
+	public LIRender(Item item, String dir, float f) {
 		super(item, dir, f);
 		theItem = item;
 		folderName = dir;
 		largeIconScale = f;
-	}
-
-	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
-		String itemIconString = item.getUnlocalizedName().substring("item.".length());
-		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
-		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
-		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
-		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
-	}
-
-	public static LegendariumRender getRendererIfLarge(Item item) {
-		for (String folder : sizeFolders.keySet()) {
-			float iconScale = sizeFolders.get(folder);
-			try {
-				ResourceLocation resLoc = LegendariumRender.getLargeTexturePath(item, folder);
-				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				if (res == null) {
-					continue;
-				}
-				return new LegendariumRender(item, folder, iconScale);
-			} catch (IOException resLoc) {
-			}
-		}
-		return null;
 	}
 
 	private void doTransformations() {
@@ -103,5 +79,29 @@ public class LegendariumRender extends LOTRRenderLargeItem {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tess = Tessellator.instance;
 		ItemRenderer.renderItemIn2D(tess, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625f);
+	}
+
+	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
+		String itemIconString = item.getUnlocalizedName().substring("item.".length());
+		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
+		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
+		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
+		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
+	}
+
+	public static LIRender getRendererIfLarge(Item item) {
+		for (String folder : sizeFolders.keySet()) {
+			float iconScale = sizeFolders.get(folder);
+			try {
+				ResourceLocation resLoc = LIRender.getLargeTexturePath(item, folder);
+				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
+				if (res == null) {
+					continue;
+				}
+				return new LIRender(item, folder, iconScale);
+			} catch (IOException resLoc) {
+			}
+		}
+		return null;
 	}
 }

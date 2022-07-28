@@ -2,10 +2,10 @@ package legendarium;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-public class LegendariumClientProxy extends LegendariumServerProxy {
+public class LIClientProxy extends LIServerProxy {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		LegendariumRendererManager.preInit();
+		LIRendererManager.preInit();
 	}
 }

@@ -13,25 +13,16 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-public class LegendariumRendererManager implements IResourceManagerReloadListener {
-	private static LegendariumRendererManager INSTANCE;
-	private static List<LegendariumRender> largeItemRenderers;
-
-	public static void preInit() {
-		largeItemRenderers = new ArrayList<>();
-		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-		INSTANCE = new LegendariumRendererManager();
-		INSTANCE.onResourceManagerReload(resMgr);
-		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
-		MinecraftForge.EVENT_BUS.register(INSTANCE);
-	}
+public class LIRendererManager implements IResourceManagerReloadListener {
+	private static LIRendererManager INSTANCE;
+	private static List<LIRender> largeItemRenderers;
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		largeItemRenderers.clear();
-		for (Item item : LegendariumCommander.getObjectFieldsOfType(LegendariumRegistry.class, Item.class)) {
+		for (Item item : LICommander.getObjectFieldsOfType(LIRegistry.class, Item.class)) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
-			LegendariumRender largeItemRenderer = LegendariumRender.getRendererIfLarge(item);
+			LIRender largeItemRenderer = LIRender.getRendererIfLarge(item);
 			if (item instanceof LOTRItemCrossbow) {
 				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderCrossbow());
 			} else if (item instanceof LOTRItemBow) {
@@ -52,9 +43,18 @@ public class LegendariumRendererManager implements IResourceManagerReloadListene
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;
 		if (map.getTextureType() == 1) {
-			for (LegendariumRender largeRenderer : largeItemRenderers) {
+			for (LIRender largeRenderer : largeItemRenderers) {
 				largeRenderer.registerIcons(map);
 			}
 		}
+	}
+
+	public static void preInit() {
+		largeItemRenderers = new ArrayList<>();
+		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
+		INSTANCE = new LIRendererManager();
+		INSTANCE.onResourceManagerReload(resMgr);
+		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
+		MinecraftForge.EVENT_BUS.register(INSTANCE);
 	}
 }
