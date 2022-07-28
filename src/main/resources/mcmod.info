@@ -2,10 +2,10 @@
 {
 	"modid" : "legendarium",
 	"name" : "Legendary Item",
-	"version" : "Version 4",
+	"version" : "4.0",
 	"credits" : "Hummel009",
 	"authorList": ["Hummel009"],
-	"description": "Legendary Items for the LOTR Mod!",
+	"description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft",
 	"logoFile" : "assets/legendarium/logo.png",
 	"url" : "",
 	"updateUrl" : "",
