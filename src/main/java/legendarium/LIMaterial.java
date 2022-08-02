@@ -1,9 +1,10 @@
 package legendarium;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.init.*;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.*;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.api.distmarker.*;
 
 public enum LIMaterial implements IArmorMaterial {
@@ -29,12 +30,12 @@ public enum LIMaterial implements IArmorMaterial {
 	}
 
 	@Override
-	public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+	public int getDamageReductionAmount(EntityEquipmentSlot slotIn) {
 		return damageReductionAmount[slotIn.getIndex()];
 	}
 
 	@Override
-	public int getDurability(EquipmentSlotType slotIn) {
+	public int getDurability(EntityEquipmentSlot slotIn) {
 		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * maxDamageFactor;
 	}
 
