@@ -8,7 +8,7 @@ public class LIItemArmor extends ArmorItem {
 	public String materialName;
 
 	public LIItemArmor(IArmorMaterial material, EquipmentSlotType slot) {
-		super(material, slot, new Properties().tab(LICreativeTabs.tabWeapons));
+		super(material, slot, new Properties().group(LICreativeTabs.tabWeapons));
 		materialName = material.getName();
 	}
 

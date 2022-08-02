@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 import net.minecraftforge.api.distmarker.*;
 
 public enum LIMaterial implements IArmorMaterial {
-	ANARION("anarion", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), ARPHARAZON("arpharazon", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), ARVEDUI("arvedui", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), BOROMIR("boromir", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), ELENDIL("elendil", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), ELROS("elros", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), FEANOR("feanor", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), GILGALAD("gilgalad", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), GIMLI("gimli", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), ISILDUR("isildur", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), JIINDUR("jiindur", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), KHAMUL("khamul", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), KHOMMURAT("khommurat", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), MORGOMIR("morgomir", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), THEODEN("theoden", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT)), TURGON("turgon", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.of(Items.IRON_INGOT));
+	ANARION("anarion", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), ARPHARAZON("arpharazon", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), ARVEDUI("arvedui", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), BOROMIR("boromir", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), ELENDIL("elendil", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), ELROS("elros", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), FEANOR("feanor", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), GILGALAD("gilgalad", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), GIMLI("gimli", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), ISILDUR("isildur", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), JIINDUR("jiindur", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), KHAMUL("khamul", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), KHOMMURAT("khommurat", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), MORGOMIR("morgomir", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), THEODEN("theoden", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT)), TURGON("turgon", 25, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, Ingredient.fromItems(Items.IRON_INGOT));
 
 	public static int[] MAX_DAMAGE_ARRAY = { 13, 15, 16, 11 };
 	public String name;
@@ -29,28 +29,18 @@ public enum LIMaterial implements IArmorMaterial {
 	}
 
 	@Override
-	public int getDefenseForSlot(EquipmentSlotType p_200902_1_) {
-		return damageReductionAmount[p_200902_1_.getIndex()];
+	public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+		return damageReductionAmount[slotIn.getIndex()];
 	}
 
 	@Override
-	public int getDurabilityForSlot(EquipmentSlotType p_200896_1_) {
-		return MAX_DAMAGE_ARRAY[p_200896_1_.getIndex()] * maxDamageFactor;
+	public int getDurability(EquipmentSlotType slotIn) {
+		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * maxDamageFactor;
 	}
 
 	@Override
-	public int getEnchantmentValue() {
+	public int getEnchantability() {
 		return enchantability;
-	}
-
-	@Override
-	public SoundEvent getEquipSound() {
-		return soundEvent;
-	}
-
-	@Override
-	public float getKnockbackResistance() {
-		return 0;
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -60,8 +50,13 @@ public enum LIMaterial implements IArmorMaterial {
 	}
 
 	@Override
-	public Ingredient getRepairIngredient() {
+	public Ingredient getRepairMaterial() {
 		return repairMaterial;
+	}
+
+	@Override
+	public SoundEvent getSoundEvent() {
+		return soundEvent;
 	}
 
 	@Override
