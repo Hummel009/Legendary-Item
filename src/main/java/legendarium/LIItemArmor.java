@@ -7,8 +7,13 @@ import net.minecraft.item.*;
 public class LIItemArmor extends ItemArmor {
 	public String materialName;
 
-	public LIItemArmor(IArmorMaterial material, EntityEquipmentSlot slot) {
-		super(material, slot, new Properties().group(LICreativeTabs.tabWeapons));
+	public LIItemArmor(ItemArmor.ArmorMaterial material, EntityEquipmentSlot slot) {
+		this(material, slot, slot == EntityEquipmentSlot.LEGS ? 2 : 1);
+	}
+
+	public LIItemArmor(ItemArmor.ArmorMaterial material, EntityEquipmentSlot slot, int renderId) {
+		super(material, renderId, slot);
+		setCreativeTab(LICreativeTabs.tabWeapons);
 		materialName = material.getName();
 	}
 

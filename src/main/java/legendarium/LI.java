@@ -1,18 +1,22 @@
 package legendarium;
 
+import java.lang.reflect.*;
 import java.util.*;
 
+import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.fml.relauncher.*;
 
-@Mod("legendarium")
+@Mod(modid = "legendarium")
 public class LI {
 	public static Map<ResourceLocation, Integer> ITEM_ORDER_FOR_CREATIVE_TABS = new HashMap<>();
 
@@ -150,14 +154,30 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public LI() {
-		MinecraftForge.EVENT_BUS.register(this);
+	public static <E, T> List<T> getObjectFieldsOfType(Class<? extends E> clazz, Class<? extends T> type) {
+		ArrayList<Object> list = new ArrayList<>();
+		try {
+			for (Field field : clazz.getDeclaredFields()) {
+				if (field != null) {
+					Object fieldObj = null;
+					if (Modifier.isStatic(field.getModifiers())) {
+						fieldObj = field.get(null);
+					}
+					if (fieldObj != null && type.isAssignableFrom(fieldObj.getClass())) {
+						list.add(fieldObj);
+					}
+				}
+			}
+		} catch (IllegalAccessException | IllegalArgumentException exception) {
+		}
+		return (List<T>) list;
 	}
 
-	@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+	@ObjectHolder("legendarium")
+	@Mod.EventBusSubscriber
 	public static class RegistryEvents {
 		@SubscribeEvent
-		public static void onItemsRegistry(RegistryEvent.Register<Item> event) {
+		public static void onRegistryItem(RegistryEvent.Register<Item> event) {
 			armor_anarion_helmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);
 			armor_anarion_chestplate = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.CHEST);
 			armor_anarion_legs = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.LEGS);
@@ -300,6 +320,7 @@ public class LI {
 			register(armor_arpharazon_chestplate, "armor_arpharazon_chestplate");
 			register(armor_arpharazon_legs, "armor_arpharazon_legs");
 			register(armor_arpharazon_boots, "armor_arpharazon_boots");
+			register(armor_arvedui_helmet, "armor_arvedui_helmet");
 			register(armor_arvedui_chestplate, "armor_arvedui_chestplate");
 			register(armor_arvedui_legs, "armor_arvedui_legs");
 			register(armor_arvedui_boots, "armor_arvedui_boots");
@@ -412,8 +433,21 @@ public class LI {
 			register(silmaril, "silmaril");
 		}
 
+		@SubscribeEvent
+		@SideOnly(Side.CLIENT)
+		public static void onRegistryModel(ModelRegistryEvent event) {
+			for (Item item : getObjectFieldsOfType(LI.class, Item.class)) {
+				ResourceLocation regName = item.getRegistryName();
+				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
+				ModelBakery.registerItemVariants(item, mrl);
+				ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
+			}
+		}
+
 		public static void register(Item item, String name) {
-			ForgeRegistries.ITEMS.register(item.setRegistryName(name));
+			item.setRegistryName(name);
+			item.setUnlocalizedName(name);
+			ForgeRegistries.ITEMS.register(item);
 		}
 	}
 }

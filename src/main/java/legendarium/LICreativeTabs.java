@@ -1,11 +1,12 @@
 package legendarium;
 
-import net.minecraft.item.*;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 
 public class LICreativeTabs {
-	public static ItemGroup tabWeapons = new ItemGroup("weapons") {
+	public static CreativeTabs tabWeapons = new CreativeTabs("weapons") {
 		@Override
-		public ItemStack createIcon() {
+		public ItemStack getTabIconItem() {
 			return new ItemStack(LI.weapon_faramir);
 		}
 	};
