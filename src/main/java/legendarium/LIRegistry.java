@@ -268,6 +268,7 @@ public class LIRegistry {
 		register(armor_arpharazon_chestplate, "armor_arpharazon_chestplate");
 		register(armor_arpharazon_legs, "armor_arpharazon_legs");
 		register(armor_arpharazon_boots, "armor_arpharazon_boots");
+		register(armor_arvedui_helmet, "armor_arvedui_helmet");
 		register(armor_arvedui_chestplate, "armor_arvedui_chestplate");
 		register(armor_arvedui_legs, "armor_arvedui_legs");
 		register(armor_arvedui_boots, "armor_arvedui_boots");
