@@ -1,8 +1,8 @@
 package legendarium;
 
+import java.lang.reflect.*;
 import java.util.*;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -12,8 +12,8 @@ import net.minecraftforge.registries.*;
 
 @Mod("legendarium")
 public class LI {
+	public static List<RegistryObject<Item>> sus;
 	public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "legendarium");
-	public static Map<ResourceLocation, Integer> ITEM_ORDER_FOR_CREATIVE_TABS = new HashMap<>();
 
 	public static RegistryObject<Item> armor_anarion_helmet = ITEMS.register("armor_anarion_helmet", () -> new LIItemArmor(LIMaterial.ANARION, EquipmentSlot.HEAD));
 	public static RegistryObject<Item> armor_anarion_chestplate = ITEMS.register("armor_anarion_chestplate", () -> new LIItemArmor(LIMaterial.ANARION, EquipmentSlot.CHEST));
@@ -152,5 +152,28 @@ public class LI {
 	public LI() {
 		ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		MinecraftForge.EVENT_BUS.register(this);
+		sus = getObjectFieldsOfType(LI.class, RegistryObject.class);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(LICreativeTabs::addCreativeTab);
+	}
+
+	private static <E, T> List<T> getObjectFieldsOfType(Class<? extends E> clazz, Class type) {
+		ArrayList<Object> list = new ArrayList<>();
+		try {
+			for (Field field : clazz.getDeclaredFields()) {
+				if (field == null) {
+					continue;
+				}
+				Object fieldObj = null;
+				if (Modifier.isStatic(field.getModifiers())) {
+					fieldObj = field.get(null);
+				}
+				if (fieldObj == null || !type.isAssignableFrom(fieldObj.getClass())) {
+					continue;
+				}
+				list.add(fieldObj);
+			}
+		} catch (IllegalAccessException | IllegalArgumentException e) {
+		}
+		return (List<T>) list;
 	}
 }

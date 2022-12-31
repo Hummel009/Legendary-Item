@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "legendarium:items/armor_gilgalad_legs"
+    "layer0": "legendarium:item/armor_gilgalad_legs"
   }
 }
