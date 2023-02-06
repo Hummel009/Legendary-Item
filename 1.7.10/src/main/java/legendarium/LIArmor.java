@@ -86,7 +86,6 @@ public class LIArmor extends LOTRItemArmor {
 				setManFlesh.invoke(material);
 			}
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException exception) {
-			// empty catch block
 		}
 		return material;
 	}
@@ -121,7 +120,6 @@ public class LIArmor extends LOTRItemArmor {
 		try {
 			material = constructor.newInstance(name);
 		} catch (IllegalAccessException | IllegalArgumentException | InstantiationException | InvocationTargetException exception) {
-			// empty catch block
 		}
 		return LIArmor.editLOTRMaterial(material, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterialTool, craftingMaterialArmor, manFlesh, undamageable);
 	}
@@ -173,7 +171,6 @@ public class LIArmor extends LOTRItemArmor {
 			setManFlesh.setAccessible(true);
 			setup = true;
 		} catch (NoSuchMethodException | SecurityException clazz) {
-			// empty catch block
 		}
 	}
 }
