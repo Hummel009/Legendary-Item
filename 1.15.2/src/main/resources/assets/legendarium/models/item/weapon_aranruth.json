@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "legendarium:items/weapon_aranruth"
+    "layer0": "legendarium:item/weapon_aranruth"
   }
 }

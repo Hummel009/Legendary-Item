@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "legendarium:items/silmaril"
+    "layer0": "legendarium:item/silmaril"
   }
 }

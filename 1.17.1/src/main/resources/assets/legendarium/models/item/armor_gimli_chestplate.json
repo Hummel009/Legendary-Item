@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "legendarium:items/armor_gimli_chestplate"
+    "layer0": "legendarium:item/armor_gimli_chestplate"
   }
 }
