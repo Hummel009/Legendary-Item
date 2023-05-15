@@ -1,3 +1,6 @@
 /.metadata
-**/build
 **/.gradle
+**/workspace.xml
+**/build
+**/bin
+**/run
