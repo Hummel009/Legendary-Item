@@ -6,7 +6,7 @@ import net.minecraft.world.item.*;
 public class LIItemArmor extends ArmorItem {
 	public String materialName;
 
-	public LIItemArmor(ArmorMaterial material, EquipmentSlot slot) {
+	public LIItemArmor(ArmorMaterial material, Type slot) {
 		super(material, slot, new Properties());
 		materialName = material.getName();
 		initialize();

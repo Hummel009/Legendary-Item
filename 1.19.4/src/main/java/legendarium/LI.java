@@ -1,97 +1,100 @@
 package legendarium;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.*;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod("legendarium")
 public class LI {
 	public static List<Item> itemList = new ArrayList<>();
 	public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "legendarium");
 
-	public static RegistryObject<Item> armor_anarion_helmet = ITEMS.register("armor_anarion_helmet", () -> new LIItemArmor(LIMaterial.ANARION, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_anarion_chestplate = ITEMS.register("armor_anarion_chestplate", () -> new LIItemArmor(LIMaterial.ANARION, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_anarion_legs = ITEMS.register("armor_anarion_legs", () -> new LIItemArmor(LIMaterial.ANARION, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_anarion_boots = ITEMS.register("armor_anarion_boots", () -> new LIItemArmor(LIMaterial.ANARION, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_anarion_helmet = ITEMS.register("armor_anarion_helmet", () -> new LIItemArmor(LIMaterial.ANARION, Type.HELMET));
+	public static RegistryObject<Item> armor_anarion_chestplate = ITEMS.register("armor_anarion_chestplate", () -> new LIItemArmor(LIMaterial.ANARION, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_anarion_legs = ITEMS.register("armor_anarion_legs", () -> new LIItemArmor(LIMaterial.ANARION, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_anarion_boots = ITEMS.register("armor_anarion_boots", () -> new LIItemArmor(LIMaterial.ANARION, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_arpharazon_helmet = ITEMS.register("armor_arpharazon_helmet", () -> new LIItemArmor(LIMaterial.ARPHARAZON, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_arpharazon_chestplate = ITEMS.register("armor_arpharazon_chestplate", () -> new LIItemArmor(LIMaterial.ARPHARAZON, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_arpharazon_legs = ITEMS.register("armor_arpharazon_legs", () -> new LIItemArmor(LIMaterial.ARPHARAZON, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_arpharazon_boots = ITEMS.register("armor_arpharazon_boots", () -> new LIItemArmor(LIMaterial.ARPHARAZON, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_arpharazon_helmet = ITEMS.register("armor_arpharazon_helmet", () -> new LIItemArmor(LIMaterial.ARPHARAZON, Type.HELMET));
+	public static RegistryObject<Item> armor_arpharazon_chestplate = ITEMS.register("armor_arpharazon_chestplate", () -> new LIItemArmor(LIMaterial.ARPHARAZON, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_arpharazon_legs = ITEMS.register("armor_arpharazon_legs", () -> new LIItemArmor(LIMaterial.ARPHARAZON, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_arpharazon_boots = ITEMS.register("armor_arpharazon_boots", () -> new LIItemArmor(LIMaterial.ARPHARAZON, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_arvedui_helmet = ITEMS.register("armor_arvedui_helmet", () -> new LIItemArmor(LIMaterial.ARVEDUI, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_arvedui_chestplate = ITEMS.register("armor_arvedui_chestplate", () -> new LIItemArmor(LIMaterial.ARVEDUI, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_arvedui_legs = ITEMS.register("armor_arvedui_legs", () -> new LIItemArmor(LIMaterial.ARVEDUI, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_arvedui_boots = ITEMS.register("armor_arvedui_boots", () -> new LIItemArmor(LIMaterial.ARVEDUI, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_arvedui_helmet = ITEMS.register("armor_arvedui_helmet", () -> new LIItemArmor(LIMaterial.ARVEDUI, Type.HELMET));
+	public static RegistryObject<Item> armor_arvedui_chestplate = ITEMS.register("armor_arvedui_chestplate", () -> new LIItemArmor(LIMaterial.ARVEDUI, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_arvedui_legs = ITEMS.register("armor_arvedui_legs", () -> new LIItemArmor(LIMaterial.ARVEDUI, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_arvedui_boots = ITEMS.register("armor_arvedui_boots", () -> new LIItemArmor(LIMaterial.ARVEDUI, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_boromir_chestplate = ITEMS.register("armor_boromir_chestplate", () -> new LIItemArmor(LIMaterial.BOROMIR, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_boromir_legs = ITEMS.register("armor_boromir_legs", () -> new LIItemArmor(LIMaterial.BOROMIR, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_boromir_boots = ITEMS.register("armor_boromir_boots", () -> new LIItemArmor(LIMaterial.BOROMIR, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_boromir_chestplate = ITEMS.register("armor_boromir_chestplate", () -> new LIItemArmor(LIMaterial.BOROMIR, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_boromir_legs = ITEMS.register("armor_boromir_legs", () -> new LIItemArmor(LIMaterial.BOROMIR, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_boromir_boots = ITEMS.register("armor_boromir_boots", () -> new LIItemArmor(LIMaterial.BOROMIR, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_elendil_helmet = ITEMS.register("armor_elendil_helmet", () -> new LIItemArmor(LIMaterial.ELENDIL, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_elendil_chestplate = ITEMS.register("armor_elendil_chestplate", () -> new LIItemArmor(LIMaterial.ELENDIL, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_elendil_legs = ITEMS.register("armor_elendil_legs", () -> new LIItemArmor(LIMaterial.ELENDIL, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_elendil_boots = ITEMS.register("armor_elendil_boots", () -> new LIItemArmor(LIMaterial.ELENDIL, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_elendil_helmet = ITEMS.register("armor_elendil_helmet", () -> new LIItemArmor(LIMaterial.ELENDIL, Type.HELMET));
+	public static RegistryObject<Item> armor_elendil_chestplate = ITEMS.register("armor_elendil_chestplate", () -> new LIItemArmor(LIMaterial.ELENDIL, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_elendil_legs = ITEMS.register("armor_elendil_legs", () -> new LIItemArmor(LIMaterial.ELENDIL, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_elendil_boots = ITEMS.register("armor_elendil_boots", () -> new LIItemArmor(LIMaterial.ELENDIL, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_elros_helmet = ITEMS.register("armor_elros_helmet", () -> new LIItemArmor(LIMaterial.ELROS, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_elros_chestplate = ITEMS.register("armor_elros_chestplate", () -> new LIItemArmor(LIMaterial.ELROS, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_elros_legs = ITEMS.register("armor_elros_legs", () -> new LIItemArmor(LIMaterial.ELROS, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_elros_boots = ITEMS.register("armor_elros_boots", () -> new LIItemArmor(LIMaterial.ELROS, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_elros_helmet = ITEMS.register("armor_elros_helmet", () -> new LIItemArmor(LIMaterial.ELROS, Type.HELMET));
+	public static RegistryObject<Item> armor_elros_chestplate = ITEMS.register("armor_elros_chestplate", () -> new LIItemArmor(LIMaterial.ELROS, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_elros_legs = ITEMS.register("armor_elros_legs", () -> new LIItemArmor(LIMaterial.ELROS, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_elros_boots = ITEMS.register("armor_elros_boots", () -> new LIItemArmor(LIMaterial.ELROS, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_feanor_helmet = ITEMS.register("armor_feanor_helmet", () -> new LIItemArmor(LIMaterial.FEANOR, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_feanor_chestplate = ITEMS.register("armor_feanor_chestplate", () -> new LIItemArmor(LIMaterial.FEANOR, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_feanor_legs = ITEMS.register("armor_feanor_legs", () -> new LIItemArmor(LIMaterial.FEANOR, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_feanor_boots = ITEMS.register("armor_feanor_boots", () -> new LIItemArmor(LIMaterial.FEANOR, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_feanor_helmet = ITEMS.register("armor_feanor_helmet", () -> new LIItemArmor(LIMaterial.FEANOR, Type.HELMET));
+	public static RegistryObject<Item> armor_feanor_chestplate = ITEMS.register("armor_feanor_chestplate", () -> new LIItemArmor(LIMaterial.FEANOR, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_feanor_legs = ITEMS.register("armor_feanor_legs", () -> new LIItemArmor(LIMaterial.FEANOR, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_feanor_boots = ITEMS.register("armor_feanor_boots", () -> new LIItemArmor(LIMaterial.FEANOR, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_gilgalad_helmet = ITEMS.register("armor_gilgalad_helmet", () -> new LIItemArmor(LIMaterial.GILGALAD, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_gilgalad_chestplate = ITEMS.register("armor_gilgalad_chestplate", () -> new LIItemArmor(LIMaterial.GILGALAD, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_gilgalad_legs = ITEMS.register("armor_gilgalad_legs", () -> new LIItemArmor(LIMaterial.GILGALAD, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_gilgalad_boots = ITEMS.register("armor_gilgalad_boots", () -> new LIItemArmor(LIMaterial.GILGALAD, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_gilgalad_helmet = ITEMS.register("armor_gilgalad_helmet", () -> new LIItemArmor(LIMaterial.GILGALAD, Type.HELMET));
+	public static RegistryObject<Item> armor_gilgalad_chestplate = ITEMS.register("armor_gilgalad_chestplate", () -> new LIItemArmor(LIMaterial.GILGALAD, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_gilgalad_legs = ITEMS.register("armor_gilgalad_legs", () -> new LIItemArmor(LIMaterial.GILGALAD, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_gilgalad_boots = ITEMS.register("armor_gilgalad_boots", () -> new LIItemArmor(LIMaterial.GILGALAD, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_gimli_helmet = ITEMS.register("armor_gimli_helmet", () -> new LIItemArmor(LIMaterial.GIMLI, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_gimli_chestplate = ITEMS.register("armor_gimli_chestplate", () -> new LIItemArmor(LIMaterial.GIMLI, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_gimli_legs = ITEMS.register("armor_gimli_legs", () -> new LIItemArmor(LIMaterial.GIMLI, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_gimli_boots = ITEMS.register("armor_gimli_boots", () -> new LIItemArmor(LIMaterial.GIMLI, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_gimli_helmet = ITEMS.register("armor_gimli_helmet", () -> new LIItemArmor(LIMaterial.GIMLI, Type.HELMET));
+	public static RegistryObject<Item> armor_gimli_chestplate = ITEMS.register("armor_gimli_chestplate", () -> new LIItemArmor(LIMaterial.GIMLI, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_gimli_legs = ITEMS.register("armor_gimli_legs", () -> new LIItemArmor(LIMaterial.GIMLI, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_gimli_boots = ITEMS.register("armor_gimli_boots", () -> new LIItemArmor(LIMaterial.GIMLI, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_isildur_helmet = ITEMS.register("armor_isildur_helmet", () -> new LIItemArmor(LIMaterial.ISILDUR, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_isildur_chestplate = ITEMS.register("armor_isildur_chestplate", () -> new LIItemArmor(LIMaterial.ISILDUR, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_isildur_legs = ITEMS.register("armor_isildur_legs", () -> new LIItemArmor(LIMaterial.ISILDUR, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_isildur_boots = ITEMS.register("armor_isildur_boots", () -> new LIItemArmor(LIMaterial.ISILDUR, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_isildur_helmet = ITEMS.register("armor_isildur_helmet", () -> new LIItemArmor(LIMaterial.ISILDUR, Type.HELMET));
+	public static RegistryObject<Item> armor_isildur_chestplate = ITEMS.register("armor_isildur_chestplate", () -> new LIItemArmor(LIMaterial.ISILDUR, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_isildur_legs = ITEMS.register("armor_isildur_legs", () -> new LIItemArmor(LIMaterial.ISILDUR, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_isildur_boots = ITEMS.register("armor_isildur_boots", () -> new LIItemArmor(LIMaterial.ISILDUR, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_jiindur_helmet = ITEMS.register("armor_jiindur_helmet", () -> new LIItemArmor(LIMaterial.JIINDUR, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_jiindur_chestplate = ITEMS.register("armor_jiindur_chestplate", () -> new LIItemArmor(LIMaterial.JIINDUR, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_jiindur_legs = ITEMS.register("armor_jiindur_legs", () -> new LIItemArmor(LIMaterial.JIINDUR, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_jiindur_boots = ITEMS.register("armor_jiindur_boots", () -> new LIItemArmor(LIMaterial.JIINDUR, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_jiindur_helmet = ITEMS.register("armor_jiindur_helmet", () -> new LIItemArmor(LIMaterial.JIINDUR, Type.HELMET));
+	public static RegistryObject<Item> armor_jiindur_chestplate = ITEMS.register("armor_jiindur_chestplate", () -> new LIItemArmor(LIMaterial.JIINDUR, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_jiindur_legs = ITEMS.register("armor_jiindur_legs", () -> new LIItemArmor(LIMaterial.JIINDUR, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_jiindur_boots = ITEMS.register("armor_jiindur_boots", () -> new LIItemArmor(LIMaterial.JIINDUR, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_khamul_helmet = ITEMS.register("armor_khamul_helmet", () -> new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_khamul_chestplate = ITEMS.register("armor_khamul_chestplate", () -> new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_khamul_legs = ITEMS.register("armor_khamul_legs", () -> new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_khamul_boots = ITEMS.register("armor_khamul_boots", () -> new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_khamul_helmet = ITEMS.register("armor_khamul_helmet", () -> new LIItemArmor(LIMaterial.KHAMUL, Type.HELMET));
+	public static RegistryObject<Item> armor_khamul_chestplate = ITEMS.register("armor_khamul_chestplate", () -> new LIItemArmor(LIMaterial.KHAMUL, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_khamul_legs = ITEMS.register("armor_khamul_legs", () -> new LIItemArmor(LIMaterial.KHAMUL, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_khamul_boots = ITEMS.register("armor_khamul_boots", () -> new LIItemArmor(LIMaterial.KHAMUL, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_khommurat_helmet = ITEMS.register("armor_khommurat_helmet", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_khommurat_chestplate = ITEMS.register("armor_khommurat_chestplate", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_khommurat_legs = ITEMS.register("armor_khommurat_legs", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_khommurat_boots = ITEMS.register("armor_khommurat_boots", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_khommurat_helmet = ITEMS.register("armor_khommurat_helmet", () -> new LIItemArmor(LIMaterial.KHOMMURAT, Type.HELMET));
+	public static RegistryObject<Item> armor_khommurat_chestplate = ITEMS.register("armor_khommurat_chestplate", () -> new LIItemArmor(LIMaterial.KHOMMURAT, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_khommurat_legs = ITEMS.register("armor_khommurat_legs", () -> new LIItemArmor(LIMaterial.KHOMMURAT, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_khommurat_boots = ITEMS.register("armor_khommurat_boots", () -> new LIItemArmor(LIMaterial.KHOMMURAT, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_morgomir_helmet = ITEMS.register("armor_morgomir_helmet", () -> new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_morgomir_chestplate = ITEMS.register("armor_morgomir_chestplate", () -> new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_morgomir_legs = ITEMS.register("armor_morgomir_legs", () -> new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_morgomir_boots = ITEMS.register("armor_morgomir_boots", () -> new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_morgomir_helmet = ITEMS.register("armor_morgomir_helmet", () -> new LIItemArmor(LIMaterial.MORGOMIR, Type.HELMET));
+	public static RegistryObject<Item> armor_morgomir_chestplate = ITEMS.register("armor_morgomir_chestplate", () -> new LIItemArmor(LIMaterial.MORGOMIR, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_morgomir_legs = ITEMS.register("armor_morgomir_legs", () -> new LIItemArmor(LIMaterial.MORGOMIR, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_morgomir_boots = ITEMS.register("armor_morgomir_boots", () -> new LIItemArmor(LIMaterial.MORGOMIR, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_theoden_helmet = ITEMS.register("armor_theoden_helmet", () -> new LIItemArmor(LIMaterial.THEODEN, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_theoden_chestplate = ITEMS.register("armor_theoden_chestplate", () -> new LIItemArmor(LIMaterial.THEODEN, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_theoden_legs = ITEMS.register("armor_theoden_legs", () -> new LIItemArmor(LIMaterial.THEODEN, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_theoden_boots = ITEMS.register("armor_theoden_boots", () -> new LIItemArmor(LIMaterial.THEODEN, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_theoden_helmet = ITEMS.register("armor_theoden_helmet", () -> new LIItemArmor(LIMaterial.THEODEN, Type.HELMET));
+	public static RegistryObject<Item> armor_theoden_chestplate = ITEMS.register("armor_theoden_chestplate", () -> new LIItemArmor(LIMaterial.THEODEN, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_theoden_legs = ITEMS.register("armor_theoden_legs", () -> new LIItemArmor(LIMaterial.THEODEN, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_theoden_boots = ITEMS.register("armor_theoden_boots", () -> new LIItemArmor(LIMaterial.THEODEN, Type.BOOTS));
 
-	public static RegistryObject<Item> armor_turgon_helmet = ITEMS.register("armor_turgon_helmet", () -> new LIItemArmor(LIMaterial.TURGON, EquipmentSlot.HEAD));
-	public static RegistryObject<Item> armor_turgon_chestplate = ITEMS.register("armor_turgon_chestplate", () -> new LIItemArmor(LIMaterial.TURGON, EquipmentSlot.CHEST));
-	public static RegistryObject<Item> armor_turgon_legs = ITEMS.register("armor_turgon_legs", () -> new LIItemArmor(LIMaterial.TURGON, EquipmentSlot.LEGS));
-	public static RegistryObject<Item> armor_turgon_boots = ITEMS.register("armor_turgon_boots", () -> new LIItemArmor(LIMaterial.TURGON, EquipmentSlot.FEET));
+	public static RegistryObject<Item> armor_turgon_helmet = ITEMS.register("armor_turgon_helmet", () -> new LIItemArmor(LIMaterial.TURGON, Type.HELMET));
+	public static RegistryObject<Item> armor_turgon_chestplate = ITEMS.register("armor_turgon_chestplate", () -> new LIItemArmor(LIMaterial.TURGON, Type.CHESTPLATE));
+	public static RegistryObject<Item> armor_turgon_legs = ITEMS.register("armor_turgon_legs", () -> new LIItemArmor(LIMaterial.TURGON, Type.LEGGINGS));
+	public static RegistryObject<Item> armor_turgon_boots = ITEMS.register("armor_turgon_boots", () -> new LIItemArmor(LIMaterial.TURGON, Type.BOOTS));
 
 	public static RegistryObject<Item> weapon_acharn = ITEMS.register("weapon_acharn", LIItemSword::new);
 	public static RegistryObject<Item> weapon_aeglos = ITEMS.register("weapon_aeglos", LIItemSword::new);
