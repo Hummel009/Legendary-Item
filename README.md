@@ -32,3 +32,13 @@ Everybody know, that old Minecraft versions are dying slowly, because their impo
 There is also a problem in new versions: they are using different gradles, and they are to be downloaded and spam a lot.
 
 So I using my own patched versions of Forge. Old versions are fixed and alive, new versions are not spamming. Success!
+
+<h2> Future (or the past?) </h2>
+
+I have always been attracted to the idea of releasing a mod for every major version of minecraft. Therefore, the mod will be supported on every version for as long as possible.
+
+The mod already exists on version 1.7.10 (the original and native version it was originally developed on), as well as every last release of all major versions from 1.12.2 onwards.
+
+I would really like to release retrospective updates of the mod for versions 1.6.4 and earlier. But I couldn't do anything. Forge of such ancient versions is dead.
+
+If you know how to fix Forge 1.6.4 please let me know - I will be extremely grateful.
