@@ -14,7 +14,7 @@ To make it clear what was replaced by what, and so on.
 
 <h2> Important info </h2>
 
-All the projects can be opened via Eclipse or Intellij IDEA, but 1.12.2 source can't be launched directly from Intellij IDEA. So I recommend to use Eclipse.
+All the projects can be imported via Eclipse or opened via Intellij IDEA, but 1.12.2 source can't be launched directly from Intellij IDEA. So I recommend to use Eclipse.
 
 Projects are already configured, using needed JDK version and compiler:
 
