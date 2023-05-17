@@ -4,3 +4,5 @@
 **/build
 **/bin
 **/run
+**/libs/**/*.lang
+**/libs/**/*.txt
