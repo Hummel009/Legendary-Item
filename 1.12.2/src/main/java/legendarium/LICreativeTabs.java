@@ -7,7 +7,7 @@ public class LICreativeTabs {
 	public static final CreativeTabs tabWeapons = new CreativeTabs("weapons") {
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(LI.weapon_faramir);
+			return new ItemStack(LI.weaponFaramir);
 		}
 	};
 }
