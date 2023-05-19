@@ -18,8 +18,6 @@ import net.minecraftforge.fml.relauncher.*;
 
 @Mod(modid = "legendarium")
 public class LI {
-	public static Map<ResourceLocation, Integer> ITEM_ORDER_FOR_CREATIVE_TABS = new HashMap<>();
-
 	public static Item armor_anarion_helmet;
 	public static Item armor_anarion_chestplate;
 	public static Item armor_anarion_legs;
@@ -153,25 +151,7 @@ public class LI {
 	public static Item weapon_witchking;
 	public static Item arkenstone;
 	public static Item silmaril;
-
-	public static <E, T> List<T> getObjectFieldsOfType(Class<? extends E> clazz, Class<? extends T> type) {
-		ArrayList<Object> list = new ArrayList<>();
-		try {
-			for (Field field : clazz.getDeclaredFields()) {
-				if (field != null) {
-					Object fieldObj = null;
-					if (Modifier.isStatic(field.getModifiers())) {
-						fieldObj = field.get(null);
-					}
-					if (fieldObj != null && type.isAssignableFrom(fieldObj.getClass())) {
-						list.add(fieldObj);
-					}
-				}
-			}
-		} catch (IllegalAccessException | IllegalArgumentException exception) {
-		}
-		return (List<T>) list;
-	}
+	public static ArrayList<Item> itemList = new ArrayList<>();
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
@@ -436,7 +416,7 @@ public class LI {
 		@SubscribeEvent
 		@SideOnly(Side.CLIENT)
 		public static void onRegistryModel(ModelRegistryEvent event) {
-			for (Item item : getObjectFieldsOfType(LI.class, Item.class)) {
+			for (Item item : itemList) {
 				ResourceLocation regName = item.getRegistryName();
 				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
 				ModelBakery.registerItemVariants(item, mrl);
@@ -445,6 +425,7 @@ public class LI {
 		}
 
 		public static void register(Item item, String name) {
+			LI.itemList.add(item);
 			item.setRegistryName(name);
 			item.setUnlocalizedName(name);
 			ForgeRegistries.ITEMS.register(item);
