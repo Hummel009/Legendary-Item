@@ -25,28 +25,24 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 
 public class LIRender extends LOTRRenderLargeItem {
-	public static Map<String, Float> sizeFolders = new HashMap<>();
+	private static final Map<String, Float> sizeFolders = new HashMap<>();
 	static {
 		sizeFolders.put("large-2x", 2.0f);
 		sizeFolders.put("large-3x", 3.0f);
 	}
-	public final Item theItem;
-	public final String folderName;
-	public final float largeIconScale;
-	public IIcon largeIcon;
-
-	public List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
+	
+	private final List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
+	
+	private final Item theItem;
+	private final String folderName;
+	private final float largeIconScale;
+	private IIcon largeIcon;
 
 	public LIRender(Item item, String dir, float f) {
 		super(item, dir, f);
 		theItem = item;
 		folderName = dir;
 		largeIconScale = f;
-	}
-
-	public void doTransformations() {
-		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
-		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
 	}
 
 	@Override
@@ -78,15 +74,12 @@ public class LIRender extends LOTRRenderLargeItem {
 
 	@Override
 	public void renderLargeItem() {
-		this.renderLargeItem(largeIcon);
-	}
-
-	public void renderLargeItem(IIcon icon) {
-		doTransformations();
+		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
+		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationItemsTexture);
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tess = Tessellator.instance;
-		ItemRenderer.renderItemIn2D(tess, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625f);
+		ItemRenderer.renderItemIn2D(tess, largeIcon.getMaxU(), largeIcon.getMinV(), largeIcon.getMinU(), largeIcon.getMaxV(), largeIcon.getIconWidth(), largeIcon.getIconHeight(), 0.0625f);
 	}
 
 	public static ResourceLocation getLargeTexturePath(Item item, String folder) {
@@ -103,10 +96,9 @@ public class LIRender extends LOTRRenderLargeItem {
 			try {
 				ResourceLocation resLoc = LIRender.getLargeTexturePath(item, folder.getKey());
 				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				if (res == null) {
-					continue;
+				if (res != null) {
+					return new LIRender(item, folder.getKey(), iconScale);
 				}
-				return new LIRender(item, folder.getKey(), iconScale);
 			} catch (IOException resLoc) {
 			}
 		}

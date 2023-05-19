@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import lotr.common.LOTRCreativeTabs;
 import lotr.common.item.LOTRItemArmor;
 import lotr.common.item.LOTRMaterial;
@@ -15,22 +16,22 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class LIArmor extends LOTRItemArmor {
-	public static LOTRMaterial ANARION = LIArmor.newLOTRMaterial("ANARION", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial ARPHARAZON = LIArmor.newLOTRMaterial("ARPHARAZON", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial ARVEDUI = LIArmor.newLOTRMaterial("ARVEDUI", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial BOROMIR = LIArmor.newLOTRMaterial("BOROMIR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial ELENDIL = LIArmor.newLOTRMaterial("ELENDIL", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial ELROS = LIArmor.newLOTRMaterial("ELROS", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial FEANOR = LIArmor.newLOTRMaterial("FEANOR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial GILGALAD = LIArmor.newLOTRMaterial("GILGALAD", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial GIMLI = LIArmor.newLOTRMaterial("GIMLI", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial ISILDUR = LIArmor.newLOTRMaterial("ISILDUR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial JIINDUR = LIArmor.newLOTRMaterial("JIINDUR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial KHAMUL = LIArmor.newLOTRMaterial("KHAMUL", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial KHOMMURAT = LIArmor.newLOTRMaterial("KHOMMURAT", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial MORGOMIR = LIArmor.newLOTRMaterial("MORGOMIR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial THEODEN = LIArmor.newLOTRMaterial("THEODEN", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
-	public static LOTRMaterial TURGON = LIArmor.newLOTRMaterial("TURGON", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial ANARION = newLOTRMaterial("ANARION", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial ARPHARAZON = newLOTRMaterial("ARPHARAZON", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial ARVEDUI = newLOTRMaterial("ARVEDUI", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial BOROMIR = newLOTRMaterial("BOROMIR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial ELENDIL = newLOTRMaterial("ELENDIL", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial ELROS = newLOTRMaterial("ELROS", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial FEANOR = newLOTRMaterial("FEANOR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial GILGALAD = newLOTRMaterial("GILGALAD", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial GIMLI = newLOTRMaterial("GIMLI", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial ISILDUR = newLOTRMaterial("ISILDUR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial JIINDUR = newLOTRMaterial("JIINDUR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial KHAMUL = newLOTRMaterial("KHAMUL", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial KHOMMURAT = newLOTRMaterial("KHOMMURAT", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial MORGOMIR = newLOTRMaterial("MORGOMIR", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial THEODEN = newLOTRMaterial("THEODEN", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
+	public static LOTRMaterial TURGON = newLOTRMaterial("TURGON", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);
 	public static boolean setup;
 	public static Constructor<LOTRMaterial> constructor;
 	public static Method setUses;
@@ -54,7 +55,7 @@ public class LIArmor extends LOTRItemArmor {
 
 	@Override
 	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type) {
-		StringBuilder texture = new StringBuilder("legendarium:armor/").append(LICommander.getArmorName(this));
+		StringBuilder texture = new StringBuilder("legendarium:armor/").append(getArmorName(this));
 		if (type != null) {
 			texture.append("_").append(type);
 		}
@@ -62,7 +63,7 @@ public class LIArmor extends LOTRItemArmor {
 	}
 
 	public static LOTRMaterial editLOTRMaterial(LOTRMaterial material, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
-		LIArmor.setup();
+		setup();
 		try {
 			if (uses != -1) {
 				setUses.invoke((Object) material, uses);
@@ -113,40 +114,40 @@ public class LIArmor extends LOTRItemArmor {
 	}
 
 	public static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial) {
-		return LIArmor.newLOTRMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, false);
+		return newLOTRMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, false);
 	}
 
 	public static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial, boolean manFlesh) {
-		return LIArmor.newLOTRMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, craftingMaterial, manFlesh, false);
+		return newLOTRMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, craftingMaterial, manFlesh, false);
 	}
 
 	public static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
-		LIArmor.setup();
+		setup();
 		LOTRMaterial material = null;
 		try {
 			material = constructor.newInstance(name);
 		} catch (IllegalAccessException | IllegalArgumentException | InstantiationException | InvocationTargetException exception) {
 		}
-		return LIArmor.editLOTRMaterial(material, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterialTool, craftingMaterialArmor, manFlesh, undamageable);
+		return editLOTRMaterial(material, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterialTool, craftingMaterialArmor, manFlesh, undamageable);
 	}
 
 	public static void onInit() {
-		LICommander.setMaterialCraftingItem(ANARION, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(ARPHARAZON, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(ARVEDUI, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(BOROMIR, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(ELENDIL, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(ELROS, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(FEANOR, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(GILGALAD, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(GIMLI, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(ISILDUR, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(JIINDUR, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(KHAMUL, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(KHOMMURAT, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(MORGOMIR, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(THEODEN, Items.iron_ingot, Items.leather);
-		LICommander.setMaterialCraftingItem(TURGON, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(ANARION, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(ARPHARAZON, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(ARVEDUI, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(BOROMIR, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(ELENDIL, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(ELROS, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(FEANOR, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(GILGALAD, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(GIMLI, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(ISILDUR, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(JIINDUR, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(KHAMUL, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(KHOMMURAT, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(MORGOMIR, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(THEODEN, Items.iron_ingot, Items.leather);
+		setMaterialCraftingItem(TURGON, Items.iron_ingot, Items.leather);
 	}
 
 	public static void setup() {
@@ -178,5 +179,30 @@ public class LIArmor extends LOTRItemArmor {
 			setup = true;
 		} catch (NoSuchMethodException | SecurityException clazz) {
 		}
+	}
+	public static String getArmorName(LOTRItemArmor armor) {
+		return findAndInvokeMethod(LOTRItemArmor.class, armor, "getArmorName");
+	}
+
+	public static <T, E> T findAndInvokeMethod(Object[] arg, Class<? super E> clazz, E instance, String methodName, Class<?>... methodTypes) {
+		return findAndInvokeMethod(arg, clazz, instance, new String[] { methodName }, methodTypes);
+	}
+
+	public static <T, E> T findAndInvokeMethod(Object[] args, Class<? super E> clazz, E instance, String[] methodNames, Class<?>... methodTypes) {
+	    Method addControlZoneMethod = ReflectionHelper.findMethod(clazz, instance, methodNames, (Class[]) methodTypes);
+	    try {
+			return (T) addControlZoneMethod.invoke(instance, args);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	    return null;
+	}
+
+	public static <T, E> T findAndInvokeMethod(Class<? super E> clazz, E instance, String methodName) {
+		return findAndInvokeMethod(new Object[0], clazz, instance, methodName);
+	}
+
+	public static void setMaterialCraftingItem(LOTRMaterial material, Item toolItem, Item armorItem) {
+		findAndInvokeMethod(new Object[] { toolItem, armorItem }, LOTRMaterial.class, material, "setCraftingItems", Item.class, Item.class);
 	}
 }

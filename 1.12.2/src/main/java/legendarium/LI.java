@@ -153,7 +153,7 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public static ArrayList<Item> itemList = new ArrayList<>();
+	public static final ArrayList<Item> CONTENT = new ArrayList<>();
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
@@ -418,7 +418,7 @@ public class LI {
 		@SubscribeEvent
 		@SideOnly(Side.CLIENT)
 		public static void onRegistryModel(ModelRegistryEvent event) {
-			for (Item item : itemList) {
+			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
 				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
 				ModelBakery.registerItemVariants(item, mrl);
@@ -427,7 +427,7 @@ public class LI {
 		}
 
 		public static void register(Item item, String name) {
-			LI.itemList.add(item);
+			CONTENT.add(item);
 			item.setRegistryName(name);
 			item.setUnlocalizedName(name);
 			ForgeRegistries.ITEMS.register(item);

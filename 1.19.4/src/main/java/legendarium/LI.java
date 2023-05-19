@@ -14,8 +14,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod("legendarium")
 public class LI {
-	public static List<Item> itemList = new ArrayList<>();
-	public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "legendarium");
+	public static final List<Item> CONTENT = new ArrayList<>();
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "legendarium");
 
 	public static RegistryObject<Item> armor_anarion_helmet = ITEMS.register("armor_anarion_helmet", () -> new LIItemArmor(LIMaterial.ANARION, Type.HELMET));
 	public static RegistryObject<Item> armor_anarion_chestplate = ITEMS.register("armor_anarion_chestplate", () -> new LIItemArmor(LIMaterial.ANARION, Type.CHESTPLATE));

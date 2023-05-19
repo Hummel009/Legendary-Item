@@ -9,6 +9,6 @@ public class LIItemEmpty extends Item {
 	}
 
 	public void initialize() {
-		LI.itemList.add(this);
+		LI.CONTENT.add(this);
 	}
 }

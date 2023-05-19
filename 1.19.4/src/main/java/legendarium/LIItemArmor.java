@@ -24,6 +24,6 @@ public class LIItemArmor extends ArmorItem {
 	}
 
 	public void initialize() {
-		LI.itemList.add(this);
+		LI.CONTENT.add(this);
 	}
 }

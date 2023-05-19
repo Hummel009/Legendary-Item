@@ -14,7 +14,7 @@ public class LICreativeTabs {
 		builder.title(Component.translatable("itemGroup.weapons"))
 		.icon(() -> new ItemStack(LI.weapon_faramir.get()))
 		.displayItems((enabledFlags, populator) -> {
-			for (Item item : LI.itemList) {
+			for (Item item : LI.CONTENT) {
 				populator.accept(item);
 			}
 		}));

@@ -27,7 +27,7 @@ public class LIRendererManager implements IResourceManagerReloadListener {
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		largeItemRenderers.clear();
-		for (Item item : LICommander.getObjectFieldsOfType(LIRegistry.class, Item.class)) {
+		for (Item item : LIRegistry.CONTENT) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
 			LIRender largeItemRenderer = LIRender.getRendererIfLarge(item);
 			if (item instanceof LOTRItemCrossbow) {
@@ -39,10 +39,9 @@ public class LIRendererManager implements IResourceManagerReloadListener {
 			} else if (largeItemRenderer != null) {
 				MinecraftForgeClient.registerItemRenderer(item, largeItemRenderer);
 			}
-			if (largeItemRenderer == null) {
-				continue;
+			if (largeItemRenderer != null) {
+				largeItemRenderers.add(largeItemRenderer);
 			}
-			largeItemRenderers.add(largeItemRenderer);
 		}
 	}
 
