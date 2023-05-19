@@ -1,8 +1,5 @@
 package legendarium;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -11,6 +8,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod("legendarium")
 public class LI {
@@ -117,7 +117,7 @@ public class LI {
 	public static RegistryObject<Item> weapon_dwalin = ITEMS.register("weapon_dwalin", LIItemSword::new);
 	public static RegistryObject<Item> weapon_eothain = ITEMS.register("weapon_eothain", LIItemSword::new);
 	public static RegistryObject<Item> weapon_eowyn = ITEMS.register("weapon_eowyn", LIItemSword::new);
-	public static RegistryObject<Item> weapon_faramir = ITEMS.register("weapon_faramir", LIItemSword::new);
+	public static final RegistryObject<Item> weapon_faramir = ITEMS.register("weapon_faramir", LIItemSword::new);
 	public static RegistryObject<Item> weapon_gamling = ITEMS.register("weapon_gamling", LIItemSword::new);
 	public static RegistryObject<Item> weapon_gimli = ITEMS.register("weapon_gimli", LIItemSword::new);
 	public static RegistryObject<Item> weapon_girion = ITEMS.register("weapon_girion", LIItemSword::new);

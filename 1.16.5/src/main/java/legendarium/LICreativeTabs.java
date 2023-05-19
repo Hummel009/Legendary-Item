@@ -4,7 +4,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
 public class LICreativeTabs {
-	public static ItemGroup tabWeapons = new ItemGroup("weapons") {
+	public static final ItemGroup tabWeapons = new ItemGroup("weapons") {
 		@Override
 		public ItemStack makeIcon() {
 			return new ItemStack(LI.weapon_faramir.get());

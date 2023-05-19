@@ -7,7 +7,7 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 
 public class LIItemArmor extends ArmorItem {
-	public String materialName;
+	public final String materialName;
 
 	public LIItemArmor(ArmorMaterial material, Type slot) {
 		super(material, slot, new Properties());
