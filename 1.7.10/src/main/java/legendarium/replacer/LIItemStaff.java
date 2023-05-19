@@ -5,7 +5,6 @@ import lotr.common.item.LOTRItemGandalfStaffWhite;
 
 public class LIItemStaff extends LOTRItemGandalfStaffWhite {
 	public LIItemStaff() {
-		super();
 		initialize();
 	}
 

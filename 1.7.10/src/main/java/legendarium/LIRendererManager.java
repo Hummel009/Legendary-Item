@@ -1,8 +1,5 @@
 package legendarium;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import lotr.client.render.item.LOTRRenderBow;
 import lotr.client.render.item.LOTRRenderCrossbow;
@@ -20,9 +17,21 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LIRendererManager implements IResourceManagerReloadListener {
 	public static LIRendererManager INSTANCE;
 	public static List<LIRender> largeItemRenderers;
+
+	public static void preInit() {
+		largeItemRenderers = new ArrayList<>();
+		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
+		INSTANCE = new LIRendererManager();
+		INSTANCE.onResourceManagerReload(resMgr);
+		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
+		MinecraftForge.EVENT_BUS.register(INSTANCE);
+	}
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
@@ -53,14 +62,5 @@ public class LIRendererManager implements IResourceManagerReloadListener {
 				largeRenderer.registerIcons(map);
 			}
 		}
-	}
-
-	public static void preInit() {
-		largeItemRenderers = new ArrayList<>();
-		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-		INSTANCE = new LIRendererManager();
-		INSTANCE.onResourceManagerReload(resMgr);
-		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
-		MinecraftForge.EVENT_BUS.register(INSTANCE);
 	}
 }

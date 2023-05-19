@@ -1,20 +1,17 @@
 package legendarium;
 
-import java.util.ArrayList;
-
 import cpw.mods.fml.common.registry.GameRegistry;
-import legendarium.replacer.LIItemMace;
-import legendarium.replacer.LIItemSpear;
-import legendarium.replacer.LIItemStaff;
-import legendarium.replacer.LIItemSwordGlowing;
-import legendarium.replacer.LIItemSwordUsual;
+import legendarium.replacer.*;
 import lotr.common.LOTRCreativeTabs;
 import lotr.common.item.LOTRItemBow;
 import lotr.common.item.LOTRItemCrossbow;
 import lotr.common.item.LOTRMaterial;
 import net.minecraft.item.Item;
 
+import java.util.ArrayList;
+
 public class LIRegistry {
+	public static final ArrayList<Item> CONTENT = new ArrayList<>();
 	public static Item arkenstone;
 	public static Item armor_anarion_boots;
 	public static Item armor_anarion_chestplate;
@@ -140,88 +137,86 @@ public class LIRegistry {
 	public static Item weapon_urfael;
 	public static Item weapon_witchking;
 
-	public static final ArrayList<Item> CONTENT = new ArrayList<>();
-
 	public static void preInit() {
 		armor_anarion_boots = new LIArmor(LIArmor.ANARION, 3);
 		armor_anarion_chestplate = new LIArmor(LIArmor.ANARION, 1);
 		armor_anarion_helmet = new LIArmor(LIArmor.ANARION, 0);
 		armor_anarion_legs = new LIArmor(LIArmor.ANARION, 2);
-		
+
 		armor_arpharazon_boots = new LIArmor(LIArmor.ARPHARAZON, 3);
 		armor_arpharazon_chestplate = new LIArmor(LIArmor.ARPHARAZON, 1);
 		armor_arpharazon_helmet = new LIArmor(LIArmor.ARPHARAZON, 0);
 		armor_arpharazon_legs = new LIArmor(LIArmor.ARPHARAZON, 2);
-		
+
 		armor_arvedui_boots = new LIArmor(LIArmor.ARVEDUI, 3);
 		armor_arvedui_chestplate = new LIArmor(LIArmor.ARVEDUI, 1);
 		armor_arvedui_helmet = new LIArmor(LIArmor.ARVEDUI, 0);
 		armor_arvedui_legs = new LIArmor(LIArmor.ARVEDUI, 2);
-		
+
 		armor_boromir_boots = new LIArmor(LIArmor.BOROMIR, 3);
 		armor_boromir_chestplate = new LIArmor(LIArmor.BOROMIR, 1);
 		armor_boromir_legs = new LIArmor(LIArmor.BOROMIR, 2);
-		
+
 		armor_elendil_boots = new LIArmor(LIArmor.ELENDIL, 3);
 		armor_elendil_chestplate = new LIArmor(LIArmor.ELENDIL, 1);
 		armor_elendil_helmet = new LIArmor(LIArmor.ELENDIL, 0);
 		armor_elendil_legs = new LIArmor(LIArmor.ELENDIL, 2);
-		
+
 		armor_elros_boots = new LIArmor(LIArmor.ELROS, 3);
 		armor_elros_chestplate = new LIArmor(LIArmor.ELROS, 1);
 		armor_elros_helmet = new LIArmor(LIArmor.ELROS, 0);
 		armor_elros_legs = new LIArmor(LIArmor.ELROS, 2);
-		
+
 		armor_feanor_boots = new LIArmor(LIArmor.FEANOR, 3);
 		armor_feanor_chestplate = new LIArmor(LIArmor.FEANOR, 1);
 		armor_feanor_helmet = new LIArmor(LIArmor.FEANOR, 0);
 		armor_feanor_legs = new LIArmor(LIArmor.FEANOR, 2);
-		
+
 		armor_gilgalad_boots = new LIArmor(LIArmor.GILGALAD, 3);
 		armor_gilgalad_chestplate = new LIArmor(LIArmor.GILGALAD, 1);
 		armor_gilgalad_helmet = new LIArmor(LIArmor.GILGALAD, 0);
 		armor_gilgalad_legs = new LIArmor(LIArmor.GILGALAD, 2);
-		
+
 		armor_gimli_boots = new LIArmor(LIArmor.GIMLI, 3);
 		armor_gimli_chestplate = new LIArmor(LIArmor.GIMLI, 1);
 		armor_gimli_helmet = new LIArmor(LIArmor.GIMLI, 0);
 		armor_gimli_legs = new LIArmor(LIArmor.GIMLI, 2);
-		
+
 		armor_isildur_boots = new LIArmor(LIArmor.ISILDUR, 3);
 		armor_isildur_chestplate = new LIArmor(LIArmor.ISILDUR, 1);
 		armor_isildur_helmet = new LIArmor(LIArmor.ISILDUR, 0);
 		armor_isildur_legs = new LIArmor(LIArmor.ISILDUR, 2);
-		
+
 		armor_jiindur_boots = new LIArmor(LIArmor.JIINDUR, 3);
 		armor_jiindur_chestplate = new LIArmor(LIArmor.JIINDUR, 1);
 		armor_jiindur_helmet = new LIArmor(LIArmor.JIINDUR, 0);
 		armor_jiindur_legs = new LIArmor(LIArmor.JIINDUR, 2);
-		
+
 		armor_khamul_boots = new LIArmor(LIArmor.KHAMUL, 3);
 		armor_khamul_chestplate = new LIArmor(LIArmor.KHAMUL, 1);
 		armor_khamul_helmet = new LIArmor(LIArmor.KHAMUL, 0);
 		armor_khamul_legs = new LIArmor(LIArmor.KHAMUL, 2);
-		
+
 		armor_khommurat_boots = new LIArmor(LIArmor.KHOMMURAT, 3);
 		armor_khommurat_chestplate = new LIArmor(LIArmor.KHOMMURAT, 1);
 		armor_khommurat_helmet = new LIArmor(LIArmor.KHOMMURAT, 0);
 		armor_khommurat_legs = new LIArmor(LIArmor.KHOMMURAT, 2);
-		
+
 		armor_morgomir_boots = new LIArmor(LIArmor.MORGOMIR, 3);
 		armor_morgomir_chestplate = new LIArmor(LIArmor.MORGOMIR, 1);
 		armor_morgomir_helmet = new LIArmor(LIArmor.MORGOMIR, 0);
 		armor_morgomir_legs = new LIArmor(LIArmor.MORGOMIR, 2);
-		
+
 		armor_theoden_boots = new LIArmor(LIArmor.THEODEN, 3);
 		armor_theoden_chestplate = new LIArmor(LIArmor.THEODEN, 1);
 		armor_theoden_helmet = new LIArmor(LIArmor.THEODEN, 0);
 		armor_theoden_legs = new LIArmor(LIArmor.THEODEN, 2);
-		
+
 		armor_turgon_boots = new LIArmor(LIArmor.TURGON, 3);
 		armor_turgon_chestplate = new LIArmor(LIArmor.TURGON, 1);
 		armor_turgon_helmet = new LIArmor(LIArmor.TURGON, 0);
 		armor_turgon_legs = new LIArmor(LIArmor.TURGON, 2);
-		
+
 		weapon_acharn = new LIItemSwordUsual();
 		weapon_aeglos = new LIItemSpear();
 		weapon_alatar = new LIItemStaff();
@@ -274,7 +269,7 @@ public class LIRegistry {
 		weapon_thror = new LIItemSwordUsual();
 		weapon_urfael = new LIItemSwordUsual();
 		weapon_witchking = new LIItemMace();
-		
+
 		ranged_azkar = new LOTRItemBow(LOTRMaterial.HIGH_ELVEN, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
 		ranged_bard = new LOTRItemBow(LOTRMaterial.DALE, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
 		ranged_belthronding = new LOTRItemBow(LOTRMaterial.HIGH_ELVEN, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
@@ -282,10 +277,10 @@ public class LIRegistry {
 		ranged_haldir = new LOTRItemBow(LOTRMaterial.GALADHRIM, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
 		ranged_legolas = new LOTRItemBow(LOTRMaterial.HIGH_ELVEN, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
 		ranged_lurtz = new LOTRItemCrossbow(LOTRMaterial.URUK).setCreativeTab(LOTRCreativeTabs.tabStory);
-		
+
 		silmaril = new Item().setCreativeTab(LOTRCreativeTabs.tabStory).setMaxStackSize(1);
 		arkenstone = new Item().setCreativeTab(LOTRCreativeTabs.tabStory).setMaxStackSize(1);
-		
+
 		register(armor_anarion_helmet, "armor_anarion_helmet");
 		register(armor_anarion_chestplate, "armor_anarion_chestplate");
 		register(armor_anarion_legs, "armor_anarion_legs");
@@ -349,7 +344,7 @@ public class LIRegistry {
 		register(armor_turgon_chestplate, "armor_turgon_chestplate");
 		register(armor_turgon_legs, "armor_turgon_legs");
 		register(armor_turgon_boots, "armor_turgon_boots");
-		
+
 		register(weapon_acharn, "weapon_acharn");
 		register(weapon_aeglos, "weapon_aeglos");
 		register(weapon_alatar, "weapon_alatar");
@@ -402,7 +397,7 @@ public class LIRegistry {
 		register(weapon_thror, "weapon_thror");
 		register(weapon_urfael, "weapon_urfael");
 		register(weapon_witchking, "weapon_witchking");
-		
+
 		register(ranged_azkar, "ranged_azkar");
 		register(ranged_bard, "ranged_bard");
 		register(ranged_belthronding, "ranged_belthronding");
@@ -410,7 +405,7 @@ public class LIRegistry {
 		register(ranged_haldir, "ranged_haldir");
 		register(ranged_legolas, "ranged_legolas");
 		register(ranged_lurtz, "ranged_lurtz");
-		
+
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
 	}

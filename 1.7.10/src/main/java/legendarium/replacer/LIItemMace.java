@@ -5,7 +5,6 @@ import lotr.common.item.LOTRItemSauronMace;
 
 public class LIItemMace extends LOTRItemSauronMace {
 	public LIItemMace() {
-		super();
 		initialize();
 	}
 

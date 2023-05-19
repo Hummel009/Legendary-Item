@@ -5,7 +5,6 @@ import lotr.common.item.LOTRItemGlamdring;
 
 public class LIItemSwordGlowing extends LOTRItemGlamdring {
 	public LIItemSwordGlowing() {
-		super();
 		initialize();
 	}
 

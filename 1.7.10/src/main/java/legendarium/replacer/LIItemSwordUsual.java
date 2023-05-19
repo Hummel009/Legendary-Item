@@ -5,7 +5,6 @@ import lotr.common.item.LOTRItemAnduril;
 
 public class LIItemSwordUsual extends LOTRItemAnduril {
 	public LIItemSwordUsual() {
-		super();
 		initialize();
 	}
 
