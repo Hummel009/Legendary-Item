@@ -1,19 +1,21 @@
 [
-{
-  "modid": "legendarium",
-  "name": "Legendary Item",
-  "description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft",
-  "version": "23.05.21",
-  "credits": "Hummel009",
-  "logoFile": "logo.png",
-  "mcversion": "1.12.2",
-  "url": "https://github.com/Hummel009",
-  "updateUrl": "",
-  "authors": [ "Hummel009" ],
-  "parent": "",
-  "screenshots": [],
-  "dependencies": [
-     "mod_MinecraftForge"
-  ]
-}
+  {
+	"modid": "legendarium",
+	"name": "Legendary Item",
+	"description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft",
+	"version": "23.05.21",
+	"credits": "Hummel009",
+	"logoFile": "logo.png",
+	"mcversion": "1.12.2",
+	"url": "https://github.com/Hummel009",
+	"updateUrl": "",
+	"authors": [
+	  "Hummel009"
+	],
+	"parent": "",
+	"screenshots": [],
+	"dependencies": [
+	  "mod_MinecraftForge"
+	]
+  }
 ]

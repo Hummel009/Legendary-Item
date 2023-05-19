@@ -1,7 +1,5 @@
 package legendarium;
 
-import java.util.ArrayList;
-
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -17,87 +15,75 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 @Mod(modid = "legendarium")
 public class LI {
+	public static final ArrayList<Item> CONTENT = new ArrayList<>();
 	public static Item armor_anarion_helmet;
 	public static Item armor_anarion_chestplate;
 	public static Item armor_anarion_legs;
 	public static Item armor_anarion_boots;
-
 	public static Item armor_arpharazon_helmet;
 	public static Item armor_arpharazon_chestplate;
 	public static Item armor_arpharazon_legs;
 	public static Item armor_arpharazon_boots;
-
 	public static Item armor_arvedui_helmet;
 	public static Item armor_arvedui_chestplate;
 	public static Item armor_arvedui_legs;
 	public static Item armor_arvedui_boots;
-
 	public static Item armor_boromir_chestplate;
 	public static Item armor_boromir_legs;
 	public static Item armor_boromir_boots;
-
 	public static Item armor_elendil_helmet;
 	public static Item armor_elendil_chestplate;
 	public static Item armor_elendil_legs;
 	public static Item armor_elendil_boots;
-
 	public static Item armor_elros_helmet;
 	public static Item armor_elros_chestplate;
 	public static Item armor_elros_legs;
 	public static Item armor_elros_boots;
-
 	public static Item armor_feanor_helmet;
 	public static Item armor_feanor_chestplate;
 	public static Item armor_feanor_legs;
 	public static Item armor_feanor_boots;
-
 	public static Item armor_gilgalad_helmet;
 	public static Item armor_gilgalad_chestplate;
 	public static Item armor_gilgalad_legs;
 	public static Item armor_gilgalad_boots;
-
 	public static Item armor_gimli_helmet;
 	public static Item armor_gimli_chestplate;
 	public static Item armor_gimli_legs;
 	public static Item armor_gimli_boots;
-
 	public static Item armor_isildur_helmet;
 	public static Item armor_isildur_chestplate;
 	public static Item armor_isildur_legs;
 	public static Item armor_isildur_boots;
-
 	public static Item armor_jiindur_helmet;
 	public static Item armor_jiindur_chestplate;
 	public static Item armor_jiindur_legs;
 	public static Item armor_jiindur_boots;
-
 	public static Item armor_khamul_helmet;
 	public static Item armor_khamul_chestplate;
 	public static Item armor_khamul_legs;
 	public static Item armor_khamul_boots;
-
 	public static Item armor_khommurat_helmet;
 	public static Item armor_khommurat_chestplate;
 	public static Item armor_khommurat_legs;
 	public static Item armor_khommurat_boots;
-
 	public static Item armor_morgomir_helmet;
 	public static Item armor_morgomir_chestplate;
 	public static Item armor_morgomir_legs;
 	public static Item armor_morgomir_boots;
-
 	public static Item armor_theoden_helmet;
 	public static Item armor_theoden_chestplate;
 	public static Item armor_theoden_legs;
 	public static Item armor_theoden_boots;
-
 	public static Item armor_turgon_helmet;
 	public static Item armor_turgon_chestplate;
 	public static Item armor_turgon_legs;
 	public static Item armor_turgon_boots;
-
 	public static Item weapon_acharn;
 	public static Item weapon_aeglos;
 	public static Item weapon_alatar;
@@ -152,8 +138,6 @@ public class LI {
 	public static Item weapon_witchking;
 	public static Item arkenstone;
 	public static Item silmaril;
-
-	public static final ArrayList<Item> CONTENT = new ArrayList<>();
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
@@ -420,7 +404,7 @@ public class LI {
 		public static void onRegistryModel(ModelRegistryEvent event) {
 			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
-				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
+				ModelResourceLocation mrl = new ModelResourceLocation(Objects.requireNonNull(regName), "inventory");
 				ModelBakery.registerItemVariants(item, mrl);
 				ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
 			}
