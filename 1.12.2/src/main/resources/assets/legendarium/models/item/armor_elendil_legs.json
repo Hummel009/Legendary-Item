@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "legendarium:item/armor_elendil_legs"
+	"layer0": "legendarium:item/armor_elendil_legs"
   }
 }
