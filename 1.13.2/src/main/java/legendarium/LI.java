@@ -144,6 +144,7 @@ public class LI {
 	public static Item weaponThror;
 	public static Item weaponUrfael;
 	public static Item weaponWitchking;
+
 	public static Item arkenstone;
 	public static Item silmaril;
 
@@ -293,61 +294,76 @@ public class LI {
 			register(armorAnarionChestplate, "armorAnarionChestplate");
 			register(armorAnarionLegs, "armorAnarionLegs");
 			register(armorAnarionBoots, "armorAnarionBoots");
+
 			register(armorArpharazonHelmet, "armorArpharazonHelmet");
 			register(armorArpharazonChestplate, "armorArpharazonChestplate");
 			register(armorArpharazonLegs, "armorArpharazonLegs");
 			register(armorArpharazonBoots, "armorArpharazonBoots");
+
 			register(armorArveduiHelmet, "armorArveduiHelmet");
 			register(armorArveduiChestplate, "armorArveduiChestplate");
 			register(armorArveduiLegs, "armorArveduiLegs");
 			register(armorArveduiBoots, "armorArveduiBoots");
+
 			register(armorBoromirChestplate, "armorBoromirChestplate");
 			register(armorBoromirLegs, "armorBoromirLegs");
 			register(armorBoromirBoots, "armorBoromirBoots");
+
 			register(armorElendilHelmet, "armorElendilHelmet");
 			register(armorElendilChestplate, "armorElendilChestplate");
 			register(armorElendilLegs, "armorElendilLegs");
 			register(armorElendilBoots, "armorElendilBoots");
+
 			register(armorElrosHelmet, "armorElrosHelmet");
 			register(armorElrosChestplate, "armorElrosChestplate");
 			register(armorElrosLegs, "armorElrosLegs");
 			register(armorElrosBoots, "armorElrosBoots");
+
 			register(armorFeanorHelmet, "armorFeanorHelmet");
 			register(armorFeanorChestplate, "armorFeanorChestplate");
 			register(armorFeanorLegs, "armorFeanorLegs");
 			register(armorFeanorBoots, "armorFeanorBoots");
+
 			register(armorGilgaladHelmet, "armorGilgaladHelmet");
 			register(armorGilgaladChestplate, "armorGilgaladChestplate");
 			register(armorGilgaladLegs, "armorGilgaladLegs");
 			register(armorGilgaladBoots, "armorGilgaladBoots");
+
 			register(armorGimliHelmet, "armorGimliHelmet");
 			register(armorGimliChestplate, "armorGimliChestplate");
 			register(armorGimliLegs, "armorGimliLegs");
 			register(armorGimliBoots, "armorGimliBoots");
+
 			register(armorIsildurHelmet, "armorIsildurHelmet");
 			register(armorIsildurChestplate, "armorIsildurChestplate");
 			register(armorIsildurLegs, "armorIsildurLegs");
 			register(armorIsildurBoots, "armorIsildurBoots");
+
 			register(armorJiindurHelmet, "armorJiindurHelmet");
 			register(armorJiindurChestplate, "armorJiindurChestplate");
 			register(armorJiindurLegs, "armorJiindurLegs");
 			register(armorJiindurBoots, "armorJiindurBoots");
+
 			register(armorKhamulHelmet, "armorKhamulHelmet");
 			register(armorKhamulChestplate, "armorKhamulChestplate");
 			register(armorKhamulLegs, "armorKhamulLegs");
 			register(armorKhamulBoots, "armorKhamulBoots");
+
 			register(armorKhommuratHelmet, "armorKhommuratHelmet");
 			register(armorKhommuratChestplate, "armorKhommuratChestplate");
 			register(armorKhommuratLegs, "armorKhommuratLegs");
 			register(armorKhommuratBoots, "armorKhommuratBoots");
+
 			register(armorMorgomirHelmet, "armorMorgomirHelmet");
 			register(armorMorgomirChestplate, "armorMorgomirChestplate");
 			register(armorMorgomirLegs, "armorMorgomirLegs");
 			register(armorMorgomirBoots, "armorMorgomirBoots");
+
 			register(armorTheodenHelmet, "armorTheodenHelmet");
 			register(armorTheodenChestplate, "armorTheodenChestplate");
 			register(armorTheodenLegs, "armorTheodenLegs");
 			register(armorTheodenBoots, "armorTheodenBoots");
+
 			register(armorTurgonHelmet, "armorTurgonHelmet");
 			register(armorTurgonChestplate, "armorTurgonChestplate");
 			register(armorTurgonLegs, "armorTurgonLegs");
