@@ -1,12 +1,18 @@
 package legendarium;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import lotr.common.LOTRCreativeTabs;
-import lotr.common.item.*;
-import net.minecraft.entity.*;
+import lotr.common.item.LOTRItemArmor;
+import lotr.common.item.LOTRMaterial;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 
 public class LIArmor extends LOTRItemArmor {
 	public static LOTRMaterial ANARION = LIArmor.newLOTRMaterial("ANARION", 300, 2.5f, 0.5f, 2.0f, 6, 10, null);

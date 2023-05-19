@@ -1,11 +1,19 @@
 package legendarium;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
-import lotr.common.item.*;
-import net.minecraft.item.*;
+import lotr.common.item.LOTRItemArmor;
+import lotr.common.item.LOTRItemBow;
+import lotr.common.item.LOTRItemMountArmor;
+import lotr.common.item.LOTRMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class LICommander {
 	public static <T, E> T findAndInvokeMethod(Class<? super E> clazz, E instance, String methodName) {

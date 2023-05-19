@@ -2,7 +2,8 @@ package legendarium;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 
 public class LIItemArmor extends ItemArmor {
 	public String materialName;

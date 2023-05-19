@@ -1,6 +1,7 @@
 package legendarium;
 
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 public class LICreativeTabs {
 	public static CreativeModeTab tabWeapons = new CreativeModeTab("weapons") {

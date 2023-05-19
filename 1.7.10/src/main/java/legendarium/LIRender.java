@@ -1,7 +1,10 @@
 package legendarium;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.lwjgl.opengl.GL11;
@@ -11,11 +14,15 @@ import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.registry.GameRegistry;
 import lotr.client.render.item.LOTRRenderLargeItem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.item.Item;
-import net.minecraft.util.*;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StringUtils;
 
 public class LIRender extends LOTRRenderLargeItem {
 	public static Map<String, Float> sizeFolders = new HashMap<>();

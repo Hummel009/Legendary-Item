@@ -1,13 +1,20 @@
 package legendarium;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import lotr.client.render.item.*;
-import lotr.common.item.*;
+import lotr.client.render.item.LOTRRenderBow;
+import lotr.client.render.item.LOTRRenderCrossbow;
+import lotr.client.render.item.LOTRRenderElvenBlade;
+import lotr.common.item.LOTRItemBow;
+import lotr.common.item.LOTRItemCrossbow;
+import lotr.common.item.LOTRItemSword;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.*;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;

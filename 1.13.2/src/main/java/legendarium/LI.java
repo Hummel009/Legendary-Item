@@ -1,10 +1,7 @@
 package legendarium;
 
-import java.util.*;
-
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,8 +11,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod("legendarium")
 public class LI {
-	public static Map<ResourceLocation, Integer> ITEM_ORDER_FOR_CREATIVE_TABS = new HashMap<>();
-
 	public static Item armor_anarion_helmet;
 	public static Item armor_anarion_chestplate;
 	public static Item armor_anarion_legs;

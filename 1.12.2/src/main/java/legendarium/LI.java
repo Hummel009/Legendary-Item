@@ -152,6 +152,7 @@ public class LI {
 	public static Item weapon_witchking;
 	public static Item arkenstone;
 	public static Item silmaril;
+
 	public static ArrayList<Item> itemList = new ArrayList<>();
 
 	@ObjectHolder("legendarium")

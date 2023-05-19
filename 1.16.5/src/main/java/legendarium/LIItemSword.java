@@ -1,6 +1,7 @@
 package legendarium;
 
-import net.minecraft.item.*;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.SwordItem;
 
 public class LIItemSword extends SwordItem {
 	public LIItemSword() {
