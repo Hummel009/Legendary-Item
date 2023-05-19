@@ -1,14 +1,18 @@
 package legendarium;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.common.registry.GameRegistry;
-import legendarium.replacer.*;
+import legendarium.replacer.LIItemMace;
+import legendarium.replacer.LIItemSpear;
+import legendarium.replacer.LIItemStaff;
+import legendarium.replacer.LIItemSwordGlowing;
+import legendarium.replacer.LIItemSwordUsual;
 import lotr.common.LOTRCreativeTabs;
 import lotr.common.item.LOTRItemBow;
 import lotr.common.item.LOTRItemCrossbow;
 import lotr.common.item.LOTRMaterial;
 import net.minecraft.item.Item;
-
-import java.util.ArrayList;
 
 public class LIRegistry {
 	public static final ArrayList<Item> CONTENT = new ArrayList<>();

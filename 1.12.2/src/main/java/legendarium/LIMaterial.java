@@ -1,12 +1,12 @@
 package legendarium;
 
+import java.util.Objects;
+
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-
-import java.util.Objects;
 
 public class LIMaterial {
 	public static final ArmorMaterial ANARION = Objects.requireNonNull(EnumHelper.addArmorMaterial("anarion", "anarion", 25, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F)).setRepairItem(new ItemStack(Items.IRON_INGOT));

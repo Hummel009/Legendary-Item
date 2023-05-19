@@ -1,5 +1,8 @@
 package legendarium;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import lotr.common.LOTRCreativeTabs;
 import lotr.common.item.LOTRItemArmor;
@@ -8,9 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 
 public class LIArmor extends LOTRItemArmor {
 	public static boolean setup;

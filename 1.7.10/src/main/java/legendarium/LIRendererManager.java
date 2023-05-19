@@ -1,5 +1,8 @@
 package legendarium;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import lotr.client.render.item.LOTRRenderBow;
 import lotr.client.render.item.LOTRRenderCrossbow;
@@ -16,9 +19,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LIRendererManager implements IResourceManagerReloadListener {
 	public static LIRendererManager INSTANCE;
