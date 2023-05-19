@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "legendarium:items/armor_arpharazon_helmet"
+    "layer0": "legendarium:item/armor_arpharazon_helmet"
   }
 }
