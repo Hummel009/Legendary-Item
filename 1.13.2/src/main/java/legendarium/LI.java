@@ -428,7 +428,8 @@ public class LI {
 
 		public static void register(Item item, String field) {
 			String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-			ForgeRegistries.ITEMS.register(item.setRegistryName(name));
+			item.setRegistryName(name);
+			ForgeRegistries.ITEMS.register(item);
 		}
 	}
 }
