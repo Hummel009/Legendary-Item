@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="runClient 1.11.2" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="GradleStart" />
+    <module name="1.11.2" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/1.11.2/run" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
