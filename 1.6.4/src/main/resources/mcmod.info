@@ -1,0 +1,15 @@
+[
+  {
+	"modid": "legendarium",
+	"name": "Legendary Item",
+	"description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft",
+	"version": "23.05.21",
+	"mcversion": "1.6.4",
+	"logoFile": "logo.png",
+	"url": "https://github.com/Hummel009",
+	"authorList": [
+	  "Hummel009"
+	],
+	"credits": "Hummel009"
+  }
+]
