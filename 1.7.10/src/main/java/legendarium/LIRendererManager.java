@@ -11,6 +11,7 @@ import lotr.common.item.LOTRItemBow;
 import lotr.common.item.LOTRItemCrossbow;
 import lotr.common.item.LOTRItemSword;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
@@ -35,32 +36,31 @@ public class LIRendererManager implements IResourceManagerReloadListener {
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
-		largeItemRenderers.clear();
-		for (Item item : LIRegistry.CONTENT) {
-			MinecraftForgeClient.registerItemRenderer(item, null);
-			LIRender largeItemRenderer = LIRender.getRendererIfLarge(item);
-			if (item instanceof LOTRItemCrossbow) {
-				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderCrossbow());
-			} else if (item instanceof LOTRItemBow) {
-				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderBow(largeItemRenderer));
-			} else if (item instanceof LOTRItemSword && ((LOTRItemSword) item).isElvenBlade()) {
-				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderElvenBlade(24.0, largeItemRenderer));
-			} else if (largeItemRenderer != null) {
-				MinecraftForgeClient.registerItemRenderer(item, largeItemRenderer);
-			}
-			if (largeItemRenderer != null) {
-				largeItemRenderers.add(largeItemRenderer);
-			}
-		}
-	}
+        largeItemRenderers.clear();
+        for (Item item : LIRegistry.CONTENT) {
+            MinecraftForgeClient.registerItemRenderer((Item)item, null);
+            LIRender largeItemRenderer = LIRender.getRendererIfLarge(item);
+            if (item instanceof LOTRItemCrossbow) {
+                MinecraftForgeClient.registerItemRenderer((Item)item, new LOTRRenderCrossbow());
+            } else if (item instanceof LOTRItemBow) {
+                MinecraftForgeClient.registerItemRenderer((Item)item, new LOTRRenderBow(largeItemRenderer));
+            } else if (item instanceof LOTRItemSword && ((LOTRItemSword)item).isElvenBlade()) {
+                MinecraftForgeClient.registerItemRenderer((Item)item, new LOTRRenderElvenBlade(24.0, largeItemRenderer));
+            } else if (largeItemRenderer != null) {
+                MinecraftForgeClient.registerItemRenderer((Item)item, largeItemRenderer);
+            }
+            if (largeItemRenderer == null) continue;
+            largeItemRenderers.add(largeItemRenderer);
+        }
+    }
 
-	@SubscribeEvent
-	public void preTextureStitch(TextureStitchEvent.Pre event) {
-		TextureMap map = event.map;
-		if (map.getTextureType() == 1) {
-			for (LIRender largeRenderer : largeItemRenderers) {
-				largeRenderer.registerIcons(map);
-			}
-		}
-	}
+    @SubscribeEvent
+    public void preTextureStitch(TextureStitchEvent.Pre event) {
+        TextureMap map = event.map;
+        if (map.getTextureType() == 1) {
+            for (LIRender largeRenderer : largeItemRenderers) {
+                largeRenderer.registerIcons((IIconRegister)map);
+            }
+        }
+    }
 }
