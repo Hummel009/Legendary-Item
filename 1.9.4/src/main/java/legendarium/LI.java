@@ -15,6 +15,7 @@ import java.util.Set;
 @Mod(modid = "legendarium")
 public class LI {
 	public static final Set<Item> CONTENT = new HashSet<>();
+
 	@SidedProxy(serverSide = "legendarium.LICommonProxy", clientSide = "legendarium.LIClientProxy")
 	public static LICommonProxy proxy;
 
