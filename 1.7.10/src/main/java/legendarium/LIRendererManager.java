@@ -8,7 +8,6 @@ import lotr.common.item.LOTRItemBow;
 import lotr.common.item.LOTRItemCrossbow;
 import lotr.common.item.LOTRItemSword;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;

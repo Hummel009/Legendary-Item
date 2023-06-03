@@ -1,10 +1,10 @@
 package legendarium;
 
-import java.util.logging.Level;
-
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.Configuration;
+
+import java.util.logging.Level;
 
 public class LIConfig {
 	public static Configuration configuration;
@@ -149,7 +149,7 @@ public class LIConfig {
 	private static void setDefaultValues() {
 		try {
 			configuration.load();
-			
+
 			idArmorAnarionHelmet = configuration.get("item", "Armor Anarion Helmet", 772).getInt(772);
 			idArmorAnarionChestplate = configuration.get("item", "Armor Anarion Chestplate", 773).getInt(773);
 			idArmorAnarionLegs = configuration.get("item", "Armor Anarion Legs", 774).getInt(774);
@@ -281,7 +281,7 @@ public class LIConfig {
 			idWeaponThror = configuration.get("item", "Weapon Thror", 884).getInt(884);
 			idWeaponUrfael = configuration.get("item", "Weapon Urfael", 885).getInt(885);
 			idWeaponWitchking = configuration.get("item", "Weapon Witchking", 886).getInt(886);
-			
+
 			idArkenstone = configuration.get("item", "Arkenstone", 887).getInt(887);
 			idSilmaril = configuration.get("item", "Silmaril", 888).getInt(888);
 		} catch (Exception e) {

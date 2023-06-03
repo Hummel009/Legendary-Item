@@ -14,13 +14,13 @@ public class LIItemArmor extends ItemArmor implements IArmorTextureProvider {
 
 	public LIItemArmor(int id, EnumArmorMaterial material, int slot, int renderId) {
 		super(id, material, renderId, slot);
-		setCreativeTab(LICreativeTabs.tabWeapons);
+		LIReflectionHelper.setCreativeTab(this, LICreativeTabs.TAB_ARTIFACTS);
 		materialName = material.name();
 	}
 
 	@Override
 	public String getArmorTextureFile(ItemStack itemstack) {
-		if (this.armorType == 2) {
+		if (armorType == 2) {
 			return "/assets/legendarium/armor/" + materialName + "_2.png";
 		}
 		return "/assets/legendarium/armor/" + materialName + "_1.png";

@@ -1,9 +1,6 @@
 package legendarium;
 
-import java.util.ArrayList;
-
 import com.google.common.base.CaseFormat;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -11,12 +8,14 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Mod(modid = "legendarium")
 public class LI {
+	public static final Set<Item> CONTENT = new HashSet<>();
 	@SidedProxy(serverSide = "legendarium.LICommonProxy", clientSide = "legendarium.LIClientProxy")
 	public static LICommonProxy proxy;
-	
-	public static final ArrayList<Item> CONTENT = new ArrayList<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
@@ -152,6 +151,14 @@ public class LI {
 
 	public static Item arkenstone;
 	public static Item silmaril;
+
+	public static void register(Item item, String field) {
+		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
+		item.setUnlocalizedName(name);
+		item.setRegistryName(name);
+		GameRegistry.registerItem(item, name);
+		CONTENT.add(item);
+	}
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -428,13 +435,5 @@ public class LI {
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
 		proxy.registerRenders();
-	}
-
-	public static void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-		item.setUnlocalizedName(name);
-		item.setRegistryName(name);
-		GameRegistry.registerItem(item, name);
-		CONTENT.add(item);
 	}
 }

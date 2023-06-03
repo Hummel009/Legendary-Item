@@ -1,7 +1,6 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -145,6 +144,14 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
+	public static void register(Item item, String field) {
+		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
+		item.setTextureName("legendarium:" + name);
+		item.setUnlocalizedName(name);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		GameRegistry.registerItem(item, name);
+	}
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		LIConfig.preInit(event);
@@ -285,7 +292,7 @@ public class LI {
 		weaponWitchking = new LIItemSword(LIConfig.idWeaponWitchking - 256);
 		arkenstone = new LIItemEmpty(LIConfig.idArkenstone - 256);
 		silmaril = new LIItemEmpty(LIConfig.idSilmaril - 256);
-		
+
 		register(armorAnarionHelmet, "armorAnarionHelmet");
 		register(armorAnarionChestplate, "armorAnarionChestplate");
 		register(armorAnarionLegs, "armorAnarionLegs");
@@ -420,13 +427,5 @@ public class LI {
 
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
-	}
-
-	public static void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-		item.setTextureName("legendarium:" + name);
-		item.setUnlocalizedName(name);
-		item.setCreativeTab(LICreativeTabs.tabWeapons);
-		GameRegistry.registerItem(item, name);
 	}
 }

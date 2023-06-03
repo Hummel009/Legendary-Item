@@ -1,23 +1,16 @@
 package legendarium;
 
-import java.util.ArrayList;
-
 import com.google.common.base.CaseFormat;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import lotr.common.LOTRCreativeTabs;
-import lotr.common.item.LOTRItemAnduril;
-import lotr.common.item.LOTRItemBow;
-import lotr.common.item.LOTRItemCrossbow;
-import lotr.common.item.LOTRItemGandalfStaffWhite;
-import lotr.common.item.LOTRItemGlamdring;
-import lotr.common.item.LOTRItemSauronMace;
-import lotr.common.item.LOTRItemSpear;
-import lotr.common.item.LOTRMaterial;
+import lotr.common.item.*;
 import net.minecraft.item.Item;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class LIRegistry {
-	public static final ArrayList<Item> CONTENT = new ArrayList<>();
+	public static final Set<Item> CONTENT = new HashSet<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;

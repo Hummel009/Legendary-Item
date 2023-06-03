@@ -1,7 +1,6 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -148,6 +147,13 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
+	public static void register(Item item, String field) {
+		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
+		item.setUnlocalizedName(name);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		GameRegistry.registerItem(item, name);
+	}
+
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
 		LIConfig.preInit(event);
@@ -288,7 +294,7 @@ public class LI {
 		weaponWitchking = new LIItemSword(LIConfig.idWeaponWitchking - 256);
 		arkenstone = new LIItemEmpty(LIConfig.idArkenstone - 256);
 		silmaril = new LIItemEmpty(LIConfig.idSilmaril - 256);
-		
+
 		register(armorAnarionHelmet, "armorAnarionHelmet");
 		register(armorAnarionChestplate, "armorAnarionChestplate");
 		register(armorAnarionLegs, "armorAnarionLegs");
@@ -426,12 +432,5 @@ public class LI {
 
 		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/en_US.lang", "en_US", false);
 		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/ru_RU.lang", "ru_RU", false);
-	}
-
-	public static void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-		item.setUnlocalizedName(name);
-		item.setCreativeTab(LICreativeTabs.tabWeapons);
-		GameRegistry.registerItem(item, name);
 	}
 }

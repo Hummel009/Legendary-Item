@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class LILang {
 	public static Map<String, String> ruRU = new HashMap<String, String>();
+	public static Map<String, String> enUS = new HashMap<String, String>();
 
 	static {
 		ruRU.put("item.arkenstone.name", "\u0410\u0440\u043A\u0435\u043D\u0441\u0442\u043E\u043D");
@@ -133,9 +134,7 @@ public class LILang {
 		ruRU.put("item.weapon_urfael.name", "\u0423\u0440\u0444\u0430\u044D\u043B\u044C");
 		ruRU.put("item.weapon_witchking.name", "\u041C\u0435\u0447 \u041A\u043E\u0440\u043E\u043B\u044F-\u0447\u0430\u0440\u043E\u0434\u0435\u044F \u0410\u043D\u0433\u043C\u0430\u0440\u0430");
 	}
-	
-	public static Map<String, String> enUS = new HashMap<String, String>();
-	
+
 	static {
 		enUS.put("item.arkenstone.name", "Arkenstone");
 		enUS.put("item.armor_anarion_boots.name", "An\u00E1rion's Boots");

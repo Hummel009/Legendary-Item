@@ -2,7 +2,6 @@ package legendarium;
 
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.EnumHelper;
 
 public class LIMaterial {
@@ -22,23 +21,23 @@ public class LIMaterial {
 	public static final EnumArmorMaterial MORGOMIR = EnumHelper.addArmorMaterial("morgomir", 25, new int[]{2, 5, 6, 2}, 9);
 	public static final EnumArmorMaterial THEODEN = EnumHelper.addArmorMaterial("theoden", 25, new int[]{2, 5, 6, 2}, 9);
 	public static final EnumArmorMaterial TURGON = EnumHelper.addArmorMaterial("turgon", 25, new int[]{2, 5, 6, 2}, 9);
-	
+
 	static {
-		ANARION.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		ARPHARAZON.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		ARVEDUI.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		BOROMIR.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		ELENDIL.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		ELROS.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		FEANOR.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		GILGALAD.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		GIMLI.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		ISILDUR.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		JIINDUR.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		KHAMUL.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		KHOMMURAT.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		MORGOMIR.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		THEODEN.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
-		TURGON.customCraftingMaterial = new ItemStack(Item.ingotIron).getItem();
+		ANARION.customCraftingMaterial = Item.ingotIron;
+		ARPHARAZON.customCraftingMaterial = Item.ingotIron;
+		ARVEDUI.customCraftingMaterial = Item.ingotIron;
+		BOROMIR.customCraftingMaterial = Item.ingotIron;
+		ELENDIL.customCraftingMaterial = Item.ingotIron;
+		ELROS.customCraftingMaterial = Item.ingotIron;
+		FEANOR.customCraftingMaterial = Item.ingotIron;
+		GILGALAD.customCraftingMaterial = Item.ingotIron;
+		GIMLI.customCraftingMaterial = Item.ingotIron;
+		ISILDUR.customCraftingMaterial = Item.ingotIron;
+		JIINDUR.customCraftingMaterial = Item.ingotIron;
+		KHAMUL.customCraftingMaterial = Item.ingotIron;
+		KHOMMURAT.customCraftingMaterial = Item.ingotIron;
+		MORGOMIR.customCraftingMaterial = Item.ingotIron;
+		THEODEN.customCraftingMaterial = Item.ingotIron;
+		TURGON.customCraftingMaterial = Item.ingotIron;
 	}
 }
