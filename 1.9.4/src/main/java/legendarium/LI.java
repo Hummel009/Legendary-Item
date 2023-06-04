@@ -9,12 +9,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(modid = "legendarium")
 public class LI {
-	public static final Set<Item> CONTENT = new HashSet<>();
+	public static final List<Item> CONTENT = new ArrayList<>();
 
 	@SidedProxy(serverSide = "legendarium.LICommonProxy", clientSide = "legendarium.LIClientProxy")
 	public static LICommonProxy proxy;

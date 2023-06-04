@@ -6,11 +6,11 @@ import lotr.common.LOTRCreativeTabs;
 import lotr.common.item.*;
 import net.minecraft.item.Item;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LIRegistry {
-	public static final Set<Item> CONTENT = new HashSet<>();
+	public static final List<Item> CONTENT = new ArrayList<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;

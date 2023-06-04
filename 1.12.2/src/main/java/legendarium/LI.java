@@ -16,13 +16,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(modid = "legendarium")
 public class LI {
-	public static final Set<Item> CONTENT = new HashSet<>();
+	public static final List<Item> CONTENT = new ArrayList<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
