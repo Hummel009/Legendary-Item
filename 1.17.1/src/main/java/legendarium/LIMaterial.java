@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public enum LIMaterial implements ArmorMaterial {
-	ANARION("anarion", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), ARPHARAZON("arpharazon", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), ARVEDUI("arvedui", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), BOROMIR("boromir", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), ELENDIL("elendil", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), ELROS("elros", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), FEANOR("feanor", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), GILGALAD("gilgalad", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), GIMLI("gimli", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), ISILDUR("isildur", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), JIINDUR("jiindur", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), KHAMUL("khamul", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), KHOMMURAT("khommurat", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), MORGOMIR("morgomir", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), THEODEN("theoden", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0), TURGON("turgon", 25, new int[]{3, 6, 8, 3}, 9, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0);
+	ANARION("anarion"), ARPHARAZON("arpharazon"), ARVEDUI("arvedui"), BOROMIR("boromir"), ELENDIL("elendil"), ELROS("elros"), FEANOR("feanor"), GILGALAD("gilgalad"), GIMLI("gimli"), ISILDUR("isildur"), JIINDUR("jiindur"), KHAMUL("khamul"), KHOMMURAT("khommurat"), MORGOMIR("morgomir"), THEODEN("theoden"), TURGON("turgon");
 
 	public static final int[] DURABILITY_FOR_SLOT = {13, 15, 16, 11};
 	public final String name;
@@ -20,7 +20,11 @@ public enum LIMaterial implements ArmorMaterial {
 	public final SoundEvent equipSound;
 	public final float toughness;
 	public final Ingredient repairIngredient;
-	public final int knockbackResistance;
+	public final float knockbackResistance;
+
+	LIMaterial(String name) {
+		this(name, 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0);
+	}
 
 	LIMaterial(String name, int maxDamageFactor, int[] defenceForSlot, int enchantmentValue, SoundEvent equipSound, float toughness, Ingredient repairIngredient, int knockbackResistance) {
 		this.name = name;
