@@ -439,7 +439,7 @@ public class LI {
 		public static void onRegistryModel(ModelRegistryEvent event) {
 			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
-				ModelResourceLocation mrl = new ModelResourceLocation(Objects.requireNonNull(regName), "inventory");
+				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
 				ModelBakery.registerItemVariants(item, mrl);
 				ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
 			}

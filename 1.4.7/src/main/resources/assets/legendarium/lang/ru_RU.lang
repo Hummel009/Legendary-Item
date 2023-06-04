@@ -1,5 +1,5 @@
 
-itemGroup.weapons=Артефакты Средиземья
+itemGroup.artifacts=Артефакты Средиземья
 
 /* ОРУЖИЕ */
 item.weapon_aeglos.name=Аэглос

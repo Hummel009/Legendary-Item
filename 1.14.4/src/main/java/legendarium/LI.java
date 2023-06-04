@@ -1,7 +1,6 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
-
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;

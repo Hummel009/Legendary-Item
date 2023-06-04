@@ -1,14 +1,12 @@
 package legendarium;
 
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 public class LICreativeTabs {
-	public static final CreativeModeTab tabWeapons = new CreativeModeTab("weapons") {
+	public static final CreativeModeTab TAB_ARTIFACTS = new CreativeModeTab("artifacts") {
 		@Override
-		public @NotNull ItemStack makeIcon() {
+		public ItemStack makeIcon() {
 			return new ItemStack(LI.WEAPON_FARAMIR.get());
 		}
 	};

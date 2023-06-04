@@ -1,5 +1,5 @@
 
-itemGroup.weapons=Middle-Earth Artifacts
+itemGroup.artifacts=Middle-Earth Artifacts
 
 /* WEAPON */
 item.weapon_aeglos.name=Aeglos

@@ -14,7 +14,7 @@ public class LIItemArmor extends ItemArmor {
 
 	public LIItemArmor(ItemArmor.ArmorMaterial material, EntityEquipmentSlot slot, int renderId) {
 		super(material, renderId, slot);
-		setCreativeTab(LICreativeTabs.tabWeapons);
+		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		materialName = material.getName();
 	}
 

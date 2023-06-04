@@ -1,13 +1,13 @@
 package legendarium;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Item;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 
-public class LIReflectionHelper {
+public class LIObfuscationHelper {
 	public static void setIconIndex(Item item, int value) {
 		try {
-			ReflectionHelper.setPrivateValue(Item.class, item, value, "bV");
+			ReflectionHelper.setPrivateValue(Item.class, item, value, "cl");
 		} catch (Exception e) {
 			item.setIconIndex(value);
 		}
@@ -15,7 +15,7 @@ public class LIReflectionHelper {
 
 	public static void setItemName(Item item, String value) {
 		try {
-			ReflectionHelper.setPrivateValue(Item.class, item, "item." + value, "bZ");
+			ReflectionHelper.setPrivateValue(Item.class, item, "item." + value, "cp");
 		} catch (Exception e) {
 			item.setItemName(value);
 		}

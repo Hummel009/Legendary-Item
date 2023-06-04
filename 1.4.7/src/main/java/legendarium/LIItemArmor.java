@@ -14,7 +14,7 @@ public class LIItemArmor extends ItemArmor implements IArmorTextureProvider {
 
 	public LIItemArmor(int id, EnumArmorMaterial material, int slot, int renderId) {
 		super(id, material, renderId, slot);
-		LIReflectionHelper.setCreativeTab(this, LICreativeTabs.TAB_ARTIFACTS);
+		LIObfuscationHelper.setCreativeTab(this, LICreativeTabs.TAB_ARTIFACTS);
 		materialName = material.name();
 	}
 

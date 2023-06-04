@@ -1,7 +1,5 @@
 package legendarium;
 
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -51,7 +49,7 @@ public enum LIMaterial implements ArmorMaterial {
 	}
 
 	@Override
-	public @NotNull SoundEvent getEquipSound() {
+	public SoundEvent getEquipSound() {
 		return equipSound;
 	}
 
@@ -62,12 +60,12 @@ public enum LIMaterial implements ArmorMaterial {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public @NotNull String getName() {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public @NotNull Ingredient getRepairIngredient() {
+	public Ingredient getRepairIngredient() {
 		return repairIngredient;
 	}
 

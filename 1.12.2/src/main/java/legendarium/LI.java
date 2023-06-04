@@ -1,10 +1,6 @@
 package legendarium;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 import com.google.common.base.CaseFormat;
-
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -20,9 +16,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 @Mod(modid = "legendarium")
 public class LI {
-	public static final ArrayList<Item> CONTENT = new ArrayList<>();
+	public static final Set<Item> CONTENT = new HashSet<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
@@ -439,7 +439,7 @@ public class LI {
 		public static void onRegistryModel(ModelRegistryEvent event) {
 			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
-				ModelResourceLocation mrl = new ModelResourceLocation(Objects.requireNonNull(regName), "inventory");
+				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
 				ModelBakery.registerItemVariants(item, mrl);
 				ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
 			}

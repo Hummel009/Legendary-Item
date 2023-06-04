@@ -6,6 +6,6 @@ import net.minecraft.item.ItemSword;
 public class LIItemSword extends ItemSword {
 	public LIItemSword(int id) {
 		super(id, EnumToolMaterial.values()[3]);
-		LIReflectionHelper.setCreativeTab(this, LICreativeTabs.TAB_ARTIFACTS);
+		LIObfuscationHelper.setCreativeTab(this, LICreativeTabs.TAB_ARTIFACTS);
 	}
 }
