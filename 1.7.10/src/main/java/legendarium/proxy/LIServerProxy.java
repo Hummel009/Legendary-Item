@@ -1,4 +1,4 @@
-package legendarium;
+package legendarium.proxy;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 

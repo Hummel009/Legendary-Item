@@ -1,7 +1,8 @@
-package legendarium;
+package legendarium.lotr;
 
 import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.registry.GameRegistry;
+import legendarium.render.LIRenderable;
 import lotr.client.render.item.LOTRRenderLargeItem;
 import lotr.common.util.LOTRLog;
 import net.minecraft.client.Minecraft;
@@ -9,7 +10,6 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.IResource;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LIRender extends LOTRRenderLargeItem {
+public class LIRenderLargeItemLOTR extends LOTRRenderLargeItem implements LIRenderable {
 	public static Map<String, Float> sizeFolders = new HashMap<>();
 
 	static {
@@ -35,7 +35,7 @@ public class LIRender extends LOTRRenderLargeItem {
 	public IIcon largeIcon;
 	public List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
 
-	public LIRender(Item item, String dir, float f) {
+	public LIRenderLargeItemLOTR(Item item, String dir, float f) {
 		super(item, dir, f);
 		theItem = item;
 		folderName = dir;
@@ -51,22 +51,6 @@ public class LIRender extends LOTRRenderLargeItem {
 		}
 		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
 		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
-	}
-
-	public static LIRender getRendererIfLarge(Item item) {
-		for (Map.Entry<String, Float> folder : sizeFolders.entrySet()) {
-			float iconScale = folder.getValue();
-			try {
-				ResourceLocation resLoc = getLargeTexturePath(item, folder.getKey());
-				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				if (res != null) {
-					return new LIRender(item, folder.getKey(), iconScale);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return null;
 	}
 
 	@Override

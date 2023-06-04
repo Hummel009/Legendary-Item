@@ -1,15 +1,24 @@
-package legendarium;
+package legendarium.content;
 
 import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.registry.GameRegistry;
-import lotr.common.LOTRCreativeTabs;
-import lotr.common.item.*;
+import legendarium.LIDependencyManager;
+import legendarium.render.LIRenderLargeItem;
+import legendarium.render.LIRenderable;
+import legendarium.render.LIRenderManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class LIRegistry {
+public class LIRegistry implements LIDependencyManager {
 	public static final List<Item> CONTENT = new ArrayList<>();
 
 	public static Item armorAnarionHelmet;
@@ -92,17 +101,12 @@ public class LIRegistry {
 	public static Item armorTurgonBoots;
 
 	public static Item weaponAcharn;
-	public static Item weaponAeglos;
-	public static Item weaponAlatar;
 	public static Item weaponAngrist;
 	public static Item weaponAnguirel;
-	public static Item weaponAranruth;
-	public static Item weaponAzog;
 	public static Item weaponBalin;
 	public static Item weaponBarazanthual;
 	public static Item weaponBolg;
 	public static Item weaponBoromir;
-	public static Item weaponCeleborn;
 	public static Item weaponDagmor;
 	public static Item weaponDain;
 	public static Item weaponDenethor;
@@ -116,188 +120,163 @@ public class LIRegistry {
 	public static Item weaponGamling;
 	public static Item weaponGimli;
 	public static Item weaponGirion;
-	public static Item weaponGoblinking;
 	public static Item weaponGorbag;
 	public static Item weaponGothmog;
 	public static Item weaponGrima;
 	public static Item weaponGurthang;
 	public static Item weaponGuthwine;
-	public static Item weaponHadhafang;
 	public static Item weaponHerugrim;
 	public static Item weaponKhamul;
 	public static Item weaponKili;
 	public static Item weaponLegolas;
-	public static Item weaponMelkor;
 	public static Item weaponMouthofsauron;
 	public static Item weaponNarcil;
 	public static Item weaponNazgul;
+	public static Item weaponShagrat;
+	public static Item weaponThorin;
+	public static Item weaponThrain;
+	public static Item weaponThror;
+	public static Item weaponUrfael;
+
+	public static Item weaponAzog;
+	public static Item weaponAeglos;
+	public static Item weaponAlatar;
+	public static Item weaponAranruth;
+	public static Item weaponCeleborn;
+	public static Item weaponGoblinking;
+	public static Item weaponHadhafang;
+	public static Item weaponMelkor;
 	public static Item weaponOrcrist;
 	public static Item weaponPallando;
 	public static Item weaponRadagast;
 	public static Item weaponSaruman;
-	public static Item weaponShagrat;
-	public static Item weaponThorin;
 	public static Item weaponThorondun;
-	public static Item weaponThrain;
 	public static Item weaponThranduil;
-	public static Item weaponThror;
-	public static Item weaponUrfael;
 	public static Item weaponWitchking;
-
-	public static Item rangedAzkar;
-	public static Item rangedBard;
-	public static Item rangedBelthronding;
-	public static Item rangedBregor;
-	public static Item rangedHaldir;
-	public static Item rangedLegolas;
-	public static Item rangedLurtz;
 
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public static void preInit() {
-		armorAnarionBoots = new LIArmor(LIArmor.ANARION, 3);
-		armorAnarionChestplate = new LIArmor(LIArmor.ANARION, 1);
-		armorAnarionHelmet = new LIArmor(LIArmor.ANARION, 0);
-		armorAnarionLegs = new LIArmor(LIArmor.ANARION, 2);
+	public void registerCommon() {
+		armorAnarionBoots = new LIItemArmor(LIMaterial.ANARION, 3);
+		armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, 1);
+		armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, 0);
+		armorAnarionLegs = new LIItemArmor(LIMaterial.ANARION, 2);
 
-		armorArpharazonBoots = new LIArmor(LIArmor.ARPHARAZON, 3);
-		armorArpharazonChestplate = new LIArmor(LIArmor.ARPHARAZON, 1);
-		armorArpharazonHelmet = new LIArmor(LIArmor.ARPHARAZON, 0);
-		armorArpharazonLegs = new LIArmor(LIArmor.ARPHARAZON, 2);
+		armorArpharazonBoots = new LIItemArmor(LIMaterial.ARPHARAZON, 3);
+		armorArpharazonChestplate = new LIItemArmor(LIMaterial.ARPHARAZON, 1);
+		armorArpharazonHelmet = new LIItemArmor(LIMaterial.ARPHARAZON, 0);
+		armorArpharazonLegs = new LIItemArmor(LIMaterial.ARPHARAZON, 2);
 
-		armorArveduiBoots = new LIArmor(LIArmor.ARVEDUI, 3);
-		armorArveduiChestplate = new LIArmor(LIArmor.ARVEDUI, 1);
-		armorArveduiHelmet = new LIArmor(LIArmor.ARVEDUI, 0);
-		armorArveduiLegs = new LIArmor(LIArmor.ARVEDUI, 2);
+		armorArveduiBoots = new LIItemArmor(LIMaterial.ARVEDUI, 3);
+		armorArveduiChestplate = new LIItemArmor(LIMaterial.ARVEDUI, 1);
+		armorArveduiHelmet = new LIItemArmor(LIMaterial.ARVEDUI, 0);
+		armorArveduiLegs = new LIItemArmor(LIMaterial.ARVEDUI, 2);
 
-		armorBoromirBoots = new LIArmor(LIArmor.BOROMIR, 3);
-		armorBoromirChestplate = new LIArmor(LIArmor.BOROMIR, 1);
-		armorBoromirLegs = new LIArmor(LIArmor.BOROMIR, 2);
+		armorBoromirBoots = new LIItemArmor(LIMaterial.BOROMIR, 3);
+		armorBoromirChestplate = new LIItemArmor(LIMaterial.BOROMIR, 1);
+		armorBoromirLegs = new LIItemArmor(LIMaterial.BOROMIR, 2);
 
-		armorElendilBoots = new LIArmor(LIArmor.ELENDIL, 3);
-		armorElendilChestplate = new LIArmor(LIArmor.ELENDIL, 1);
-		armorElendilHelmet = new LIArmor(LIArmor.ELENDIL, 0);
-		armorElendilLegs = new LIArmor(LIArmor.ELENDIL, 2);
+		armorElendilBoots = new LIItemArmor(LIMaterial.ELENDIL, 3);
+		armorElendilChestplate = new LIItemArmor(LIMaterial.ELENDIL, 1);
+		armorElendilHelmet = new LIItemArmor(LIMaterial.ELENDIL, 0);
+		armorElendilLegs = new LIItemArmor(LIMaterial.ELENDIL, 2);
 
-		armorElrosBoots = new LIArmor(LIArmor.ELROS, 3);
-		armorElrosChestplate = new LIArmor(LIArmor.ELROS, 1);
-		armorElrosHelmet = new LIArmor(LIArmor.ELROS, 0);
-		armorElrosLegs = new LIArmor(LIArmor.ELROS, 2);
+		armorElrosBoots = new LIItemArmor(LIMaterial.ELROS, 3);
+		armorElrosChestplate = new LIItemArmor(LIMaterial.ELROS, 1);
+		armorElrosHelmet = new LIItemArmor(LIMaterial.ELROS, 0);
+		armorElrosLegs = new LIItemArmor(LIMaterial.ELROS, 2);
 
-		armorFeanorBoots = new LIArmor(LIArmor.FEANOR, 3);
-		armorFeanorChestplate = new LIArmor(LIArmor.FEANOR, 1);
-		armorFeanorHelmet = new LIArmor(LIArmor.FEANOR, 0);
-		armorFeanorLegs = new LIArmor(LIArmor.FEANOR, 2);
+		armorFeanorBoots = new LIItemArmor(LIMaterial.FEANOR, 3);
+		armorFeanorChestplate = new LIItemArmor(LIMaterial.FEANOR, 1);
+		armorFeanorHelmet = new LIItemArmor(LIMaterial.FEANOR, 0);
+		armorFeanorLegs = new LIItemArmor(LIMaterial.FEANOR, 2);
 
-		armorGilgaladBoots = new LIArmor(LIArmor.GILGALAD, 3);
-		armorGilgaladChestplate = new LIArmor(LIArmor.GILGALAD, 1);
-		armorGilgaladHelmet = new LIArmor(LIArmor.GILGALAD, 0);
-		armorGilgaladLegs = new LIArmor(LIArmor.GILGALAD, 2);
+		armorGilgaladBoots = new LIItemArmor(LIMaterial.GILGALAD, 3);
+		armorGilgaladChestplate = new LIItemArmor(LIMaterial.GILGALAD, 1);
+		armorGilgaladHelmet = new LIItemArmor(LIMaterial.GILGALAD, 0);
+		armorGilgaladLegs = new LIItemArmor(LIMaterial.GILGALAD, 2);
 
-		armorGimliBoots = new LIArmor(LIArmor.GIMLI, 3);
-		armorGimliChestplate = new LIArmor(LIArmor.GIMLI, 1);
-		armorGimliHelmet = new LIArmor(LIArmor.GIMLI, 0);
-		armorGimliLegs = new LIArmor(LIArmor.GIMLI, 2);
+		armorGimliBoots = new LIItemArmor(LIMaterial.GIMLI, 3);
+		armorGimliChestplate = new LIItemArmor(LIMaterial.GIMLI, 1);
+		armorGimliHelmet = new LIItemArmor(LIMaterial.GIMLI, 0);
+		armorGimliLegs = new LIItemArmor(LIMaterial.GIMLI, 2);
 
-		armorIsildurBoots = new LIArmor(LIArmor.ISILDUR, 3);
-		armorIsildurChestplate = new LIArmor(LIArmor.ISILDUR, 1);
-		armorIsildurHelmet = new LIArmor(LIArmor.ISILDUR, 0);
-		armorIsildurLegs = new LIArmor(LIArmor.ISILDUR, 2);
+		armorIsildurBoots = new LIItemArmor(LIMaterial.ISILDUR, 3);
+		armorIsildurChestplate = new LIItemArmor(LIMaterial.ISILDUR, 1);
+		armorIsildurHelmet = new LIItemArmor(LIMaterial.ISILDUR, 0);
+		armorIsildurLegs = new LIItemArmor(LIMaterial.ISILDUR, 2);
 
-		armorJiindurBoots = new LIArmor(LIArmor.JIINDUR, 3);
-		armorJiindurChestplate = new LIArmor(LIArmor.JIINDUR, 1);
-		armorJiindurHelmet = new LIArmor(LIArmor.JIINDUR, 0);
-		armorJiindurLegs = new LIArmor(LIArmor.JIINDUR, 2);
+		armorJiindurBoots = new LIItemArmor(LIMaterial.JIINDUR, 3);
+		armorJiindurChestplate = new LIItemArmor(LIMaterial.JIINDUR, 1);
+		armorJiindurHelmet = new LIItemArmor(LIMaterial.JIINDUR, 0);
+		armorJiindurLegs = new LIItemArmor(LIMaterial.JIINDUR, 2);
 
-		armorKhamulBoots = new LIArmor(LIArmor.KHAMUL, 3);
-		armorKhamulChestplate = new LIArmor(LIArmor.KHAMUL, 1);
-		armorKhamulHelmet = new LIArmor(LIArmor.KHAMUL, 0);
-		armorKhamulLegs = new LIArmor(LIArmor.KHAMUL, 2);
+		armorKhamulBoots = new LIItemArmor(LIMaterial.KHAMUL, 3);
+		armorKhamulChestplate = new LIItemArmor(LIMaterial.KHAMUL, 1);
+		armorKhamulHelmet = new LIItemArmor(LIMaterial.KHAMUL, 0);
+		armorKhamulLegs = new LIItemArmor(LIMaterial.KHAMUL, 2);
 
-		armorKhommuratBoots = new LIArmor(LIArmor.KHOMMURAT, 3);
-		armorKhommuratChestplate = new LIArmor(LIArmor.KHOMMURAT, 1);
-		armorKhommuratHelmet = new LIArmor(LIArmor.KHOMMURAT, 0);
-		armorKhommuratLegs = new LIArmor(LIArmor.KHOMMURAT, 2);
+		armorKhommuratBoots = new LIItemArmor(LIMaterial.KHOMMURAT, 3);
+		armorKhommuratChestplate = new LIItemArmor(LIMaterial.KHOMMURAT, 1);
+		armorKhommuratHelmet = new LIItemArmor(LIMaterial.KHOMMURAT, 0);
+		armorKhommuratLegs = new LIItemArmor(LIMaterial.KHOMMURAT, 2);
 
-		armorMorgomirBoots = new LIArmor(LIArmor.MORGOMIR, 3);
-		armorMorgomirChestplate = new LIArmor(LIArmor.MORGOMIR, 1);
-		armorMorgomirHelmet = new LIArmor(LIArmor.MORGOMIR, 0);
-		armorMorgomirLegs = new LIArmor(LIArmor.MORGOMIR, 2);
+		armorMorgomirBoots = new LIItemArmor(LIMaterial.MORGOMIR, 3);
+		armorMorgomirChestplate = new LIItemArmor(LIMaterial.MORGOMIR, 1);
+		armorMorgomirHelmet = new LIItemArmor(LIMaterial.MORGOMIR, 0);
+		armorMorgomirLegs = new LIItemArmor(LIMaterial.MORGOMIR, 2);
 
-		armorTheodenBoots = new LIArmor(LIArmor.THEODEN, 3);
-		armorTheodenChestplate = new LIArmor(LIArmor.THEODEN, 1);
-		armorTheodenHelmet = new LIArmor(LIArmor.THEODEN, 0);
-		armorTheodenLegs = new LIArmor(LIArmor.THEODEN, 2);
+		armorTheodenBoots = new LIItemArmor(LIMaterial.THEODEN, 3);
+		armorTheodenChestplate = new LIItemArmor(LIMaterial.THEODEN, 1);
+		armorTheodenHelmet = new LIItemArmor(LIMaterial.THEODEN, 0);
+		armorTheodenLegs = new LIItemArmor(LIMaterial.THEODEN, 2);
 
-		armorTurgonBoots = new LIArmor(LIArmor.TURGON, 3);
-		armorTurgonChestplate = new LIArmor(LIArmor.TURGON, 1);
-		armorTurgonHelmet = new LIArmor(LIArmor.TURGON, 0);
-		armorTurgonLegs = new LIArmor(LIArmor.TURGON, 2);
+		armorTurgonBoots = new LIItemArmor(LIMaterial.TURGON, 3);
+		armorTurgonChestplate = new LIItemArmor(LIMaterial.TURGON, 1);
+		armorTurgonHelmet = new LIItemArmor(LIMaterial.TURGON, 0);
+		armorTurgonLegs = new LIItemArmor(LIMaterial.TURGON, 2);
 
-		weaponAcharn = new LOTRItemAnduril();
-		weaponAeglos = new LOTRItemSpear(LOTRMaterial.HIGH_ELVEN).setCreativeTab(LOTRCreativeTabs.tabStory);
-		weaponAlatar = new LOTRItemGandalfStaffWhite();
-		weaponAngrist = new LOTRItemAnduril();
-		weaponAnguirel = new LOTRItemAnduril();
-		weaponAranruth = new LOTRItemGlamdring();
-		weaponAzog = new LOTRItemAnduril();
-		weaponBalin = new LOTRItemAnduril();
-		weaponBarazanthual = new LOTRItemAnduril();
-		weaponBolg = new LOTRItemAnduril();
-		weaponBoromir = new LOTRItemAnduril();
-		weaponCeleborn = new LOTRItemGlamdring();
-		weaponDagmor = new LOTRItemAnduril();
-		weaponDain = new LOTRItemAnduril();
-		weaponDenethor = new LOTRItemAnduril();
-		weaponDori = new LOTRItemAnduril();
-		weaponDramborleg = new LOTRItemAnduril();
-		weaponDurin = new LOTRItemAnduril();
-		weaponDwalin = new LOTRItemAnduril();
-		weaponEothain = new LOTRItemAnduril();
-		weaponEowyn = new LOTRItemAnduril();
-		weaponFaramir = new LOTRItemAnduril();
-		weaponGamling = new LOTRItemAnduril();
-		weaponGimli = new LOTRItemAnduril();
-		weaponGirion = new LOTRItemAnduril();
-		weaponGoblinking = new LOTRItemSauronMace();
-		weaponGorbag = new LOTRItemAnduril();
-		weaponGothmog = new LOTRItemAnduril();
-		weaponGrima = new LOTRItemAnduril();
-		weaponGurthang = new LOTRItemAnduril();
-		weaponGuthwine = new LOTRItemAnduril();
-		weaponHadhafang = new LOTRItemGlamdring();
-		weaponHerugrim = new LOTRItemAnduril();
-		weaponKhamul = new LOTRItemAnduril();
-		weaponKili = new LOTRItemAnduril();
-		weaponLegolas = new LOTRItemAnduril();
-		weaponMelkor = new LOTRItemSauronMace();
-		weaponMouthofsauron = new LOTRItemAnduril();
-		weaponNarcil = new LOTRItemAnduril();
-		weaponNazgul = new LOTRItemAnduril();
-		weaponOrcrist = new LOTRItemGlamdring();
-		weaponPallando = new LOTRItemGandalfStaffWhite();
-		weaponRadagast = new LOTRItemGandalfStaffWhite();
-		weaponSaruman = new LOTRItemSauronMace();
-		weaponShagrat = new LOTRItemAnduril();
-		weaponThorin = new LOTRItemAnduril();
-		weaponThorondun = new LOTRItemGlamdring();
-		weaponThrain = new LOTRItemAnduril();
-		weaponThranduil = new LOTRItemGlamdring();
-		weaponThror = new LOTRItemAnduril();
-		weaponUrfael = new LOTRItemAnduril();
-		weaponWitchking = new LOTRItemSauronMace();
+		weaponAcharn = new LIItemSword();
+		weaponAngrist = new LIItemSword();
+		weaponAnguirel = new LIItemSword();
+		weaponBalin = new LIItemSword();
+		weaponBarazanthual = new LIItemSword();
+		weaponBolg = new LIItemSword();
+		weaponBoromir = new LIItemSword();
+		weaponDagmor = new LIItemSword();
+		weaponDain = new LIItemSword();
+		weaponDenethor = new LIItemSword();
+		weaponDori = new LIItemSword();
+		weaponDramborleg = new LIItemSword();
+		weaponDurin = new LIItemSword();
+		weaponDwalin = new LIItemSword();
+		weaponEothain = new LIItemSword();
+		weaponEowyn = new LIItemSword();
+		weaponFaramir = new LIItemSword();
+		weaponGamling = new LIItemSword();
+		weaponGimli = new LIItemSword();
+		weaponGirion = new LIItemSword();
+		weaponGorbag = new LIItemSword();
+		weaponGothmog = new LIItemSword();
+		weaponGrima = new LIItemSword();
+		weaponGurthang = new LIItemSword();
+		weaponGuthwine = new LIItemSword();
+		weaponHerugrim = new LIItemSword();
+		weaponKhamul = new LIItemSword();
+		weaponKili = new LIItemSword();
+		weaponLegolas = new LIItemSword();
+		weaponMouthofsauron = new LIItemSword();
+		weaponNarcil = new LIItemSword();
+		weaponNazgul = new LIItemSword();
+		weaponShagrat = new LIItemSword();
+		weaponThorin = new LIItemSword();
+		weaponThrain = new LIItemSword();
+		weaponThror = new LIItemSword();
+		weaponUrfael = new LIItemSword();
 
-		rangedAzkar = new LOTRItemBow(LOTRMaterial.HIGH_ELVEN, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
-		rangedBard = new LOTRItemBow(LOTRMaterial.DALE, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
-		rangedBelthronding = new LOTRItemBow(LOTRMaterial.HIGH_ELVEN, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
-		rangedBregor = new LOTRItemBow(LOTRMaterial.RANGER, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
-		rangedHaldir = new LOTRItemBow(LOTRMaterial.GALADHRIM, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
-		rangedLegolas = new LOTRItemBow(LOTRMaterial.HIGH_ELVEN, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
-		rangedLurtz = new LOTRItemCrossbow(LOTRMaterial.URUK).setCreativeTab(LOTRCreativeTabs.tabStory);
-
-		silmaril = new Item().setCreativeTab(LOTRCreativeTabs.tabStory).setMaxStackSize(1);
-		arkenstone = new Item().setCreativeTab(LOTRCreativeTabs.tabStory).setMaxStackSize(1);
+		silmaril = new LIItemEmpty();
+		arkenstone = new LIItemEmpty();
 
 		register(armorAnarionHelmet, "armorAnarionHelmet");
 		register(armorAnarionChestplate, "armorAnarionChestplate");
@@ -379,17 +358,12 @@ public class LIRegistry {
 		register(armorTurgonBoots, "armorTurgonBoots");
 
 		register(weaponAcharn, "weaponAcharn");
-		register(weaponAeglos, "weaponAeglos");
-		register(weaponAlatar, "weaponAlatar");
 		register(weaponAngrist, "weaponAngrist");
 		register(weaponAnguirel, "weaponAnguirel");
-		register(weaponAranruth, "weaponAranruth");
-		register(weaponAzog, "weaponAzog");
 		register(weaponBalin, "weaponBalin");
 		register(weaponBarazanthual, "weaponBarazanthual");
 		register(weaponBolg, "weaponBolg");
 		register(weaponBoromir, "weaponBoromir");
-		register(weaponCeleborn, "weaponCeleborn");
 		register(weaponDagmor, "weaponDagmor");
 		register(weaponDain, "weaponDain");
 		register(weaponDenethor, "weaponDenethor");
@@ -403,51 +377,103 @@ public class LIRegistry {
 		register(weaponGamling, "weaponGamling");
 		register(weaponGimli, "weaponGimli");
 		register(weaponGirion, "weaponGirion");
-		register(weaponGoblinking, "weaponGoblinking");
 		register(weaponGorbag, "weaponGorbag");
 		register(weaponGothmog, "weaponGothmog");
 		register(weaponGrima, "weaponGrima");
 		register(weaponGurthang, "weaponGurthang");
 		register(weaponGuthwine, "weaponGuthwine");
-		register(weaponHadhafang, "weaponHadhafang");
 		register(weaponHerugrim, "weaponHerugrim");
 		register(weaponKhamul, "weaponKhamul");
 		register(weaponKili, "weaponKili");
 		register(weaponLegolas, "weaponLegolas");
-		register(weaponMelkor, "weaponMelkor");
 		register(weaponMouthofsauron, "weaponMouthofsauron");
 		register(weaponNarcil, "weaponNarcil");
 		register(weaponNazgul, "weaponNazgul");
-		register(weaponOrcrist, "weaponOrcrist");
-		register(weaponPallando, "weaponPallando");
-		register(weaponRadagast, "weaponRadagast");
-		register(weaponSaruman, "weaponSaruman");
 		register(weaponShagrat, "weaponShagrat");
 		register(weaponThorin, "weaponThorin");
-		register(weaponThorondun, "weaponThorondun");
 		register(weaponThrain, "weaponThrain");
-		register(weaponThranduil, "weaponThranduil");
 		register(weaponThror, "weaponThror");
 		register(weaponUrfael, "weaponUrfael");
-		register(weaponWitchking, "weaponWitchking");
-
-		register(rangedAzkar, "rangedAzkar");
-		register(rangedBard, "rangedBard");
-		register(rangedBelthronding, "rangedBelthronding");
-		register(rangedBregor, "rangedBregor");
-		register(rangedHaldir, "rangedHaldir");
-		register(rangedLegolas, "rangedLegolas");
-		register(rangedLurtz, "rangedLurtz");
 
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
 	}
 
-	public static void register(Item item, String field) {
+	@Override
+	public void registerSpecial() {
+		weaponAzog = new LIItemSword();
+		weaponAeglos = new LIItemSword();
+		weaponAlatar = new LIItemSword();
+		weaponAranruth = new LIItemSword();
+		weaponCeleborn = new LIItemSword();
+		weaponGoblinking = new LIItemSword();
+		weaponHadhafang = new LIItemSword();
+		weaponMelkor = new LIItemSword();
+		weaponOrcrist = new LIItemSword();
+		weaponPallando = new LIItemSword();
+		weaponRadagast = new LIItemSword();
+		weaponSaruman = new LIItemSword();
+		weaponThorondun = new LIItemSword();
+		weaponThranduil = new LIItemSword();
+		weaponWitchking = new LIItemSword();
+
+		register(weaponAzog, "weaponAzog");
+		register(weaponAeglos, "weaponAeglos");
+		register(weaponAlatar, "weaponAlatar");
+		register(weaponAranruth, "weaponAranruth");
+		register(weaponCeleborn, "weaponCeleborn");
+		register(weaponGoblinking, "weaponGoblinking");
+		register(weaponHadhafang, "weaponHadhafang");
+		register(weaponMelkor, "weaponMelkor");
+		register(weaponOrcrist, "weaponOrcrist");
+		register(weaponPallando, "weaponPallando");
+		register(weaponRadagast, "weaponRadagast");
+		register(weaponSaruman, "weaponSaruman");
+		register(weaponThorondun, "weaponThorondun");
+		register(weaponThranduil, "weaponThranduil");
+		register(weaponWitchking, "weaponWitchking");
+	}
+
+	@Override
+	public void register(Item item, String field) {
 		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
 		item.setUnlocalizedName(name);
 		item.setTextureName("legendarium:" + name);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		GameRegistry.registerItem(item, name);
 		CONTENT.add(item);
 	}
+
+	@Override
+	public LIRenderable getRendererIfLarge(Item item) {
+		for (Map.Entry<String, Float> folder : LIRenderLargeItem.sizeFolders.entrySet()) {
+			float iconScale = folder.getValue();
+			try {
+				ResourceLocation resLoc = LIRenderLargeItem.getLargeTexturePath(item, folder.getKey());
+				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
+				if (res != null) {
+					return new LIRenderLargeItem(item, folder.getKey(), iconScale);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void onResourceManagerReload(IResourceManager resourceManager) {
+		LIRenderManager.largeItemRenderers.clear();
+		for (Item item : CONTENT) {
+			MinecraftForgeClient.registerItemRenderer(item, null);
+			LIRenderable largeItemRenderer = getRendererIfLarge(item);
+			if (largeItemRenderer != null) {
+				MinecraftForgeClient.registerItemRenderer(item, (IItemRenderer) largeItemRenderer);
+			}
+			if (largeItemRenderer != null) {
+				LIRenderManager.largeItemRenderers.add(largeItemRenderer);
+			}
+		}
+	}
+
 }

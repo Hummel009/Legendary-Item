@@ -1,4 +1,7 @@
-/* ОРУЖИЕ */
+
+itemGroup.artifacts=Артефакты Средиземья
+
+/* WEAPON */
 item.weapon_aeglos.name=Аэглос
 item.weapon_orcrist.name=Оркрист
 item.weapon_anguirel.name=Ангуирэль
