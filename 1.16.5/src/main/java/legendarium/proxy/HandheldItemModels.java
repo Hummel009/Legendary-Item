@@ -49,7 +49,6 @@ public class HandheldItemModels implements ISelectiveResourceReloadListener {
 		specialHandheldItemNames.clear();
 		for (ResourceLocation itemName : ForgeRegistries.ITEMS.getKeys()) {
 			ResourceLocation fullHandheldModelPath = new ResourceLocation(itemName.getNamespace(), String.format("models/item/%s_%s.json", itemName.getPath(), "handheld"));
-			System.out.println(fullHandheldModelPath);
 			if (resMgr.hasResource(fullHandheldModelPath)) {
 				addSpecialHandheld(itemName);
 			}
