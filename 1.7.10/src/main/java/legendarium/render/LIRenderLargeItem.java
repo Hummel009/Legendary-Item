@@ -163,5 +163,4 @@ public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 			name = s;
 		}
 	}
-
 }

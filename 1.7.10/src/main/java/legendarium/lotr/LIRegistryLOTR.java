@@ -103,8 +103,7 @@ public class LIRegistryLOTR extends LIRegistry {
 				if (res != null) {
 					return new LIRenderLargeItemLOTR(item, folder.getKey(), iconScale);
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ignored) {
 			}
 		}
 		return null;

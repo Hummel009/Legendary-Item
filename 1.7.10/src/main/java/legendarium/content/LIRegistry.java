@@ -158,6 +158,9 @@ public class LIRegistry implements LIDependencyManager {
 	public static Item silmaril;
 
 	public void registerCommon() {
+		silmaril = new LIItemEmpty();
+		arkenstone = new LIItemEmpty();
+		
 		armorAnarionBoots = new LIItemArmor(LIMaterial.ANARION, 3);
 		armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, 1);
 		armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, 0);
@@ -275,8 +278,8 @@ public class LIRegistry implements LIDependencyManager {
 		weaponThror = new LIItemSword();
 		weaponUrfael = new LIItemSword();
 
-		silmaril = new LIItemEmpty();
-		arkenstone = new LIItemEmpty();
+		register(arkenstone, "arkenstone");
+		register(silmaril, "silmaril");
 
 		register(armorAnarionHelmet, "armorAnarionHelmet");
 		register(armorAnarionChestplate, "armorAnarionChestplate");
@@ -394,9 +397,6 @@ public class LIRegistry implements LIDependencyManager {
 		register(weaponThrain, "weaponThrain");
 		register(weaponThror, "weaponThror");
 		register(weaponUrfael, "weaponUrfael");
-
-		register(arkenstone, "arkenstone");
-		register(silmaril, "silmaril");
 	}
 
 	@Override
@@ -454,8 +454,7 @@ public class LIRegistry implements LIDependencyManager {
 				if (res != null) {
 					return new LIRenderLargeItem(item, folder.getKey(), iconScale);
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ignored) {
 			}
 		}
 		return null;
