@@ -22,6 +22,7 @@ import java.util.Map;
 public class LIRenderLargeItem implements IItemRenderer {
 	public static ResourceLocation enchantmentTexture = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 	public static Map<String, Float> sizeFolders = new HashMap<String, Float>();
+	public static Map<Item, Icon> largeIconsMap = new HashMap<Item, Icon>();
 
 	static {
 		sizeFolders.put("large-2x", 2.0f);
@@ -31,7 +32,6 @@ public class LIRenderLargeItem implements IItemRenderer {
 	public Item theItem;
 	public String folderName;
 	public float largeIconScale;
-	public static Map<Item, Icon> largeIconsMap = new HashMap<Item, Icon>();
 
 	public LIRenderLargeItem(Item item, String dir, float f) {
 		theItem = item;
@@ -94,6 +94,10 @@ public class LIRenderLargeItem implements IItemRenderer {
 		GL11.glDepthFunc(515);
 	}
 
+	public static boolean isNullOrEmpty(String str) {
+		return str == null || str.length() == 0;
+	}
+
 	public void doTransformations() {
 		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
@@ -142,9 +146,5 @@ public class LIRenderLargeItem implements IItemRenderer {
 	@Override
 	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack itemstack, IItemRenderer.ItemRendererHelper helper) {
 		return false;
-	}
-
-	public static boolean isNullOrEmpty(String str) {
-		return str == null || str.length() == 0;
 	}
 }

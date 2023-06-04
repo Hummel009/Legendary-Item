@@ -1,4 +1,4 @@
-package legendarium;
+package legendarium.content;
 
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
