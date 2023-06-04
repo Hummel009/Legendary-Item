@@ -1,14 +1,24 @@
 package legendarium;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.base.CaseFormat;
+
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import legendarium.proxy.LIServerProxy;
 import net.minecraft.item.Item;
 
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
+	public static final List<Item> CONTENT = new ArrayList<Item>();
+
+	@SidedProxy(serverSide = "legendarium.proxy.LIServerProxy", clientSide = "legendarium.proxy.LIClientProxy")
+	public static LIServerProxy proxy;
+	
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
 	public static Item armorAnarionLegs;
@@ -150,15 +160,13 @@ public class LI {
 		item.setUnlocalizedName(name);
 		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		GameRegistry.registerItem(item, name);
+		CONTENT.add(item);
 	}
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		LIConfig.preInit(event);
-	}
-
-	@Mod.EventHandler
-	public void onInit(FMLInitializationEvent event) {
+		
 		armorAnarionHelmet = new LIItemArmor(LIConfig.idArmorAnarionHelmet - 256, LIMaterial.ANARION, 0);
 		armorAnarionChestplate = new LIItemArmor(LIConfig.idArmorAnarionChestplate - 256, LIMaterial.ANARION, 1);
 		armorAnarionLegs = new LIItemArmor(LIConfig.idArmorAnarionLegs - 256, LIMaterial.ANARION, 2);
@@ -427,5 +435,7 @@ public class LI {
 
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
+	
+		proxy.preInit(event);
 	}
 }
