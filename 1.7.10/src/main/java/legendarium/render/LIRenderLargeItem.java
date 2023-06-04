@@ -122,11 +122,7 @@ public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 
 	@Override
 	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack itemstack, Object... data) {
-		EntityLivingBase entityliving;
 		GL11.glPushMatrix();
-		Entity holder = (Entity) data[1];
-		boolean isFirstPerson = holder == Minecraft.getMinecraft().thePlayer && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0;
-		Item item = itemstack.getItem();
 		renderLargeItem();
 		if (itemstack.hasEffect(0)) {
 			renderEnchantmentEffect();
