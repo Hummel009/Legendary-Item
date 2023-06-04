@@ -1,0 +1,6 @@
+{
+  "parent": "legendarium:item/handheld_large",
+  "textures": {
+	"layer0": "legendarium:item/large-2x/weapon_guthwine"
+  }
+}
