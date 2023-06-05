@@ -28,4 +28,12 @@ public class LIObfuscationHelper {
 			item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		}
 	}
+
+	public static void setMaxStackSize(Item item, int value) {
+		try {
+			ReflectionHelper.setPrivateValue(Item.class, item, 1, "bU");
+		} catch (Exception e) {
+			item.setMaxStackSize(1);
+		}
+	}
 }

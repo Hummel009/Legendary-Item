@@ -4,7 +4,7 @@ import net.minecraft.world.item.Item;
 
 public class LIItemEmpty extends Item {
 	public LIItemEmpty() {
-		super(new Properties());
+		super(new Properties().stacksTo(1));
 		initialize();
 	}
 
