@@ -4,38 +4,31 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.RandomSource;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.client.model.ForgeItemModelShaper;
-import net.minecraftforge.client.model.data.ModelData;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-public class HandheldItemModels implements PreparableReloadListener {
-	public static final HandheldItemModels INSTANCE = new HandheldItemModels();
-	public static final String HANDHELD_SUFFIX = "handheld";
+public class LIReloadListener implements PreparableReloadListener {
+	public static final LIReloadListener INSTANCE = new LIReloadListener();
 	public List<ResourceLocation> specialHandheldItemNames = new ArrayList<>();
 
 	public void setupAndDetectModels(Minecraft mc) {
@@ -54,28 +47,19 @@ public class HandheldItemModels implements PreparableReloadListener {
 		specialHandheldItemNames.clear();
 		for (ResourceLocation itemName : ForgeRegistries.ITEMS.getKeys()) {
 			ResourceLocation fullHandheldModelPath = new ResourceLocation(itemName.getNamespace(), String.format("models/item/%s_%s.json", itemName.getPath(), "handheld"));
-			if (!resMgr.getResourceStack(fullHandheldModelPath).isEmpty()) {
-				addSpecialHandheld(itemName, resMgr);
+			if (resMgr.hasResource(fullHandheldModelPath)) {
+				specialHandheldItemNames.add(itemName);
+				ModelLoader.addSpecialModel(getHandheldModelLocation(itemName));
 			}
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public void addSpecialHandheld(ResourceLocation itemName, ResourceManager resMgr) {
-		Item item = ForgeRegistries.ITEMS.getValue(itemName);
-		specialHandheldItemNames.add(itemName);
-		ForgeItemModelShaper s = new ForgeItemModelShaper((ModelManager) resMgr);
-		s.register(item, getHandheldModelLocation(itemName));
-	}
-
-	@OnlyIn(Dist.CLIENT)
 	public ModelResourceLocation getHandheldModelLocation(ResourceLocation itemName) {
-		return new ModelResourceLocation(new ResourceLocation(String.format("%s_%s", itemName, "handheld")), "inventory");
+		return new ModelResourceLocation(String.format("%s_%s", itemName, "handheld"), "inventory");
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public void onModelBake(ModelEvent.BakingCompleted event) {
-		Map<ResourceLocation, BakedModel> modelMap = event.getModels();
+	public void onModelBake(ModelBakeEvent event) {
+		Map<ResourceLocation, BakedModel> modelMap = event.getModelRegistry();
 		for (ResourceLocation itemName : specialHandheldItemNames) {
 			ModelResourceLocation modelResourceLocation1 = new ModelResourceLocation(itemName, "inventory");
 			ModelResourceLocation modelResourceLocation2 = getHandheldModelLocation(itemName);
@@ -93,21 +77,17 @@ public class HandheldItemModels implements PreparableReloadListener {
 	}
 
 	public record HandheldWrapperModel(BakedModel defaultModel, BakedModel handheldModel) implements BakedModel {
-		public TextureAtlasSprite getParticleTexture(ModelData extraData) {
-			return defaultModel.getParticleIcon(extraData);
-		}
-
-		public BakedModel handlePerspective(ItemDisplayContext transformType, PoseStack mat) {
+		public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack mat) {
 			BakedModel modelToUse = defaultModel;
-			if (transformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || transformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
+			if (transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
 				modelToUse = handheldModel;
 			}
-			return ForgeHooksClient.handleCameraTransforms(mat, modelToUse, transformType, false);
+			return ForgeHooksClient.handlePerspective(modelToUse, transformType, mat);
 		}
 
 		@Override
-		public List<BakedQuad> getQuads(@Nullable BlockState p_235039_, @Nullable Direction p_235040_, RandomSource p_235041_) {
-			return defaultModel.getQuads(p_235039_, p_235040_, p_235041_);
+		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, Random rand) {
+			return defaultModel.getQuads(state, cullFace, rand);
 		}
 
 		@Override
@@ -132,7 +112,7 @@ public class HandheldItemModels implements PreparableReloadListener {
 
 		@Override
 		public TextureAtlasSprite getParticleIcon() {
-			return getParticleTexture(ModelData.EMPTY);
+			return defaultModel.getParticleIcon();
 		}
 
 		@Override

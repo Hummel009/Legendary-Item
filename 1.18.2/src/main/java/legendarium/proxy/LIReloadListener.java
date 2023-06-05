@@ -18,20 +18,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ForgeModelBakery;
-import net.minecraftforge.client.model.data.EmptyModelData;
-import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-public class HandheldItemModels implements PreparableReloadListener {
-	public static final HandheldItemModels INSTANCE = new HandheldItemModels();
-	public static final String HANDHELD_SUFFIX = "handheld";
+public class LIReloadListener implements PreparableReloadListener {
+	public static final LIReloadListener INSTANCE = new LIReloadListener();
 	public List<ResourceLocation> specialHandheldItemNames = new ArrayList<>();
 
 	public void setupAndDetectModels(Minecraft mc) {
@@ -51,14 +45,10 @@ public class HandheldItemModels implements PreparableReloadListener {
 		for (ResourceLocation itemName : ForgeRegistries.ITEMS.getKeys()) {
 			ResourceLocation fullHandheldModelPath = new ResourceLocation(itemName.getNamespace(), String.format("models/item/%s_%s.json", itemName.getPath(), "handheld"));
 			if (resMgr.hasResource(fullHandheldModelPath)) {
-				addSpecialHandheld(itemName);
+				specialHandheldItemNames.add(itemName);
+				ForgeModelBakery.addSpecialModel(getHandheldModelLocation(itemName));
 			}
 		}
-	}
-
-	public void addSpecialHandheld(ResourceLocation itemName) {
-		specialHandheldItemNames.add(itemName);
-		ForgeModelBakery.addSpecialModel(getHandheldModelLocation(itemName));
 	}
 
 	public ModelResourceLocation getHandheldModelLocation(ResourceLocation itemName) {
@@ -84,14 +74,6 @@ public class HandheldItemModels implements PreparableReloadListener {
 	}
 
 	public record HandheldWrapperModel(BakedModel defaultModel, BakedModel handheldModel) implements BakedModel {
-		public List<BakedQuad> getQuads(BlockState state, Direction side, Random rand, IModelData extraData) {
-			return defaultModel.getQuads(state, side, rand, extraData);
-		}
-
-		public TextureAtlasSprite getParticleTexture(IModelData extraData) {
-			return defaultModel.getParticleIcon(extraData);
-		}
-
 		public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack mat) {
 			BakedModel modelToUse = defaultModel;
 			if (transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
@@ -102,7 +84,7 @@ public class HandheldItemModels implements PreparableReloadListener {
 
 		@Override
 		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, Random rand) {
-			return getQuads(state, cullFace, rand, EmptyModelData.INSTANCE);
+			return defaultModel.getQuads(state, cullFace, rand);
 		}
 
 		@Override
@@ -127,7 +109,7 @@ public class HandheldItemModels implements PreparableReloadListener {
 
 		@Override
 		public TextureAtlasSprite getParticleIcon() {
-			return getParticleTexture(EmptyModelData.INSTANCE);
+			return defaultModel.getParticleIcon();
 		}
 
 		@Override

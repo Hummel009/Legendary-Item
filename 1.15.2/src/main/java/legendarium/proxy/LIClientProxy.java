@@ -10,11 +10,11 @@ public class LIClientProxy extends LIServerProxy {
 
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event) {
-		HandheldItemModels.INSTANCE.setupAndDetectModels(MC);
+		LIReloadListener.INSTANCE.setupAndDetectModels(MC);
 	}
 
 	@SubscribeEvent
 	public void onModelBake(ModelBakeEvent event) {
-		HandheldItemModels.INSTANCE.onModelBake(event);
+		LIReloadListener.INSTANCE.onModelBake(event);
 	}
 }
