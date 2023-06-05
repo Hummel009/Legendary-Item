@@ -1,5 +1,9 @@
 package legendarium;
 
+import legendarium.content.LIItemArmor;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.content.LIMaterial;
 import legendarium.proxy.LIClientProxy;
 import legendarium.proxy.LIServerProxy;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -9,9 +13,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod("legendarium")
 public class LI {
