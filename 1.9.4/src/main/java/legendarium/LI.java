@@ -1,6 +1,11 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import legendarium.content.LIItemArmor;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.content.LIMaterial;
+import legendarium.proxy.LICommonProxy;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +21,7 @@ import java.util.List;
 public class LI {
 	public static final List<Item> CONTENT = new ArrayList<>();
 
-	@SidedProxy(serverSide = "legendarium.LICommonProxy", clientSide = "legendarium.LIClientProxy")
+	@SidedProxy(serverSide = "legendarium.proxy.LICommonProxy", clientSide = "legendarium.proxy.LIClientProxy")
 	public static LICommonProxy proxy;
 
 	public static Item armorAnarionHelmet;

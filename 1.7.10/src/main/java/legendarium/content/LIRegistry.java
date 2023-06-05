@@ -4,8 +4,8 @@ import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.registry.GameRegistry;
 import legendarium.LIDependencyManager;
 import legendarium.render.LIRenderLargeItem;
-import legendarium.render.LIRenderable;
 import legendarium.render.LIRenderManager;
+import legendarium.render.LIRenderable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -160,7 +160,7 @@ public class LIRegistry implements LIDependencyManager {
 	public void registerCommon() {
 		silmaril = new LIItemEmpty();
 		arkenstone = new LIItemEmpty();
-		
+
 		armorAnarionBoots = new LIItemArmor(LIMaterial.ANARION, 3);
 		armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, 1);
 		armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, 0);
