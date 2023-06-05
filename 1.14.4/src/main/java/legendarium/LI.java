@@ -1,6 +1,10 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import legendarium.content.LIItemArmor;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.content.LIMaterial;
 import legendarium.proxy.LIClientProxy;
 import legendarium.proxy.LIServerProxy;
 import net.minecraft.inventory.EquipmentSlotType;
