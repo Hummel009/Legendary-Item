@@ -1,17 +1,24 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import legendarium.proxy.LIClientProxy;
+import legendarium.proxy.LIServerProxy;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod("legendarium")
 public class LI {
+	public static final LIServerProxy PROXY = DistExecutor.runForDist(() -> LIClientProxy::new, () -> LIServerProxy::new);
+
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
 	public static Item armorAnarionLegs;
@@ -148,7 +155,12 @@ public class LI {
 	public static Item silmaril;
 
 	public LI() {
-		MinecraftForge.EVENT_BUS.register(this);
+		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		fmlBus.register(this);
+		forgeBus.register(this);
+		fmlBus.register(PROXY);
+		forgeBus.register(PROXY);
 	}
 
 	@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
