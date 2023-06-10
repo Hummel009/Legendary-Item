@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 public class LIItemEmpty extends Item {
 	public LIItemEmpty(int id) {
 		super(id);
-		LIObfuscationHelper.setCreativeTab(this, LICreativeTabs.TAB_ARTIFACTS);
-		LIObfuscationHelper.setMaxStackSize(this, 1);
+		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		setMaxStackSize(1);
 	}
 }
