@@ -35,7 +35,7 @@ public class LIClientProxy extends LIServerProxy {
 				var newLocation = compliance.getValue();
 				var newModel = event.getModelRegistry().get(newLocation);
 				if (newModel != null) {
-					event.getModelRegistry().put(oldLocation, new ScaledItemModel(oldModel, newModel));
+					event.getModelRegistry().put(oldLocation, new LargeItemModel(oldModel, newModel));
 				}
 			}
 		}
@@ -58,7 +58,7 @@ public class LIClientProxy extends LIServerProxy {
 		}
 	}
 
-	public record ScaledItemModel(BakedModel defaultModel, BakedModel handheldModel) implements BakedModel {
+	public record LargeItemModel(BakedModel defaultModel, BakedModel handheldModel) implements BakedModel {
 		@Override
 		public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack mat) {
 			BakedModel modelToUse = defaultModel;

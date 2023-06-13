@@ -31,7 +31,7 @@ public class LIClientProxy extends LIServerProxy {
 				ResourceLocation newLocation = compliance.getValue();
 				IBakedModel newModel = event.getModelRegistry().get(newLocation);
 				if (newModel != null) {
-					event.getModelRegistry().put(oldLocation, new ScaledItemModel(oldModel, newModel));
+					event.getModelRegistry().put(oldLocation, new LargeItemModel(oldModel, newModel));
 				}
 			}
 		}
@@ -54,11 +54,11 @@ public class LIClientProxy extends LIServerProxy {
 		}
 	}
 
-	public static class ScaledItemModel implements IBakedModel {
+	public static class LargeItemModel implements IBakedModel {
 		public final IBakedModel defaultModel;
 		public final IBakedModel handheldModel;
 
-		public ScaledItemModel(IBakedModel defaultModel, IBakedModel handheldModel) {
+		public LargeItemModel(IBakedModel defaultModel, IBakedModel handheldModel) {
 			this.defaultModel = defaultModel;
 			this.handheldModel = handheldModel;
 		}
