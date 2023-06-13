@@ -29,7 +29,7 @@ public class LIClientProxy extends LIServerProxy {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
-	public void onModelBake(ModelEvent.ModifyBakingResult event) {
+	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
 		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
 			var oldLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
 			var oldModel = event.getModels().get(oldLocation);
@@ -44,7 +44,7 @@ public class LIClientProxy extends LIServerProxy {
 	}
 
 	@SubscribeEvent
-	public void onModelRegistry(ModelEvent.RegisterAdditional event) {
+	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
 		Set<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", new Predicate<>() {
 			@Override
 			public boolean test(ResourceLocation loc) {

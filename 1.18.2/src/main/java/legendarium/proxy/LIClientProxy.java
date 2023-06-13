@@ -53,8 +53,8 @@ public class LIClientProxy extends LIServerProxy {
 			var path = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
 			var oldModel = new ResourceLocation("legendarium", path);
 			var newModel = new ResourceLocation("legendarium", "item/" + path + "_large");
-			COMPLIANCES.put(oldModel, newModel);
 			ForgeModelBakery.addSpecialModel(newModel);
+			COMPLIANCES.put(oldModel, newModel);
 		}
 	}
 
