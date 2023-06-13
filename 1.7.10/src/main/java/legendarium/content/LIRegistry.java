@@ -23,81 +23,81 @@ public class LIRegistry implements LIDependencyManager {
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
-	public static Item armorAnarionLegs;
+	public static Item armorAnarionLeggings;
 	public static Item armorAnarionBoots;
 
 	public static Item armorArpharazonHelmet;
 	public static Item armorArpharazonChestplate;
-	public static Item armorArpharazonLegs;
+	public static Item armorArpharazonLeggings;
 	public static Item armorArpharazonBoots;
 
 	public static Item armorArveduiHelmet;
 	public static Item armorArveduiChestplate;
-	public static Item armorArveduiLegs;
+	public static Item armorArveduiLeggings;
 	public static Item armorArveduiBoots;
 
 	public static Item armorBoromirChestplate;
-	public static Item armorBoromirLegs;
+	public static Item armorBoromirLeggings;
 	public static Item armorBoromirBoots;
 
 	public static Item armorElendilHelmet;
 	public static Item armorElendilChestplate;
-	public static Item armorElendilLegs;
+	public static Item armorElendilLeggings;
 	public static Item armorElendilBoots;
 
 	public static Item armorElrosHelmet;
 	public static Item armorElrosChestplate;
-	public static Item armorElrosLegs;
+	public static Item armorElrosLeggings;
 	public static Item armorElrosBoots;
 
 	public static Item armorFeanorHelmet;
 	public static Item armorFeanorChestplate;
-	public static Item armorFeanorLegs;
+	public static Item armorFeanorLeggings;
 	public static Item armorFeanorBoots;
 
 	public static Item armorGilgaladHelmet;
 	public static Item armorGilgaladChestplate;
-	public static Item armorGilgaladLegs;
+	public static Item armorGilgaladLeggings;
 	public static Item armorGilgaladBoots;
 
 	public static Item armorGimliHelmet;
 	public static Item armorGimliChestplate;
-	public static Item armorGimliLegs;
+	public static Item armorGimliLeggings;
 	public static Item armorGimliBoots;
 
 	public static Item armorIsildurHelmet;
 	public static Item armorIsildurChestplate;
-	public static Item armorIsildurLegs;
+	public static Item armorIsildurLeggings;
 	public static Item armorIsildurBoots;
 
 	public static Item armorJiindurHelmet;
 	public static Item armorJiindurChestplate;
-	public static Item armorJiindurLegs;
+	public static Item armorJiindurLeggings;
 	public static Item armorJiindurBoots;
 
 	public static Item armorKhamulHelmet;
 	public static Item armorKhamulChestplate;
-	public static Item armorKhamulLegs;
+	public static Item armorKhamulLeggings;
 	public static Item armorKhamulBoots;
 
 	public static Item armorHoarmurathHelmet;
 	public static Item armorHoarmurathChestplate;
-	public static Item armorHoarmurathLegs;
+	public static Item armorHoarmurathLeggings;
 	public static Item armorHoarmurathBoots;
 
 	public static Item armorMorgomirHelmet;
 	public static Item armorMorgomirChestplate;
-	public static Item armorMorgomirLegs;
+	public static Item armorMorgomirLeggings;
 	public static Item armorMorgomirBoots;
 
 	public static Item armorTheodenHelmet;
 	public static Item armorTheodenChestplate;
-	public static Item armorTheodenLegs;
+	public static Item armorTheodenLeggings;
 	public static Item armorTheodenBoots;
 
 	public static Item armorTurgonHelmet;
 	public static Item armorTurgonChestplate;
-	public static Item armorTurgonLegs;
+	public static Item armorTurgonLeggings;
 	public static Item armorTurgonBoots;
 
 	public static Item weaponAcharn;
@@ -164,81 +164,81 @@ public class LIRegistry implements LIDependencyManager {
 		armorAnarionBoots = new LIItemArmor(LIMaterial.ANARION, 3);
 		armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, 1);
 		armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, 0);
-		armorAnarionLegs = new LIItemArmor(LIMaterial.ANARION, 2);
+		armorAnarionLeggings = new LIItemArmor(LIMaterial.ANARION, 2);
 
 		armorArpharazonBoots = new LIItemArmor(LIMaterial.ARPHARAZON, 3);
 		armorArpharazonChestplate = new LIItemArmor(LIMaterial.ARPHARAZON, 1);
 		armorArpharazonHelmet = new LIItemArmor(LIMaterial.ARPHARAZON, 0);
-		armorArpharazonLegs = new LIItemArmor(LIMaterial.ARPHARAZON, 2);
+		armorArpharazonLeggings = new LIItemArmor(LIMaterial.ARPHARAZON, 2);
 
 		armorArveduiBoots = new LIItemArmor(LIMaterial.ARVEDUI, 3);
 		armorArveduiChestplate = new LIItemArmor(LIMaterial.ARVEDUI, 1);
 		armorArveduiHelmet = new LIItemArmor(LIMaterial.ARVEDUI, 0);
-		armorArveduiLegs = new LIItemArmor(LIMaterial.ARVEDUI, 2);
+		armorArveduiLeggings = new LIItemArmor(LIMaterial.ARVEDUI, 2);
 
 		armorBoromirBoots = new LIItemArmor(LIMaterial.BOROMIR, 3);
 		armorBoromirChestplate = new LIItemArmor(LIMaterial.BOROMIR, 1);
-		armorBoromirLegs = new LIItemArmor(LIMaterial.BOROMIR, 2);
+		armorBoromirLeggings = new LIItemArmor(LIMaterial.BOROMIR, 2);
 
 		armorElendilBoots = new LIItemArmor(LIMaterial.ELENDIL, 3);
 		armorElendilChestplate = new LIItemArmor(LIMaterial.ELENDIL, 1);
 		armorElendilHelmet = new LIItemArmor(LIMaterial.ELENDIL, 0);
-		armorElendilLegs = new LIItemArmor(LIMaterial.ELENDIL, 2);
+		armorElendilLeggings = new LIItemArmor(LIMaterial.ELENDIL, 2);
 
 		armorElrosBoots = new LIItemArmor(LIMaterial.ELROS, 3);
 		armorElrosChestplate = new LIItemArmor(LIMaterial.ELROS, 1);
 		armorElrosHelmet = new LIItemArmor(LIMaterial.ELROS, 0);
-		armorElrosLegs = new LIItemArmor(LIMaterial.ELROS, 2);
+		armorElrosLeggings = new LIItemArmor(LIMaterial.ELROS, 2);
 
 		armorFeanorBoots = new LIItemArmor(LIMaterial.FEANOR, 3);
 		armorFeanorChestplate = new LIItemArmor(LIMaterial.FEANOR, 1);
 		armorFeanorHelmet = new LIItemArmor(LIMaterial.FEANOR, 0);
-		armorFeanorLegs = new LIItemArmor(LIMaterial.FEANOR, 2);
+		armorFeanorLeggings = new LIItemArmor(LIMaterial.FEANOR, 2);
 
 		armorGilgaladBoots = new LIItemArmor(LIMaterial.GILGALAD, 3);
 		armorGilgaladChestplate = new LIItemArmor(LIMaterial.GILGALAD, 1);
 		armorGilgaladHelmet = new LIItemArmor(LIMaterial.GILGALAD, 0);
-		armorGilgaladLegs = new LIItemArmor(LIMaterial.GILGALAD, 2);
+		armorGilgaladLeggings = new LIItemArmor(LIMaterial.GILGALAD, 2);
 
 		armorGimliBoots = new LIItemArmor(LIMaterial.GIMLI, 3);
 		armorGimliChestplate = new LIItemArmor(LIMaterial.GIMLI, 1);
 		armorGimliHelmet = new LIItemArmor(LIMaterial.GIMLI, 0);
-		armorGimliLegs = new LIItemArmor(LIMaterial.GIMLI, 2);
+		armorGimliLeggings = new LIItemArmor(LIMaterial.GIMLI, 2);
 
 		armorIsildurBoots = new LIItemArmor(LIMaterial.ISILDUR, 3);
 		armorIsildurChestplate = new LIItemArmor(LIMaterial.ISILDUR, 1);
 		armorIsildurHelmet = new LIItemArmor(LIMaterial.ISILDUR, 0);
-		armorIsildurLegs = new LIItemArmor(LIMaterial.ISILDUR, 2);
+		armorIsildurLeggings = new LIItemArmor(LIMaterial.ISILDUR, 2);
 
 		armorJiindurBoots = new LIItemArmor(LIMaterial.JIINDUR, 3);
 		armorJiindurChestplate = new LIItemArmor(LIMaterial.JIINDUR, 1);
 		armorJiindurHelmet = new LIItemArmor(LIMaterial.JIINDUR, 0);
-		armorJiindurLegs = new LIItemArmor(LIMaterial.JIINDUR, 2);
+		armorJiindurLeggings = new LIItemArmor(LIMaterial.JIINDUR, 2);
 
 		armorKhamulBoots = new LIItemArmor(LIMaterial.KHAMUL, 3);
 		armorKhamulChestplate = new LIItemArmor(LIMaterial.KHAMUL, 1);
 		armorKhamulHelmet = new LIItemArmor(LIMaterial.KHAMUL, 0);
-		armorKhamulLegs = new LIItemArmor(LIMaterial.KHAMUL, 2);
+		armorKhamulLeggings = new LIItemArmor(LIMaterial.KHAMUL, 2);
 
 		armorHoarmurathBoots = new LIItemArmor(LIMaterial.HOARMURATH, 3);
 		armorHoarmurathChestplate = new LIItemArmor(LIMaterial.HOARMURATH, 1);
 		armorHoarmurathHelmet = new LIItemArmor(LIMaterial.HOARMURATH, 0);
-		armorHoarmurathLegs = new LIItemArmor(LIMaterial.HOARMURATH, 2);
+		armorHoarmurathLeggings = new LIItemArmor(LIMaterial.HOARMURATH, 2);
 
 		armorMorgomirBoots = new LIItemArmor(LIMaterial.MORGOMIR, 3);
 		armorMorgomirChestplate = new LIItemArmor(LIMaterial.MORGOMIR, 1);
 		armorMorgomirHelmet = new LIItemArmor(LIMaterial.MORGOMIR, 0);
-		armorMorgomirLegs = new LIItemArmor(LIMaterial.MORGOMIR, 2);
+		armorMorgomirLeggings = new LIItemArmor(LIMaterial.MORGOMIR, 2);
 
 		armorTheodenBoots = new LIItemArmor(LIMaterial.THEODEN, 3);
 		armorTheodenChestplate = new LIItemArmor(LIMaterial.THEODEN, 1);
 		armorTheodenHelmet = new LIItemArmor(LIMaterial.THEODEN, 0);
-		armorTheodenLegs = new LIItemArmor(LIMaterial.THEODEN, 2);
+		armorTheodenLeggings = new LIItemArmor(LIMaterial.THEODEN, 2);
 
 		armorTurgonBoots = new LIItemArmor(LIMaterial.TURGON, 3);
 		armorTurgonChestplate = new LIItemArmor(LIMaterial.TURGON, 1);
 		armorTurgonHelmet = new LIItemArmor(LIMaterial.TURGON, 0);
-		armorTurgonLegs = new LIItemArmor(LIMaterial.TURGON, 2);
+		armorTurgonLeggings = new LIItemArmor(LIMaterial.TURGON, 2);
 
 		weaponAcharn = new LIItemSword();
 		weaponAngrist = new LIItemSword();
@@ -283,81 +283,81 @@ public class LIRegistry implements LIDependencyManager {
 
 		register(armorAnarionHelmet, "armorAnarionHelmet");
 		register(armorAnarionChestplate, "armorAnarionChestplate");
-		register(armorAnarionLegs, "armorAnarionLegs");
+		register(armorAnarionLeggings, "armorAnarionLeggings");
 		register(armorAnarionBoots, "armorAnarionBoots");
 
 		register(armorArpharazonHelmet, "armorArpharazonHelmet");
 		register(armorArpharazonChestplate, "armorArpharazonChestplate");
-		register(armorArpharazonLegs, "armorArpharazonLegs");
+		register(armorArpharazonLeggings, "armorArpharazonLeggings");
 		register(armorArpharazonBoots, "armorArpharazonBoots");
 
 		register(armorArveduiHelmet, "armorArveduiHelmet");
 		register(armorArveduiChestplate, "armorArveduiChestplate");
-		register(armorArveduiLegs, "armorArveduiLegs");
+		register(armorArveduiLeggings, "armorArveduiLeggings");
 		register(armorArveduiBoots, "armorArveduiBoots");
 
 		register(armorBoromirChestplate, "armorBoromirChestplate");
-		register(armorBoromirLegs, "armorBoromirLegs");
+		register(armorBoromirLeggings, "armorBoromirLeggings");
 		register(armorBoromirBoots, "armorBoromirBoots");
 
 		register(armorElendilHelmet, "armorElendilHelmet");
 		register(armorElendilChestplate, "armorElendilChestplate");
-		register(armorElendilLegs, "armorElendilLegs");
+		register(armorElendilLeggings, "armorElendilLeggings");
 		register(armorElendilBoots, "armorElendilBoots");
 
 		register(armorElrosHelmet, "armorElrosHelmet");
 		register(armorElrosChestplate, "armorElrosChestplate");
-		register(armorElrosLegs, "armorElrosLegs");
+		register(armorElrosLeggings, "armorElrosLeggings");
 		register(armorElrosBoots, "armorElrosBoots");
 
 		register(armorFeanorHelmet, "armorFeanorHelmet");
 		register(armorFeanorChestplate, "armorFeanorChestplate");
-		register(armorFeanorLegs, "armorFeanorLegs");
+		register(armorFeanorLeggings, "armorFeanorLeggings");
 		register(armorFeanorBoots, "armorFeanorBoots");
 
 		register(armorGilgaladHelmet, "armorGilgaladHelmet");
 		register(armorGilgaladChestplate, "armorGilgaladChestplate");
-		register(armorGilgaladLegs, "armorGilgaladLegs");
+		register(armorGilgaladLeggings, "armorGilgaladLeggings");
 		register(armorGilgaladBoots, "armorGilgaladBoots");
 
 		register(armorGimliHelmet, "armorGimliHelmet");
 		register(armorGimliChestplate, "armorGimliChestplate");
-		register(armorGimliLegs, "armorGimliLegs");
+		register(armorGimliLeggings, "armorGimliLeggings");
 		register(armorGimliBoots, "armorGimliBoots");
 
 		register(armorIsildurHelmet, "armorIsildurHelmet");
 		register(armorIsildurChestplate, "armorIsildurChestplate");
-		register(armorIsildurLegs, "armorIsildurLegs");
+		register(armorIsildurLeggings, "armorIsildurLeggings");
 		register(armorIsildurBoots, "armorIsildurBoots");
 
 		register(armorJiindurHelmet, "armorJiindurHelmet");
 		register(armorJiindurChestplate, "armorJiindurChestplate");
-		register(armorJiindurLegs, "armorJiindurLegs");
+		register(armorJiindurLeggings, "armorJiindurLeggings");
 		register(armorJiindurBoots, "armorJiindurBoots");
 
 		register(armorKhamulHelmet, "armorKhamulHelmet");
 		register(armorKhamulChestplate, "armorKhamulChestplate");
-		register(armorKhamulLegs, "armorKhamulLegs");
+		register(armorKhamulLeggings, "armorKhamulLeggings");
 		register(armorKhamulBoots, "armorKhamulBoots");
 
 		register(armorHoarmurathHelmet, "armorHoarmurathHelmet");
 		register(armorHoarmurathChestplate, "armorHoarmurathChestplate");
-		register(armorHoarmurathLegs, "armorHoarmurathLegs");
+		register(armorHoarmurathLeggings, "armorHoarmurathLeggings");
 		register(armorHoarmurathBoots, "armorHoarmurathBoots");
 
 		register(armorMorgomirHelmet, "armorMorgomirHelmet");
 		register(armorMorgomirChestplate, "armorMorgomirChestplate");
-		register(armorMorgomirLegs, "armorMorgomirLegs");
+		register(armorMorgomirLeggings, "armorMorgomirLeggings");
 		register(armorMorgomirBoots, "armorMorgomirBoots");
 
 		register(armorTheodenHelmet, "armorTheodenHelmet");
 		register(armorTheodenChestplate, "armorTheodenChestplate");
-		register(armorTheodenLegs, "armorTheodenLegs");
+		register(armorTheodenLeggings, "armorTheodenLeggings");
 		register(armorTheodenBoots, "armorTheodenBoots");
 
 		register(armorTurgonHelmet, "armorTurgonHelmet");
 		register(armorTurgonChestplate, "armorTurgonChestplate");
-		register(armorTurgonLegs, "armorTurgonLegs");
+		register(armorTurgonLeggings, "armorTurgonLeggings");
 		register(armorTurgonBoots, "armorTurgonBoots");
 
 		register(weaponAcharn, "weaponAcharn");
