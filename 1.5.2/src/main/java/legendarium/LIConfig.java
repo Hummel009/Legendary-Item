@@ -70,10 +70,10 @@ public class LIConfig {
 	public static int idArmorKhamulLegs;
 	public static int idArmorKhamulBoots;
 
-	public static int idArmorKhommuratHelmet;
-	public static int idArmorKhommuratChestplate;
-	public static int idArmorKhommuratLegs;
-	public static int idArmorKhommuratBoots;
+	public static int idArmorHoarmurathHelmet;
+	public static int idArmorHoarmurathChestplate;
+	public static int idArmorHoarmurathLegs;
+	public static int idArmorHoarmurathBoots;
 
 	public static int idArmorMorgomirHelmet;
 	public static int idArmorMorgomirChestplate;
@@ -209,10 +209,10 @@ public class LIConfig {
 			idArmorKhamulLegs = configuration.get("item", "Armor Khamul Legs", 817).getInt(817);
 			idArmorKhamulBoots = configuration.get("item", "Armor Khamul Boots", 818).getInt(818);
 
-			idArmorKhommuratHelmet = configuration.get("item", "Armor Khommurat Helmet", 819).getInt(819);
-			idArmorKhommuratChestplate = configuration.get("item", "Armor Khommurat Chestplate", 820).getInt(820);
-			idArmorKhommuratLegs = configuration.get("item", "Armor Khommurat Legs", 821).getInt(821);
-			idArmorKhommuratBoots = configuration.get("item", "Armor Khommurat Boots", 822).getInt(822);
+			idArmorHoarmurathHelmet = configuration.get("item", "Armor Hoarmurath Helmet", 819).getInt(819);
+			idArmorHoarmurathChestplate = configuration.get("item", "Armor Hoarmurath Chestplate", 820).getInt(820);
+			idArmorHoarmurathLegs = configuration.get("item", "Armor Hoarmurath Legs", 821).getInt(821);
+			idArmorHoarmurathBoots = configuration.get("item", "Armor Hoarmurath Boots", 822).getInt(822);
 
 			idArmorMorgomirHelmet = configuration.get("item", "Armor Morgomir Helmet", 823).getInt(823);
 			idArmorMorgomirChestplate = configuration.get("item", "Armor Morgomir Chestplate", 824).getInt(824);

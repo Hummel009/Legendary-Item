@@ -18,7 +18,7 @@ public class LIMaterial {
 	public static final ArmorMaterial ISILDUR = EnumHelper.addArmorMaterial("isildur", "isildur", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
 	public static final ArmorMaterial JIINDUR = EnumHelper.addArmorMaterial("jiindur", "jiindur", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
 	public static final ArmorMaterial KHAMUL = EnumHelper.addArmorMaterial("khamul", "khamul", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
-	public static final ArmorMaterial KHOMMURAT = EnumHelper.addArmorMaterial("khommurat", "khommurat", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
+	public static final ArmorMaterial HOARMURATH = EnumHelper.addArmorMaterial("hoarmurath", "hoarmurath", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
 	public static final ArmorMaterial MORGOMIR = EnumHelper.addArmorMaterial("morgomir", "morgomir", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
 	public static final ArmorMaterial THEODEN = EnumHelper.addArmorMaterial("theoden", "theoden", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
 	public static final ArmorMaterial TURGON = EnumHelper.addArmorMaterial("turgon", "turgon", 33, new int[]{3, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F);
@@ -36,7 +36,7 @@ public class LIMaterial {
 		ISILDUR.customCraftingMaterial = Items.IRON_INGOT;
 		JIINDUR.customCraftingMaterial = Items.IRON_INGOT;
 		KHAMUL.customCraftingMaterial = Items.IRON_INGOT;
-		KHOMMURAT.customCraftingMaterial = Items.IRON_INGOT;
+		HOARMURATH.customCraftingMaterial = Items.IRON_INGOT;
 		MORGOMIR.customCraftingMaterial = Items.IRON_INGOT;
 		THEODEN.customCraftingMaterial = Items.IRON_INGOT;
 		TURGON.customCraftingMaterial = Items.IRON_INGOT;

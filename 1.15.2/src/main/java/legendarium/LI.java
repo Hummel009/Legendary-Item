@@ -82,10 +82,10 @@ public class LI {
 	public static final RegistryObject<Item> ARMOR_KHAMUL_LEGS = ITEMS.register("armor_khamul_legs", () -> new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlotType.LEGS));
 	public static final RegistryObject<Item> ARMOR_KHAMUL_BOOTS = ITEMS.register("armor_khamul_boots", () -> new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlotType.FEET));
 
-	public static final RegistryObject<Item> ARMOR_KHOMMURAT_HELMET = ITEMS.register("armor_khommurat_helmet", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.HEAD));
-	public static final RegistryObject<Item> ARMOR_KHOMMURAT_CHESTPLATE = ITEMS.register("armor_khommurat_chestplate", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.CHEST));
-	public static final RegistryObject<Item> ARMOR_KHOMMURAT_LEGS = ITEMS.register("armor_khommurat_legs", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.LEGS));
-	public static final RegistryObject<Item> ARMOR_KHOMMURAT_BOOTS = ITEMS.register("armor_khommurat_boots", () -> new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.FEET));
+	public static final RegistryObject<Item> ARMOR_HOARMURATH_HELMET = ITEMS.register("armor_hoarmurath_helmet", () -> new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.HEAD));
+	public static final RegistryObject<Item> ARMOR_HOARMURATH_CHESTPLATE = ITEMS.register("armor_hoarmurath_chestplate", () -> new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.CHEST));
+	public static final RegistryObject<Item> ARMOR_HOARMURATH_LEGS = ITEMS.register("armor_hoarmurath_legs", () -> new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.LEGS));
+	public static final RegistryObject<Item> ARMOR_HOARMURATH_BOOTS = ITEMS.register("armor_hoarmurath_boots", () -> new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.FEET));
 
 	public static final RegistryObject<Item> ARMOR_MORGOMIR_HELMET = ITEMS.register("armor_morgomir_helmet", () -> new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlotType.HEAD));
 	public static final RegistryObject<Item> ARMOR_MORGOMIR_CHESTPLATE = ITEMS.register("armor_morgomir_chestplate", () -> new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlotType.CHEST));

@@ -71,10 +71,10 @@ public class LI {
 	public static Item armorKhamulLegs;
 	public static Item armorKhamulBoots;
 
-	public static Item armorKhommuratHelmet;
-	public static Item armorKhommuratChestplate;
-	public static Item armorKhommuratLegs;
-	public static Item armorKhommuratBoots;
+	public static Item armorHoarmurathHelmet;
+	public static Item armorHoarmurathChestplate;
+	public static Item armorHoarmurathLegs;
+	public static Item armorHoarmurathBoots;
 
 	public static Item armorMorgomirHelmet;
 	public static Item armorMorgomirChestplate;
@@ -221,10 +221,10 @@ public class LI {
 		armorKhamulLegs = new LIItemArmor(LIConfig.idArmorKhamulLegs - 256, LIMaterial.KHAMUL, 2);
 		armorKhamulBoots = new LIItemArmor(LIConfig.idArmorKhamulBoots - 256, LIMaterial.KHAMUL, 3);
 
-		armorKhommuratHelmet = new LIItemArmor(LIConfig.idArmorKhommuratHelmet - 256, LIMaterial.KHOMMURAT, 0);
-		armorKhommuratChestplate = new LIItemArmor(LIConfig.idArmorKhommuratChestplate - 256, LIMaterial.KHOMMURAT, 1);
-		armorKhommuratLegs = new LIItemArmor(LIConfig.idArmorKhommuratLegs - 256, LIMaterial.KHOMMURAT, 2);
-		armorKhommuratBoots = new LIItemArmor(LIConfig.idArmorKhommuratBoots - 256, LIMaterial.KHOMMURAT, 3);
+		armorHoarmurathHelmet = new LIItemArmor(LIConfig.idArmorHoarmurathHelmet - 256, LIMaterial.HOARMURATH, 0);
+		armorHoarmurathChestplate = new LIItemArmor(LIConfig.idArmorHoarmurathChestplate - 256, LIMaterial.HOARMURATH, 1);
+		armorHoarmurathLegs = new LIItemArmor(LIConfig.idArmorHoarmurathLegs - 256, LIMaterial.HOARMURATH, 2);
+		armorHoarmurathBoots = new LIItemArmor(LIConfig.idArmorHoarmurathBoots - 256, LIMaterial.HOARMURATH, 3);
 
 		armorMorgomirHelmet = new LIItemArmor(LIConfig.idArmorMorgomirHelmet - 256, LIMaterial.MORGOMIR, 0);
 		armorMorgomirChestplate = new LIItemArmor(LIConfig.idArmorMorgomirChestplate - 256, LIMaterial.MORGOMIR, 1);
@@ -344,10 +344,10 @@ public class LI {
 		armorKhamulChestplate.setIconIndex(45);
 		armorKhamulHelmet.setIconIndex(46);
 		armorKhamulLegs.setIconIndex(47);
-		armorKhommuratBoots.setIconIndex(48);
-		armorKhommuratChestplate.setIconIndex(49);
-		armorKhommuratHelmet.setIconIndex(50);
-		armorKhommuratLegs.setIconIndex(51);
+		armorHoarmurathBoots.setIconIndex(48);
+		armorHoarmurathChestplate.setIconIndex(49);
+		armorHoarmurathHelmet.setIconIndex(50);
+		armorHoarmurathLegs.setIconIndex(51);
 		armorMorgomirBoots.setIconIndex(52);
 		armorMorgomirChestplate.setIconIndex(53);
 		armorMorgomirHelmet.setIconIndex(54);
@@ -473,10 +473,10 @@ public class LI {
 		register(armorKhamulLegs, "armorKhamulLegs");
 		register(armorKhamulBoots, "armorKhamulBoots");
 
-		register(armorKhommuratHelmet, "armorKhommuratHelmet");
-		register(armorKhommuratChestplate, "armorKhommuratChestplate");
-		register(armorKhommuratLegs, "armorKhommuratLegs");
-		register(armorKhommuratBoots, "armorKhommuratBoots");
+		register(armorHoarmurathHelmet, "armorHoarmurathHelmet");
+		register(armorHoarmurathChestplate, "armorHoarmurathChestplate");
+		register(armorHoarmurathLegs, "armorHoarmurathLegs");
+		register(armorHoarmurathBoots, "armorHoarmurathBoots");
 
 		register(armorMorgomirHelmet, "armorMorgomirHelmet");
 		register(armorMorgomirChestplate, "armorMorgomirChestplate");

@@ -17,7 +17,7 @@ public class LIMaterial {
 	public static final ArmorMaterial ISILDUR = EnumHelper.addArmorMaterial("isildur", "isildur", 33, new int[]{3, 8, 6, 3}, 10);
 	public static final ArmorMaterial JIINDUR = EnumHelper.addArmorMaterial("jiindur", "jiindur", 33, new int[]{3, 8, 6, 3}, 10);
 	public static final ArmorMaterial KHAMUL = EnumHelper.addArmorMaterial("khamul", "khamul", 33, new int[]{3, 8, 6, 3}, 10);
-	public static final ArmorMaterial KHOMMURAT = EnumHelper.addArmorMaterial("khommurat", "khommurat", 33, new int[]{3, 8, 6, 3}, 10);
+	public static final ArmorMaterial HOARMURATH = EnumHelper.addArmorMaterial("hoarmurath", "hoarmurath", 33, new int[]{3, 8, 6, 3}, 10);
 	public static final ArmorMaterial MORGOMIR = EnumHelper.addArmorMaterial("morgomir", "morgomir", 33, new int[]{3, 8, 6, 3}, 10);
 	public static final ArmorMaterial THEODEN = EnumHelper.addArmorMaterial("theoden", "theoden", 33, new int[]{3, 8, 6, 3}, 10);
 	public static final ArmorMaterial TURGON = EnumHelper.addArmorMaterial("turgon", "turgon", 33, new int[]{3, 8, 6, 3}, 10);
@@ -35,7 +35,7 @@ public class LIMaterial {
 		ISILDUR.customCraftingMaterial = Items.iron_ingot;
 		JIINDUR.customCraftingMaterial = Items.iron_ingot;
 		KHAMUL.customCraftingMaterial = Items.iron_ingot;
-		KHOMMURAT.customCraftingMaterial = Items.iron_ingot;
+		HOARMURATH.customCraftingMaterial = Items.iron_ingot;
 		MORGOMIR.customCraftingMaterial = Items.iron_ingot;
 		THEODEN.customCraftingMaterial = Items.iron_ingot;
 		TURGON.customCraftingMaterial = Items.iron_ingot;

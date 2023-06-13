@@ -82,10 +82,10 @@ public class LI {
 	public static Item armorKhamulLegs;
 	public static Item armorKhamulBoots;
 
-	public static Item armorKhommuratHelmet;
-	public static Item armorKhommuratChestplate;
-	public static Item armorKhommuratLegs;
-	public static Item armorKhommuratBoots;
+	public static Item armorHoarmurathHelmet;
+	public static Item armorHoarmurathChestplate;
+	public static Item armorHoarmurathLegs;
+	public static Item armorHoarmurathBoots;
 
 	public static Item armorMorgomirHelmet;
 	public static Item armorMorgomirChestplate;
@@ -230,10 +230,10 @@ public class LI {
 			armorKhamulLegs = new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlotType.LEGS);
 			armorKhamulBoots = new LIItemArmor(LIMaterial.KHAMUL, EquipmentSlotType.FEET);
 
-			armorKhommuratHelmet = new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.HEAD);
-			armorKhommuratChestplate = new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.CHEST);
-			armorKhommuratLegs = new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.LEGS);
-			armorKhommuratBoots = new LIItemArmor(LIMaterial.KHOMMURAT, EquipmentSlotType.FEET);
+			armorHoarmurathHelmet = new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.HEAD);
+			armorHoarmurathChestplate = new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.CHEST);
+			armorHoarmurathLegs = new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.LEGS);
+			armorHoarmurathBoots = new LIItemArmor(LIMaterial.HOARMURATH, EquipmentSlotType.FEET);
 
 			armorMorgomirHelmet = new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlotType.HEAD);
 			armorMorgomirChestplate = new LIItemArmor(LIMaterial.MORGOMIR, EquipmentSlotType.CHEST);
@@ -364,10 +364,10 @@ public class LI {
 			register(armorKhamulLegs, "armorKhamulLegs");
 			register(armorKhamulBoots, "armorKhamulBoots");
 
-			register(armorKhommuratHelmet, "armorKhommuratHelmet");
-			register(armorKhommuratChestplate, "armorKhommuratChestplate");
-			register(armorKhommuratLegs, "armorKhommuratLegs");
-			register(armorKhommuratBoots, "armorKhommuratBoots");
+			register(armorHoarmurathHelmet, "armorHoarmurathHelmet");
+			register(armorHoarmurathChestplate, "armorHoarmurathChestplate");
+			register(armorHoarmurathLegs, "armorHoarmurathLegs");
+			register(armorHoarmurathBoots, "armorHoarmurathBoots");
 
 			register(armorMorgomirHelmet, "armorMorgomirHelmet");
 			register(armorMorgomirChestplate, "armorMorgomirChestplate");

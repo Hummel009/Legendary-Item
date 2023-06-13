@@ -82,10 +82,10 @@ public class LI {
 	public static Item armorKhamulLegs;
 	public static Item armorKhamulBoots;
 
-	public static Item armorKhommuratHelmet;
-	public static Item armorKhommuratChestplate;
-	public static Item armorKhommuratLegs;
-	public static Item armorKhommuratBoots;
+	public static Item armorHoarmurathHelmet;
+	public static Item armorHoarmurathChestplate;
+	public static Item armorHoarmurathLegs;
+	public static Item armorHoarmurathBoots;
 
 	public static Item armorMorgomirHelmet;
 	public static Item armorMorgomirChestplate;
@@ -227,10 +227,10 @@ public class LI {
 		armorKhamulLegs = new LIItemArmor(LIMaterial.KHAMUL, 2);
 		armorKhamulBoots = new LIItemArmor(LIMaterial.KHAMUL, 3);
 
-		armorKhommuratHelmet = new LIItemArmor(LIMaterial.KHOMMURAT, 0);
-		armorKhommuratChestplate = new LIItemArmor(LIMaterial.KHOMMURAT, 1);
-		armorKhommuratLegs = new LIItemArmor(LIMaterial.KHOMMURAT, 2);
-		armorKhommuratBoots = new LIItemArmor(LIMaterial.KHOMMURAT, 3);
+		armorHoarmurathHelmet = new LIItemArmor(LIMaterial.HOARMURATH, 0);
+		armorHoarmurathChestplate = new LIItemArmor(LIMaterial.HOARMURATH, 1);
+		armorHoarmurathLegs = new LIItemArmor(LIMaterial.HOARMURATH, 2);
+		armorHoarmurathBoots = new LIItemArmor(LIMaterial.HOARMURATH, 3);
 
 		armorMorgomirHelmet = new LIItemArmor(LIMaterial.MORGOMIR, 0);
 		armorMorgomirChestplate = new LIItemArmor(LIMaterial.MORGOMIR, 1);
@@ -361,10 +361,10 @@ public class LI {
 		register(armorKhamulLegs, "armorKhamulLegs");
 		register(armorKhamulBoots, "armorKhamulBoots");
 
-		register(armorKhommuratHelmet, "armorKhommuratHelmet");
-		register(armorKhommuratChestplate, "armorKhommuratChestplate");
-		register(armorKhommuratLegs, "armorKhommuratLegs");
-		register(armorKhommuratBoots, "armorKhommuratBoots");
+		register(armorHoarmurathHelmet, "armorHoarmurathHelmet");
+		register(armorHoarmurathChestplate, "armorHoarmurathChestplate");
+		register(armorHoarmurathLegs, "armorHoarmurathLegs");
+		register(armorHoarmurathBoots, "armorHoarmurathBoots");
 
 		register(armorMorgomirHelmet, "armorMorgomirHelmet");
 		register(armorMorgomirChestplate, "armorMorgomirChestplate");
