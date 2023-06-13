@@ -1,0 +1,6 @@
+{
+  "parent": "legendarium:item/handheld_hummel",
+  "textures": {
+	"layer0": "legendarium:item/weapon_orcrist_large"
+  }
+}

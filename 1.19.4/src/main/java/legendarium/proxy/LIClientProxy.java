@@ -4,22 +4,24 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ForgeModelBakery;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class LIClientProxy extends LIServerProxy {
@@ -27,49 +29,49 @@ public class LIClientProxy extends LIServerProxy {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
-	public void onModelBake(ModelBakeEvent event) {
+	public void onModelBake(ModelEvent.ModifyBakingResult event) {
 		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
 			var oldLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			var oldModel = event.getModelRegistry().get(oldLocation);
+			var oldModel = event.getModels().get(oldLocation);
 			if (oldModel != null) {
 				var newLocation = compliance.getValue();
-				var newModel = event.getModelRegistry().get(newLocation);
+				var newModel = event.getModels().get(newLocation);
 				if (newModel != null) {
-					event.getModelRegistry().put(oldLocation, new ScaledItemModel(oldModel, newModel));
+					event.getModels().put(oldLocation, new ScaledItemModel(oldModel, newModel));
 				}
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public void onModelRegistry(ModelRegistryEvent event) {
-		Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", new Predicate<>() {
+	public void onModelRegistry(ModelEvent.RegisterAdditional event) {
+		Set<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", new Predicate<>() {
 			@Override
-			public boolean test(String loc) {
-				return loc.endsWith("_large.json");
+			public boolean test(ResourceLocation loc) {
+				return "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json");
 			}
-		});
+		}).keySet();
 		for (ResourceLocation resourceLocation : resourceLocations) {
 			var path = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
 			var oldModel = new ResourceLocation("legendarium", path);
 			var newModel = new ResourceLocation("legendarium", "item/" + path + "_large");
 			COMPLIANCES.put(oldModel, newModel);
-			ForgeModelBakery.addSpecialModel(newModel);
+			event.register(newModel);
 		}
 	}
 
 	public record ScaledItemModel(BakedModel defaultModel, BakedModel handheldModel) implements BakedModel {
 		@Override
-		public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack mat) {
+		public BakedModel applyTransform(ItemDisplayContext transformType, PoseStack mat, boolean applyLeftHandTransform) {
 			BakedModel modelToUse = defaultModel;
-			if (transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
+			if (transformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || transformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
 				modelToUse = handheldModel;
 			}
-			return ForgeHooksClient.handlePerspective(modelToUse, transformType, mat);
+			return ForgeHooksClient.handleCameraTransforms(mat, modelToUse, transformType, applyLeftHandTransform);
 		}
 
 		@Override
-		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, Random rand) {
+		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, RandomSource rand) {
 			return defaultModel.getQuads(state, cullFace, rand);
 		}
 
