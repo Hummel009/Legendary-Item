@@ -1,5 +1,6 @@
 package legendarium;
 
+import legendarium.content.*;
 import legendarium.proxy.LIClientProxy;
 import legendarium.proxy.LIServerProxy;
 import net.minecraft.world.item.ArmorItem;

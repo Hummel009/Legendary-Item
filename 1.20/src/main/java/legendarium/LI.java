@@ -1,5 +1,11 @@
 package legendarium;
 
+import legendarium.content.LIItemArmor;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.content.LIMaterial;
+import legendarium.proxy.LIClientProxy;
+import legendarium.proxy.LIServerProxy;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ArmorItem;
@@ -9,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,6 +30,8 @@ import java.util.Map;
 
 @Mod("legendarium")
 public class LI {
+	public static final LIServerProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LIServerProxy::new);
+
 	public static final List<Item> CONTENT = new ArrayList<>();
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "legendarium");
@@ -174,8 +183,9 @@ public class LI {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		fmlBus.register(this);
 		forgeBus.register(this);
+		fmlBus.register(PROXY);
+		forgeBus.register(PROXY);
 		ITEMS.register(fmlBus);
-		CREATIVE_TABS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
