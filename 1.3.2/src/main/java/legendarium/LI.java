@@ -153,6 +153,7 @@ public class LI {
 		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		LanguageRegistry.instance().addNameForObject(item, "ru_RU", LILang.ruRU.get("item." + name + ".name"));
 		LanguageRegistry.instance().addNameForObject(item, "en_US", LILang.enUS.get("item." + name + ".name"));
+		LanguageRegistry.instance().addNameForObject(item, "uk_UA", LILang.ukUA.get("item." + name + ".name"));
 	}
 
 	@PreInit
