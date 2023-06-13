@@ -186,6 +186,7 @@ public class LI {
 		fmlBus.register(PROXY);
 		forgeBus.register(PROXY);
 		ITEMS.register(fmlBus);
+		CREATIVE_TABS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
