@@ -39,6 +39,14 @@ public class LIRenderLargeItem implements IItemRenderer {
 		largeIconScale = f;
 	}
 
+	public static ResourceLocation getLargeTexturePath(Item item, String folder) {
+		String itemIconString = item.getUnlocalizedName().substring("item.".length());
+		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
+		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
+		String modID = isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
+		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
+	}
+
 	public static LIRenderLargeItem getRendererIfLarge(Item item) {
 		for (Map.Entry<String, Float> folder : sizeFolders.entrySet()) {
 			float iconScale = folder.getValue();
@@ -54,12 +62,8 @@ public class LIRenderLargeItem implements IItemRenderer {
 		return null;
 	}
 
-	public static ResourceLocation getLargeTexturePath(Item item, String folder) {
-		String itemIconString = item.getUnlocalizedName().substring("item.".length());
-		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
-		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
-		String modID = isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
-		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
+	public static boolean isNullOrEmpty(String str) {
+		return str == null || str.length() == 0;
 	}
 
 	public static void renderEnchantmentEffect() {
@@ -94,10 +98,6 @@ public class LIRenderLargeItem implements IItemRenderer {
 		GL11.glDepthFunc(515);
 	}
 
-	public static boolean isNullOrEmpty(String str) {
-		return str == null || str.length() == 0;
-	}
-
 	public void doTransformations() {
 		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
@@ -117,11 +117,11 @@ public class LIRenderLargeItem implements IItemRenderer {
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
 		String modID = (isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ":";
-		String path = modID + folderName + "/" + itemName;
+		StringBuilder path = new StringBuilder().append(modID).append(folderName).append("/").append(itemName);
 		if (!isNullOrEmpty(extra)) {
-			path = path + "_" + extra;
+			path.append("_").append(extra);
 		}
-		Icon sus = register.registerIcon(path);
+		Icon sus = register.registerIcon(path.toString());
 		largeIconsMap.put(theItem, sus);
 	}
 

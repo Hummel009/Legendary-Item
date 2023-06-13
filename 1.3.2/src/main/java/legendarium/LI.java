@@ -156,11 +156,6 @@ public class LI {
 		LanguageRegistry.instance().addNameForObject(item, "uk_UA", LILang.ukUA.get("item." + name + ".name"));
 	}
 
-	@PreInit
-	public void preInit(FMLPreInitializationEvent event) {
-		LIConfig.preInit(event);
-	}
-
 	@Init
 	public void onInit(FMLInitializationEvent event) {
 		armorAnarionHelmet = new LIItemArmor(LIConfig.idArmorAnarionHelmet - 256, LIMaterial.ANARION, 0);
@@ -549,5 +544,10 @@ public class LI {
 
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
+	}
+
+	@PreInit
+	public void preInit(FMLPreInitializationEvent event) {
+		LIConfig.preInit(event);
 	}
 }

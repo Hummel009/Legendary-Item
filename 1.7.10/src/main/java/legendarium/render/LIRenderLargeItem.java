@@ -99,6 +99,7 @@ public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 		return type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
 	}
 
+	@Override
 	public void registerIcons(IIconRegister register) {
 		largeIcon = registerLargeIcon(register, null);
 		for (LIRenderLargeItem.ExtraLargeIconToken token : extraTokens) {
@@ -111,11 +112,11 @@ public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
 		String modID = (StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ":";
-		String path = modID + folderName + "/" + itemName;
+		StringBuilder path = new StringBuilder().append(modID).append(folderName).append("/").append(itemName);
 		if (!StringUtils.isNullOrEmpty(extra)) {
-			path = path + "_" + extra;
+			path.append("_").append(extra);
 		}
-		return register.registerIcon(path);
+		return register.registerIcon(path.toString());
 	}
 
 	@Override

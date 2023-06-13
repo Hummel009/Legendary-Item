@@ -29,6 +29,53 @@ public class LIRegistryLOTR extends LIRegistry {
 	public static Item rangedLurtz;
 
 	@Override
+	public LIRenderable getRendererIfLarge(Item item) {
+		for (Map.Entry<String, Float> folder : LIRenderLargeItemLOTR.sizeFolders.entrySet()) {
+			float iconScale = folder.getValue();
+			try {
+				ResourceLocation resLoc = LIRenderLargeItemLOTR.getLargeTexturePath(item, folder.getKey());
+				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
+				if (res != null) {
+					return new LIRenderLargeItemLOTR(item, folder.getKey(), iconScale);
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void onResourceManagerReload(IResourceManager resourceManager) {
+		LIRenderManager.largeItemRenderers.clear();
+		for (Item item : CONTENT) {
+			MinecraftForgeClient.registerItemRenderer(item, null);
+			LIRenderLargeItemLOTR largeItemRenderer = (LIRenderLargeItemLOTR) getRendererIfLarge(item);
+			if (item instanceof LOTRItemCrossbow) {
+				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderCrossbow());
+			} else if (item instanceof LOTRItemBow) {
+				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderBow(largeItemRenderer));
+			} else if (item instanceof LOTRItemSword && ((LOTRItemSword) item).isElvenBlade()) {
+				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderElvenBlade(24.0, largeItemRenderer));
+			} else if (largeItemRenderer != null) {
+				MinecraftForgeClient.registerItemRenderer(item, largeItemRenderer);
+			}
+			if (largeItemRenderer != null) {
+				LIRenderManager.largeItemRenderers.add(largeItemRenderer);
+			}
+		}
+	}
+
+	@Override
+	public void register(Item item, String field) {
+		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
+		item.setUnlocalizedName(name);
+		item.setTextureName("legendarium:" + name);
+		item.setCreativeTab(LOTRCreativeTabs.tabStory);
+		GameRegistry.registerItem(item, name);
+		CONTENT.add(item);
+	}
+
+	@Override
 	public void registerCommon() {
 		super.registerCommon();
 		rangedAzkar = new LOTRItemBow(LOTRMaterial.HIGH_ELVEN, 1.25).setDrawTime(16).setCreativeTab(LOTRCreativeTabs.tabStory);
@@ -81,52 +128,5 @@ public class LIRegistryLOTR extends LIRegistry {
 		register(weaponThorondun, "weaponThorondun");
 		register(weaponThranduil, "weaponThranduil");
 		register(weaponWitchking, "weaponWitchking");
-	}
-
-	@Override
-	public void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-		item.setUnlocalizedName(name);
-		item.setTextureName("legendarium:" + name);
-		item.setCreativeTab(LOTRCreativeTabs.tabStory);
-		GameRegistry.registerItem(item, name);
-		CONTENT.add(item);
-	}
-
-	@Override
-	public LIRenderable getRendererIfLarge(Item item) {
-		for (Map.Entry<String, Float> folder : LIRenderLargeItemLOTR.sizeFolders.entrySet()) {
-			float iconScale = folder.getValue();
-			try {
-				ResourceLocation resLoc = LIRenderLargeItemLOTR.getLargeTexturePath(item, folder.getKey());
-				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				if (res != null) {
-					return new LIRenderLargeItemLOTR(item, folder.getKey(), iconScale);
-				}
-			} catch (Exception ignored) {
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public void onResourceManagerReload(IResourceManager resourceManager) {
-		LIRenderManager.largeItemRenderers.clear();
-		for (Item item : CONTENT) {
-			MinecraftForgeClient.registerItemRenderer(item, null);
-			LIRenderLargeItemLOTR largeItemRenderer = (LIRenderLargeItemLOTR) getRendererIfLarge(item);
-			if (item instanceof LOTRItemCrossbow) {
-				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderCrossbow());
-			} else if (item instanceof LOTRItemBow) {
-				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderBow(largeItemRenderer));
-			} else if (item instanceof LOTRItemSword && ((LOTRItemSword) item).isElvenBlade()) {
-				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderElvenBlade(24.0, largeItemRenderer));
-			} else if (largeItemRenderer != null) {
-				MinecraftForgeClient.registerItemRenderer(item, largeItemRenderer);
-			}
-			if (largeItemRenderer != null) {
-				LIRenderManager.largeItemRenderers.add(largeItemRenderer);
-			}
-		}
 	}
 }

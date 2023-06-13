@@ -31,18 +31,6 @@ public class LIReloadListener implements PreparableReloadListener {
 	public static final LIReloadListener INSTANCE = new LIReloadListener();
 	public List<ResourceLocation> specialHandheldItemNames = new ArrayList<>();
 
-	public void setupAndDetectModels(Minecraft mc) {
-		ReloadableResourceManager resMgr = (ReloadableResourceManager) mc.getResourceManager();
-		resMgr.registerReloadListener(this);
-		detectSpecialHandhelds(resMgr);
-	}
-
-	@Override
-	public CompletableFuture<Void> reload(PreparationBarrier p_10638_, ResourceManager resMgr, ProfilerFiller p_10640_, ProfilerFiller p_10641_, Executor p_10642_, Executor p_10643_) {
-		detectSpecialHandhelds(resMgr);
-		return null;
-	}
-
 	public void detectSpecialHandhelds(ResourceManager resMgr) {
 		specialHandheldItemNames.clear();
 		for (ResourceLocation itemName : ForgeRegistries.ITEMS.getKeys()) {
@@ -76,7 +64,20 @@ public class LIReloadListener implements PreparableReloadListener {
 		}
 	}
 
+	@Override
+	public CompletableFuture<Void> reload(PreparationBarrier p_10638_, ResourceManager resMgr, ProfilerFiller p_10640_, ProfilerFiller p_10641_, Executor p_10642_, Executor p_10643_) {
+		detectSpecialHandhelds(resMgr);
+		return null;
+	}
+
+	public void setupAndDetectModels(Minecraft mc) {
+		ReloadableResourceManager resMgr = (ReloadableResourceManager) mc.getResourceManager();
+		resMgr.registerReloadListener(this);
+		detectSpecialHandhelds(resMgr);
+	}
+
 	public record HandheldWrapperModel(BakedModel defaultModel, BakedModel handheldModel) implements BakedModel {
+		@Override
 		public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack mat) {
 			BakedModel modelToUse = defaultModel;
 			if (transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {

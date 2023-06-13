@@ -9,12 +9,12 @@ public class LIClientProxy extends LIServerProxy {
 	private static final Minecraft MC = Minecraft.getInstance();
 
 	@SubscribeEvent
-	public void onModelRegistry(ModelRegistryEvent event) {
-		LIReloadListener.INSTANCE.setupAndDetectModels(MC);
+	public void onModelBake(ModelBakeEvent event) {
+		LIReloadListener.INSTANCE.onModelBake(event);
 	}
 
 	@SubscribeEvent
-	public void onModelBake(ModelBakeEvent event) {
-		LIReloadListener.INSTANCE.onModelBake(event);
+	public void onModelRegistry(ModelRegistryEvent event) {
+		LIReloadListener.INSTANCE.setupAndDetectModels(MC);
 	}
 }

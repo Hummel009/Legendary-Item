@@ -154,11 +154,6 @@ public class LI {
 		GameRegistry.registerItem(item, name);
 	}
 
-	@PreInit
-	public void preInit(FMLPreInitializationEvent event) {
-		LIConfig.preInit(event);
-	}
-
 	@Init
 	public void onInit(FMLInitializationEvent event) {
 		armorAnarionHelmet = new LIItemArmor(LIConfig.idArmorAnarionHelmet - 256, LIMaterial.ANARION, 0);
@@ -432,5 +427,10 @@ public class LI {
 
 		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/en_US.lang", "en_US", false);
 		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/ru_RU.lang", "ru_RU", false);
+	}
+
+	@PreInit
+	public void preInit(FMLPreInitializationEvent event) {
+		LIConfig.preInit(event);
 	}
 }

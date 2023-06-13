@@ -157,6 +157,48 @@ public class LIRegistry implements LIDependencyManager {
 	public static Item arkenstone;
 	public static Item silmaril;
 
+	@Override
+	public LIRenderable getRendererIfLarge(Item item) {
+		for (Map.Entry<String, Float> folder : LIRenderLargeItem.sizeFolders.entrySet()) {
+			float iconScale = folder.getValue();
+			try {
+				ResourceLocation resLoc = LIRenderLargeItem.getLargeTexturePath(item, folder.getKey());
+				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
+				if (res != null) {
+					return new LIRenderLargeItem(item, folder.getKey(), iconScale);
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void onResourceManagerReload(IResourceManager resourceManager) {
+		LIRenderManager.largeItemRenderers.clear();
+		for (Item item : CONTENT) {
+			MinecraftForgeClient.registerItemRenderer(item, null);
+			LIRenderable largeItemRenderer = getRendererIfLarge(item);
+			if (largeItemRenderer != null) {
+				MinecraftForgeClient.registerItemRenderer(item, (IItemRenderer) largeItemRenderer);
+			}
+			if (largeItemRenderer != null) {
+				LIRenderManager.largeItemRenderers.add(largeItemRenderer);
+			}
+		}
+	}
+
+	@Override
+	public void register(Item item, String field) {
+		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
+		item.setUnlocalizedName(name);
+		item.setTextureName("legendarium:" + name);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		GameRegistry.registerItem(item, name);
+		CONTENT.add(item);
+	}
+
+	@Override
 	public void registerCommon() {
 		silmaril = new LIItemEmpty();
 		arkenstone = new LIItemEmpty();
@@ -432,47 +474,6 @@ public class LIRegistry implements LIDependencyManager {
 		register(weaponThorondun, "weaponThorondun");
 		register(weaponThranduil, "weaponThranduil");
 		register(weaponWitchking, "weaponWitchking");
-	}
-
-	@Override
-	public void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-		item.setUnlocalizedName(name);
-		item.setTextureName("legendarium:" + name);
-		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
-		GameRegistry.registerItem(item, name);
-		CONTENT.add(item);
-	}
-
-	@Override
-	public LIRenderable getRendererIfLarge(Item item) {
-		for (Map.Entry<String, Float> folder : LIRenderLargeItem.sizeFolders.entrySet()) {
-			float iconScale = folder.getValue();
-			try {
-				ResourceLocation resLoc = LIRenderLargeItem.getLargeTexturePath(item, folder.getKey());
-				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				if (res != null) {
-					return new LIRenderLargeItem(item, folder.getKey(), iconScale);
-				}
-			} catch (Exception ignored) {
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public void onResourceManagerReload(IResourceManager resourceManager) {
-		LIRenderManager.largeItemRenderers.clear();
-		for (Item item : CONTENT) {
-			MinecraftForgeClient.registerItemRenderer(item, null);
-			LIRenderable largeItemRenderer = getRendererIfLarge(item);
-			if (largeItemRenderer != null) {
-				MinecraftForgeClient.registerItemRenderer(item, (IItemRenderer) largeItemRenderer);
-			}
-			if (largeItemRenderer != null) {
-				LIRenderManager.largeItemRenderers.add(largeItemRenderer);
-			}
-		}
 	}
 
 }

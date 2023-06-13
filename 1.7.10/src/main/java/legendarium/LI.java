@@ -1,8 +1,5 @@
 package legendarium;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
@@ -12,6 +9,9 @@ import legendarium.content.LIRegistry;
 import legendarium.lotr.LIRegistryLOTR;
 import legendarium.proxy.LIServerProxy;
 import net.minecraft.item.Item;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Mod(modid = "legendarium")
 public class LI {
@@ -33,25 +33,27 @@ public class LI {
 	}
 
 	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		if (hasLOTR()) {
-			registry = new LIRegistryLOTR();
-		} else {
-			registry = new LIRegistry();
-		}
-		registry.registerCommon();
-		registry.registerSpecial();
-
-		proxy.preInit(event);
-	}
-
-	@Mod.EventHandler
 	public void onMissingMappings(FMLMissingMappingsEvent event) {
 		Map<String, Item> renamed = new HashMap<>();
-		renamed.put("armor_khommurat_helmet", ringHoarmurath);
-		renamed.put("armor_khommurat_chestplate", ringHoarmurath);
-		renamed.put("armor_khommurat_leggings", ringHoarmurath);
-		renamed.put("armor_khommurat_boots", ringHoarmurath);
+		renamed.put("armor_khommurat_helmet", LIRegistry.armorHoarmurathHelmet);
+		renamed.put("armor_khommurat_chestplate", LIRegistry.armorHoarmurathChestplate);
+		renamed.put("armor_khommurat_legs", LIRegistry.armorHoarmurathLeggings);
+		renamed.put("armor_khommurat_boots", LIRegistry.armorHoarmurathBoots);
+		renamed.put("armor_anarion_legs", LIRegistry.armorAnarionLeggings);
+		renamed.put("armor_arpharazon_legs", LIRegistry.armorArpharazonLeggings);
+		renamed.put("armor_arvedui_legs", LIRegistry.armorArveduiLeggings);
+		renamed.put("armor_boromir_legs", LIRegistry.armorBoromirLeggings);
+		renamed.put("armor_elendil_legs", LIRegistry.armorElendilLeggings);
+		renamed.put("armor_elros_legs", LIRegistry.armorElrosLeggings);
+		renamed.put("armor_feanor_legs", LIRegistry.armorFeanorLeggings);
+		renamed.put("armor_gilgalad_legs", LIRegistry.armorGilgaladLeggings);
+		renamed.put("armor_gimli_legs", LIRegistry.armorGimliLeggings);
+		renamed.put("armor_isildur_legs", LIRegistry.armorIsildurLeggings);
+		renamed.put("armor_jiindur_legs", LIRegistry.armorJiindurLeggings);
+		renamed.put("armor_khamul_legs", LIRegistry.armorKhamulLeggings);
+		renamed.put("armor_morgomir_legs", LIRegistry.armorMorgomirLeggings);
+		renamed.put("armor_theoden_legs", LIRegistry.armorTheodenLeggings);
+		renamed.put("armor_turgon_legs", LIRegistry.armorTurgonLeggings);
 		for (FMLMissingMappingsEvent.MissingMapping mapping : event.get()) {
 			if (mapping.type == GameRegistry.Type.ITEM) {
 				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
@@ -62,5 +64,18 @@ public class LI {
 				}
 			}
 		}
+	}
+
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		if (hasLOTR()) {
+			registry = new LIRegistryLOTR();
+		} else {
+			registry = new LIRegistry();
+		}
+		registry.registerCommon();
+		registry.registerSpecial();
+
+		proxy.preInit(event);
 	}
 }

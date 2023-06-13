@@ -28,18 +28,6 @@ public class LIReloadListener implements ISelectiveResourceReloadListener {
 	public static final LIReloadListener INSTANCE = new LIReloadListener();
 	public List<ResourceLocation> specialHandheldItemNames = new ArrayList<>();
 
-	public void setupAndDetectModels(Minecraft mc) {
-		SimpleReloadableResourceManager resMgr = (SimpleReloadableResourceManager) mc.getResourceManager();
-		resMgr.addReloadListener(this);
-		detectSpecialHandhelds(resMgr);
-	}
-
-	public void onResourceManagerReload(IResourceManager resMgr, Predicate<IResourceType> predicate) {
-		if (predicate.test(VanillaResourceType.MODELS)) {
-			detectSpecialHandhelds(resMgr);
-		}
-	}
-
 	public void detectSpecialHandhelds(IResourceManager resMgr) {
 		specialHandheldItemNames.clear();
 		for (ResourceLocation itemName : ForgeRegistries.ITEMS.getKeys()) {
@@ -73,6 +61,19 @@ public class LIReloadListener implements ISelectiveResourceReloadListener {
 		}
 	}
 
+	@Override
+	public void onResourceManagerReload(IResourceManager resMgr, Predicate<IResourceType> predicate) {
+		if (predicate.test(VanillaResourceType.MODELS)) {
+			detectSpecialHandhelds(resMgr);
+		}
+	}
+
+	public void setupAndDetectModels(Minecraft mc) {
+		SimpleReloadableResourceManager resMgr = (SimpleReloadableResourceManager) mc.getResourceManager();
+		resMgr.addReloadListener(this);
+		detectSpecialHandhelds(resMgr);
+	}
+
 	public static class HandheldWrapperModel implements IBakedModel {
 		public final IBakedModel defaultModel;
 		public final IBakedModel handheldModel;
@@ -80,6 +81,21 @@ public class LIReloadListener implements ISelectiveResourceReloadListener {
 		public HandheldWrapperModel(IBakedModel defaultModel, IBakedModel handheldModel) {
 			this.defaultModel = defaultModel;
 			this.handheldModel = handheldModel;
+		}
+
+		@Override
+		public ItemOverrideList getOverrides() {
+			return handheldModel.getOverrides();
+		}
+
+		@Override
+		public TextureAtlasSprite getParticleTexture() {
+			return defaultModel.getParticleTexture();
+		}
+
+		@Override
+		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, Random rand) {
+			return defaultModel.getQuads(state, cullFace, rand);
 		}
 
 		@Override
@@ -92,18 +108,8 @@ public class LIReloadListener implements ISelectiveResourceReloadListener {
 		}
 
 		@Override
-		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, Random rand) {
-			return defaultModel.getQuads(state, cullFace, rand);
-		}
-
-		@Override
 		public boolean isAmbientOcclusion() {
 			return defaultModel.isAmbientOcclusion();
-		}
-
-		@Override
-		public boolean isGui3d() {
-			return defaultModel.isGui3d();
 		}
 
 		@Override
@@ -112,13 +118,8 @@ public class LIReloadListener implements ISelectiveResourceReloadListener {
 		}
 
 		@Override
-		public TextureAtlasSprite getParticleTexture() {
-			return defaultModel.getParticleTexture();
-		}
-
-		@Override
-		public ItemOverrideList getOverrides() {
-			return handheldModel.getOverrides();
+		public boolean isGui3d() {
+			return defaultModel.isGui3d();
 		}
 	}
 }

@@ -146,6 +146,13 @@ public class LIConfig {
 	public static int idArkenstone;
 	public static int idSilmaril;
 
+	public static void preInit(FMLPreInitializationEvent event) {
+		if (!loaded) {
+			configuration = new Configuration(event.getSuggestedConfigurationFile());
+			setDefaultValues();
+		}
+	}
+
 	private static void setDefaultValues() {
 		try {
 			configuration.load();
@@ -289,13 +296,6 @@ public class LIConfig {
 		} finally {
 			configuration.save();
 			loaded = true;
-		}
-	}
-
-	public static void preInit(FMLPreInitializationEvent event) {
-		if (!loaded) {
-			configuration = new Configuration(event.getSuggestedConfigurationFile());
-			setDefaultValues();
 		}
 	}
 }

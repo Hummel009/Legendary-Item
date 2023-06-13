@@ -10,14 +10,18 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Mod(modid = "legendarium")
 public class LI {
@@ -157,6 +161,40 @@ public class LI {
 
 	public static Item arkenstone;
 	public static Item silmaril;
+
+	@Mod.EventHandler
+	public void onMissingMappings(FMLMissingMappingsEvent event) {
+		Map<String, Item> renamed = new HashMap<>();
+		renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
+		renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
+		renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
+		renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
+		renamed.put("armor_anarion_legs", armorAnarionLeggings);
+		renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
+		renamed.put("armor_arvedui_legs", armorArveduiLeggings);
+		renamed.put("armor_boromir_legs", armorBoromirLeggings);
+		renamed.put("armor_elendil_legs", armorElendilLeggings);
+		renamed.put("armor_elros_legs", armorElrosLeggings);
+		renamed.put("armor_feanor_legs", armorFeanorLeggings);
+		renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
+		renamed.put("armor_gimli_legs", armorGimliLeggings);
+		renamed.put("armor_isildur_legs", armorIsildurLeggings);
+		renamed.put("armor_jiindur_legs", armorJiindurLeggings);
+		renamed.put("armor_khamul_legs", armorKhamulLeggings);
+		renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
+		renamed.put("armor_theoden_legs", armorTheodenLeggings);
+		renamed.put("armor_turgon_legs", armorTurgonLeggings);
+		for (FMLMissingMappingsEvent.MissingMapping mapping : event.get()) {
+			if (mapping.type == GameRegistry.Type.ITEM) {
+				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
+					if (mapping.name.contains(entry.getKey())) {
+						mapping.remap(entry.getValue());
+						break;
+					}
+				}
+			}
+		}
+	}
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber

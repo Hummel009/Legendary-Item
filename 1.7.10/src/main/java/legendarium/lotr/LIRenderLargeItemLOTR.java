@@ -53,6 +53,11 @@ public class LIRenderLargeItemLOTR extends LOTRRenderLargeItem implements LIRend
 		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
 	}
 
+	public void doTransformations() {
+		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
+		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
+	}
+
 	@Override
 	public LOTRRenderLargeItem.ExtraLargeIconToken extraIcon(String name) {
 		LOTRRenderLargeItem.ExtraLargeIconToken token = new LOTRRenderLargeItem.ExtraLargeIconToken(name);
@@ -76,16 +81,11 @@ public class LIRenderLargeItemLOTR extends LOTRRenderLargeItem implements LIRend
 			LOTRLog.logger.fatal("Tried registering a item which doesn't have a unique identifier.");
 		}
 		String modID = (StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ":";
-		String path = modID + folderName + "/" + itemName;
+		StringBuilder path = new StringBuilder().append(modID).append(folderName).append("/").append(itemName);
 		if (!StringUtils.isNullOrEmpty(extra)) {
-			path = path + "_" + extra;
+			path.append("_").append(extra);
 		}
-		return register.registerIcon(path);
-	}
-
-	public void doTransformations() {
-		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
-		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
+		return register.registerIcon(path.toString());
 	}
 
 	@Override
