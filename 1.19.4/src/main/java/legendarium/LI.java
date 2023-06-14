@@ -3,9 +3,13 @@ package legendarium;
 import legendarium.content.*;
 import legendarium.proxy.LIClientProxy;
 import legendarium.proxy.LIServerProxy;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -166,17 +170,14 @@ public class LI {
 
 	public LI() {
 		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		fmlBus.register(this);
-		forgeBus.register(this);
-		fmlBus.addListener(LICreativeTabs::addCreativeTab);
 		fmlBus.register(PROXY);
-		forgeBus.register(PROXY);
+		fmlBus.addListener(Events::onCreativeModeTabRegistry);
 		ITEMS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
-	public static class MissingMappingsDetector {
+	public static class Events {
 		@SubscribeEvent
 		public static void onMissingMappings(MissingMappingsEvent event) {
 			Map<String, RegistryObject<Item>> renamed = new HashMap<>();
@@ -207,6 +208,14 @@ public class LI {
 					}
 				}
 			}
+		}
+
+		public static void onCreativeModeTabRegistry(CreativeModeTabEvent.Register event) {
+			event.registerCreativeModeTab(new ResourceLocation("legendarium", "legendariumtab"), builder -> builder.title(Component.translatable("itemGroup.artifacts")).icon(() -> new ItemStack(LI.WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
+				for (Item item : CONTENT) {
+					populator.accept(item);
+				}
+			}));
 		}
 	}
 }

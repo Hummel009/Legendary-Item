@@ -12,7 +12,6 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -180,17 +179,14 @@ public class LI {
 
 	public LI() {
 		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		fmlBus.register(this);
-		forgeBus.register(this);
 		fmlBus.register(PROXY);
-		forgeBus.register(PROXY);
 		ITEMS.register(fmlBus);
 		CREATIVE_TABS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
-	public static class MissingMappingsDetector {
+	public static class Events {
 		@SubscribeEvent
 		public static void onMissingMappings(MissingMappingsEvent event) {
 			Map<String, RegistryObject<Item>> renamed = new HashMap<>();

@@ -198,7 +198,7 @@ public class LI {
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
-	public static class RegistryEvents {
+	public static class Events {
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);

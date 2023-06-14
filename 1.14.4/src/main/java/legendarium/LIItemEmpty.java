@@ -1,4 +1,4 @@
-package legendarium.content;
+package legendarium;
 
 import net.minecraft.item.Item;
 

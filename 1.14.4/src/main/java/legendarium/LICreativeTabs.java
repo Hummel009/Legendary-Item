@@ -1,4 +1,4 @@
-package legendarium.content;
+package legendarium;
 
 import legendarium.LI;
 import net.minecraft.item.ItemGroup;

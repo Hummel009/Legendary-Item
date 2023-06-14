@@ -8,7 +8,6 @@ import legendarium.proxy.LIClientProxy;
 import legendarium.proxy.LIServerProxy;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -165,16 +164,13 @@ public class LI {
 
 	public LI() {
 		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		fmlBus.register(this);
-		forgeBus.register(this);
 		fmlBus.register(PROXY);
-		forgeBus.register(PROXY);
 		ITEMS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
-	public static class MissingMappingsDetector {
+	public static class Events {
 		@SubscribeEvent
 		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
 			Map<String, RegistryObject<Item>> renamed = new HashMap<>();

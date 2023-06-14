@@ -1,30 +1,31 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
-import legendarium.content.LIItemArmor;
-import legendarium.content.LIItemEmpty;
-import legendarium.content.LIItemSword;
-import legendarium.content.LIMaterial;
-import legendarium.proxy.LIClientProxy;
-import legendarium.proxy.LIServerProxy;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Predicate;
 
 @Mod("legendarium")
 public class LI {
-	public static final LIServerProxy PROXY = DistExecutor.runForDist(() -> LIClientProxy::new, () -> LIServerProxy::new);
+	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
@@ -161,54 +162,10 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public LI() {
-		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-		fmlBus.register(this);
-		forgeBus.register(this);
-		fmlBus.register(PROXY);
-		forgeBus.register(PROXY);
-	}
-
-	@Mod.EventBusSubscriber
-	public static class MissingMappingsDetector {
-		@SubscribeEvent
-		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
-			Map<String, Item> renamed = new HashMap<>();
-			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
-			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
-			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
-			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
-			renamed.put("armor_anarion_legs", armorAnarionLeggings);
-			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
-			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
-			renamed.put("armor_boromir_legs", armorBoromirLeggings);
-			renamed.put("armor_elendil_legs", armorElendilLeggings);
-			renamed.put("armor_elros_legs", armorElrosLeggings);
-			renamed.put("armor_feanor_legs", armorFeanorLeggings);
-			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
-			renamed.put("armor_gimli_legs", armorGimliLeggings);
-			renamed.put("armor_isildur_legs", armorIsildurLeggings);
-			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
-			renamed.put("armor_khamul_legs", armorKhamulLeggings);
-			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
-			renamed.put("armor_theoden_legs", armorTheodenLeggings);
-			renamed.put("armor_turgon_legs", armorTurgonLeggings);
-			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
-					if (mapping.key.getPath().contains(entry.getKey())) {
-						mapping.remap(entry.getValue());
-						break;
-					}
-				}
-			}
-		}
-	}
-
 	@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class RegistryEvents {
+	public static class Events {
 		@SubscribeEvent
-		public static void onItemsRegistry(RegistryEvent.Register<Item> event) {
+		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EquipmentSlotType.HEAD);
 			armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, EquipmentSlotType.CHEST);
 			armorAnarionLeggings = new LIItemArmor(LIMaterial.ANARION, EquipmentSlotType.LEGS);
@@ -477,6 +434,72 @@ public class LI {
 
 			register(arkenstone, "arkenstone");
 			register(silmaril, "silmaril");
+		}
+
+		@SubscribeEvent
+		@OnlyIn(Dist.CLIENT)
+		public static void onModelBake(ModelBakeEvent event) {
+			for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
+				ModelResourceLocation oldLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
+				IBakedModel oldModel = event.getModelRegistry().get(oldLocation);
+				if (oldModel != null) {
+					ResourceLocation newLocation = compliance.getValue();
+					IBakedModel newModel = event.getModelRegistry().get(newLocation);
+					if (newModel != null) {
+						event.getModelRegistry().put(oldLocation, new LIItemSword.LargeItemModel(oldModel, newModel));
+					}
+				}
+			}
+		}
+
+		@SubscribeEvent
+		@OnlyIn(Dist.CLIENT)
+		public static void onModelRegistry(ModelRegistryEvent event) {
+			Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().getAllResourceLocations("models", new Predicate<String>() {
+				@Override
+				public boolean test(String loc) {
+					return loc.endsWith("_large.json");
+				}
+			});
+			for (ResourceLocation resourceLocation : resourceLocations) {
+				String path = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
+				ResourceLocation oldModel = new ResourceLocation("legendarium", path);
+				ResourceLocation newModel = new ResourceLocation("legendarium", "item/" + path + "_large");
+				ModelLoader.addSpecialModel(newModel);
+				COMPLIANCES.put(oldModel, newModel);
+			}
+		}
+
+		@SubscribeEvent
+		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
+			Map<String, Item> renamed = new HashMap<>();
+			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
+			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
+			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
+			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
+			renamed.put("armor_anarion_legs", armorAnarionLeggings);
+			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
+			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
+			renamed.put("armor_boromir_legs", armorBoromirLeggings);
+			renamed.put("armor_elendil_legs", armorElendilLeggings);
+			renamed.put("armor_elros_legs", armorElrosLeggings);
+			renamed.put("armor_feanor_legs", armorFeanorLeggings);
+			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
+			renamed.put("armor_gimli_legs", armorGimliLeggings);
+			renamed.put("armor_isildur_legs", armorIsildurLeggings);
+			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
+			renamed.put("armor_khamul_legs", armorKhamulLeggings);
+			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
+			renamed.put("armor_theoden_legs", armorTheodenLeggings);
+			renamed.put("armor_turgon_legs", armorTurgonLeggings);
+			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
+				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
+					if (mapping.key.getPath().contains(entry.getKey())) {
+						mapping.remap(entry.getValue());
+						break;
+					}
+				}
+			}
 		}
 
 		public static void register(Item item, String field) {

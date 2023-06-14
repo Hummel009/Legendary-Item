@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.*;
 
@@ -160,7 +162,7 @@ public class LI {
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
-	public static class RegistryEvents {
+	public static class Events {
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);
@@ -466,6 +468,7 @@ public class LI {
 		}
 
 		@SubscribeEvent
+		@SideOnly(Side.CLIENT)
 		public static void onModelBake(ModelBakeEvent event) {
 			for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
 				ModelResourceLocation smallLocation = compliance.getKey();
@@ -481,6 +484,7 @@ public class LI {
 		}
 
 		@SubscribeEvent
+		@SideOnly(Side.CLIENT)
 		public static void onModelRegistry(ModelRegistryEvent event) {
 			Set<Item> inapplicable = new HashSet<>();
 			inapplicable.add(weaponAngrist);

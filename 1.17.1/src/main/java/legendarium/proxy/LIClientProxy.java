@@ -42,6 +42,7 @@ public class LIClientProxy extends LIServerProxy {
 	}
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
 		Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", new Predicate<>() {
 			@Override

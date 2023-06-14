@@ -1,4 +1,4 @@
-package legendarium.content;
+package legendarium;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;

@@ -1,23 +1,24 @@
 package legendarium;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.block.model.ItemOverrideList;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.model.BakedQuad;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemSword;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.SwordItem;
+import net.minecraft.util.Direction;
+import net.minecraftforge.client.ForgeHooksClient;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
 import java.util.List;
+import java.util.Random;
 
-public class LIItemSword extends ItemSword {
+public class LIItemSword extends SwordItem {
 	public LIItemSword() {
-		super(Item.ToolMaterial.DIAMOND);
-		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		super(ItemTier.DIAMOND, 3, -2.4F, new Properties().group(LICreativeTabs.TAB_ARTIFACTS));
 	}
 
 	public static class LargeItemModel implements IBakedModel {
@@ -30,13 +31,8 @@ public class LIItemSword extends ItemSword {
 		}
 
 		@Override
-		public ItemCameraTransforms getItemCameraTransforms() {
-			return defaultModel.getItemCameraTransforms();
-		}
-
-		@Override
 		public ItemOverrideList getOverrides() {
-			return defaultModel.getOverrides();
+			return handheldModel.getOverrides();
 		}
 
 		@Override
@@ -45,8 +41,8 @@ public class LIItemSword extends ItemSword {
 		}
 
 		@Override
-		public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-			return defaultModel.getQuads(state, side, rand);
+		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, Random rand) {
+			return defaultModel.getQuads(state, cullFace, rand);
 		}
 
 		@Override
@@ -55,17 +51,12 @@ public class LIItemSword extends ItemSword {
 			if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
 				modelToUse = handheldModel;
 			}
-			return modelToUse.handlePerspective(transformType);
+			return ForgeHooksClient.handlePerspective(modelToUse, transformType);
 		}
 
 		@Override
 		public boolean isAmbientOcclusion() {
 			return defaultModel.isAmbientOcclusion();
-		}
-
-		@Override
-		public boolean isAmbientOcclusion(IBlockState state) {
-			return defaultModel.isAmbientOcclusion(state);
 		}
 
 		@Override
