@@ -200,7 +200,7 @@ public class LI {
 	@Mod.EventBusSubscriber
 	public static class RegistryEvents {
 		@SubscribeEvent
-		public static void onRegistryItem(RegistryEvent.Register<Item> event) {
+		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);
 			armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.CHEST);
 			armorAnarionLeggings = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.LEGS);
@@ -473,7 +473,7 @@ public class LI {
 
 		@SubscribeEvent
 		@SideOnly(Side.CLIENT)
-		public static void onRegistryModel(ModelRegistryEvent event) {
+		public static void onModelRegistry(ModelRegistryEvent event) {
 			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
 				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
