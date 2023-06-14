@@ -1,11 +1,13 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -13,17 +15,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Mod(modid = "legendarium")
 public class LI {
 	public static final List<Item> CONTENT = new ArrayList<>();
+	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
@@ -160,46 +158,11 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	@Mod.EventBusSubscriber
-	public static class MissingMappingsDetector {
-		@SubscribeEvent
-		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
-			Map<String, Item> renamed = new HashMap<>();
-			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
-			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
-			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
-			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
-			renamed.put("armor_anarion_legs", armorAnarionLeggings);
-			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
-			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
-			renamed.put("armor_boromir_legs", armorBoromirLeggings);
-			renamed.put("armor_elendil_legs", armorElendilLeggings);
-			renamed.put("armor_elros_legs", armorElrosLeggings);
-			renamed.put("armor_feanor_legs", armorFeanorLeggings);
-			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
-			renamed.put("armor_gimli_legs", armorGimliLeggings);
-			renamed.put("armor_isildur_legs", armorIsildurLeggings);
-			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
-			renamed.put("armor_khamul_legs", armorKhamulLeggings);
-			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
-			renamed.put("armor_theoden_legs", armorTheodenLeggings);
-			renamed.put("armor_turgon_legs", armorTurgonLeggings);
-			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
-					if (mapping.key.getResourcePath().contains(entry.getKey())) {
-						mapping.remap(entry.getValue());
-						break;
-					}
-				}
-			}
-		}
-	}
-
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
 	public static class RegistryEvents {
 		@SubscribeEvent
-		public static void onRegistryItem(RegistryEvent.Register<Item> event) {
+		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);
 			armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.CHEST);
 			armorAnarionLeggings = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.LEGS);
@@ -471,13 +434,70 @@ public class LI {
 		}
 
 		@SubscribeEvent
-		@SideOnly(Side.CLIENT)
-		public static void onRegistryModel(ModelRegistryEvent event) {
+		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
+			Map<String, Item> renamed = new HashMap<>();
+			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
+			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
+			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
+			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
+			renamed.put("armor_anarion_legs", armorAnarionLeggings);
+			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
+			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
+			renamed.put("armor_boromir_legs", armorBoromirLeggings);
+			renamed.put("armor_elendil_legs", armorElendilLeggings);
+			renamed.put("armor_elros_legs", armorElrosLeggings);
+			renamed.put("armor_feanor_legs", armorFeanorLeggings);
+			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
+			renamed.put("armor_gimli_legs", armorGimliLeggings);
+			renamed.put("armor_isildur_legs", armorIsildurLeggings);
+			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
+			renamed.put("armor_khamul_legs", armorKhamulLeggings);
+			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
+			renamed.put("armor_theoden_legs", armorTheodenLeggings);
+			renamed.put("armor_turgon_legs", armorTurgonLeggings);
+			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
+				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
+					if (mapping.key.getResourcePath().contains(entry.getKey())) {
+						mapping.remap(entry.getValue());
+						break;
+					}
+				}
+			}
+		}
+
+		@SubscribeEvent
+		public static void onModelBake(ModelBakeEvent event) {
+			for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
+				ModelResourceLocation smallLocation = compliance.getKey();
+				IBakedModel smallModel = event.getModelRegistry().getObject(smallLocation);
+				if (smallModel != null) {
+					ModelResourceLocation largeLocation = compliance.getValue();
+					IBakedModel largeModel = event.getModelRegistry().getObject(largeLocation);
+					if (largeModel != null) {
+						event.getModelRegistry().putObject(smallLocation, new LIItemSword.LargeItemModel(smallModel, largeModel));
+					}
+				}
+			}
+		}
+
+		@SubscribeEvent
+		public static void onModelRegistry(ModelRegistryEvent event) {
+			Set<Item> inapplicable = new HashSet<>();
+			inapplicable.add(weaponAngrist);
+			inapplicable.add(weaponAcharn);
+			inapplicable.add(weaponLegolas);
+			inapplicable.add(weaponGrima);
 			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
-				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
-				ModelBakery.registerItemVariants(item, mrl);
-				ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
+				ModelResourceLocation smallModel = new ModelResourceLocation(regName, "inventory");
+				ModelResourceLocation largeModel = new ModelResourceLocation(regName + "_large", "inventory");
+				if (item instanceof LIItemSword && !inapplicable.contains(item)) {
+					COMPLIANCES.put(smallModel, largeModel);
+					ModelBakery.registerItemVariants(item, smallModel, largeModel);
+				} else {
+					ModelBakery.registerItemVariants(item, smallModel);
+				}
+				ModelLoader.setCustomModelResourceLocation(item, 0, smallModel);
 			}
 		}
 
