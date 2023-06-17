@@ -23,6 +23,8 @@ import java.util.Map;
 
 @Mod(modid = "legendarium")
 public class LI {
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
 	public static final List<Item> CONTENT = new ArrayList<>();
 
 	@SidedProxy(serverSide = "legendarium.proxy.LICommonProxy", clientSide = "legendarium.proxy.LIClientProxy")
@@ -173,7 +175,7 @@ public class LI {
 
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
-		proxy.registerRenders();
+		proxy.onInit();
 	}
 
 	@Mod.EventHandler

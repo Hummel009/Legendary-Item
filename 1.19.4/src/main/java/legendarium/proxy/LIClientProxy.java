@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class LIClientProxy extends LIServerProxy {
+public class LIClientProxy extends LICommonProxy {
 	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent

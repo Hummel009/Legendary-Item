@@ -22,7 +22,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class LIClientProxy extends LIServerProxy {
+public class LIClientProxy extends LICommonProxy {
 	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent

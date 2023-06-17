@@ -12,6 +12,8 @@ import net.minecraft.item.Item;
 
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
 	public static Item armorAnarionLeggings;

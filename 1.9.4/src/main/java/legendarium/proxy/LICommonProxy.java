@@ -1,6 +1,6 @@
 package legendarium.proxy;
 
 public class LICommonProxy {
-	public void registerRenders() {
+	public void onInit() {
 	}
 }

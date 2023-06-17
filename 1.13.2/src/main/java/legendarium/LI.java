@@ -13,6 +13,8 @@ import java.util.Map;
 
 @Mod("legendarium")
 public class LI {
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
 	public static Item armorAnarionLeggings;
@@ -148,8 +150,43 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
+	@Mod.EventBusSubscriber
+	public static class MissingMappingsDetector {
+		@SubscribeEvent
+		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
+			Map<String, Item> renamed = new HashMap<>();
+			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
+			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
+			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
+			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
+			renamed.put("armor_anarion_legs", armorAnarionLeggings);
+			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
+			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
+			renamed.put("armor_boromir_legs", armorBoromirLeggings);
+			renamed.put("armor_elendil_legs", armorElendilLeggings);
+			renamed.put("armor_elros_legs", armorElrosLeggings);
+			renamed.put("armor_feanor_legs", armorFeanorLeggings);
+			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
+			renamed.put("armor_gimli_legs", armorGimliLeggings);
+			renamed.put("armor_isildur_legs", armorIsildurLeggings);
+			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
+			renamed.put("armor_khamul_legs", armorKhamulLeggings);
+			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
+			renamed.put("armor_theoden_legs", armorTheodenLeggings);
+			renamed.put("armor_turgon_legs", armorTurgonLeggings);
+			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
+				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
+					if (mapping.key.getPath().contains(entry.getKey())) {
+						mapping.remap(entry.getValue());
+						break;
+					}
+				}
+			}
+		}
+	}
+
 	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class Events {
+	public static class RegistryEvents {
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);
@@ -420,38 +457,6 @@ public class LI {
 
 			register(arkenstone, "arkenstone");
 			register(silmaril, "silmaril");
-		}
-
-		@SubscribeEvent
-		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
-			Map<String, Item> renamed = new HashMap<>();
-			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
-			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
-			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
-			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
-			renamed.put("armor_anarion_legs", armorAnarionLeggings);
-			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
-			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
-			renamed.put("armor_boromir_legs", armorBoromirLeggings);
-			renamed.put("armor_elendil_legs", armorElendilLeggings);
-			renamed.put("armor_elros_legs", armorElrosLeggings);
-			renamed.put("armor_feanor_legs", armorFeanorLeggings);
-			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
-			renamed.put("armor_gimli_legs", armorGimliLeggings);
-			renamed.put("armor_isildur_legs", armorIsildurLeggings);
-			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
-			renamed.put("armor_khamul_legs", armorKhamulLeggings);
-			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
-			renamed.put("armor_theoden_legs", armorTheodenLeggings);
-			renamed.put("armor_turgon_legs", armorTurgonLeggings);
-			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
-					if (mapping.key.getPath().contains(entry.getKey())) {
-						mapping.remap(entry.getValue());
-						break;
-					}
-				}
-			}
 		}
 
 		public static void register(Item item, String field) {

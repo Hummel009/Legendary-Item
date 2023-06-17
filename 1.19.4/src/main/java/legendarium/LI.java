@@ -2,14 +2,9 @@ package legendarium;
 
 import legendarium.content.*;
 import legendarium.proxy.LIClientProxy;
-import legendarium.proxy.LIServerProxy;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import legendarium.proxy.LICommonProxy;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -27,9 +22,11 @@ import java.util.Map;
 
 @Mod("legendarium")
 public class LI {
-	public static final List<Item> CONTENT = new ArrayList<>();
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
 
-	public static final LIServerProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LIServerProxy::new);
+	public static final LICommonProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LICommonProxy::new);
+
+	public static final List<Item> CONTENT = new ArrayList<>();
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "legendarium");
 
@@ -170,14 +167,13 @@ public class LI {
 
 	public LI() {
 		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		fmlBus.register(this);
 		fmlBus.register(PROXY);
-		fmlBus.addListener(Events::onCreativeModeTabRegistry);
+		fmlBus.addListener(LICreativeTabs::onCreativeModeTabRegistry);
 		ITEMS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
-	public static class Events {
+	public static class MissingMappingsDetector {
 		@SubscribeEvent
 		public static void onMissingMappings(MissingMappingsEvent event) {
 			Map<String, RegistryObject<Item>> renamed = new HashMap<>();
@@ -208,14 +204,6 @@ public class LI {
 					}
 				}
 			}
-		}
-
-		public static void onCreativeModeTabRegistry(CreativeModeTabEvent.Register event) {
-			event.registerCreativeModeTab(new ResourceLocation("legendarium", "legendariumtab"), builder -> builder.title(Component.translatable("itemGroup.artifacts")).icon(() -> new ItemStack(LI.WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
-				for (Item item : CONTENT) {
-					populator.accept(item);
-				}
-			}));
 		}
 	}
 }

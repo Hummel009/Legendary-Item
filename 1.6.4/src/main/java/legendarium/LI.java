@@ -6,7 +6,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import legendarium.content.*;
-import legendarium.proxy.LIServerProxy;
+import legendarium.proxy.LICommonProxy;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;
@@ -14,10 +14,12 @@ import java.util.List;
 
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
 	public static final List<Item> CONTENT = new ArrayList<Item>();
 
-	@SidedProxy(serverSide = "legendarium.proxy.LIServerProxy", clientSide = "legendarium.proxy.LIClientProxy")
-	public static LIServerProxy proxy;
+	@SidedProxy(serverSide = "legendarium.proxy.LICommonProxy", clientSide = "legendarium.proxy.LIClientProxy")
+	public static LICommonProxy proxy;
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;

@@ -7,9 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
 public class LIClientProxy extends LICommonProxy {
-
 	@Override
-	public void registerRenders() {
+	public void onInit() {
 		for (Item item : LI.CONTENT) {
 			ResourceLocation regName = item.getRegistryName();
 			ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");

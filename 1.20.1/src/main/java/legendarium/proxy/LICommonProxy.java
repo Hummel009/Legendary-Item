@@ -1,4 +1,4 @@
 package legendarium.proxy;
 
-public class LIServerProxy {
+public class LICommonProxy {
 }

@@ -8,10 +8,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LIClientProxy extends LICommonProxy {
-
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerRenders() {
+	public void onInit() {
 		for (Item item : LI.CONTENT) {
 			String regName = item.getRegistryName();
 			ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");

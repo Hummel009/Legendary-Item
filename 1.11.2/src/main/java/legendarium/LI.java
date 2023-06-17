@@ -25,6 +25,8 @@ import java.util.Map;
 
 @Mod(modid = "legendarium")
 public class LI {
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
 	public static final List<Item> CONTENT = new ArrayList<>();
 
 	public static Item armorAnarionHelmet;
@@ -198,7 +200,7 @@ public class LI {
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
-	public static class Events {
+	public static class RegistryEvents {
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);

@@ -5,10 +5,9 @@ import legendarium.content.LIItemEmpty;
 import legendarium.content.LIItemSword;
 import legendarium.content.LIMaterial;
 import legendarium.proxy.LIClientProxy;
-import legendarium.proxy.LIServerProxy;
+import legendarium.proxy.LICommonProxy;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,7 +23,9 @@ import java.util.Map;
 
 @Mod("legendarium")
 public class LI {
-	public static final LIServerProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LIServerProxy::new);
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
+	public static final LICommonProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LICommonProxy::new);
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "legendarium");
 
@@ -165,13 +166,12 @@ public class LI {
 
 	public LI() {
 		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		fmlBus.register(this);
 		fmlBus.register(PROXY);
 		ITEMS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
-	public static class Events {
+	public static class MissingMappingsDetector {
 		@SubscribeEvent
 		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
 			Map<String, RegistryObject<Item>> renamed = new HashMap<>();

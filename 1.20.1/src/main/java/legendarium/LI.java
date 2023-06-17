@@ -5,7 +5,7 @@ import legendarium.content.LIItemEmpty;
 import legendarium.content.LIItemSword;
 import legendarium.content.LIMaterial;
 import legendarium.proxy.LIClientProxy;
-import legendarium.proxy.LIServerProxy;
+import legendarium.proxy.LICommonProxy;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ArmorItem;
@@ -29,7 +29,9 @@ import java.util.Map;
 
 @Mod("legendarium")
 public class LI {
-	public static final LIServerProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LIServerProxy::new);
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
+	public static final LICommonProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LICommonProxy::new);
 
 	public static final List<Item> CONTENT = new ArrayList<>();
 
@@ -179,14 +181,13 @@ public class LI {
 
 	public LI() {
 		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		fmlBus.register(this);
 		fmlBus.register(PROXY);
 		ITEMS.register(fmlBus);
 		CREATIVE_TABS.register(fmlBus);
 	}
 
 	@Mod.EventBusSubscriber
-	public static class Events {
+	public static class MissingMappingsDetector {
 		@SubscribeEvent
 		public static void onMissingMappings(MissingMappingsEvent event) {
 			Map<String, RegistryObject<Item>> renamed = new HashMap<>();

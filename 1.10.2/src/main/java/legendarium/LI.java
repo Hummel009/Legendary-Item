@@ -1,7 +1,6 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -25,6 +24,8 @@ import java.util.Map;
 
 @Mod(modid = "legendarium")
 public class LI {
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
 	public static final List<Item> CONTENT = new ArrayList<>();
 
 	public static Item armorAnarionHelmet;
@@ -198,7 +199,7 @@ public class LI {
 
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
-	public static class Events {
+	public static class RegistryEvents {
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);
@@ -477,7 +478,6 @@ public class LI {
 			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
 				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
-				ModelBakery.registerItemVariants(item, mrl);
 				ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
 			}
 		}

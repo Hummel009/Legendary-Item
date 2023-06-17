@@ -7,7 +7,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import legendarium.content.LIRegistry;
 import legendarium.lotr.LIRegistryLOTR;
-import legendarium.proxy.LIServerProxy;
+import legendarium.proxy.LICommonProxy;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -15,8 +15,11 @@ import java.util.Map;
 
 @Mod(modid = "legendarium")
 public class LI {
-	@SidedProxy(serverSide = "legendarium.proxy.LIServerProxy", clientSide = "legendarium.proxy.LIClientProxy")
-	public static LIServerProxy proxy;
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+
+	@SidedProxy(serverSide = "legendarium.proxy.LICommonProxy", clientSide = "legendarium.proxy.LIClientProxy")
+	public static LICommonProxy proxy;
+
 	public static int hasLOTR = -1;
 	public static LIDependencyManager registry;
 

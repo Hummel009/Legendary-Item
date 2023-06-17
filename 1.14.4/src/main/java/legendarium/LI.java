@@ -15,7 +15,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Collection;
@@ -25,7 +24,7 @@ import java.util.function.Predicate;
 
 @Mod("legendarium")
 public class LI {
-	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
@@ -162,8 +161,45 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class Events {
+	@Mod.EventBusSubscriber
+	public static class MissingMappingsDetector {
+		@SubscribeEvent
+		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
+			Map<String, Item> renamed = new HashMap<>();
+			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
+			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
+			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
+			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
+			renamed.put("armor_anarion_legs", armorAnarionLeggings);
+			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
+			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
+			renamed.put("armor_boromir_legs", armorBoromirLeggings);
+			renamed.put("armor_elendil_legs", armorElendilLeggings);
+			renamed.put("armor_elros_legs", armorElrosLeggings);
+			renamed.put("armor_feanor_legs", armorFeanorLeggings);
+			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
+			renamed.put("armor_gimli_legs", armorGimliLeggings);
+			renamed.put("armor_isildur_legs", armorIsildurLeggings);
+			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
+			renamed.put("armor_khamul_legs", armorKhamulLeggings);
+			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
+			renamed.put("armor_theoden_legs", armorTheodenLeggings);
+			renamed.put("armor_turgon_legs", armorTurgonLeggings);
+			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
+				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
+					if (mapping.key.getPath().contains(entry.getKey())) {
+						mapping.remap(entry.getValue());
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+	public static class RegistryEvents {
+		private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
+
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EquipmentSlotType.HEAD);
@@ -467,38 +503,6 @@ public class LI {
 				ResourceLocation newModel = new ResourceLocation("legendarium", "item/" + path + "_large");
 				ModelLoader.addSpecialModel(newModel);
 				COMPLIANCES.put(oldModel, newModel);
-			}
-		}
-
-		@SubscribeEvent
-		public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
-			Map<String, Item> renamed = new HashMap<>();
-			renamed.put("armor_khommurat_helmet", armorHoarmurathHelmet);
-			renamed.put("armor_khommurat_chestplate", armorHoarmurathChestplate);
-			renamed.put("armor_khommurat_legs", armorHoarmurathLeggings);
-			renamed.put("armor_khommurat_boots", armorHoarmurathBoots);
-			renamed.put("armor_anarion_legs", armorAnarionLeggings);
-			renamed.put("armor_arpharazon_legs", armorArpharazonLeggings);
-			renamed.put("armor_arvedui_legs", armorArveduiLeggings);
-			renamed.put("armor_boromir_legs", armorBoromirLeggings);
-			renamed.put("armor_elendil_legs", armorElendilLeggings);
-			renamed.put("armor_elros_legs", armorElrosLeggings);
-			renamed.put("armor_feanor_legs", armorFeanorLeggings);
-			renamed.put("armor_gilgalad_legs", armorGilgaladLeggings);
-			renamed.put("armor_gimli_legs", armorGimliLeggings);
-			renamed.put("armor_isildur_legs", armorIsildurLeggings);
-			renamed.put("armor_jiindur_legs", armorJiindurLeggings);
-			renamed.put("armor_khamul_legs", armorKhamulLeggings);
-			renamed.put("armor_morgomir_legs", armorMorgomirLeggings);
-			renamed.put("armor_theoden_legs", armorTheodenLeggings);
-			renamed.put("armor_turgon_legs", armorTurgonLeggings);
-			for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
-					if (mapping.key.getPath().contains(entry.getKey())) {
-						mapping.remap(entry.getValue());
-						break;
-					}
-				}
 			}
 		}
 
