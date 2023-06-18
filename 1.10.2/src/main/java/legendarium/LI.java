@@ -1,10 +1,13 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -17,16 +20,14 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Mod(modid = "legendarium")
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
 
 	public static final List<Item> CONTENT = new ArrayList<>();
+	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
@@ -474,11 +475,39 @@ public class LI {
 
 		@SubscribeEvent
 		@SideOnly(Side.CLIENT)
+		public static void onModelBake(ModelBakeEvent event) {
+			for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
+				ModelResourceLocation smallLocation = compliance.getKey();
+				IBakedModel smallModel = event.getModelRegistry().getObject(smallLocation);
+				if (smallModel != null) {
+					ModelResourceLocation largeLocation = compliance.getValue();
+					IBakedModel largeModel = event.getModelRegistry().getObject(largeLocation);
+					if (largeModel != null) {
+						event.getModelRegistry().putObject(smallLocation, new LIItemSword.LargeItemModel(smallModel, largeModel));
+					}
+				}
+			}
+		}
+
+		@SubscribeEvent
+		@SideOnly(Side.CLIENT)
 		public static void onModelRegistry(ModelRegistryEvent event) {
+			Set<Item> inapplicable = new HashSet<>();
+			inapplicable.add(weaponAngrist);
+			inapplicable.add(weaponAcharn);
+			inapplicable.add(weaponLegolas);
+			inapplicable.add(weaponGrima);
 			for (Item item : CONTENT) {
 				ResourceLocation regName = item.getRegistryName();
-				ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
-				ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
+				ModelResourceLocation smallModel = new ModelResourceLocation(regName, "inventory");
+				ModelResourceLocation largeModel = new ModelResourceLocation(regName + "_large", "inventory");
+				if (item instanceof LIItemSword && !inapplicable.contains(item)) {
+					COMPLIANCES.put(smallModel, largeModel);
+					ModelBakery.registerItemVariants(item, smallModel, largeModel);
+				} else {
+					ModelBakery.registerItemVariants(item, smallModel);
+				}
+				ModelLoader.setCustomModelResourceLocation(item, 0, smallModel);
 			}
 		}
 
