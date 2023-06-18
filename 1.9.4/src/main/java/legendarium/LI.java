@@ -5,9 +5,12 @@ import legendarium.content.LIItemArmor;
 import legendarium.content.LIItemEmpty;
 import legendarium.content.LIItemSword;
 import legendarium.content.LIMaterial;
+import legendarium.proxy.LIClientProxy;
 import legendarium.proxy.LICommonProxy;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -214,6 +217,9 @@ public class LI {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		FMLCommonHandler.instance().bus().register(proxy);
+		MinecraftForge.EVENT_BUS.register(proxy);
+
 		armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.HEAD);
 		armorAnarionChestplate = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.CHEST);
 		armorAnarionLeggings = new LIItemArmor(LIMaterial.ANARION, EntityEquipmentSlot.LEGS);
