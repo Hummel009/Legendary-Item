@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Direction;
-import net.minecraftforge.client.ForgeHooksClient;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
@@ -22,51 +21,51 @@ public class LIItemSword extends SwordItem {
 	}
 
 	public static class LargeItemModel implements IBakedModel {
-		public final IBakedModel defaultModel;
-		public final IBakedModel handheldModel;
+		public final IBakedModel smallModel;
+		public final IBakedModel largeModel;
 
-		public LargeItemModel(IBakedModel defaultModel, IBakedModel handheldModel) {
-			this.defaultModel = defaultModel;
-			this.handheldModel = handheldModel;
+		public LargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
+			this.smallModel = smallModel;
+			this.largeModel = largeModel;
 		}
 
 		@Override
 		public ItemOverrideList getOverrides() {
-			return handheldModel.getOverrides();
+			return smallModel.getOverrides();
 		}
 
 		@Override
 		public TextureAtlasSprite getParticleTexture() {
-			return defaultModel.getParticleTexture();
+			return smallModel.getParticleTexture();
 		}
 
 		@Override
-		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, Random rand) {
-			return defaultModel.getQuads(state, cullFace, rand);
+		public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
+			return smallModel.getQuads(blockState, direction, random);
 		}
 
 		@Override
 		public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
-			IBakedModel modelToUse = defaultModel;
+			IBakedModel bakedModel = smallModel;
 			if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-				modelToUse = handheldModel;
+				bakedModel = largeModel;
 			}
-			return ForgeHooksClient.handlePerspective(modelToUse, transformType);
+			return bakedModel.handlePerspective(transformType);
 		}
 
 		@Override
 		public boolean isAmbientOcclusion() {
-			return defaultModel.isAmbientOcclusion();
+			return smallModel.isAmbientOcclusion();
 		}
 
 		@Override
 		public boolean isBuiltInRenderer() {
-			return defaultModel.isBuiltInRenderer();
+			return smallModel.isBuiltInRenderer();
 		}
 
 		@Override
 		public boolean isGui3d() {
-			return defaultModel.isGui3d();
+			return smallModel.isGui3d();
 		}
 	}
 }

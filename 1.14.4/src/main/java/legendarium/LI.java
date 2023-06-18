@@ -20,11 +20,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
 
 @Mod("legendarium")
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+	public static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;
@@ -198,8 +198,6 @@ public class LI {
 
 	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 	public static class RegistryEvents {
-		private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
-
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			armorAnarionHelmet = new LIItemArmor(LIMaterial.ANARION, EquipmentSlotType.HEAD);
@@ -476,13 +474,13 @@ public class LI {
 		@OnlyIn(Dist.CLIENT)
 		public static void onModelBake(ModelBakeEvent event) {
 			for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
-				ModelResourceLocation oldLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-				IBakedModel oldModel = event.getModelRegistry().get(oldLocation);
-				if (oldModel != null) {
-					ResourceLocation newLocation = compliance.getValue();
-					IBakedModel newModel = event.getModelRegistry().get(newLocation);
-					if (newModel != null) {
-						event.getModelRegistry().put(oldLocation, new LIItemSword.LargeItemModel(oldModel, newModel));
+				ModelResourceLocation smallLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
+				IBakedModel smallModel = event.getModelRegistry().get(smallLocation);
+				if (smallModel != null) {
+					ResourceLocation largeLocation = compliance.getValue();
+					IBakedModel largeModel = event.getModelRegistry().get(largeLocation);
+					if (largeModel != null) {
+						event.getModelRegistry().put(smallLocation, new LIItemSword.LargeItemModel(smallModel, largeModel));
 					}
 				}
 			}
@@ -491,18 +489,13 @@ public class LI {
 		@SubscribeEvent
 		@OnlyIn(Dist.CLIENT)
 		public static void onModelRegistry(ModelRegistryEvent event) {
-			Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().getAllResourceLocations("models", new Predicate<String>() {
-				@Override
-				public boolean test(String loc) {
-					return loc.endsWith("_large.json");
-				}
-			});
+			Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().getAllResourceLocations("models", loc -> loc.endsWith("_large.json"));
 			for (ResourceLocation resourceLocation : resourceLocations) {
-				String path = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-				ResourceLocation oldModel = new ResourceLocation("legendarium", path);
-				ResourceLocation newModel = new ResourceLocation("legendarium", "item/" + path + "_large");
-				ModelLoader.addSpecialModel(newModel);
-				COMPLIANCES.put(oldModel, newModel);
+				String regName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
+				ResourceLocation smallModel = new ResourceLocation("legendarium", regName);
+				ResourceLocation largeModel = new ResourceLocation("legendarium", "item/" + regName + "_large");
+				ModelLoader.addSpecialModel(largeModel);
+				COMPLIANCES.put(smallModel, largeModel);
 			}
 		}
 

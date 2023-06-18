@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -22,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 
 public class LIClientProxy extends LICommonProxy {
 	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
@@ -31,13 +29,13 @@ public class LIClientProxy extends LICommonProxy {
 	@OnlyIn(Dist.CLIENT)
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
 		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
-			var oldLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			var oldModel = event.getModels().get(oldLocation);
-			if (oldModel != null) {
-				var newLocation = compliance.getValue();
-				var newModel = event.getModels().get(newLocation);
-				if (newModel != null) {
-					event.getModels().put(oldLocation, new LargeItemModel(oldModel, newModel));
+			var smallLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
+			var smallModel = event.getModels().get(smallLocation);
+			if (smallModel != null) {
+				var largeLocation = compliance.getValue();
+				var largeModel = event.getModels().get(largeLocation);
+				if (largeModel != null) {
+					event.getModels().put(smallLocation, new LargeItemModel(smallModel, largeModel));
 				}
 			}
 		}
@@ -46,64 +44,59 @@ public class LIClientProxy extends LICommonProxy {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
-		Set<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", new Predicate<>() {
-			@Override
-			public boolean test(ResourceLocation loc) {
-				return "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json");
-			}
-		}).keySet();
+		Set<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json")).keySet();
 		for (ResourceLocation resourceLocation : resourceLocations) {
-			var path = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-			var oldModel = new ResourceLocation("legendarium", path);
-			var newModel = new ResourceLocation("legendarium", "item/" + path + "_large");
-			COMPLIANCES.put(oldModel, newModel);
-			event.register(newModel);
+			var regName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
+			var smallModel = new ResourceLocation("legendarium", regName);
+			var largeModel = new ResourceLocation("legendarium", "item/" + regName + "_large");
+			COMPLIANCES.put(smallModel, largeModel);
+			event.register(largeModel);
 		}
 	}
 
-	public record LargeItemModel(BakedModel defaultModel, BakedModel handheldModel) implements BakedModel {
+	public record LargeItemModel(BakedModel smallModel, BakedModel largeModel) implements BakedModel {
 		@Override
-		public BakedModel applyTransform(ItemDisplayContext transformType, PoseStack mat, boolean applyLeftHandTransform) {
-			BakedModel modelToUse = defaultModel;
-			if (transformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || transformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
-				modelToUse = handheldModel;
+		public BakedModel applyTransform(ItemDisplayContext itemDisplayContext, PoseStack poseStack, boolean b) {
+			BakedModel bakedModel = smallModel;
+			if (itemDisplayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || itemDisplayContext == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || itemDisplayContext == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || itemDisplayContext == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
+				bakedModel = largeModel;
 			}
-			return ForgeHooksClient.handleCameraTransforms(mat, modelToUse, transformType, applyLeftHandTransform);
+			return bakedModel.applyTransform(itemDisplayContext, poseStack, b);
 		}
 
 		@Override
-		public List<BakedQuad> getQuads(BlockState state, Direction cullFace, RandomSource rand) {
-			return defaultModel.getQuads(state, cullFace, rand);
+		public List<BakedQuad> getQuads(BlockState blockState, Direction direction, RandomSource randomSource) {
+			return smallModel.getQuads(blockState, direction, randomSource);
 		}
 
 		@Override
 		public boolean useAmbientOcclusion() {
-			return defaultModel.useAmbientOcclusion();
+			return smallModel.useAmbientOcclusion();
 		}
 
 		@Override
 		public boolean isGui3d() {
-			return defaultModel.isGui3d();
+			return smallModel.isGui3d();
 		}
 
 		@Override
 		public boolean usesBlockLight() {
-			return defaultModel.usesBlockLight();
+			return smallModel.usesBlockLight();
 		}
 
 		@Override
 		public boolean isCustomRenderer() {
-			return defaultModel.isCustomRenderer();
+			return smallModel.isCustomRenderer();
 		}
 
 		@Override
 		public TextureAtlasSprite getParticleIcon() {
-			return defaultModel.getParticleIcon();
+			return smallModel.getParticleIcon();
 		}
 
 		@Override
 		public ItemOverrides getOverrides() {
-			return handheldModel.getOverrides();
+			return smallModel.getOverrides();
 		}
 	}
 }

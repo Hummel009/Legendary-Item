@@ -1,6 +1,5 @@
 package legendarium;
 
-import legendarium.LI;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 

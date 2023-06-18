@@ -21,61 +21,51 @@ public class LIItemSword extends ItemSword {
 	}
 
 	public static class LargeItemModel implements IBakedModel {
-		public final IBakedModel defaultModel;
-		public final IBakedModel handheldModel;
+		public final IBakedModel smallModel;
+		public final IBakedModel largeModel;
 
-		public LargeItemModel(IBakedModel defaultModel, IBakedModel handheldModel) {
-			this.defaultModel = defaultModel;
-			this.handheldModel = handheldModel;
-		}
-
-		@Override
-		public ItemCameraTransforms getItemCameraTransforms() {
-			return defaultModel.getItemCameraTransforms();
+		public LargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
+			this.smallModel = smallModel;
+			this.largeModel = largeModel;
 		}
 
 		@Override
 		public ItemOverrideList getOverrides() {
-			return defaultModel.getOverrides();
+			return smallModel.getOverrides();
 		}
 
 		@Override
 		public TextureAtlasSprite getParticleTexture() {
-			return defaultModel.getParticleTexture();
+			return smallModel.getParticleTexture();
 		}
 
 		@Override
-		public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-			return defaultModel.getQuads(state, side, rand);
+		public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long l) {
+			return smallModel.getQuads(blockState, facing, l);
 		}
 
 		@Override
 		public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
-			IBakedModel modelToUse = defaultModel;
+			IBakedModel bakedModel = smallModel;
 			if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-				modelToUse = handheldModel;
+				bakedModel = largeModel;
 			}
-			return modelToUse.handlePerspective(transformType);
+			return bakedModel.handlePerspective(transformType);
 		}
 
 		@Override
 		public boolean isAmbientOcclusion() {
-			return defaultModel.isAmbientOcclusion();
-		}
-
-		@Override
-		public boolean isAmbientOcclusion(IBlockState state) {
-			return defaultModel.isAmbientOcclusion(state);
+			return smallModel.isAmbientOcclusion();
 		}
 
 		@Override
 		public boolean isBuiltInRenderer() {
-			return defaultModel.isBuiltInRenderer();
+			return smallModel.isBuiltInRenderer();
 		}
 
 		@Override
 		public boolean isGui3d() {
-			return defaultModel.isGui3d();
+			return smallModel.isGui3d();
 		}
 	}
 }
