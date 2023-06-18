@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class LIClientProxy extends LICommonProxy {
-	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
+	public static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)

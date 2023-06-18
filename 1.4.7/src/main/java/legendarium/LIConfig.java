@@ -153,7 +153,7 @@ public class LIConfig {
 		}
 	}
 
-	private static void setDefaultValues() {
+	public static void setDefaultValues() {
 		try {
 			configuration.load();
 

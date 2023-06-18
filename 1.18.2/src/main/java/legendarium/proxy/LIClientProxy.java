@@ -21,7 +21,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.*;
 
 public class LIClientProxy extends LICommonProxy {
-	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
+	public static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
