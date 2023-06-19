@@ -288,10 +288,10 @@ public class LILang {
 		enUS.put("item.armor_elendil_chestplate.name", "Elendil's Chestplate");
 		enUS.put("item.armor_elendil_helmet.name", "Elendil's Helmet");
 		enUS.put("item.armor_elendil_leggings.name", "Elendil's Leggings");
-		enUS.put("item.armor_elros_boots.name", "Elros' Boots");
-		enUS.put("item.armor_elros_chestplate.name", "Elros' Chestplate");
-		enUS.put("item.armor_elros_helmet.name", "Elros' Helmet");
-		enUS.put("item.armor_elros_leggings.name", "Elros' Leggings");
+		enUS.put("item.armor_elros_boots.name", "Elros's Boots");
+		enUS.put("item.armor_elros_chestplate.name", "Elros's Chestplate");
+		enUS.put("item.armor_elros_helmet.name", "Elros's Helmet");
+		enUS.put("item.armor_elros_leggings.name", "Elros's Leggings");
 		enUS.put("item.armor_feanor_boots.name", "F\u00EBanor's Boots");
 		enUS.put("item.armor_feanor_chestplate.name", "F\u00EBanor's Chestplate");
 		enUS.put("item.armor_feanor_helmet.name", "F\u00EBanor's Helmet");
