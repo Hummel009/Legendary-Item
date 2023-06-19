@@ -459,9 +459,9 @@ public class LI {
 			register(silmaril, "silmaril");
 		}
 
-		public static void register(Item item, String field) {
-			String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-			item.setRegistryName(name);
+		public static void register(Item item, String name) {
+			String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+			item.setRegistryName(itemName);
 			ForgeRegistries.ITEMS.register(item);
 		}
 	}

@@ -13,14 +13,14 @@ public enum LIMaterial implements ArmorMaterial {
 	ANARION("anarion"), ARPHARAZON("arpharazon"), ARVEDUI("arvedui"), BOROMIR("boromir"), ELENDIL("elendil"), ELROS("elros"), FEANOR("feanor"), GILGALAD("gilgalad"), GIMLI("gimli"), ISILDUR("isildur"), JIINDUR("jiindur"), KHAMUL("khamul"), HOARMURATH("hoarmurath"), MORGOMIR("morgomir"), THEODEN("theoden"), TURGON("turgon");
 
 	public static final int[] DURABILITY_FOR_SLOT = {13, 15, 16, 11};
-	public final String name;
-	public final int maxDamageFactor;
-	public final int[] defenceForSlot;
-	public final int enchantmentValue;
-	public final SoundEvent equipSound;
-	public final float toughness;
-	public final Ingredient repairIngredient;
-	public final float knockbackResistance;
+	private final String name;
+	private final int maxDamageFactor;
+	private final int[] defenceForSlot;
+	private final int enchantmentValue;
+	private final SoundEvent equipSound;
+	private final float toughness;
+	private final Ingredient repairIngredient;
+	private final float knockbackResistance;
 
 	LIMaterial(String name) {
 		this(name, 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, Ingredient.of(Items.IRON_INGOT), 0);

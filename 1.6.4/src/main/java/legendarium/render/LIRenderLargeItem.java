@@ -29,9 +29,9 @@ public class LIRenderLargeItem implements IItemRenderer {
 		sizeFolders.put("large-3x", 3.0f);
 	}
 
-	public Item theItem;
-	public String folderName;
-	public float largeIconScale;
+	private Item theItem;
+	private String folderName;
+	private float largeIconScale;
 
 	public LIRenderLargeItem(Item item, String dir, float f) {
 		theItem = item;

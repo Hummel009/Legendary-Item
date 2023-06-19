@@ -66,12 +66,12 @@ public class LIRegistryLOTR extends LIRegistry {
 	}
 
 	@Override
-	public void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-		item.setUnlocalizedName(name);
-		item.setTextureName("legendarium:" + name);
+	public void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setUnlocalizedName(itemName);
+		item.setTextureName("legendarium:" + itemName);
 		item.setCreativeTab(LOTRCreativeTabs.tabStory);
-		GameRegistry.registerItem(item, name);
+		GameRegistry.registerItem(item, itemName);
 		CONTENT.add(item);
 	}
 

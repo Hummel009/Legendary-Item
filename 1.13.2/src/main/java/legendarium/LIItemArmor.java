@@ -7,7 +7,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class LIItemArmor extends ItemArmor {
-	public final String materialName;
+	private final String materialName;
 
 	public LIItemArmor(IArmorMaterial material, EntityEquipmentSlot slot) {
 		super(material, slot, new Properties().group(LICreativeTabs.TAB_ARTIFACTS));

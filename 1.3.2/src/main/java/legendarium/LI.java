@@ -148,14 +148,14 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public static void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
+	public static void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setTextureFile("/assets/legendarium/textures/items.png");
-		item.setItemName(name);
+		item.setItemName(itemName);
 		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
-		LanguageRegistry.instance().addNameForObject(item, "ru_RU", LILang.ruRU.get("item." + name + ".name"));
-		LanguageRegistry.instance().addNameForObject(item, "en_US", LILang.enUS.get("item." + name + ".name"));
-		LanguageRegistry.instance().addNameForObject(item, "uk_UA", LILang.ukUA.get("item." + name + ".name"));
+		LanguageRegistry.instance().addNameForObject(item, "ru_RU", LILang.ruRU.get("item." + itemName + ".name"));
+		LanguageRegistry.instance().addNameForObject(item, "en_US", LILang.enUS.get("item." + itemName + ".name"));
+		LanguageRegistry.instance().addNameForObject(item, "uk_UA", LILang.ukUA.get("item." + itemName + ".name"));
 	}
 
 	@Init

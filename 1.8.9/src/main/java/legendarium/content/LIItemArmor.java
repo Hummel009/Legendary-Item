@@ -5,7 +5,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class LIItemArmor extends ItemArmor {
-	public final String materialName;
+	private final String materialName;
 
 	public LIItemArmor(ItemArmor.ArmorMaterial material, int slot) {
 		this(material, slot, slot == 2 ? 2 : 1);

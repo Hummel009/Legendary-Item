@@ -149,11 +149,11 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public static void register(Item item, String field) {
-		String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-		item.setUnlocalizedName(name);
+	public static void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setUnlocalizedName(itemName);
 		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
-		GameRegistry.registerItem(item, name);
+		GameRegistry.registerItem(item, itemName);
 	}
 
 	@Init

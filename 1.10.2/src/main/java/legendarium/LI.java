@@ -498,9 +498,9 @@ public class LI {
 			inapplicable.add(weaponLegolas);
 			inapplicable.add(weaponGrima);
 			for (Item item : CONTENT) {
-				ResourceLocation regName = item.getRegistryName();
-				ModelResourceLocation smallModel = new ModelResourceLocation(regName, "inventory");
-				ModelResourceLocation largeModel = new ModelResourceLocation(regName + "_large", "inventory");
+				ResourceLocation itemName = item.getRegistryName();
+				ModelResourceLocation smallModel = new ModelResourceLocation(itemName, "inventory");
+				ModelResourceLocation largeModel = new ModelResourceLocation(itemName + "_large", "inventory");
 				if (item instanceof LIItemSword && !inapplicable.contains(item)) {
 					COMPLIANCES.put(smallModel, largeModel);
 					ModelBakery.registerItemVariants(item, smallModel, largeModel);
@@ -511,10 +511,10 @@ public class LI {
 			}
 		}
 
-		public static void register(Item item, String field) {
-			String name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field);
-			item.setUnlocalizedName(name);
-			item.setRegistryName(name);
+		public static void register(Item item, String name) {
+			String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+			item.setUnlocalizedName(itemName);
+			item.setRegistryName(itemName);
 			ForgeRegistries.ITEMS.register(item);
 			CONTENT.add(item);
 		}

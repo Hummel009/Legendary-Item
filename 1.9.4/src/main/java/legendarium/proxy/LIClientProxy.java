@@ -24,6 +24,7 @@ public class LIClientProxy extends LICommonProxy {
 	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onInit() {
 		Set<Item> inapplicable = new HashSet<>();
 		inapplicable.add(LI.weaponAngrist);
@@ -31,9 +32,9 @@ public class LIClientProxy extends LICommonProxy {
 		inapplicable.add(LI.weaponLegolas);
 		inapplicable.add(LI.weaponGrima);
 		for (Item item : LI.CONTENT) {
-			ResourceLocation regName = item.getRegistryName();
-			ModelResourceLocation smallModel = new ModelResourceLocation(regName, "inventory");
-			ModelResourceLocation largeModel = new ModelResourceLocation(regName + "_large", "inventory");
+			ResourceLocation itemName = item.getRegistryName();
+			ModelResourceLocation smallModel = new ModelResourceLocation(itemName, "inventory");
+			ModelResourceLocation largeModel = new ModelResourceLocation(itemName + "_large", "inventory");
 			if (item instanceof LIItemSword && !inapplicable.contains(item)) {
 				COMPLIANCES.put(smallModel, largeModel);
 				ModelBakery.registerItemVariants(item, smallModel, largeModel);

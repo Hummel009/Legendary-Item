@@ -44,9 +44,9 @@ public class LIClientProxy extends LICommonProxy {
 	public void onModelRegistry(ModelRegistryEvent event) {
 		Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
 		for (ResourceLocation resourceLocation : resourceLocations) {
-			var regName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-			var smallModel = new ResourceLocation("legendarium", regName);
-			var largeModel = new ResourceLocation("legendarium", "item/" + regName + "_large");
+			var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
+			var smallModel = new ResourceLocation("legendarium", itemName);
+			var largeModel = new ResourceLocation("legendarium", "item/" + itemName + "_large");
 			ModelLoader.addSpecialModel(largeModel);
 			COMPLIANCES.put(smallModel, largeModel);
 		}

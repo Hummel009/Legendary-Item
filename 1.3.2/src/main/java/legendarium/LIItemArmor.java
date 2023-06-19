@@ -6,7 +6,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
 
 public class LIItemArmor extends ItemArmor implements IArmorTextureProvider {
-	public final String materialName;
+	private final String materialName;
 
 	public LIItemArmor(int id, EnumArmorMaterial material, int slot) {
 		this(id, material, slot, slot == 2 ? 2 : 1);
