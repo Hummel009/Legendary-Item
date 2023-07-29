@@ -108,7 +108,7 @@ public class LIRegistryLOTR extends LIRegistry {
 		weaponOrcrist = new LOTRItemGlamdring();
 		weaponPallando = new LOTRItemGandalfStaffWhite();
 		weaponRadagast = new LOTRItemGandalfStaffWhite();
-		weaponSaruman = new LOTRItemSauronMace();
+		weaponSaruman = new LOTRItemGandalfStaffWhite();
 		weaponThorondun = new LOTRItemGlamdring();
 		weaponThranduil = new LOTRItemGlamdring();
 		weaponWitchking = new LOTRItemSauronMace();
