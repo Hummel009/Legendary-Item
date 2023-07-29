@@ -1,10 +1,29 @@
-/.metadata
-**/.gradle
-**/workspace.xml
-**/build
-**/bin
-**/run
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+# Files from Forge MDK
+forge*changelog.txt
+
+# LOTR
 **/libs/**/*.lang
 **/libs/**/*.txt
-**/Project_Default.xml
-**/uiDesigner.xml
