@@ -1,33 +1,42 @@
-Hello everybody!
+Всем привет!
 
-I am the developer of different mods for Minecraft, including this one, and I have posted the latest source code here. I hope, that somebody can find this useful as a basis for your own mods.
+Я - разработчик различных модов для Minecraft, включая этот. Я выложил здесь новейший исходный код мода на всех версиях майнкрафта. Надеюсь, что кому-нибудь это пригодится в качестве основы для собственного мода.
 
-<h2> Important info </h2>
+<h2> Важная информация </h2>
 
-All the projects can be imported via Eclipse or opened via Intellij IDEA, but 1.12.2 source can't be launched directly from Intellij IDEA. So I recommend to use Eclipse.
+Это будет полезно как потенциальным разработчикам, так и мне самому из будущего. Гайды, подводные камни, советы и всё такое.
 
-Projects are already configured, using needed JDK version and compiler:
+* Версии 1.3.2, 1.4.7, 1.5.2, 1.6.4 и 1.7.10 используют Voldeloom - аналог Forge, позволяющий вести разработку на устаревших версиях. Он как бы имитирует процесс, но с применением новейших технологий. В итоге эти проекты можно просто импортировать в Eclipse или открыть в IntelliJ IDEA, чтобы Gradle сам запустил установку среды.
+  * В Voldeloom сборка мода производится перед каждым запуском игры из среды. Gradle task для этого - "runClient". Так что отдельно делать билд не нужно, новейший мод после каждого запуска из среды всегда лежит в папке build/libs.
+  * Если непонятно, что такое Gradle task, то есть аналог - открыть консоль Windows (cmd) в папке, например, 1.3.2, и выполнить команду "gradlew runClient".
+* Аналогично просто устанавливаются и все новейшие версии, от 1.12.2 (включительно) и выше.
+  * Билд там всё-таки нужен: запуск в среде отдельно, файл для лаунчера и публикации в интернете отдельно. Чтобы в build/libs что-то появилось, нужно выполнить Gradle task "build".
+  * Eclipse иногда, ввиду плохого интернета, может повредить скачиваемый файл и настройка среды сорвётся. И потом никогда не починится. Придётся всё сделать через IntelliJ IDEA, а уже потом импортировать среду в Eclipse.
+  * Чтобы вообще запускать игру в среде, потребуется выполнить Gradle task "genEclipseRuns" или "genIntellijRuns". После этого появятся запуски.
+* Версии 1.8.9, 1.9.4, 1.10.2 и 1.11.2 используют устаревший ForgeGradle, который всё ещё жив в 2023 году. Однако есть проблема - среды сами не установятся, если импортировать папку проекта в Eclipse или открыть через IntelliJ IDEA. Чтобы среда сформировалась, нужно запустить один из двух батников в папке - setupEclipse или setupIntellij.
+  * При этом формат IntelliJ-среды будет устаревшим и багованным, поэтому после установки нужно открыть проект через IDE и конвертировать среду в folder-based формат. Файлики .ipr и .iws потом можно удалить, чтобы не было путаницы.
+  * В этих версиях нет никаких Gradle tasks. Поэтому команды выполняем консолью в папке, как было описано выше. Запустили cmd и прописали "gradlew build" - вот и оно.
+* При работе с модами необходимо помнить, что версии Minecraft рассчитывают на использование вами определённых версий Java. Поэтому перед работой важно настроить JRE и Compiler/Compilance Level, как в Eclipse, так и в IntelliJ.
+  * Для версий 1.3.2, 1.4.7, 1.5.2, 1.6.4 используем JDK 11, Compiler 6 (1.6).
+  * Для версии 1.7.10 используем JDK 11, Compiler 8 (1.8).
+  * Для версий 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.12.2, 1.13.2, 1.14.4, 1.15.2, 1.16.5 используем JDK 8 (1.8), Compiler 8 (1.8).
+  * Для версии 1.17.1 используем JDK 16, Compiler 16. 
+  * Для версий 1.18.2 и далее используем JDK 17, Compiler 17.
 
-* 1.17.1 is using JDK-16, Compiler 16
-* 1.18.2 and higher are using JDK-17, Compiler 17
-* 1.6.4 and lower are using JDK-11, Compiler 6 (1.6)
-* All the others are using JDK-8 (JDK 1.8), Compiler 8 (1.8)
+<h2> Папка с моими редакциями Forge </h2>
 
-If you have problems when importing projects, check your JDK's paths.
+Всем известно, что старые среды разработки Minecraft медленно умирают из-за удаления их зависимостей из Интернета. А новые иногда используют устаревший ForgeGradle, который можно было бы и обновить. В целом, чем меньше версий Gradle придётся скачать, тем лучше.
 
-<h2> Forges folder </h2>
+Поэтому я отредактировал/пропатчил скачанные версии Forge. А именно: я вырезал все ненужные файлы и максимально обновил версии Gradle и ForgeGradle. Все версии на Forge (за исключением 1.8.9, 1.9.4, 1.10.2 и 1.11.2) используют Gradle 8.1.1 и ForgeGradle 6.0-6.2. Версии Voldeloom тоже используют Gradle 8.1.1.
 
-Everybody know, that old Minecraft versions are dying slowly, because their imported files are disappearing from the Internet. 
-There is also a problem in new versions: they are using different gradles, and they are to be downloaded and spam a lot.
+<h2> Папка с модом на Kotlin </h2>
 
-So I using my own patched versions of Forge. Old versions are fixed and alive, new versions are not spamming. Success!
+Просто написал мод на языке Kotlin. Для разнообразия и образца. Чтобы запустить такой мод, нужно скачать и кинуть в папку модов библиотеку Forge Kotlin.
 
-<h2> Future (or the past?) </h2>
+<h2> Будущее мода (или прошлое?) </h2>
 
-I have always been attracted to the idea of releasing a mod for every major version of minecraft. Therefore, the mod will be supported on every version for as long as possible.
+Меня всегда привлекала идея выпустить мод для каждой основной версии minecraft. Поэтому мод будет поддерживаться на всех версиях как можно дольше.
 
-The mod already exists on version 1.7.10 (the original and native version it was originally developed on), as well as every last release of all major versions from 1.12.2 onwards.
+Мод уже существует на всех версиях от 1.3.2 до 1.20.1 включительно. Огромная благодарность [этому проекту и его автору](https://github.com/CrackedPolishedBlackstoneBricksMC/voldeloom)! Он сделал все, чтобы устаревшие среды разработки заработали в 2023 году. Только благодаря его проекту я смог создать свой мод для версий 1.3.2, 1.4.7, 1.5.2 и 1.6.4.
 
-Great thanks to [this project and his author](https://github.com/CrackedPolishedBlackstoneBricksMC/voldeloom)! He did everything to make ancient development environment working in 2023. I could create my mod for the versions 1.3.2, 1.4.7, 1.5.2 and 1.6.4 only due to his project. 
-
-I would really like to release retrospective updates of the mod for versions 1.2.x and earlier. But I think, it's impossible now. If you know something on this topic, please let me know - I will be extremely grateful.
+Я бы очень хотел выпустить ретроспективные обновления мода для версий 1.2.x и более ранних. Думаю, сейчас это невозможно. Но если вы что-то знаете по этому вопросу, пожалуйста, сообщите мне - буду очень благодарен.
