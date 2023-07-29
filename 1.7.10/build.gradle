@@ -18,8 +18,8 @@ java {
 }
 
 compileJava {
-	sourceCompatibility = "8"
-	targetCompatibility = "1.8"
+	sourceCompatibility = '8'
+	targetCompatibility = '1.8'
 }
 
 final String minecraftVersion = '1.7.10'
@@ -28,10 +28,10 @@ final String forgeVersion = '1.7.10-10.13.4.1614-1.7.10'
 volde {
 	runs {
 		client {
-			programArg "--username=quaternary"
-			programArg "--assetIndex=1.7.10"
-			programArg "--userProperties={}"
-			programArg "--accessToken=69"
+			programArg '--username=quaternary'
+			programArg '--assetIndex=1.7.10'
+			programArg '--userProperties={}'
+			programArg '--accessToken=69'
 		}
 	}
 }
@@ -39,8 +39,9 @@ volde {
 dependencies {
 	minecraft "com.mojang:minecraft:${minecraftVersion}"
 	forge "net.minecraftforge:forge:${forgeVersion}:universal"
+	implementation files('libs/LOTRMod v36.15.jar')
 
 	mappings volde.layered {
-		importMCPBot("https://mcpbot.unascribed.com/", minecraftVersion, "stable", "12-1.7.10")
+		importMCPBot('https://mcpbot.unascribed.com/', minecraftVersion, 'stable', '12-1.7.10')
 	}
 }
