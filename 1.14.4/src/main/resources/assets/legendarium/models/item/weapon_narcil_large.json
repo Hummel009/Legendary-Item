@@ -1,0 +1,6 @@
+{
+  "parent": "legendarium:item/handheld_hummel2",
+  "textures": {
+	"layer0": "legendarium:item/weapon_narcil_large"
+  }
+}
