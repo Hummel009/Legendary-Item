@@ -15,11 +15,12 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 public class LIRegistry implements LIDependencyManager {
-	public static final List<Item> CONTENT = new ArrayList<>();
+	public static final Collection<Item> CONTENT = new ArrayList<>();
 
 	public static Item armorAnarionHelmet;
 	public static Item armorAnarionChestplate;

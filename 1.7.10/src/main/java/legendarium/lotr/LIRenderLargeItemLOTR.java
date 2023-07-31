@@ -16,10 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LIRenderLargeItemLOTR extends LOTRRenderLargeItem implements LIRenderable {
 	public static Map<String, Float> sizeFolders = new HashMap<>();
@@ -33,7 +30,7 @@ public class LIRenderLargeItemLOTR extends LOTRRenderLargeItem implements LIRend
 	private String folderName;
 	private float largeIconScale;
 	private IIcon largeIcon;
-	private List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
+	private Collection<ExtraLargeIconToken> extraTokens = new ArrayList<>();
 
 	public LIRenderLargeItemLOTR(Item item, String dir, float f) {
 		super(item, dir, f);

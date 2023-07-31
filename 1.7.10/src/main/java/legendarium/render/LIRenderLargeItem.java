@@ -16,10 +16,7 @@ import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 	public static ResourceLocation enchantmentTexture = new ResourceLocation("textures/misc/enchanted_item_glint.png");
@@ -34,7 +31,7 @@ public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 	private String folderName;
 	private float largeIconScale;
 	private IIcon largeIcon;
-	private List<ExtraLargeIconToken> extraTokens = new ArrayList<>();
+	private Collection<ExtraLargeIconToken> extraTokens = new ArrayList<>();
 
 	public LIRenderLargeItem(Item item, String dir, float f) {
 		theItem = item;
