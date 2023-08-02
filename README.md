@@ -49,7 +49,7 @@
 * Версия 1.17.1 использует Java 16 + допуск синтаксиса 16.
 * Версии 1.18.2 - 1.20.1 используют Java 17 + допуск синтаксиса 17.
 
-Java в Eclipse называется JRE/JDK, в IntelliJ IDEA - SDK. Допуск синтаксиса в Eclipse называется Compiler Compliance Level, в Intellij IDEA - Language Level.
+Java в Eclipse называется JRE/JDK, в IntelliJ IDEA - SDK. Допуск синтаксиса в Eclipse называется Compiler Compliance Level, в IntelliJ IDEA - Language Level.
 
 Важно помнить, что допуск синтаксиса выше приведён как верхняя граница. Можно выбрать сколь угодно малый допуск, тогда вы будете вынуждены использовать только самые древние конструкции языка, но это будет работать нормально.
   
