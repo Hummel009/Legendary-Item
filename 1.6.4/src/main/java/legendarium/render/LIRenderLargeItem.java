@@ -62,8 +62,8 @@ public class LIRenderLargeItem implements IItemRenderer {
 		return null;
 	}
 
-	public static boolean isNullOrEmpty(String str) {
-		return str == null || str.length() == 0;
+	public static boolean isNullOrEmpty(CharSequence str) {
+		return str == null || str.isEmpty();
 	}
 
 	public static void renderEnchantmentEffect() {

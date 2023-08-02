@@ -24,7 +24,7 @@ import java.util.*;
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
 
-	public static final List<Item> CONTENT = new ArrayList<>();
+	public static final Collection<Item> CONTENT = new ArrayList<>();
 	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	public static Item armorAnarionHelmet;

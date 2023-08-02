@@ -1,6 +1,5 @@
 package legendarium.content;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -77,7 +76,7 @@ public class LIItemSword extends ItemSword {
 
 		@Override
 		public VertexFormat getFormat() {
-			return ((IPerspectiveAwareModel) smallModel).getFormat();
+			return ((IFlexibleBakedModel) smallModel).getFormat();
 		}
 	}
 }

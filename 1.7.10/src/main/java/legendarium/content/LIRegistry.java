@@ -16,7 +16,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 public class LIRegistry implements LIDependencyManager {
