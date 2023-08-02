@@ -26,7 +26,7 @@
 * Версии 1.8.9 - 1.11.2 ничем не отличаются от древнего Forge сценария в 1.7.10.
 * Версии 1.12.2 - 1.20.1 - это современный Forge, хотя установка и работа со средой больше похожи на Voldeloom.
   * Gradle-проекты можно просто импортировать в Eclipse или открыть через IntelliJ IDEA, чтобы Gradle сам запустил установку среды.
-  * Чтобы запустить мод из среды, выполните Gradle Task "genEclipseRuns"/"genIntellijRuns", либо откройте консоль Windows в папке среды и введите "gradlew genEclipseRuns"/gradlew genIntellijRuns".
+  * Чтобы запустить мод из среды, нужно сгенерировать запуски. Выполните Gradle Task "genEclipseRuns"/"genIntellijRuns", либо откройте консоль Windows в папке среды и введите "gradlew genEclipseRuns"/gradlew genIntellijRuns".
   * Для компиляции используем gradlew build, как в 1.7.10 и далее.
   * Готовый мод лежит в папке build/libs.
   
