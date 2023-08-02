@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public enum LIMaterial implements IArmorMaterial {
 	ANARION("anarion"), ARPHARAZON("arpharazon"), ARVEDUI("arvedui"), BOROMIR("boromir"), ELENDIL("elendil"), ELROS("elros"), FEANOR("feanor"), GILGALAD("gilgalad"), GIMLI("gimli"), ISILDUR("isildur"), JIINDUR("jiindur"), KHAMUL("khamul"), HOARMURATH("hoarmurath"), MORGOMIR("morgomir"), THEODEN("theoden"), TURGON("turgon");
 
-	public static final int[] DURABILITY_FOR_SLOT = {13, 15, 16, 11};
+	private static final int[] DURABILITY_FOR_SLOT = {13, 15, 16, 11};
 	private final String name;
 	private final int maxDamageFactor;
 	private final int[] damageReductionAmount;
