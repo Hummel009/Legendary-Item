@@ -11,7 +11,6 @@ import net.minecraft.item.Item;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
