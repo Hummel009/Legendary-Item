@@ -62,7 +62,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 		return null;
 	}
 
-	public static boolean isNullOrEmpty(CharSequence str) {
+	public static boolean isNullOrEmpty(String str) {
 		return str == null || str.isEmpty();
 	}
 
