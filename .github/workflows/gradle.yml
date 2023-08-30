@@ -66,7 +66,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Build with Gradle
-      working-directory: ./Lab1.6.4
+      working-directory: ./1.6.4
       run: ./gradlew.bat build
 
   build1_7_10:
