@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-	"layer0": "legendarium:item/weapon_girion"
+    "layer0": "legendarium:item/weapon_girion"
   }
 }

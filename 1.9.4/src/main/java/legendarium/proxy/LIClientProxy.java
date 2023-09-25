@@ -2,17 +2,21 @@ package legendarium.proxy;
 
 import legendarium.LI;
 import legendarium.content.LIItemSword;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 
+import javax.vecmath.Matrix4f;
 import java.util.*;
 
 public class LIClientProxy extends LICommonProxy {
@@ -51,9 +55,63 @@ public class LIClientProxy extends LICommonProxy {
 				ModelResourceLocation largeLocation = compliance.getValue();
 				IBakedModel largeModel = event.getModelRegistry().getObject(largeLocation);
 				if (largeModel != null) {
-					event.getModelRegistry().putObject(smallLocation, new LIItemSword.LargeItemModel(smallModel, largeModel));
+					event.getModelRegistry().putObject(smallLocation, new LargeItemModel(smallModel, largeModel));
 				}
 			}
+		}
+	}
+
+	public static class LargeItemModel implements IPerspectiveAwareModel {
+		public final IBakedModel smallModel;
+		public final IBakedModel largeModel;
+
+		public LargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
+			this.smallModel = smallModel;
+			this.largeModel = largeModel;
+		}
+
+		@Override
+		public ItemOverrideList getOverrides() {
+			return smallModel.getOverrides();
+		}
+
+		@Override
+		public TextureAtlasSprite getParticleTexture() {
+			return smallModel.getParticleTexture();
+		}
+
+		@Override
+		public ItemCameraTransforms getItemCameraTransforms() {
+			return smallModel.getItemCameraTransforms();
+		}
+
+		@Override
+		public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long l) {
+			return smallModel.getQuads(blockState, facing, l);
+		}
+
+		@Override
+		public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
+			IBakedModel bakedModel = smallModel;
+			if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
+				bakedModel = largeModel;
+			}
+			return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
+		}
+
+		@Override
+		public boolean isAmbientOcclusion() {
+			return smallModel.isAmbientOcclusion();
+		}
+
+		@Override
+		public boolean isBuiltInRenderer() {
+			return smallModel.isBuiltInRenderer();
+		}
+
+		@Override
+		public boolean isGui3d() {
+			return smallModel.isGui3d();
 		}
 	}
 }
