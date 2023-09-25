@@ -27,7 +27,6 @@ public class LIClientProxy extends LICommonProxy {
 	public void onInit() {
 		Collection<Item> inapplicable = new HashSet<>();
 		inapplicable.add(LI.weaponAngrist);
-		inapplicable.add(LI.weaponAcharn);
 		inapplicable.add(LI.weaponLegolas);
 		inapplicable.add(LI.weaponGrima);
 		for (Item item : LI.CONTENT) {
