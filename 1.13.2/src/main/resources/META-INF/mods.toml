@@ -5,7 +5,7 @@ license = "Powered by Hummel009"
 logoFile = "logo.png"
 [[mods]]
 modId = "legendarium"
-version = "23.06.07"
+version = "23.09.29"
 displayName = "Legendary Item"
 credits = "Hummel009"
 authors = "Hummel009"

@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Mod("legendarium")
 public class LI {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "182625092023";
 	public static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	public static Item weaponAcharn;
