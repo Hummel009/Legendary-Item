@@ -9,8 +9,8 @@ public class LILang {
 	public static Map<String, String> ukUA = new HashMap<String, String>();
 
 	static {
-		ukUA.put("item.arkenstone.name", "\u00A7b\u0410\u0440\u043A\u0435\u043D\u0441\u0442\u043E\u043D");
-		ukUA.put("item.silmaril.name", "\u00A7d\u0421\u0438\u043B\u044C\u043C\u0430\u0440\u0438\u043B\u044C");
+		ukUA.put("item.arkenstone.name", "\u0410\u0440\u043A\u0435\u043D\u0441\u0442\u043E\u043D");
+		ukUA.put("item.silmaril.name", "\u0421\u0438\u043B\u044C\u043C\u0430\u0440\u0438\u043B\u044C");
 		ukUA.put("item.weapon_acharn.name", "\u0410\u0445\u0430\u0440\u043D");
 		ukUA.put("item.weapon_aeglos.name", "\u0410\u0435\u0491\u043B\u043E\u0441");
 		ukUA.put("item.weapon_alatar.name", "\u041F\u043E\u0441\u043E\u0445 \u0410\u043B\u0430\u0442\u0430\u0440\u0430 \u0411\u043B\u0430\u043A\u0456\u0442\u043D\u043E\u0433\u043E");
@@ -26,24 +26,24 @@ public class LILang {
 		ukUA.put("item.weapon_dagmor.name", "\u0414\u0430\u0491\u043C\u043E\u0440");
 		ukUA.put("item.weapon_dain.name", "\u041C\u043E\u043B\u043E\u0442 \u0414\u0430\u0457\u043D\u0430");
 		ukUA.put("item.weapon_denethor.name", "\u041C\u0435\u0447 \u0414\u0435\u043D\u0435\u0442\u043E\u0440\u0430");
-		ukUA.put("item.weapon_dori.name", "\u041C\u0435\u0447 \u0414\u043E\u0440\u0456");
+		ukUA.put("item.weapon_dori.name", "\u041C\u0435\u0447 \u0414\u043E\u0440\u0438");
 		ukUA.put("item.weapon_dramborleg.name", "\u0414\u0440\u0430\u043C\u0431\u043E\u0440\u043B\u0435\u0491");
-		ukUA.put("item.weapon_durin.name", "\u0421\u043E\u043A\u0438\u0440\u0430 \u0414\u0443\u0440\u0456\u043D\u0430");
+		ukUA.put("item.weapon_durin.name", "\u0421\u043E\u043A\u0438\u0440\u0430 \u0414\u0443\u0440\u0438\u043D\u0430");
 		ukUA.put("item.weapon_dwalin.name", "\u0421\u043E\u043A\u0438\u0440\u0430 \u0414\u0432\u0430\u043B\u0456\u043D\u0430");
 		ukUA.put("item.weapon_eothain.name", "\u041C\u0435\u0447 \u0422\u0435\u043E\u0434\u0440\u0435\u0434\u0430");
 		ukUA.put("item.weapon_eowyn.name", "\u041C\u0435\u0447 \u0415\u043E\u0432\u0456\u043D");
 		ukUA.put("item.weapon_faramir.name", "\u041C\u0435\u0447 \u0424\u0430\u0440\u0430\u043C\u0438\u0440\u0430");
 		ukUA.put("item.weapon_gamling.name", "\u041C\u0435\u0447 \u0490\u0430\u043C\u043B\u0456\u043D\u0491\u0430");
 		ukUA.put("item.weapon_gimli.name", "\u0421\u043E\u043A\u0438\u0440\u0430 \u0490\u0456\u043C\u043B\u0456");
-		ukUA.put("item.weapon_girion.name", "\u041C\u0435\u0447 \u0490\u0456\u0440\u0456\u043E\u043D\u0430");
+		ukUA.put("item.weapon_girion.name", "\u041C\u0435\u0447 \u0490\u04562\u043E\u043D\u0430");
 		ukUA.put("item.weapon_goblinking.name", "\u041F\u043E\u0441\u043E\u0445 \u043A\u043E\u0440\u043E\u043B\u044F \u0433\u043E\u0431\u043B\u0456\u043D\u0456\u0432");
 		ukUA.put("item.weapon_gorbag.name", "\u042F\u0442\u0430\u0433\u0430\u043D \u0490\u043E\u0440\u0431\u0430\u0491\u0430");
 		ukUA.put("item.weapon_gothmog.name", "\u042F\u0442\u0430\u0433\u0430\u043D \u0490\u043E\u0442\u043C\u043E\u0491\u0430");
-		ukUA.put("item.weapon_grima.name", "\u041A\u0438\u043D\u0434\u0436\u0430\u043B \u0490\u0440\u0456\u043C\u0438");
+		ukUA.put("item.weapon_grima.name", "\u041A\u0438\u043D\u0434\u0436\u0430\u043B \u04902\u043C\u0438");
 		ukUA.put("item.weapon_gurthang.name", "\u0490\u0443\u0440\u0442\u0430\u043D\u0491 (\u0410\u043D\u0491\u043B\u0430\u0445\u0435\u043B\u044C)");
 		ukUA.put("item.weapon_guthwine.name", "\u0490\u0443\u0442\u0432\u0456\u043D");
 		ukUA.put("item.weapon_hadhafang.name", "\u0413\u0430\u0434\u0433\u0430\u0444\u0430\u043D\u0491");
-		ukUA.put("item.weapon_herugrim.name", "\u0413\u0435\u0440\u0443\u0491\u0440\u0456\u043C");
+		ukUA.put("item.weapon_herugrim.name", "\u0413\u0435\u0440\u0443\u04912\u043C");
 		ukUA.put("item.weapon_khamul.name", "\u0411\u0443\u043B\u0430\u0432\u0430 \u041A\u0445\u0430\u043C\u0443\u043B\u0430");
 		ukUA.put("item.weapon_kili.name", "\u041C\u0435\u0447 \u041A\u0456\u043B\u0456");
 		ukUA.put("item.weapon_legolas.name", "\u041A\u0438\u043D\u0434\u0436\u0430\u043B \u041B\u0435\u0491\u043E\u043B\u0430\u0441\u0430");
@@ -56,7 +56,7 @@ public class LILang {
 		ukUA.put("item.weapon_radagast.name", "\u041F\u043E\u0441\u043E\u0445 \u0420\u0430\u0434\u0430\u0491\u0430\u0441\u0442\u0430 \u0411\u0443\u0440\u043E\u0433\u043E");
 		ukUA.put("item.weapon_saruman.name", "\u041F\u043E\u0441\u043E\u0445 \u0421\u0430\u0440\u0443\u043C\u0430\u043D\u0430 \u0411\u0435\u043B\u043E\u0433\u043E");
 		ukUA.put("item.weapon_shagrat.name", "\u042F\u0442\u0430\u0433\u0430\u043D \u0428\u0430\u0491\u0440\u0430\u0442\u0430");
-		ukUA.put("item.weapon_thorin.name", "\u041C\u0435\u0447 \u0422\u043E\u0440\u0456\u043D\u0430");
+		ukUA.put("item.weapon_thorin.name", "\u041C\u0435\u0447 \u0422\u043E2\u043D\u0430");
 		ukUA.put("item.weapon_thorondun.name", "\u0422\u043E\u0440\u043E\u043D\u0434\u0443\u043D");
 		ukUA.put("item.weapon_thrain.name", "\u0421\u043E\u043A\u0438\u0440\u0430 \u0422\u0440\u0430\u0457\u043D\u0430");
 		ukUA.put("item.weapon_thranduil.name", "\u041C\u0435\u0447 \u0422\u0440\u0430\u043D\u0434\u0443\u0457\u043B\u0430");
@@ -67,8 +67,8 @@ public class LILang {
 	}
 
 	static {
-		ruRU.put("item.arkenstone.name", "\u00A7b\u0410\u0440\u043A\u0435\u043D\u0441\u0442\u043E\u043D");
-		ruRU.put("item.silmaril.name", "\u00A7d\u0421\u0438\u043B\u044C\u043C\u0430\u0440\u0438\u043B\u044C");
+		ruRU.put("item.arkenstone.name", "\u0410\u0440\u043A\u0435\u043D\u0441\u0442\u043E\u043D");
+		ruRU.put("item.silmaril.name", "\u0421\u0438\u043B\u044C\u043C\u0430\u0440\u0438\u043B\u044C");
 		ruRU.put("item.weapon_acharn.name", "\u0410\u043A\u0445\u0430\u0440\u043D");
 		ruRU.put("item.weapon_aeglos.name", "\u0410\u044D\u0433\u043B\u043E\u0441");
 		ruRU.put("item.weapon_alatar.name", "\u041F\u043E\u0441\u043E\u0445 \u0410\u043B\u0430\u0442\u0430\u0440\u0430 \u0421\u0438\u043D\u0435\u0433\u043E");
@@ -125,8 +125,8 @@ public class LILang {
 	}
 
 	static {
-		enUS.put("item.arkenstone.name", "\u00A7bArkenstone");
-		enUS.put("item.silmaril.name", "\u00A7dSilmaril");
+		enUS.put("item.arkenstone.name", "Arkenstone");
+		enUS.put("item.silmaril.name", "Silmaril");
 		enUS.put("item.weapon_acharn.name", "Acharn");
 		enUS.put("item.weapon_aeglos.name", "Aeglos");
 		enUS.put("item.weapon_alatar.name", "Staff of Alatar the Blue");

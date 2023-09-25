@@ -7,6 +7,7 @@ import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.src.EnumRarity;
 import net.minecraft.src.Item;
 
 @Mod(modid = "legendarium", useMetadata = true)
@@ -133,8 +134,8 @@ public class LI {
 		weaponThror = new LIItemSword(LIConfig.idWeaponThror - 256);
 		weaponUrfael = new LIItemSword(LIConfig.idWeaponUrfael - 256);
 		weaponWitchking = new LIItemSword(LIConfig.idWeaponWitchking - 256);
-		arkenstone = new LIItemEmpty(LIConfig.idArkenstone - 256);
-		silmaril = new LIItemEmpty(LIConfig.idSilmaril - 256);
+		arkenstone = new LIItemEmpty(LIConfig.idArkenstone - 256, EnumRarity.rare);
+		silmaril = new LIItemEmpty(LIConfig.idSilmaril - 256, EnumRarity.epic);
 
 		int id = 0;
 		arkenstone.setIconIndex(id++);
