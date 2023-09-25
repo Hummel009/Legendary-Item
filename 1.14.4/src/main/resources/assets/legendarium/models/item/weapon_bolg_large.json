@@ -1,6 +1,6 @@
 {
-  "parent": "legendarium:item/handheld_large_3x",
-  "textures": {
-    "layer0": "legendarium:item/weapon_bolg_large"
-  }
+	"parent": "legendarium:item/handheld_large_3x",
+	"textures": {
+		"layer0": "legendarium:item/weapon_bolg_large"
+	}
 }
