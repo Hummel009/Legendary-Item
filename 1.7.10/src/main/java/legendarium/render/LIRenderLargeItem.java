@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.resources.IResource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -16,9 +17,12 @@ import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
+public class LIRenderLargeItem implements IItemRenderer {
 	public static ResourceLocation enchantmentTexture = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 	public static Map<String, Float> sizeFolders = new HashMap<>();
 
@@ -45,6 +49,21 @@ public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
 		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
 		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
+	}
+
+	public static LIRenderLargeItem getRendererIfLarge(Item item) {
+		for (Map.Entry<String, Float> folder : sizeFolders.entrySet()) {
+			float iconScale = folder.getValue();
+			try {
+				ResourceLocation resLoc = getLargeTexturePath(item, folder.getKey());
+				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
+				if (res != null) {
+					return new LIRenderLargeItem(item, folder.getKey(), iconScale);
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		return null;
 	}
 
 	public static void renderEnchantmentEffect() {
@@ -95,7 +114,6 @@ public class LIRenderLargeItem implements IItemRenderer, LIRenderable {
 		return type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
 	}
 
-	@Override
 	public void registerIcons(IIconRegister register) {
 		largeIcon = registerLargeIcon(register, null);
 		for (LIRenderLargeItem.ExtraLargeIconToken token : extraTokens) {
