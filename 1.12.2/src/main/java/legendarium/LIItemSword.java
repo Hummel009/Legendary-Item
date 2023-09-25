@@ -17,7 +17,6 @@ import java.util.List;
 public class LIItemSword extends ItemSword {
 	public LIItemSword() {
 		super(Item.ToolMaterial.DIAMOND);
-		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 	}
 
 	public static class LargeItemModel implements IBakedModel {

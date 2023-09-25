@@ -1,84 +1,207 @@
 package legendarium;
 
+import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import legendarium.content.LIRegistry;
-import legendarium.lotr.LIRegistryLOTR;
+import legendarium.content.LICreativeTabs;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
 import legendarium.proxy.LICommonProxy;
 import net.minecraft.item.Item;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Mod(modid = "legendarium")
 public class LI {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "213313062023";
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "182625092023";
+
+	public static final Collection<Item> CONTENT = new ArrayList<>();
 
 	@SidedProxy(serverSide = "legendarium.proxy.LICommonProxy", clientSide = "legendarium.proxy.LIClientProxy")
 	public static LICommonProxy proxy;
 
-	public static int hasLOTR = -1;
-	public static LIDependencyManager registry;
+	public static Item weaponAcharn;
+	public static Item weaponAngrist;
+	public static Item weaponAnguirel;
+	public static Item weaponBalin;
+	public static Item weaponBarazanthual;
+	public static Item weaponBolg;
+	public static Item weaponBoromir;
+	public static Item weaponDagmor;
+	public static Item weaponDain;
+	public static Item weaponDenethor;
+	public static Item weaponDori;
+	public static Item weaponDramborleg;
+	public static Item weaponDurin;
+	public static Item weaponDwalin;
+	public static Item weaponEothain;
+	public static Item weaponEowyn;
+	public static Item weaponFaramir;
+	public static Item weaponGamling;
+	public static Item weaponGimli;
+	public static Item weaponGirion;
+	public static Item weaponGorbag;
+	public static Item weaponGothmog;
+	public static Item weaponGrima;
+	public static Item weaponGurthang;
+	public static Item weaponGuthwine;
+	public static Item weaponHerugrim;
+	public static Item weaponKhamul;
+	public static Item weaponKili;
+	public static Item weaponLegolas;
+	public static Item weaponMouthofsauron;
+	public static Item weaponNarcil;
+	public static Item weaponNazgul;
+	public static Item weaponShagrat;
+	public static Item weaponThorin;
+	public static Item weaponThrain;
+	public static Item weaponThror;
+	public static Item weaponUrfael;
 
-	public static boolean hasLOTR() {
-		if (hasLOTR == -1) {
-			try {
-				Class.forName("lotr.common.LOTRMod");
-				hasLOTR = 1;
-			} catch (ClassNotFoundException e) {
-				hasLOTR = 0;
-			}
-		}
-		return hasLOTR == 1;
-	}
+	public static Item weaponAzog;
+	public static Item weaponAeglos;
+	public static Item weaponAlatar;
+	public static Item weaponAranruth;
+	public static Item weaponCeleborn;
+	public static Item weaponGoblinking;
+	public static Item weaponHadhafang;
+	public static Item weaponMelkor;
+	public static Item weaponOrcrist;
+	public static Item weaponPallando;
+	public static Item weaponRadagast;
+	public static Item weaponSaruman;
+	public static Item weaponThorondun;
+	public static Item weaponThranduil;
+	public static Item weaponWitchking;
 
-	@Mod.EventHandler
-	public void onMissingMappings(FMLMissingMappingsEvent event) {
-		Map<String, Item> renamed = new HashMap<>();
-		renamed.put("armor_khommurat_helmet", LIRegistry.armorHoarmurathHelmet);
-		renamed.put("armor_khommurat_chestplate", LIRegistry.armorHoarmurathChestplate);
-		renamed.put("armor_khommurat_legs", LIRegistry.armorHoarmurathLeggings);
-		renamed.put("armor_khommurat_boots", LIRegistry.armorHoarmurathBoots);
-		renamed.put("armor_anarion_legs", LIRegistry.armorAnarionLeggings);
-		renamed.put("armor_arpharazon_legs", LIRegistry.armorArpharazonLeggings);
-		renamed.put("armor_arvedui_legs", LIRegistry.armorArveduiLeggings);
-		renamed.put("armor_boromir_legs", LIRegistry.armorBoromirLeggings);
-		renamed.put("armor_elendil_legs", LIRegistry.armorElendilLeggings);
-		renamed.put("armor_elros_legs", LIRegistry.armorElrosLeggings);
-		renamed.put("armor_feanor_legs", LIRegistry.armorFeanorLeggings);
-		renamed.put("armor_gilgalad_legs", LIRegistry.armorGilgaladLeggings);
-		renamed.put("armor_gimli_legs", LIRegistry.armorGimliLeggings);
-		renamed.put("armor_isildur_legs", LIRegistry.armorIsildurLeggings);
-		renamed.put("armor_jiindur_legs", LIRegistry.armorJiindurLeggings);
-		renamed.put("armor_khamul_legs", LIRegistry.armorKhamulLeggings);
-		renamed.put("armor_morgomir_legs", LIRegistry.armorMorgomirLeggings);
-		renamed.put("armor_theoden_legs", LIRegistry.armorTheodenLeggings);
-		renamed.put("armor_turgon_legs", LIRegistry.armorTurgonLeggings);
-		for (FMLMissingMappingsEvent.MissingMapping mapping : event.get()) {
-			if (mapping.type == GameRegistry.Type.ITEM) {
-				for (Map.Entry<String, Item> entry : renamed.entrySet()) {
-					if (mapping.name.contains(entry.getKey())) {
-						mapping.remap(entry.getValue());
-						break;
-					}
-				}
-			}
-		}
-	}
+	public static Item arkenstone;
+	public static Item silmaril;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		if (hasLOTR()) {
-			registry = new LIRegistryLOTR();
-		} else {
-			registry = new LIRegistry();
-		}
-		registry.registerCommon();
-		registry.registerSpecial();
+		weaponAcharn = new LIItemSword();
+		weaponAeglos = new LIItemSword();
+		weaponAlatar = new LIItemSword();
+		weaponAngrist = new LIItemSword();
+		weaponAnguirel = new LIItemSword();
+		weaponAranruth = new LIItemSword();
+		weaponAzog = new LIItemSword();
+		weaponBalin = new LIItemSword();
+		weaponBarazanthual = new LIItemSword();
+		weaponBolg = new LIItemSword();
+		weaponBoromir = new LIItemSword();
+		weaponCeleborn = new LIItemSword();
+		weaponDagmor = new LIItemSword();
+		weaponDain = new LIItemSword();
+		weaponDenethor = new LIItemSword();
+		weaponDori = new LIItemSword();
+		weaponDramborleg = new LIItemSword();
+		weaponDurin = new LIItemSword();
+		weaponDwalin = new LIItemSword();
+		weaponEothain = new LIItemSword();
+		weaponEowyn = new LIItemSword();
+		weaponFaramir = new LIItemSword();
+		weaponGamling = new LIItemSword();
+		weaponGimli = new LIItemSword();
+		weaponGirion = new LIItemSword();
+		weaponGoblinking = new LIItemSword();
+		weaponGorbag = new LIItemSword();
+		weaponGothmog = new LIItemSword();
+		weaponGrima = new LIItemSword();
+		weaponGurthang = new LIItemSword();
+		weaponGuthwine = new LIItemSword();
+		weaponHadhafang = new LIItemSword();
+		weaponHerugrim = new LIItemSword();
+		weaponKhamul = new LIItemSword();
+		weaponKili = new LIItemSword();
+		weaponLegolas = new LIItemSword();
+		weaponMelkor = new LIItemSword();
+		weaponMouthofsauron = new LIItemSword();
+		weaponNarcil = new LIItemSword();
+		weaponNazgul = new LIItemSword();
+		weaponOrcrist = new LIItemSword();
+		weaponPallando = new LIItemSword();
+		weaponRadagast = new LIItemSword();
+		weaponSaruman = new LIItemSword();
+		weaponShagrat = new LIItemSword();
+		weaponThorin = new LIItemSword();
+		weaponThorondun = new LIItemSword();
+		weaponThrain = new LIItemSword();
+		weaponThranduil = new LIItemSword();
+		weaponThror = new LIItemSword();
+		weaponUrfael = new LIItemSword();
+		weaponWitchking = new LIItemSword();
+		arkenstone = new LIItemEmpty();
+		silmaril = new LIItemEmpty();
+
+		register(weaponAcharn, "weaponAcharn");
+		register(weaponAeglos, "weaponAeglos");
+		register(weaponAlatar, "weaponAlatar");
+		register(weaponAngrist, "weaponAngrist");
+		register(weaponAnguirel, "weaponAnguirel");
+		register(weaponAranruth, "weaponAranruth");
+		register(weaponAzog, "weaponAzog");
+		register(weaponBalin, "weaponBalin");
+		register(weaponBarazanthual, "weaponBarazanthual");
+		register(weaponBolg, "weaponBolg");
+		register(weaponBoromir, "weaponBoromir");
+		register(weaponCeleborn, "weaponCeleborn");
+		register(weaponDagmor, "weaponDagmor");
+		register(weaponDain, "weaponDain");
+		register(weaponDenethor, "weaponDenethor");
+		register(weaponDori, "weaponDori");
+		register(weaponDramborleg, "weaponDramborleg");
+		register(weaponDurin, "weaponDurin");
+		register(weaponDwalin, "weaponDwalin");
+		register(weaponEothain, "weaponEothain");
+		register(weaponEowyn, "weaponEowyn");
+		register(weaponFaramir, "weaponFaramir");
+		register(weaponGamling, "weaponGamling");
+		register(weaponGimli, "weaponGimli");
+		register(weaponGirion, "weaponGirion");
+		register(weaponGoblinking, "weaponGoblinking");
+		register(weaponGorbag, "weaponGorbag");
+		register(weaponGothmog, "weaponGothmog");
+		register(weaponGrima, "weaponGrima");
+		register(weaponGurthang, "weaponGurthang");
+		register(weaponGuthwine, "weaponGuthwine");
+		register(weaponHadhafang, "weaponHadhafang");
+		register(weaponHerugrim, "weaponHerugrim");
+		register(weaponKhamul, "weaponKhamul");
+		register(weaponKili, "weaponKili");
+		register(weaponLegolas, "weaponLegolas");
+		register(weaponMelkor, "weaponMelkor");
+		register(weaponMouthofsauron, "weaponMouthofsauron");
+		register(weaponNarcil, "weaponNarcil");
+		register(weaponNazgul, "weaponNazgul");
+		register(weaponOrcrist, "weaponOrcrist");
+		register(weaponPallando, "weaponPallando");
+		register(weaponRadagast, "weaponRadagast");
+		register(weaponSaruman, "weaponSaruman");
+		register(weaponShagrat, "weaponShagrat");
+		register(weaponThorin, "weaponThorin");
+		register(weaponThorondun, "weaponThorondun");
+		register(weaponThrain, "weaponThrain");
+		register(weaponThranduil, "weaponThranduil");
+		register(weaponThror, "weaponThror");
+		register(weaponUrfael, "weaponUrfael");
+		register(weaponWitchking, "weaponWitchking");
+
+		register(arkenstone, "arkenstone");
+		register(silmaril, "silmaril");
 
 		proxy.preInit(event);
+	}
+
+	public void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setUnlocalizedName(itemName);
+		item.setTextureName("legendarium:" + itemName);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		GameRegistry.registerItem(item, itemName);
+		CONTENT.add(item);
 	}
 }

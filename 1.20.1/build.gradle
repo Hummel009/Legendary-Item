@@ -35,7 +35,7 @@ minecraft {
 }
 
 dependencies {
-	minecraft 'net.minecraftforge:forge:1.20.1-47.1.43'
+	minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
 }
 
 jar.finalizedBy('reobfJar')
