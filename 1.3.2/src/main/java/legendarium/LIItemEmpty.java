@@ -11,11 +11,11 @@ public class LIItemEmpty extends Item {
 
 	public LIItemEmpty(int id, EnumRarity rarity) {
 		super(id);
-		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		setMaxStackSize(1);
 		this.rarity = rarity;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack var1) {
 		return rarity;

@@ -80,15 +80,6 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public void register(Item item, String name) {
-		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		item.setUnlocalizedName(itemName);
-		item.setTextureName("legendarium:" + itemName);
-		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
-		GameRegistry.registerItem(item, itemName);
-		CONTENT.add(item);
-	}
-
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		weaponAcharn = new LIItemSword();
@@ -203,5 +194,14 @@ public class LI {
 		register(silmaril, "silmaril");
 
 		proxy.preInit(event);
+	}
+
+	public void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setUnlocalizedName(itemName);
+		item.setTextureName("legendarium:" + itemName);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		GameRegistry.registerItem(item, itemName);
+		CONTENT.add(item);
 	}
 }

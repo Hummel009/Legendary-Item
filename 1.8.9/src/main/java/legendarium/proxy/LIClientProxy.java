@@ -47,7 +47,6 @@ public class LIClientProxy extends LICommonProxy {
 		}
 	}
 
-
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
@@ -74,13 +73,28 @@ public class LIClientProxy extends LICommonProxy {
 		}
 
 		@Override
-		public TextureAtlasSprite getParticleTexture() {
-			return smallModel.getParticleTexture();
+		public List<BakedQuad> getFaceQuads(EnumFacing facing) {
+			return smallModel.getFaceQuads(facing);
+		}
+
+		@Override
+		public VertexFormat getFormat() {
+			return ((IFlexibleBakedModel) smallModel).getFormat();
+		}
+
+		@Override
+		public List<BakedQuad> getGeneralQuads() {
+			return smallModel.getGeneralQuads();
 		}
 
 		@Override
 		public ItemCameraTransforms getItemCameraTransforms() {
 			return smallModel.getItemCameraTransforms();
+		}
+
+		@Override
+		public TextureAtlasSprite getParticleTexture() {
+			return smallModel.getParticleTexture();
 		}
 
 		@Override
@@ -90,16 +104,6 @@ public class LIClientProxy extends LICommonProxy {
 				bakedModel = largeModel;
 			}
 			return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
-		}
-
-		@Override
-		public List<BakedQuad> getFaceQuads(EnumFacing facing) {
-			return smallModel.getFaceQuads(facing);
-		}
-
-		@Override
-		public List<BakedQuad> getGeneralQuads() {
-			return smallModel.getGeneralQuads();
 		}
 
 		@Override
@@ -115,11 +119,6 @@ public class LIClientProxy extends LICommonProxy {
 		@Override
 		public boolean isGui3d() {
 			return smallModel.isGui3d();
-		}
-
-		@Override
-		public VertexFormat getFormat() {
-			return ((IFlexibleBakedModel) smallModel).getFormat();
 		}
 	}
 }

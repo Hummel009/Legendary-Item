@@ -1,6 +1,7 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import legendarium.content.LICreativeTabs;
 import legendarium.content.LIItemEmpty;
 import legendarium.content.LIItemSword;
 import legendarium.proxy.LICommonProxy;
@@ -85,6 +86,7 @@ public class LI {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setUnlocalizedName(itemName);
 		item.setRegistryName(itemName);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		GameRegistry.registerItem(item, itemName);
 		CONTENT.add(item);
 	}

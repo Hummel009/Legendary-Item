@@ -18,7 +18,6 @@ import java.util.List;
 public class LIItemSword extends ItemSword {
 	public LIItemSword() {
 		super(Item.ToolMaterial.DIAMOND);
-		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 	}
 
 	public static class LargeItemModel implements IPerspectiveAwareModel {
@@ -31,6 +30,11 @@ public class LIItemSword extends ItemSword {
 		}
 
 		@Override
+		public ItemCameraTransforms getItemCameraTransforms() {
+			return smallModel.getItemCameraTransforms();
+		}
+
+		@Override
 		public ItemOverrideList getOverrides() {
 			return smallModel.getOverrides();
 		}
@@ -38,11 +42,6 @@ public class LIItemSword extends ItemSword {
 		@Override
 		public TextureAtlasSprite getParticleTexture() {
 			return smallModel.getParticleTexture();
-		}
-
-		@Override
-		public ItemCameraTransforms getItemCameraTransforms() {
-			return smallModel.getItemCameraTransforms();
 		}
 
 		@Override

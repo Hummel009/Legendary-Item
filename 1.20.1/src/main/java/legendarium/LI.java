@@ -53,6 +53,11 @@ public class LI {
 	public static final RegistryObject<Item> WEAPON_EOTHAIN = ITEMS.register("weapon_eothain", LIItemSword::new);
 	public static final RegistryObject<Item> WEAPON_EOWYN = ITEMS.register("weapon_eowyn", LIItemSword::new);
 	public static final RegistryObject<Item> WEAPON_FARAMIR = ITEMS.register("weapon_faramir", LIItemSword::new);
+	public static final RegistryObject<CreativeModeTab> TAB_ARTIFACTS = CREATIVE_TABS.register("legendariumtab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.artifacts")).icon(() -> new ItemStack(WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
+		for (Item item : CONTENT) {
+			populator.accept(item);
+		}
+	}).build());
 	public static final RegistryObject<Item> WEAPON_GAMLING = ITEMS.register("weapon_gamling", LIItemSword::new);
 	public static final RegistryObject<Item> WEAPON_GIMLI = ITEMS.register("weapon_gimli", LIItemSword::new);
 	public static final RegistryObject<Item> WEAPON_GIRION = ITEMS.register("weapon_girion", LIItemSword::new);
@@ -83,15 +88,8 @@ public class LI {
 	public static final RegistryObject<Item> WEAPON_THROR = ITEMS.register("weapon_thror", LIItemSword::new);
 	public static final RegistryObject<Item> WEAPON_URFAEL = ITEMS.register("weapon_urfael", LIItemSword::new);
 	public static final RegistryObject<Item> WEAPON_WITCHKING = ITEMS.register("weapon_witchking", LIItemSword::new);
-
 	public static final RegistryObject<Item> ARKENSTONE = ITEMS.register("arkenstone", LIItemEmpty::new);
 	public static final RegistryObject<Item> SILMARIL = ITEMS.register("silmaril", LIItemEmpty::new);
-
-	public static final RegistryObject<CreativeModeTab> TAB_ARTIFACTS = CREATIVE_TABS.register("legendariumtab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.artifacts")).icon(() -> new ItemStack(WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
-		for (Item item : CONTENT) {
-			populator.accept(item);
-		}
-	}).build());
 
 	public LI() {
 		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();

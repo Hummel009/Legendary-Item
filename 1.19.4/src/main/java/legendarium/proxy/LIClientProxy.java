@@ -55,6 +55,7 @@ public class LIClientProxy extends LICommonProxy {
 	}
 
 	public record LargeItemModel(BakedModel smallModel, BakedModel largeModel) implements BakedModel {
+
 		@Override
 		public BakedModel applyTransform(ItemDisplayContext itemDisplayContext, PoseStack poseStack, boolean b) {
 			BakedModel bakedModel = smallModel;

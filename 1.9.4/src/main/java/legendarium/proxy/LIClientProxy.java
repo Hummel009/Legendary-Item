@@ -43,7 +43,6 @@ public class LIClientProxy extends LICommonProxy {
 		}
 	}
 
-
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
@@ -70,6 +69,11 @@ public class LIClientProxy extends LICommonProxy {
 		}
 
 		@Override
+		public ItemCameraTransforms getItemCameraTransforms() {
+			return smallModel.getItemCameraTransforms();
+		}
+
+		@Override
 		public ItemOverrideList getOverrides() {
 			return smallModel.getOverrides();
 		}
@@ -77,11 +81,6 @@ public class LIClientProxy extends LICommonProxy {
 		@Override
 		public TextureAtlasSprite getParticleTexture() {
 			return smallModel.getParticleTexture();
-		}
-
-		@Override
-		public ItemCameraTransforms getItemCameraTransforms() {
-			return smallModel.getItemCameraTransforms();
 		}
 
 		@Override
