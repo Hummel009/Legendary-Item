@@ -1,19 +1,18 @@
 package legendarium.model;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.block.model.ItemOverrideList;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.model.BakedQuad;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
-import org.apache.commons.lang3.tuple.Pair;
+import net.minecraft.util.Direction;
 
-import javax.vecmath.Matrix4f;
 import java.util.List;
+import java.util.Random;
 
-public class LILargeItemModel implements IPerspectiveAwareModel {
+public class LILargeItemModel implements IBakedModel {
 	public final IBakedModel smallModel;
 	public final IBakedModel largeModel;
 
@@ -23,8 +22,8 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 	}
 
 	@Override
-	public ItemCameraTransforms getItemCameraTransforms() {
-		return smallModel.getItemCameraTransforms();
+	public boolean func_230044_c_() {
+		return smallModel.func_230044_c_();
 	}
 
 	@Override
@@ -38,17 +37,17 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 	}
 
 	@Override
-	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long l) {
-		return smallModel.getQuads(blockState, facing, l);
+	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
+		return smallModel.getQuads(blockState, direction, random);
 	}
 
 	@Override
-	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
+	public IBakedModel handlePerspective(ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack) {
 		IBakedModel bakedModel = smallModel;
 		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
 			bakedModel = largeModel;
 		}
-		return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
+		return bakedModel.handlePerspective(transformType, matrixStack);
 	}
 
 	@Override

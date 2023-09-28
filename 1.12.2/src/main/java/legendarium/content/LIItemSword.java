@@ -7,5 +7,4 @@ public class LIItemSword extends ItemSword {
 	public LIItemSword() {
 		super(Item.ToolMaterial.DIAMOND);
 	}
-
 }
