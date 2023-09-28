@@ -75,9 +75,6 @@ public class LI {
 		item.setTextureFile("/assets/legendarium/textures/items.png");
 		item.setItemName(itemName);
 		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
-		LanguageRegistry.instance().addNameForObject(item, "ru_RU", LILang.ruRU.get("item." + itemName + ".name"));
-		LanguageRegistry.instance().addNameForObject(item, "en_US", LILang.enUS.get("item." + itemName + ".name"));
-		LanguageRegistry.instance().addNameForObject(item, "uk_UA", LILang.ukUA.get("item." + itemName + ".name"));
 	}
 
 	@Init
@@ -134,6 +131,7 @@ public class LI {
 		weaponThror = new LIItemSword(LIConfig.idWeaponThror - 256);
 		weaponUrfael = new LIItemSword(LIConfig.idWeaponUrfael - 256);
 		weaponWitchking = new LIItemSword(LIConfig.idWeaponWitchking - 256);
+
 		arkenstone = new LIItemEmpty(LIConfig.idArkenstone - 256, EnumRarity.rare);
 		silmaril = new LIItemEmpty(LIConfig.idSilmaril - 256, EnumRarity.epic);
 
@@ -248,6 +246,10 @@ public class LI {
 
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
+
+		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/en_US.lang", "en_US");
+		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/ru_RU.lang", "ru_RU");
+		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/uk_UA.lang", "uk_UA");
 	}
 
 	@PreInit
