@@ -1,7 +1,6 @@
 package legendarium.proxy;
 
 import legendarium.LI;
-import legendarium.content.LIItemSword;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.*;
@@ -17,7 +16,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
-import java.util.*;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LIClientProxy extends LICommonProxy {
 	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
@@ -25,21 +27,21 @@ public class LIClientProxy extends LICommonProxy {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onInit() {
-		Collection<Item> inapplicable = new HashSet<>();
-		inapplicable.add(LI.weaponAngrist);
-		inapplicable.add(LI.weaponLegolas);
-		inapplicable.add(LI.weaponGrima);
 		for (Item item : LI.CONTENT) {
 			ResourceLocation itemName = item.getRegistryName();
-			ModelResourceLocation smallModel = new ModelResourceLocation(itemName, "inventory");
-			ModelResourceLocation largeModel = new ModelResourceLocation(itemName + "_large", "inventory");
-			if (item instanceof LIItemSword && !inapplicable.contains(item)) {
-				COMPLIANCES.put(smallModel, largeModel);
-				ModelBakery.registerItemVariants(item, smallModel, largeModel);
-			} else {
-				ModelBakery.registerItemVariants(item, smallModel);
+			String resourceFileName = (itemName + "_large.json").replace("legendarium:", "");
+			try (InputStream imageStream = LI.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
+				ModelResourceLocation smallModel = new ModelResourceLocation(itemName, "inventory");
+				ModelResourceLocation largeModel = new ModelResourceLocation(itemName + "_large", "inventory");
+				if (imageStream != null) {
+					COMPLIANCES.put(smallModel, largeModel);
+					ModelBakery.registerItemVariants(item, smallModel, largeModel);
+				} else {
+					ModelBakery.registerItemVariants(item, smallModel);
+				}
+				Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, smallModel);
+			} catch (Exception e) {
 			}
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, smallModel);
 		}
 	}
 

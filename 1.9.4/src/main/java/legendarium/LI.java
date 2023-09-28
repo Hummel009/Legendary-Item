@@ -153,6 +153,7 @@ public class LI {
 		weaponThror = new LIItemSword();
 		weaponUrfael = new LIItemSword();
 		weaponWitchking = new LIItemSword();
+
 		arkenstone = new LIItemEmpty();
 		silmaril = new LIItemEmpty();
 
