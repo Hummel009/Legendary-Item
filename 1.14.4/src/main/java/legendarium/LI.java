@@ -1,6 +1,9 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.model.LILargeItemModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
@@ -137,6 +140,7 @@ public class LI {
 			weaponThror = new LIItemSword();
 			weaponUrfael = new LIItemSword();
 			weaponWitchking = new LIItemSword();
+
 			arkenstone = new LIItemEmpty();
 			silmaril = new LIItemEmpty();
 
@@ -207,7 +211,7 @@ public class LI {
 					ResourceLocation largeLocation = compliance.getValue();
 					IBakedModel largeModel = event.getModelRegistry().get(largeLocation);
 					if (largeModel != null) {
-						event.getModelRegistry().put(smallLocation, new LIItemSword.LargeItemModel(smallModel, largeModel));
+						event.getModelRegistry().put(smallLocation, new LILargeItemModel(smallModel, largeModel));
 					}
 				}
 			}

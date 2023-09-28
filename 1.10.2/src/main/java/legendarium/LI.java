@@ -1,6 +1,10 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import legendarium.content.LICreativeTabs;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.model.LILargeItemModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -214,7 +218,7 @@ public class LI {
 					ModelResourceLocation largeLocation = compliance.getValue();
 					IBakedModel largeModel = event.getModelRegistry().getObject(largeLocation);
 					if (largeModel != null) {
-						event.getModelRegistry().putObject(smallLocation, new LIItemSword.LargeItemModel(smallModel, largeModel));
+						event.getModelRegistry().putObject(smallLocation, new LILargeItemModel(smallModel, largeModel));
 					}
 				}
 			}

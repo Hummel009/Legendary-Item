@@ -1,6 +1,10 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
+import legendarium.content.LICreativeTabs;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.model.LILargeItemModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -17,7 +21,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.*;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Mod(modid = "legendarium")
 public class LI {
@@ -85,7 +93,6 @@ public class LI {
 	@ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
 	public static class RegistryEvents {
-
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			weaponAcharn = new LIItemSword();
@@ -140,6 +147,7 @@ public class LI {
 			weaponThror = new LIItemSword();
 			weaponUrfael = new LIItemSword();
 			weaponWitchking = new LIItemSword();
+
 			arkenstone = new LIItemEmpty();
 			silmaril = new LIItemEmpty();
 
@@ -210,7 +218,7 @@ public class LI {
 					ModelResourceLocation largeLocation = compliance.getValue();
 					IBakedModel largeModel = event.getModelRegistry().getObject(largeLocation);
 					if (largeModel != null) {
-						event.getModelRegistry().putObject(smallLocation, new LIItemSword.LargeItemModel(smallModel, largeModel));
+						event.getModelRegistry().putObject(smallLocation, new LILargeItemModel(smallModel, largeModel));
 					}
 				}
 			}
@@ -219,22 +227,21 @@ public class LI {
 		@SubscribeEvent
 		@SideOnly(Side.CLIENT)
 		public static void onModelRegistry(ModelRegistryEvent event) {
-			Collection<Item> inapplicable = new HashSet<>();
-			inapplicable.add(weaponAngrist);
-			inapplicable.add(weaponAcharn);
-			inapplicable.add(weaponLegolas);
-			inapplicable.add(weaponGrima);
 			for (Item item : CONTENT) {
 				ResourceLocation itemName = item.getRegistryName();
-				ModelResourceLocation smallModel = new ModelResourceLocation(itemName, "inventory");
-				ModelResourceLocation largeModel = new ModelResourceLocation(itemName + "_large", "inventory");
-				if (item instanceof LIItemSword && !inapplicable.contains(item)) {
-					COMPLIANCES.put(smallModel, largeModel);
-					ModelBakery.registerItemVariants(item, smallModel, largeModel);
-				} else {
-					ModelBakery.registerItemVariants(item, smallModel);
+				String resourceFileName = (itemName + "_large.json").replace("legendarium:", "");
+				try (InputStream imageStream = LI.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
+					ModelResourceLocation smallModel = new ModelResourceLocation(itemName, "inventory");
+					ModelResourceLocation largeModel = new ModelResourceLocation(itemName + "_large", "inventory");
+					if (imageStream != null) {
+						COMPLIANCES.put(smallModel, largeModel);
+						ModelBakery.registerItemVariants(item, smallModel, largeModel);
+					} else {
+						ModelBakery.registerItemVariants(item, smallModel);
+					}
+					ModelLoader.setCustomModelResourceLocation(item, 0, smallModel);
+				} catch (Exception e) {
 				}
-				ModelLoader.setCustomModelResourceLocation(item, 0, smallModel);
 			}
 		}
 
