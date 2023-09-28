@@ -24,12 +24,17 @@ public class LI {
 	public static LICommonProxy proxy;
 
 	public static Item weaponAcharn;
+	public static Item weaponAeglos;
+	public static Item weaponAlatar;
 	public static Item weaponAngrist;
 	public static Item weaponAnguirel;
+	public static Item weaponAranruth;
+	public static Item weaponAzog;
 	public static Item weaponBalin;
 	public static Item weaponBarazanthual;
 	public static Item weaponBolg;
 	public static Item weaponBoromir;
+	public static Item weaponCeleborn;
 	public static Item weaponDagmor;
 	public static Item weaponDain;
 	public static Item weaponDenethor;
@@ -43,42 +48,45 @@ public class LI {
 	public static Item weaponGamling;
 	public static Item weaponGimli;
 	public static Item weaponGirion;
+	public static Item weaponGoblinking;
 	public static Item weaponGorbag;
 	public static Item weaponGothmog;
 	public static Item weaponGrima;
 	public static Item weaponGurthang;
 	public static Item weaponGuthwine;
+	public static Item weaponHadhafang;
 	public static Item weaponHerugrim;
 	public static Item weaponKhamul;
 	public static Item weaponKili;
 	public static Item weaponLegolas;
+	public static Item weaponMelkor;
 	public static Item weaponMouthofsauron;
 	public static Item weaponNarcil;
 	public static Item weaponNazgul;
-	public static Item weaponShagrat;
-	public static Item weaponThorin;
-	public static Item weaponThrain;
-	public static Item weaponThror;
-	public static Item weaponUrfael;
-
-	public static Item weaponAzog;
-	public static Item weaponAeglos;
-	public static Item weaponAlatar;
-	public static Item weaponAranruth;
-	public static Item weaponCeleborn;
-	public static Item weaponGoblinking;
-	public static Item weaponHadhafang;
-	public static Item weaponMelkor;
 	public static Item weaponOrcrist;
 	public static Item weaponPallando;
 	public static Item weaponRadagast;
 	public static Item weaponSaruman;
+	public static Item weaponShagrat;
+	public static Item weaponThorin;
 	public static Item weaponThorondun;
+	public static Item weaponThrain;
 	public static Item weaponThranduil;
+	public static Item weaponThror;
+	public static Item weaponUrfael;
 	public static Item weaponWitchking;
 
 	public static Item arkenstone;
 	public static Item silmaril;
+
+	public static void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setUnlocalizedName(itemName);
+		item.setTextureName("legendarium:" + itemName);
+		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
+		GameRegistry.registerItem(item, itemName);
+		CONTENT.add(item);
+	}
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -134,6 +142,7 @@ public class LI {
 		weaponThror = new LIItemSword();
 		weaponUrfael = new LIItemSword();
 		weaponWitchking = new LIItemSword();
+
 		arkenstone = new LIItemEmpty();
 		silmaril = new LIItemEmpty();
 
@@ -194,14 +203,5 @@ public class LI {
 		register(silmaril, "silmaril");
 
 		proxy.preInit(event);
-	}
-
-	public void register(Item item, String name) {
-		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		item.setUnlocalizedName(itemName);
-		item.setTextureName("legendarium:" + itemName);
-		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
-		GameRegistry.registerItem(item, itemName);
-		CONTENT.add(item);
 	}
 }

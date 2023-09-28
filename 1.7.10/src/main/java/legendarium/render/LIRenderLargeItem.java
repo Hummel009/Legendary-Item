@@ -13,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
@@ -25,6 +24,7 @@ import java.util.Map;
 public class LIRenderLargeItem implements IItemRenderer {
 	public static ResourceLocation enchantmentTexture = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 	public static Map<String, Float> sizeFolders = new HashMap<>();
+	public static Map<Item, IIcon> largeIconsMap = new HashMap<>();
 
 	static {
 		sizeFolders.put("large-2x", 2.0f);
@@ -47,7 +47,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 		String itemIconString = item.getUnlocalizedName().substring("item.".length());
 		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
-		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
+		String modID = isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
 		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
 	}
 
@@ -64,6 +64,10 @@ public class LIRenderLargeItem implements IItemRenderer {
 			}
 		}
 		return null;
+	}
+
+	public static boolean isNullOrEmpty(String str) {
+		return str == null || str.isEmpty();
 	}
 
 	public static void renderEnchantmentEffect() {
@@ -125,25 +129,30 @@ public class LIRenderLargeItem implements IItemRenderer {
 		String itemName = theItem.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
-		String modID = (StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ":";
+		String modID = (isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ":";
 		StringBuilder path = new StringBuilder().append(modID).append(folderName).append("/").append(itemName);
-		if (!StringUtils.isNullOrEmpty(extra)) {
+		if (!isNullOrEmpty(extra)) {
 			path.append("_").append(extra);
 		}
-		return register.registerIcon(path.toString());
+		IIcon icon = register.registerIcon(path.toString());
+		largeIconsMap.put(theItem, icon);
+		return icon;
 	}
 
 	@Override
 	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack itemstack, Object... data) {
 		GL11.glPushMatrix();
-		renderLargeItem();
+		renderLargeItem(itemstack);
 		if (itemstack.hasEffect(0)) {
 			renderEnchantmentEffect();
 		}
 		GL11.glPopMatrix();
 	}
 
-	public void renderLargeItem() {
+	public void renderLargeItem(ItemStack itemstack) {
+		if (largeIcon == null) {
+			largeIcon = largeIconsMap.get(itemstack.getItem());
+		}
 		renderLargeItem(largeIcon);
 	}
 

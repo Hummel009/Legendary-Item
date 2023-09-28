@@ -36,8 +36,6 @@ public class LIRenderManager implements IResourceManagerReloadListener {
 			LIRenderLargeItem largeItemRenderer = LIRenderLargeItem.getRendererIfLarge(item);
 			if (largeItemRenderer != null) {
 				MinecraftForgeClient.registerItemRenderer(item, largeItemRenderer);
-			}
-			if (largeItemRenderer != null) {
 				largeItemRenderers.add(largeItemRenderer);
 			}
 		}

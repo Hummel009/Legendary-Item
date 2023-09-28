@@ -16,6 +16,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +34,8 @@ public class LIRenderLargeItem implements IItemRenderer {
 	private Item theItem;
 	private String folderName;
 	private float largeIconScale;
+	private Icon largeIcon;
+	private Collection<ExtraLargeIconToken> extraTokens = new ArrayList<ExtraLargeIconToken>();
 
 	public LIRenderLargeItem(Item item, String dir, float f) {
 		theItem = item;
@@ -103,16 +107,25 @@ public class LIRenderLargeItem implements IItemRenderer {
 		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
 	}
 
+	public LIRenderLargeItem.ExtraLargeIconToken extraIcon(String name) {
+		LIRenderLargeItem.ExtraLargeIconToken token = new LIRenderLargeItem.ExtraLargeIconToken(name);
+		extraTokens.add(token);
+		return token;
+	}
+
 	@Override
 	public boolean handleRenderType(ItemStack itemstack, IItemRenderer.ItemRenderType type) {
 		return type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
 	}
 
 	public void registerIcons(IconRegister register) {
-		registerLargeIcon(register, null);
+		largeIcon = registerLargeIcon(register, null);
+		for (LIRenderLargeItem.ExtraLargeIconToken token : extraTokens) {
+			token.icon = registerLargeIcon(register, token.name);
+		}
 	}
 
-	public void registerLargeIcon(IconRegister register, String extra) {
+	public Icon registerLargeIcon(IconRegister register, String extra) {
 		String itemName = theItem.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
@@ -121,18 +134,30 @@ public class LIRenderLargeItem implements IItemRenderer {
 		if (!isNullOrEmpty(extra)) {
 			path.append("_").append(extra);
 		}
-		Icon sus = register.registerIcon(path.toString());
-		largeIconsMap.put(theItem, sus);
+		Icon icon = register.registerIcon(path.toString());
+		largeIconsMap.put(theItem, icon);
+		return icon;
 	}
 
 	@Override
 	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack itemstack, Object... data) {
 		GL11.glPushMatrix();
-		renderLargeItem(largeIconsMap.get(itemstack.getItem()));
+		renderLargeItem(itemstack);
 		if (itemstack.hasEffect(0)) {
 			renderEnchantmentEffect();
 		}
 		GL11.glPopMatrix();
+	}
+
+	public void renderLargeItem(ItemStack itemstack) {
+		if (largeIcon == null) {
+			largeIcon = largeIconsMap.get(itemstack.getItem());
+		}
+		renderLargeItem(largeIcon);
+	}
+
+	public void renderLargeItem(ExtraLargeIconToken token) {
+		renderLargeItem(token.icon);
 	}
 
 	public void renderLargeItem(Icon icon) {
@@ -146,5 +171,14 @@ public class LIRenderLargeItem implements IItemRenderer {
 	@Override
 	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack itemstack, IItemRenderer.ItemRendererHelper helper) {
 		return false;
+	}
+
+	public static class ExtraLargeIconToken {
+		public String name;
+		public Icon icon;
+
+		public ExtraLargeIconToken(String s) {
+			name = s;
+		}
 	}
 }

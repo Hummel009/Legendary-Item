@@ -1,5 +1,7 @@
 package legendarium.render;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import legendarium.LI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -36,14 +38,13 @@ public class LIRenderManager implements ResourceManagerReloadListener {
 			LIRenderLargeItem largeItemRenderer = LIRenderLargeItem.getRendererIfLarge(item);
 			if (largeItemRenderer != null) {
 				MinecraftForgeClient.registerItemRenderer(item.itemID, largeItemRenderer);
-			}
-			if (largeItemRenderer != null) {
 				largeItemRenderers.add(largeItemRenderer);
 			}
 		}
 	}
 
 	@ForgeSubscribe
+	@SideOnly(Side.CLIENT)
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;
 		if (map.getTextureType() == 1) {

@@ -144,6 +144,7 @@ public class LI {
 		weaponThror = new LIItemSword(LIConfig.idWeaponThror - 256);
 		weaponUrfael = new LIItemSword(LIConfig.idWeaponUrfael - 256);
 		weaponWitchking = new LIItemSword(LIConfig.idWeaponWitchking - 256);
+
 		arkenstone = new LIItemEmpty(LIConfig.idArkenstone - 256);
 		silmaril = new LIItemEmpty(LIConfig.idSilmaril - 256);
 
