@@ -42,7 +42,3 @@ bin/
 ### Minecraft ###
 forge*changelog.txt
 run
-
-### LOTR ###
-**/libs/**/*.lang
-**/libs/**/*.txt
