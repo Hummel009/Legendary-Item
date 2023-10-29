@@ -251,6 +251,7 @@ public class LI {
 		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/en_US.lang", "en_US", false);
 		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/ru_RU.lang", "ru_RU", false);
 		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/uk_UA.lang", "uk_UA", false);
+		LanguageRegistry.instance().loadLocalization("/assets/legendarium/lang/zh_CN.lang", "zh_CN", false);
 	}
 
 	@PreInit

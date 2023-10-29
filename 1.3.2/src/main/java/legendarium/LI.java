@@ -250,6 +250,7 @@ public class LI {
 		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/en_US.lang", "en_US");
 		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/ru_RU.lang", "ru_RU");
 		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/uk_UA.lang", "uk_UA");
+		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/zh_CN.lang", "zh_CN");
 	}
 
 	@PreInit
