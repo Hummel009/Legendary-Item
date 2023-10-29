@@ -19,7 +19,7 @@ import java.util.Collection;
 
 @Mod(modid = "legendarium")
 public class LI {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "182625092023";
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
 
 	public static final Collection<Item> CONTENT = new ArrayList<>();
 

@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "182625092023";
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
 
 	public static Item weaponAcharn;
 	public static Item weaponAeglos;
