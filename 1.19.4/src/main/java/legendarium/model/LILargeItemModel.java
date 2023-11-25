@@ -16,7 +16,7 @@ public record LILargeItemModel(BakedModel smallModel, BakedModel largeModel) imp
 
 	@Override
 	public BakedModel applyTransform(ItemDisplayContext itemDisplayContext, PoseStack poseStack, boolean b) {
-		BakedModel bakedModel = smallModel;
+		var bakedModel = smallModel;
 		if (itemDisplayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || itemDisplayContext == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || itemDisplayContext == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || itemDisplayContext == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
 			bakedModel = largeModel;
 		}

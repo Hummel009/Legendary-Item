@@ -247,7 +247,7 @@ public class LI {
 
 		public static void register(Item item, String name) {
 			String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-			item.setUnlocalizedName(itemName);
+			item.setTranslationKey(itemName);
 			item.setRegistryName(itemName);
 			item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 			ForgeRegistries.ITEMS.register(item);

@@ -220,7 +220,7 @@ public class LI {
 		@SubscribeEvent
 		@OnlyIn(Dist.CLIENT)
 		public static void onModelRegistry(ModelRegistryEvent event) {
-			Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().getAllResourceLocations("models", loc -> loc.endsWith("_large.json"));
+			Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
 			for (ResourceLocation resourceLocation : resourceLocations) {
 				String itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
 				ResourceLocation smallModel = new ResourceLocation("legendarium", itemName);

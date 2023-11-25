@@ -22,18 +22,13 @@ public class LILargeItemModel implements IBakedModel {
 	}
 
 	@Override
-	public boolean func_230044_c_() {
-		return smallModel.func_230044_c_();
-	}
-
-	@Override
 	public ItemOverrideList getOverrides() {
 		return smallModel.getOverrides();
 	}
 
 	@Override
-	public TextureAtlasSprite getParticleTexture() {
-		return smallModel.getParticleTexture();
+	public TextureAtlasSprite getParticleIcon() {
+		return smallModel.getParticleIcon();
 	}
 
 	@Override
@@ -51,17 +46,22 @@ public class LILargeItemModel implements IBakedModel {
 	}
 
 	@Override
-	public boolean isAmbientOcclusion() {
-		return smallModel.isAmbientOcclusion();
-	}
-
-	@Override
-	public boolean isBuiltInRenderer() {
-		return smallModel.isBuiltInRenderer();
+	public boolean isCustomRenderer() {
+		return smallModel.isCustomRenderer();
 	}
 
 	@Override
 	public boolean isGui3d() {
 		return smallModel.isGui3d();
+	}
+
+	@Override
+	public boolean useAmbientOcclusion() {
+		return smallModel.useAmbientOcclusion();
+	}
+
+	@Override
+	public boolean usesBlockLight() {
+		return smallModel.usesBlockLight();
 	}
 }

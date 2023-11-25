@@ -11,7 +11,6 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ForgeModelBakery;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +20,7 @@ public class LIClientProxy extends LICommonProxy {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
-		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
+		for (var compliance : COMPLIANCES.entrySet()) {
 			var smallLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
 			var smallModel = event.getModelRegistry().get(smallLocation);
 			if (smallModel != null) {
@@ -37,8 +36,8 @@ public class LIClientProxy extends LICommonProxy {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
-		Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
-		for (ResourceLocation resourceLocation : resourceLocations) {
+		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
+		for (var resourceLocation : resourceLocations) {
 			var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
 			var smallModel = new ResourceLocation("legendarium", itemName);
 			var largeModel = new ResourceLocation("legendarium", "item/" + itemName + "_large");

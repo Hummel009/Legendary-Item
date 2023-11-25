@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class LICreativeTabs {
 	public static final CreativeTabs TAB_ARTIFACTS = new CreativeTabs("artifacts") {
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(LI.weaponFaramir);
 		}
 	};

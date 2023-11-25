@@ -16,7 +16,7 @@ public record LILargeItemModel(BakedModel smallModel, BakedModel largeModel) imp
 
 	@Override
 	public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack poseStack) {
-		BakedModel bakedModel = smallModel;
+		var bakedModel = smallModel;
 		if (transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
 			bakedModel = largeModel;
 		}

@@ -11,7 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class LIClientProxy extends LICommonProxy {
 	public static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
@@ -19,7 +18,7 @@ public class LIClientProxy extends LICommonProxy {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
-		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
+		for (var compliance : COMPLIANCES.entrySet()) {
 			var smallLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
 			var smallModel = event.getModels().get(smallLocation);
 			if (smallModel != null) {
@@ -35,8 +34,8 @@ public class LIClientProxy extends LICommonProxy {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
-		Set<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json")).keySet();
-		for (ResourceLocation resourceLocation : resourceLocations) {
+		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json")).keySet();
+		for (var resourceLocation : resourceLocations) {
 			var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
 			var smallModel = new ResourceLocation("legendarium", itemName);
 			var largeModel = new ResourceLocation("legendarium", "item/" + itemName + "_large");

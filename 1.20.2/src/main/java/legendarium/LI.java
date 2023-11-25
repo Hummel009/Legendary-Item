@@ -9,7 +9,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -87,13 +86,13 @@ public class LI {
 	public static final RegistryObject<Item> SILMARIL = ITEMS.register("silmaril", LIItemEmpty::new);
 
 	public static final RegistryObject<CreativeModeTab> TAB_ARTIFACTS = CREATIVE_TABS.register("legendariumtab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.artifacts")).icon(() -> new ItemStack(WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
-		for (Item item : CONTENT) {
+		for (var item : CONTENT) {
 			populator.accept(item);
 		}
 	}).build());
 
 	public LI() {
-		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
+		var fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
 		fmlBus.register(PROXY);
 		ITEMS.register(fmlBus);
 		CREATIVE_TABS.register(fmlBus);

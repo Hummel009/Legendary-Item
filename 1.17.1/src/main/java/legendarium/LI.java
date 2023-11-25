@@ -5,7 +5,6 @@ import legendarium.content.LIItemSword;
 import legendarium.proxy.LIClientProxy;
 import legendarium.proxy.LICommonProxy;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -78,7 +77,7 @@ public class LI {
 	public static final RegistryObject<Item> SILMARIL = ITEMS.register("silmaril", LIItemEmpty::new);
 
 	public LI() {
-		IEventBus fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
+		var fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
 		fmlBus.register(PROXY);
 		ITEMS.register(fmlBus);
 	}
