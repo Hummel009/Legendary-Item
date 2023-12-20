@@ -48,7 +48,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
 		String modID = isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
-		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
+		return new ResourceLocation(modID, "textures/items/" + folder + '/' + itemIconString + ".png");
 	}
 
 	public static LIRenderLargeItem getRendererIfLarge(Item item) {
@@ -129,10 +129,10 @@ public class LIRenderLargeItem implements IItemRenderer {
 		String itemName = theItem.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
-		String modID = (isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ":";
-		StringBuilder path = new StringBuilder().append(modID).append(folderName).append("/").append(itemName);
+		String modID = (isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ':';
+		StringBuilder path = new StringBuilder().append(modID).append(folderName).append('/').append(itemName);
 		if (!isNullOrEmpty(extra)) {
-			path.append("_").append(extra);
+			path.append('_').append(extra);
 		}
 		Icon icon = register.registerIcon(path.toString());
 		largeIconsMap.put(theItem, icon);

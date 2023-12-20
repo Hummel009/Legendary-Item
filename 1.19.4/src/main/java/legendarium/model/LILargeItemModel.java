@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public record LILargeItemModel(BakedModel smallModel, BakedModel largeModel) implements BakedModel {
 
 	@Override

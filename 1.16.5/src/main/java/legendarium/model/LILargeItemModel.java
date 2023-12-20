@@ -12,6 +12,7 @@ import net.minecraft.util.Direction;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class LILargeItemModel implements IBakedModel {
 	public final IBakedModel smallModel;
 	public final IBakedModel largeModel;
