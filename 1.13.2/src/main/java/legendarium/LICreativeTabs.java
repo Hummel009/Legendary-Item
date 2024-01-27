@@ -10,4 +10,7 @@ public class LICreativeTabs {
 			return new ItemStack(LI.weaponFaramir);
 		}
 	};
+
+	private LICreativeTabs() {
+	}
 }

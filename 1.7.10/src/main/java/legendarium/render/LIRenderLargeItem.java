@@ -22,28 +22,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LIRenderLargeItem implements IItemRenderer {
-	public static ResourceLocation enchantmentTexture = new ResourceLocation("textures/misc/enchanted_item_glint.png");
-	public static Map<String, Float> sizeFolders = new HashMap<>();
-	public static Map<Item, IIcon> largeIconsMap = new HashMap<>();
+	private static final ResourceLocation ENCHANTMENT_TEXTURE = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+	private static final Map<String, Float> SIZE_FOLDERS = new HashMap<>();
+	private static final Map<Item, IIcon> LARGE_ICONS_MAP = new HashMap<>();
 
 	static {
-		sizeFolders.put("large-2x", 2.0f);
-		sizeFolders.put("large-3x", 3.0f);
+		SIZE_FOLDERS.put("large-2x", 2.0f);
+		SIZE_FOLDERS.put("large-3x", 3.0f);
 	}
 
-	private Item theItem;
-	private String folderName;
-	private float largeIconScale;
+	private final Item theItem;
+	private final String folderName;
+	private final float largeIconScale;
 	private IIcon largeIcon;
-	private Collection<ExtraLargeIconToken> extraTokens = new ArrayList<>();
+	private final Collection<ExtraLargeIconToken> extraTokens = new ArrayList<>();
 
-	public LIRenderLargeItem(Item item, String dir, float f) {
+	private LIRenderLargeItem(Item item, String dir, float f) {
 		theItem = item;
 		folderName = dir;
 		largeIconScale = f;
 	}
 
-	public static ResourceLocation getLargeTexturePath(Item item, String folder) {
+	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
 		String itemIconString = item.getUnlocalizedName().substring("item.".length());
 		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
@@ -52,7 +52,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 	}
 
 	public static LIRenderLargeItem getRendererIfLarge(Item item) {
-		for (Map.Entry<String, Float> folder : sizeFolders.entrySet()) {
+		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
 			float iconScale = folder.getValue();
 			try {
 				ResourceLocation resLoc = getLargeTexturePath(item, folder.getKey());
@@ -66,16 +66,16 @@ public class LIRenderLargeItem implements IItemRenderer {
 		return null;
 	}
 
-	public static boolean isNullOrEmpty(String str) {
+	private static boolean isNullOrEmpty(String str) {
 		return str == null || str.isEmpty();
 	}
 
-	public static void renderEnchantmentEffect() {
+	private static void renderEnchantmentEffect() {
 		Tessellator tessellator = Tessellator.instance;
 		TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
 		GL11.glDepthFunc(514);
 		GL11.glDisable(2896);
-		texturemanager.bindTexture(enchantmentTexture);
+		texturemanager.bindTexture(ENCHANTMENT_TEXTURE);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(768, 1);
 		float shade = 0.76F;
@@ -102,7 +102,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 		GL11.glDepthFunc(515);
 	}
 
-	public void doTransformations() {
+	private void doTransformations() {
 		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
 	}
@@ -121,11 +121,11 @@ public class LIRenderLargeItem implements IItemRenderer {
 	public void registerIcons(IIconRegister register) {
 		largeIcon = registerLargeIcon(register, null);
 		for (LIRenderLargeItem.ExtraLargeIconToken token : extraTokens) {
-			token.icon = registerLargeIcon(register, token.name);
+			token.setIcon(registerLargeIcon(register, token.getName()));
 		}
 	}
 
-	public IIcon registerLargeIcon(IIconRegister register, String extra) {
+	private IIcon registerLargeIcon(IIconRegister register, String extra) {
 		String itemName = theItem.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
@@ -135,7 +135,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 			path.append('_').append(extra);
 		}
 		IIcon icon = register.registerIcon(path.toString());
-		largeIconsMap.put(theItem, icon);
+		LARGE_ICONS_MAP.put(theItem, icon);
 		return icon;
 	}
 
@@ -149,18 +149,18 @@ public class LIRenderLargeItem implements IItemRenderer {
 		GL11.glPopMatrix();
 	}
 
-	public void renderLargeItem(ItemStack itemstack) {
+	private void renderLargeItem(ItemStack itemstack) {
 		if (largeIcon == null) {
-			largeIcon = largeIconsMap.get(itemstack.getItem());
+			largeIcon = LARGE_ICONS_MAP.get(itemstack.getItem());
 		}
 		renderLargeItem(largeIcon);
 	}
 
 	public void renderLargeItem(ExtraLargeIconToken token) {
-		renderLargeItem(token.icon);
+		renderLargeItem(token.getIcon());
 	}
 
-	public void renderLargeItem(IIcon icon) {
+	private void renderLargeItem(IIcon icon) {
 		doTransformations();
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationItemsTexture);
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -173,12 +173,28 @@ public class LIRenderLargeItem implements IItemRenderer {
 		return false;
 	}
 
-	public static class ExtraLargeIconToken {
-		public String name;
-		public IIcon icon;
+	private static class ExtraLargeIconToken {
+		private String name;
+		private IIcon icon;
 
-		public ExtraLargeIconToken(String s) {
+		private ExtraLargeIconToken(String s) {
 			name = s;
+		}
+
+		public IIcon getIcon() {
+			return icon;
+		}
+
+		public void setIcon(IIcon icon) {
+			this.icon = icon;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
 		}
 	}
 }

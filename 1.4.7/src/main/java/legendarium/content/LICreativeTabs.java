@@ -1,5 +1,6 @@
-package legendarium;
+package legendarium.content;
 
+import legendarium.LI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -10,4 +11,7 @@ public class LICreativeTabs {
 			return LI.weaponFaramir;
 		}
 	};
+
+	private LICreativeTabs() {
+	}
 }

@@ -2,41 +2,28 @@ package legendarium.render;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import legendarium.LI;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class LIRenderManager implements IResourceManagerReloadListener {
-	public static LIRenderManager INSTANCE;
-	public static List<LIRenderLargeItem> largeItemRenderers;
-
-	public static void preInit() {
-		largeItemRenderers = new ArrayList<>();
-		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-		INSTANCE = new LIRenderManager();
-		INSTANCE.onResourceManagerReload(resMgr);
-		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
-		MinecraftForge.EVENT_BUS.register(INSTANCE);
-	}
+	private static final Collection<LIRenderLargeItem> LARGE_ITEM_RENDERS = new ArrayList<>();
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
-		largeItemRenderers.clear();
+		LARGE_ITEM_RENDERS.clear();
 		for (Item item : LI.CONTENT) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
 			LIRenderLargeItem largeItemRenderer = LIRenderLargeItem.getRendererIfLarge(item);
 			if (largeItemRenderer != null) {
 				MinecraftForgeClient.registerItemRenderer(item, largeItemRenderer);
-				largeItemRenderers.add(largeItemRenderer);
+				LARGE_ITEM_RENDERS.add(largeItemRenderer);
 			}
 		}
 	}
@@ -45,7 +32,7 @@ public class LIRenderManager implements IResourceManagerReloadListener {
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;
 		if (map.getTextureType() == 1) {
-			for (LIRenderLargeItem largeRenderer : largeItemRenderers) {
+			for (LIRenderLargeItem largeRenderer : LARGE_ITEM_RENDERS) {
 				largeRenderer.registerIcons(map);
 			}
 		}

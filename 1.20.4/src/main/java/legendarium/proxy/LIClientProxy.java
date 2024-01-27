@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LIClientProxy extends LICommonProxy {
-	public static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
+	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)

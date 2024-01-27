@@ -2,14 +2,17 @@ package legendarium;
 
 import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import legendarium.content.LICreativeTabs;
+import legendarium.content.LIItemEmpty;
+import legendarium.content.LIItemSword;
+import legendarium.util.LILang;
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.Item;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
@@ -70,14 +73,14 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public static void register(Item item, String name) {
+	private static void register(Item item, String name) {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setTextureFile("/assets/legendarium/textures/items.png");
 		item.setItemName(itemName);
 		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 	}
 
-	@Init
+	@Mod.Init
 	public void onInit(FMLInitializationEvent event) {
 		weaponAcharn = new LIItemSword(LIConfig.idWeaponAcharn - 256);
 		weaponAeglos = new LIItemSword(LIConfig.idWeaponAeglos - 256);
@@ -253,7 +256,7 @@ public class LI {
 		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/zh_CN.lang", "zh_CN");
 	}
 
-	@PreInit
+	@Mod.PreInit
 	public void preInit(FMLPreInitializationEvent event) {
 		LIConfig.preInit(event);
 	}

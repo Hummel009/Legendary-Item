@@ -1,4 +1,4 @@
-package legendarium;
+package legendarium.util;
 
 import com.google.common.base.Charsets;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -10,6 +10,9 @@ import java.net.URL;
 import java.util.Properties;
 
 public class LILang {
+	private LILang() {
+	}
+
 	public static void loadLocalization(LanguageRegistry registry, String langFile, String langName) {
 		URL url = registry.getClass().getResource(langFile);
 		if (url != null) {
@@ -17,7 +20,7 @@ public class LILang {
 		}
 	}
 
-	public static void loadLocalization(LanguageRegistry registry, URL langFile, String langName) {
+	private static void loadLocalization(LanguageRegistry registry, URL langFile, String langName) {
 		InputStream inputStream = null;
 		try {
 			inputStream = langFile.openStream();

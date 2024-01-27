@@ -11,4 +11,7 @@ public class LICreativeTabs {
 			return new ItemStack(LI.WEAPON_FARAMIR.get());
 		}
 	};
+
+	private LICreativeTabs() {
+	}
 }

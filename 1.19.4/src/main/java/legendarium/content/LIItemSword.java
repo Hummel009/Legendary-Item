@@ -10,7 +10,7 @@ public class LIItemSword extends SwordItem {
 		initialize();
 	}
 
-	public void initialize() {
+	private void initialize() {
 		LI.CONTENT.add(this);
 	}
 }

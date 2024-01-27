@@ -1,4 +1,4 @@
-package legendarium;
+package legendarium.content;
 
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.ItemSword;

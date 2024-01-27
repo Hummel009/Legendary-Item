@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
@@ -79,7 +80,7 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public static void register(Item item, String name) {
+	private static void register(Item item, String name) {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setTextureName("legendarium:" + itemName);
 		item.setUnlocalizedName(itemName);

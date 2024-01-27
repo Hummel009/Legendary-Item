@@ -27,7 +27,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod(modid = "legendarium")
+@Mod(modid = "legendarium", useMetadata = true))
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
 

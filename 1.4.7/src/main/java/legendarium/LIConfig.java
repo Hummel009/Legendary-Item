@@ -6,10 +6,11 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class LIConfig {
-	public static Configuration configuration;
+	private static Configuration configuration;
 
-	public static boolean loaded;
+	private static boolean loaded;
 
 	public static int idWeaponAcharn;
 	public static int idWeaponAeglos;
@@ -67,6 +68,9 @@ public class LIConfig {
 	public static int idArkenstone;
 	public static int idSilmaril;
 
+	private LIConfig() {
+	}
+
 	public static void preInit(FMLPreInitializationEvent event) {
 		if (!loaded) {
 			configuration = new Configuration(event.getSuggestedConfigurationFile());
@@ -74,7 +78,7 @@ public class LIConfig {
 		}
 	}
 
-	public static void setDefaultValues() {
+	private static void setDefaultValues() {
 		try {
 			configuration.load();
 

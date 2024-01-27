@@ -9,7 +9,7 @@ public class LIItemEmpty extends Item {
 		initialize();
 	}
 
-	public void initialize() {
+	private void initialize() {
 		LI.CONTENT.add(this);
 	}
 }

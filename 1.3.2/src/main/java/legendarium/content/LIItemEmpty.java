@@ -1,4 +1,4 @@
-package legendarium;
+package legendarium.content;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
@@ -7,7 +7,7 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 
 public class LIItemEmpty extends Item {
-	private EnumRarity rarity;
+	private final EnumRarity rarity;
 
 	public LIItemEmpty(int id, EnumRarity rarity) {
 		super(id);

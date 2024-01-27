@@ -15,8 +15,8 @@ import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class LILargeItemModel implements IBakedModel {
-	public final IBakedModel smallModel;
-	public final IBakedModel largeModel;
+	private final IBakedModel smallModel;
+	private final IBakedModel largeModel;
 
 	public LILargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
 		this.smallModel = smallModel;
