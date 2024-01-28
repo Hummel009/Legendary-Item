@@ -57,9 +57,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 			try {
 				ResourceLocation resLoc = getLargeTexturePath(item, folder.getKey());
 				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				if (res != null) {
-					return new LIRenderLargeItem(item, folder.getKey(), iconScale);
-				}
+				return new LIRenderLargeItem(item, folder.getKey(), iconScale);
 			} catch (Exception ignored) {
 			}
 		}
@@ -181,19 +179,19 @@ public class LIRenderLargeItem implements IItemRenderer {
 			name = s;
 		}
 
-		public IIcon getIcon() {
+		private IIcon getIcon() {
 			return icon;
 		}
 
-		public void setIcon(IIcon icon) {
+		private void setIcon(IIcon icon) {
 			this.icon = icon;
 		}
 
-		public String getName() {
+		private String getName() {
 			return name;
 		}
 
-		public void setName(String name) {
+		private void setName(String name) {
 			this.name = name;
 		}
 	}

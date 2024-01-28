@@ -17,7 +17,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,7 +27,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod(modid = "legendarium", useMetadata = true))
+@SuppressWarnings({"WeakerAccess", "PublicField"})
+@Mod(modid = "legendarium", useMetadata = true)
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
 
@@ -90,9 +91,12 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	@ObjectHolder("legendarium")
+	@GameRegistry.ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
 	public static class RegistryEvents {
+		private RegistryEvents() {
+		}
+
 		@SubscribeEvent
 		public static void onItemRegistry(RegistryEvent.Register<Item> event) {
 			weaponAcharn = new LIItemSword();
@@ -245,7 +249,7 @@ public class LI {
 			}
 		}
 
-		public static void register(Item item, String name) {
+		private static void register(Item item, String name) {
 			String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 			item.setUnlocalizedName(itemName);
 			item.setRegistryName(itemName);

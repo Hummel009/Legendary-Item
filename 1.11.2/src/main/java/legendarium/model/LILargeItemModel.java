@@ -13,9 +13,10 @@ import org.apache.commons.lang3.tuple.Pair;
 import javax.vecmath.Matrix4f;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class LILargeItemModel implements IPerspectiveAwareModel {
-	public final IBakedModel smallModel;
-	public final IBakedModel largeModel;
+	private final IBakedModel smallModel;
+	private final IBakedModel largeModel;
 
 	public LILargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
 		this.smallModel = smallModel;

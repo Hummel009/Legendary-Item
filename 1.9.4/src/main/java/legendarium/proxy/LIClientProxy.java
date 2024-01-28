@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LIClientProxy extends LICommonProxy {
-	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
+	private static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@Override
 	@SideOnly(Side.CLIENT)

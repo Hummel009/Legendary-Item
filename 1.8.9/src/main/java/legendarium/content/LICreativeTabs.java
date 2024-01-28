@@ -11,4 +11,7 @@ public class LICreativeTabs {
 			return LI.weaponFaramir;
 		}
 	};
+
+	private LICreativeTabs() {
+	}
 }

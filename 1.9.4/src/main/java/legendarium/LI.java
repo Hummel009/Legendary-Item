@@ -7,7 +7,6 @@ import legendarium.content.LIItemSword;
 import legendarium.proxy.LICommonProxy;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -17,7 +16,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Mod(modid = "legendarium", useMetadata = true))
+@SuppressWarnings({"WeakerAccess", "PublicField"})
+@Mod(modid = "legendarium", useMetadata = true)
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
 
@@ -82,7 +82,7 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	public static void register(Item item, String name) {
+	private static void register(Item item, String name) {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setUnlocalizedName(itemName);
 		item.setRegistryName(itemName);
@@ -98,7 +98,6 @@ public class LI {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		FMLCommonHandler.instance().bus().register(proxy);
 		MinecraftForge.EVENT_BUS.register(proxy);
 
 		weaponAcharn = new LIItemSword();
