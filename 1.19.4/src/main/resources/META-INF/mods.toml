@@ -1,15 +1,22 @@
 modLoader = "javafml"
-loaderVersion = "[3,)"
+loaderVersion = "[0,)"
 license = "Powered by Hummel009"
+logoFile = "logo.png"
 
 [[mods]]
 modId = "legendarium"
-version = "23.10.29"
+version = "24.02.29"
 displayName = "Legendary Item"
-logoFile = "logo.png"
-credits = "Hummel009"
 authors = "Hummel009"
 description = '''This mod adds legendary artifacts from the Lord of the Rings to Minecraft'''
+
+[[dependencies.legendarium]]
+modId = "forge"
+mandatory = true
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"
+
 [[dependencies.legendarium]]
 modId = "minecraft"
 mandatory = true
