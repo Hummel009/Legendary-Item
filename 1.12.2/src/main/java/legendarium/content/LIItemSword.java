@@ -6,5 +6,6 @@ import net.minecraft.item.ItemSword;
 public class LIItemSword extends ItemSword {
 	public LIItemSword() {
 		super(Item.ToolMaterial.DIAMOND);
+		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 	}
 }

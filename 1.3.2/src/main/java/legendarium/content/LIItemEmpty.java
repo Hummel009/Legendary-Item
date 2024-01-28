@@ -12,6 +12,7 @@ public class LIItemEmpty extends Item {
 	public LIItemEmpty(int id, EnumRarity rarity) {
 		super(id);
 		setMaxStackSize(1);
+		setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		this.rarity = rarity;
 	}
 

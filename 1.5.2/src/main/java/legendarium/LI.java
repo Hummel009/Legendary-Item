@@ -6,7 +6,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import legendarium.content.LICreativeTabs;
 import legendarium.content.LIItemEmpty;
 import legendarium.content.LIItemSword;
 import net.minecraft.item.Item;
@@ -75,7 +74,6 @@ public class LI {
 	private static void register(Item item, String name) {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setUnlocalizedName(itemName);
-		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 		GameRegistry.registerItem(item, itemName);
 	}
 

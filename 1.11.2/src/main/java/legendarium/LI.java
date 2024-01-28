@@ -1,7 +1,6 @@
 package legendarium;
 
 import com.google.common.base.CaseFormat;
-import legendarium.content.LICreativeTabs;
 import legendarium.content.LIItemEmpty;
 import legendarium.content.LIItemSword;
 import legendarium.model.LILargeItemModel;
@@ -27,7 +26,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings({"WeakerAccess", "PublicField"})
+@SuppressWarnings({"WeakerAccess", "PublicField", "UtilityClassWithoutPrivateConstructor"})
 @Mod(modid = "legendarium", useMetadata = true)
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
@@ -253,7 +252,6 @@ public class LI {
 			String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 			item.setUnlocalizedName(itemName);
 			item.setRegistryName(itemName);
-			item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 			ForgeRegistries.ITEMS.register(item);
 			CONTENT.add(item);
 		}

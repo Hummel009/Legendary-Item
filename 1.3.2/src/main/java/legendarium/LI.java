@@ -5,7 +5,6 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import legendarium.content.LICreativeTabs;
 import legendarium.content.LIItemEmpty;
 import legendarium.content.LIItemSword;
 import legendarium.util.LILang;
@@ -77,7 +76,6 @@ public class LI {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setTextureFile("/assets/legendarium/textures/items.png");
 		item.setItemName(itemName);
-		item.setCreativeTab(LICreativeTabs.TAB_ARTIFACTS);
 	}
 
 	@Mod.Init
