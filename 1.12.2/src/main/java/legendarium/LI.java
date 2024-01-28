@@ -90,9 +90,6 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	private LI() {
-	}
-
 	@GameRegistry.ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
 	public static class RegistryEvents {

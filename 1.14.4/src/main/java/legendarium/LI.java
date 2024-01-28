@@ -85,9 +85,6 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	private LI() {
-	}
-
 	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 	public static class RegistryEvents {
 		private RegistryEvents() {
