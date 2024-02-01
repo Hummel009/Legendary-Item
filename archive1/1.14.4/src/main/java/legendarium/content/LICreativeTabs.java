@@ -8,7 +8,7 @@ public class LICreativeTabs {
 	public static final ItemGroup TAB_ARTIFACTS = new ItemGroup("artifacts") {
 		@Override
 		public ItemStack makeIcon() {
-			return new ItemStack(LI.weaponFaramir);
+			return new ItemStack(LI.WEAPON_FARAMIR.get());
 		}
 	};
 
