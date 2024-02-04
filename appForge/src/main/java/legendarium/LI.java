@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Mod("legendarium")
+@SuppressWarnings("WeakerAccess")
 public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
 	public static final Collection<Item> CONTENT = new ArrayList<>();
@@ -84,7 +85,7 @@ public class LI {
 	public static final RegistryObject<Item> ARKENSTONE = ITEMS.register("arkenstone", LIItemEmpty::new);
 	public static final RegistryObject<Item> SILMARIL = ITEMS.register("silmaril", LIItemEmpty::new);
 
-	public static final RegistryObject<CreativeModeTab> TAB_ARTIFACTS = CREATIVE_TABS.register("legendariumtab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.artifacts")).icon(() -> new ItemStack(WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
+	public static final RegistryObject<CreativeModeTab> TAB_ARTIFACTS = CREATIVE_TABS.register("legendariumtab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.legendarium.artifacts")).icon(() -> new ItemStack(WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
 		for (var item : CONTENT) {
 			populator.accept(item);
 		}
