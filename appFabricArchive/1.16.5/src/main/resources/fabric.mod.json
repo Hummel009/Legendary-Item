@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "legendarium",
+	"version": "24.02.29",
+	"name": "Legendary Item",
+	"description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft!",
+	"authors": [
+		"Hummel009!"
+	],
+	"contact": {
+		"homepage": "https://github.com/Hummel009",
+		"sources": "https://github.com/Hummel009"
+	},
+	"license": "GPL-3.0",
+	"icon": "icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"legendarium.LI"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.15.6",
+		"minecraft": "~1.16.5",
+		"java": ">=8",
+		"fabric-api": "*"
+	}
+}
