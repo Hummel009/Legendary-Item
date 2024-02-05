@@ -15,60 +15,60 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class LILargeItemModel implements IPerspectiveAwareModel {
-	private final IBakedModel smallModel;
-	private final IBakedModel largeModel;
+	private final IBakedModel smallBakedModel;
+	private final IBakedModel largeBakedModel;
 
-	public LILargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
-		this.smallModel = smallModel;
-		this.largeModel = largeModel;
-	}
-
-	@Override
-	public List<BakedQuad> getFaceQuads(EnumFacing facing) {
-		return smallModel.getFaceQuads(facing);
-	}
-
-	@Override
-	public VertexFormat getFormat() {
-		return ((IFlexibleBakedModel) smallModel).getFormat();
-	}
-
-	@Override
-	public List<BakedQuad> getGeneralQuads() {
-		return smallModel.getGeneralQuads();
+	public LILargeItemModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
+		this.smallBakedModel = smallBakedModel;
+		this.largeBakedModel = largeBakedModel;
 	}
 
 	@Override
 	public ItemCameraTransforms getItemCameraTransforms() {
-		return smallModel.getItemCameraTransforms();
+		return smallBakedModel.getItemCameraTransforms();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
-		return smallModel.getParticleTexture();
+		return smallBakedModel.getParticleTexture();
+	}
+
+	@Override
+	public List<BakedQuad> getFaceQuads(EnumFacing facing) {
+		return smallBakedModel.getFaceQuads(facing);
+	}
+
+	@Override
+	public List<BakedQuad> getGeneralQuads() {
+		return null;
 	}
 
 	@Override
 	public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
-		IBakedModel bakedModel = smallModel;
+		IBakedModel bakedModel = smallBakedModel;
 		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON) {
-			bakedModel = largeModel;
+			bakedModel = largeBakedModel;
 		}
 		return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
 	}
 
 	@Override
 	public boolean isAmbientOcclusion() {
-		return smallModel.isAmbientOcclusion();
+		return smallBakedModel.isAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isBuiltInRenderer() {
-		return smallModel.isBuiltInRenderer();
+		return smallBakedModel.isBuiltInRenderer();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallModel.isGui3d();
+		return smallBakedModel.isGui3d();
+	}
+
+	@Override
+	public VertexFormat getFormat() {
+		return ((IFlexibleBakedModel) smallBakedModel).getFormat();
 	}
 }
