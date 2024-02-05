@@ -23,13 +23,13 @@ public class LIClientProxy extends LICommonProxy {
 	@OnlyIn(Dist.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
 		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
-			ModelResourceLocation smallLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			IBakedModel smallModel = event.getModelRegistry().get(smallLocation);
-			if (smallModel != null) {
-				ResourceLocation largeLocation = compliance.getValue();
-				IBakedModel largeModel = event.getModelRegistry().get(largeLocation);
-				if (largeModel != null) {
-					event.getModelRegistry().put(smallLocation, new LILargeItemModel(smallModel, largeModel));
+			ModelResourceLocation smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
+			IBakedModel smallBakedModel = event.getModelRegistry().get(smallResourceLocation);
+			if (smallBakedModel != null) {
+				ResourceLocation largeResourceLocation = compliance.getValue();
+				IBakedModel largeBakedModel = event.getModelRegistry().get(largeResourceLocation);
+				if (largeBakedModel != null) {
+					event.getModelRegistry().put(smallResourceLocation, new LILargeItemModel(smallBakedModel, largeBakedModel));
 				}
 			}
 		}
@@ -41,10 +41,10 @@ public class LIClientProxy extends LICommonProxy {
 		Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
 		for (ResourceLocation resourceLocation : resourceLocations) {
 			String itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-			ResourceLocation smallModel = new ResourceLocation("legendarium", itemName);
-			ResourceLocation largeModel = new ResourceLocation("legendarium", "item/" + itemName + "_large");
-			ModelLoader.addSpecialModel(largeModel);
-			COMPLIANCES.put(smallModel, largeModel);
+			ResourceLocation smallResourceLocation = new ResourceLocation("legendarium", itemName);
+			ResourceLocation largeResourceLocation = new ResourceLocation("legendarium", "item/" + itemName + "_large");
+			COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
+			ModelLoader.addSpecialModel(largeResourceLocation);
 		}
 	}
 }
