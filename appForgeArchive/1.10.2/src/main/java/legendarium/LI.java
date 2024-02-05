@@ -32,7 +32,6 @@ public class LI {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
 
 	public static final Collection<Item> CONTENT = new ArrayList<>();
-	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	public static Item weaponAcharn;
 	public static Item weaponAeglos;
@@ -93,6 +92,8 @@ public class LI {
 	@GameRegistry.ObjectHolder("legendarium")
 	@Mod.EventBusSubscriber
 	public static class RegistryEvents {
+		private static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
+
 		private RegistryEvents() {
 		}
 
@@ -215,13 +216,13 @@ public class LI {
 		@SideOnly(Side.CLIENT)
 		public static void onModelBake(ModelBakeEvent event) {
 			for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
-				ModelResourceLocation smallLocation = compliance.getKey();
-				IBakedModel smallModel = event.getModelRegistry().getObject(smallLocation);
-				if (smallModel != null) {
-					ModelResourceLocation largeLocation = compliance.getValue();
-					IBakedModel largeModel = event.getModelRegistry().getObject(largeLocation);
-					if (largeModel != null) {
-						event.getModelRegistry().putObject(smallLocation, new LILargeItemModel(smallModel, largeModel));
+				ModelResourceLocation smallResourceLocation = compliance.getKey();
+				IBakedModel smallBakedModel = event.getModelRegistry().getObject(smallResourceLocation);
+				if (smallBakedModel != null) {
+					ModelResourceLocation largeResourceLocation = compliance.getValue();
+					IBakedModel largeBakedModel = event.getModelRegistry().getObject(largeResourceLocation);
+					if (largeBakedModel != null) {
+						event.getModelRegistry().putObject(smallResourceLocation, new LILargeItemModel(smallBakedModel, largeBakedModel));
 					}
 				}
 			}
@@ -233,16 +234,16 @@ public class LI {
 			for (Item item : CONTENT) {
 				ResourceLocation itemName = item.getRegistryName();
 				String resourceFileName = (itemName + "_large.json").replace("legendarium:", "");
-				try (InputStream imageStream = LI.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
-					ModelResourceLocation smallModel = new ModelResourceLocation(itemName, "inventory");
-					ModelResourceLocation largeModel = new ModelResourceLocation(itemName + "_large", "inventory");
-					if (imageStream != null) {
-						COMPLIANCES.put(smallModel, largeModel);
-						ModelBakery.registerItemVariants(item, smallModel, largeModel);
+				try (InputStream inputStream = LI.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
+					ModelResourceLocation smallResourceLocation = new ModelResourceLocation(itemName, "inventory");
+					ModelResourceLocation largeResourceLocation = new ModelResourceLocation(itemName + "_large", "inventory");
+					if (inputStream != null) {
+						COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
+						ModelBakery.registerItemVariants(item, smallResourceLocation, largeResourceLocation);
 					} else {
-						ModelBakery.registerItemVariants(item, smallModel);
+						ModelBakery.registerItemVariants(item, smallResourceLocation);
 					}
-					ModelLoader.setCustomModelResourceLocation(item, 0, smallModel);
+					ModelLoader.setCustomModelResourceLocation(item, 0, smallResourceLocation);
 				} catch (Exception e) {
 				}
 			}

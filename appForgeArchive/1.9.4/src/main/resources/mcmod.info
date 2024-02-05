@@ -2,7 +2,7 @@
 	{
 		"modid": "legendarium",
 		"name": "Legendary Item",
-		"description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft",
+		"description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft.",
 		"version": "24.02.29",
 		"mcversion": "1.9.4",
 		"logoFile": "assets/legendarium/logo.png",
