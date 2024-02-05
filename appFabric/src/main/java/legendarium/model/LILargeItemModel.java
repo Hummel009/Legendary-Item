@@ -16,22 +16,24 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 import java.util.function.Supplier;
 
-public record LILargeItemModel(BakedModel smallModel, BakedModel largeModel) implements BakedModel {
+public record LILargeItemModel(BakedModel smallBakedModel, BakedModel largeBakedModel) implements BakedModel {
 	@Override
-	public void emitItemQuads(ItemStack stack, Supplier<RandomSource> randomSupplier, RenderContext context) {
+	public void emitItemQuads(ItemStack itemStack, Supplier<RandomSource> randomSupplier, RenderContext context) {
 		BakedModel bakedModel;
-		var itemDisplayContext = context.itemTransformationMode();
-		if (itemDisplayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || itemDisplayContext == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || itemDisplayContext == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || itemDisplayContext == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
-			bakedModel = largeModel;
+
+		var transformationMode = context.itemTransformationMode();
+		if (transformationMode == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || transformationMode == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || transformationMode == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || transformationMode == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
+			bakedModel = largeBakedModel;
 		} else {
-			bakedModel = smallModel;
+			bakedModel = smallBakedModel;
 		}
+
 		VanillaModelEncoder.emitItemQuads(bakedModel, null, randomSupplier, context);
 	}
 
 	@Override
 	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, RandomSource randomSource) {
-		return largeModel.getQuads(blockState, direction, randomSource);
+		return largeBakedModel.getQuads(blockState, direction, randomSource);
 	}
 
 	@Override
@@ -41,36 +43,36 @@ public record LILargeItemModel(BakedModel smallModel, BakedModel largeModel) imp
 
 	@Override
 	public boolean useAmbientOcclusion() {
-		return largeModel.useAmbientOcclusion();
+		return largeBakedModel.useAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return largeModel.isGui3d();
+		return largeBakedModel.isGui3d();
 	}
 
 	@Override
 	public boolean usesBlockLight() {
-		return largeModel.usesBlockLight();
+		return largeBakedModel.usesBlockLight();
 	}
 
 	@Override
 	public boolean isCustomRenderer() {
-		return largeModel.isCustomRenderer();
+		return largeBakedModel.isCustomRenderer();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleIcon() {
-		return largeModel.getParticleIcon();
+		return largeBakedModel.getParticleIcon();
 	}
 
 	@Override
 	public ItemTransforms getTransforms() {
-		return largeModel.getTransforms();
+		return largeBakedModel.getTransforms();
 	}
 
 	@Override
 	public ItemOverrides getOverrides() {
-		return largeModel.getOverrides();
+		return largeBakedModel.getOverrides();
 	}
 }
