@@ -8,7 +8,7 @@ modId = "legendarium"
 version = "24.02.29"
 displayName = "Legendary Item"
 authors = "Hummel009"
-description = '''This mod adds legendary artifacts from the Lord of the Rings to Minecraft!'''
+description = '''This mod adds legendary artifacts from the Lord of the Rings to Minecraft.'''
 
 [[dependencies.legendarium]]
 modId = "forge"
