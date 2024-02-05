@@ -21,13 +21,13 @@ public class LIClientProxy extends LICommonProxy {
 	@OnlyIn(Dist.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
 		for (var compliance : COMPLIANCES.entrySet()) {
-			var smallLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			var smallModel = event.getModelRegistry().get(smallLocation);
-			if (smallModel != null) {
-				var largeLocation = compliance.getValue();
-				var largeModel = event.getModelRegistry().get(largeLocation);
-				if (largeModel != null) {
-					event.getModelRegistry().put(smallLocation, new LILargeItemModel(smallModel, largeModel));
+			var smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
+			var smallBakedModel = event.getModelRegistry().get(smallResourceLocation);
+			if (smallBakedModel != null) {
+				var largeResourceLocation = compliance.getValue();
+				var largeBakedModel = event.getModelRegistry().get(largeResourceLocation);
+				if (largeBakedModel != null) {
+					event.getModelRegistry().put(smallResourceLocation, new LILargeItemModel(smallBakedModel, largeBakedModel));
 				}
 			}
 		}
@@ -39,10 +39,10 @@ public class LIClientProxy extends LICommonProxy {
 		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
 		for (var resourceLocation : resourceLocations) {
 			var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-			var smallModel = new ResourceLocation("legendarium", itemName);
-			var largeModel = new ResourceLocation("legendarium", "item/" + itemName + "_large");
-			ModelLoader.addSpecialModel(largeModel);
-			COMPLIANCES.put(smallModel, largeModel);
+			var smallResourceLocation = new ResourceLocation("legendarium", itemName);
+			var largeResourceLocation = new ResourceLocation("legendarium", "item/" + itemName + "_large");
+			COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
+			ModelLoader.addSpecialModel(largeResourceLocation);
 		}
 	}
 }
