@@ -5,7 +5,7 @@ import net.minecraft.world.item.Item;
 
 public class LIItemEmpty extends Item {
 	public LIItemEmpty() {
-		super(new Properties().stacksTo(1).tab(LI.TAB_ARTIFACTS));
+		super(new Properties().stacksTo(1));
 		LI.CONTENT.add(this);
 	}
 }
