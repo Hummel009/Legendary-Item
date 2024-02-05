@@ -19,13 +19,13 @@ public class LIClientProxy extends LICommonProxy {
 	@OnlyIn(Dist.CLIENT)
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
 		for (var compliance : COMPLIANCES.entrySet()) {
-			var smallLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			var smallModel = event.getModels().get(smallLocation);
-			if (smallModel != null) {
-				var largeLocation = compliance.getValue();
-				var largeModel = event.getModels().get(largeLocation);
-				if (largeModel != null) {
-					event.getModels().put(smallLocation, new LILargeItemModel(smallModel, largeModel));
+			var smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
+			var smallBakedModel = event.getModels().get(smallResourceLocation);
+			if (smallBakedModel != null) {
+				var largeResourceLocation = compliance.getValue();
+				var largeBakedModel = event.getModels().get(largeResourceLocation);
+				if (largeBakedModel != null) {
+					event.getModels().put(smallResourceLocation, new LILargeItemModel(smallBakedModel, largeBakedModel));
 				}
 			}
 		}
@@ -37,10 +37,10 @@ public class LIClientProxy extends LICommonProxy {
 		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json")).keySet();
 		for (var resourceLocation : resourceLocations) {
 			var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-			var smallModel = new ResourceLocation("legendarium", itemName);
-			var largeModel = new ResourceLocation("legendarium", "item/" + itemName + "_large");
-			COMPLIANCES.put(smallModel, largeModel);
-			event.register(largeModel);
+			var smallResourceLocation = new ResourceLocation("legendarium", itemName);
+			var largeResourceLocation = new ResourceLocation("legendarium", "item/" + itemName + "_large");
+			COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
+			event.register(largeResourceLocation);
 		}
 	}
 }
