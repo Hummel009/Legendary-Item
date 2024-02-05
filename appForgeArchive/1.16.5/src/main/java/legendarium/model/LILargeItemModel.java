@@ -14,55 +14,55 @@ import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class LILargeItemModel implements IBakedModel {
-	private final IBakedModel smallModel;
-	private final IBakedModel largeModel;
+	private final IBakedModel smallBakedModel;
+	private final IBakedModel largeBakedModel;
 
-	public LILargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
-		this.smallModel = smallModel;
-		this.largeModel = largeModel;
-	}
-
-	@Override
-	public ItemOverrideList getOverrides() {
-		return smallModel.getOverrides();
-	}
-
-	@Override
-	public TextureAtlasSprite getParticleIcon() {
-		return smallModel.getParticleIcon();
-	}
-
-	@Override
-	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
-		return smallModel.getQuads(blockState, direction, random);
+	public LILargeItemModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
+		this.smallBakedModel = smallBakedModel;
+		this.largeBakedModel = largeBakedModel;
 	}
 
 	@Override
 	public IBakedModel handlePerspective(ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack) {
-		IBakedModel bakedModel = smallModel;
+		IBakedModel bakedModel = smallBakedModel;
 		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-			bakedModel = largeModel;
+			bakedModel = largeBakedModel;
 		}
 		return bakedModel.handlePerspective(transformType, matrixStack);
 	}
 
 	@Override
-	public boolean isCustomRenderer() {
-		return smallModel.isCustomRenderer();
-	}
-
-	@Override
-	public boolean isGui3d() {
-		return smallModel.isGui3d();
+	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
+		return smallBakedModel.getQuads(blockState, direction, random);
 	}
 
 	@Override
 	public boolean useAmbientOcclusion() {
-		return smallModel.useAmbientOcclusion();
+		return smallBakedModel.useAmbientOcclusion();
+	}
+
+	@Override
+	public boolean isGui3d() {
+		return smallBakedModel.isGui3d();
 	}
 
 	@Override
 	public boolean usesBlockLight() {
-		return smallModel.usesBlockLight();
+		return smallBakedModel.usesBlockLight();
+	}
+
+	@Override
+	public boolean isCustomRenderer() {
+		return smallBakedModel.isCustomRenderer();
+	}
+
+	@Override
+	public TextureAtlasSprite getParticleIcon() {
+		return smallBakedModel.getParticleIcon();
+	}
+
+	@Override
+	public ItemOverrideList getOverrides() {
+		return smallBakedModel.getOverrides();
 	}
 }
