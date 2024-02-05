@@ -13,50 +13,50 @@ import javax.vecmath.Matrix4f;
 import java.util.List;
 
 public class LILargeItemModel implements IBakedModel {
-	private final IBakedModel smallModel;
-	private final IBakedModel largeModel;
+	private final IBakedModel smallBakedModel;
+	private final IBakedModel largeBakedModel;
 
-	public LILargeItemModel(IBakedModel smallModel, IBakedModel largeModel) {
-		this.smallModel = smallModel;
-		this.largeModel = largeModel;
+	public LILargeItemModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
+		this.smallBakedModel = smallBakedModel;
+		this.largeBakedModel = largeBakedModel;
 	}
 
 	@Override
 	public ItemOverrideList getOverrides() {
-		return smallModel.getOverrides();
+		return smallBakedModel.getOverrides();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
-		return smallModel.getParticleTexture();
+		return smallBakedModel.getParticleTexture();
 	}
 
 	@Override
 	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long l) {
-		return smallModel.getQuads(blockState, facing, l);
+		return smallBakedModel.getQuads(blockState, facing, l);
 	}
 
 	@Override
 	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
-		IBakedModel bakedModel = smallModel;
+		IBakedModel bakedModel = smallBakedModel;
 		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-			bakedModel = largeModel;
+			bakedModel = largeBakedModel;
 		}
 		return bakedModel.handlePerspective(transformType);
 	}
 
 	@Override
 	public boolean isAmbientOcclusion() {
-		return smallModel.isAmbientOcclusion();
+		return smallBakedModel.isAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isBuiltInRenderer() {
-		return smallModel.isBuiltInRenderer();
+		return smallBakedModel.isBuiltInRenderer();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallModel.isGui3d();
+		return smallBakedModel.isGui3d();
 	}
 }
