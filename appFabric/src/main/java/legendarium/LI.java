@@ -76,9 +76,9 @@ public class LI implements ModInitializer {
 	public static final Item ARKENSTONE = new LIItemEmpty();
 	public static final Item SILMARIL = new LIItemEmpty();
 
-	private static final CreativeModeTab TAB_ARTIFACTS = FabricItemGroup.builder().icon(() -> new ItemStack(WEAPON_FARAMIR)).title(Component.translatable("itemGroup.legendarium.artifacts")).displayItems((context, entries) -> {
+	private static final CreativeModeTab TAB_ARTIFACTS = FabricItemGroup.builder().icon(() -> new ItemStack(WEAPON_FARAMIR)).title(Component.translatable("itemGroup.legendarium.artifacts")).displayItems((context, populator) -> {
 		for (var item : CONTENT) {
-			entries.accept(item);
+			populator.accept(item);
 		}
 	}).build();
 
