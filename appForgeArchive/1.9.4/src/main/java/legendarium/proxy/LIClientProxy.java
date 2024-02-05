@@ -24,11 +24,11 @@ public class LIClientProxy extends LICommonProxy {
 	@SideOnly(Side.CLIENT)
 	public void onInit() {
 		for (Item item : LI.CONTENT) {
-			ResourceLocation itemName = item.getRegistryName();
-			String resourceFileName = (itemName + "_large.json").replace("legendarium:", "");
+			ResourceLocation resourceLocation = item.getRegistryName();
+			String resourceFileName = (resourceLocation + "_large.json").replace("legendarium:", "");
 			try (InputStream inputStream = LI.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
-				ModelResourceLocation smallResourceLocation = new ModelResourceLocation(itemName, "inventory");
-				ModelResourceLocation largeResourceLocation = new ModelResourceLocation(itemName + "_large", "inventory");
+				ModelResourceLocation smallResourceLocation = new ModelResourceLocation(resourceLocation, "inventory");
+				ModelResourceLocation largeResourceLocation = new ModelResourceLocation(resourceLocation + "_large", "inventory");
 				if (inputStream != null) {
 					COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
 					ModelBakery.registerItemVariants(item, smallResourceLocation, largeResourceLocation);
