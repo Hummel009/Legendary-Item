@@ -144,6 +144,6 @@ public class LI implements ModInitializer {
 		register(ARKENSTONE, "arkenstone");
 		register(SILMARIL, "silmaril");
 
-		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation("legendarium", "legendariumtab"), TAB_ARTIFACTS);
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation("legendarium", "artifacts"), TAB_ARTIFACTS);
 	}
 }

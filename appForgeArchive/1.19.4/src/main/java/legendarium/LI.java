@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Mod("legendarium")
+@SuppressWarnings("WeakerAccess")
 public class LI {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "101129102023";
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
 	public static final Collection<Item> CONTENT = new ArrayList<>();
 
 	private static final LICommonProxy PROXY = DistExecutor.safeRunForDist(() -> LIClientProxy::new, () -> LICommonProxy::new);
