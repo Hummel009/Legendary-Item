@@ -18,6 +18,7 @@ public class LIRenderManager implements ResourceManagerReloadListener {
 	private static final Collection<LIRenderLargeItem> LARGE_ITEM_RENDERS = new ArrayList<LIRenderLargeItem>();
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onResourceManagerReload(ResourceManager resourceManager) {
 		LARGE_ITEM_RENDERS.clear();
 		for (Item item : LI.CONTENT) {

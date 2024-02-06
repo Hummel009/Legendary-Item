@@ -1,6 +1,8 @@
 package legendarium.render;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import legendarium.LI;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourceManager;
@@ -16,6 +18,7 @@ public class LIRenderManager implements IResourceManagerReloadListener {
 	private static final Collection<LIRenderLargeItem> LARGE_ITEM_RENDERS = new ArrayList<>();
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		LARGE_ITEM_RENDERS.clear();
 		for (Item item : LI.CONTENT) {
@@ -29,6 +32,7 @@ public class LIRenderManager implements IResourceManagerReloadListener {
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;
 		if (map.getTextureType() == 1) {
