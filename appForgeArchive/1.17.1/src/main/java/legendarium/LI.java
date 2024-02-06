@@ -77,8 +77,8 @@ public class LI {
 	public static final RegistryObject<Item> SILMARIL = ITEMS.register("silmaril", LIItemEmpty::new);
 
 	public LI() {
-		var fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		fmlBus.register(PROXY);
-		ITEMS.register(fmlBus);
+		var eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		eventBus.register(PROXY);
+		ITEMS.register(eventBus);
 	}
 }

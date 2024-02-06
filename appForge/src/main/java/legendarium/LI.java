@@ -92,9 +92,9 @@ public class LI {
 	}).build());
 
 	public LI() {
-		var fmlBus = FMLJavaModLoadingContext.get().getModEventBus();
-		fmlBus.register(PROXY);
-		ITEMS.register(fmlBus);
-		CREATIVE_TABS.register(fmlBus);
+		var eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		eventBus.register(PROXY);
+		ITEMS.register(eventBus);
+		CREATIVE_TABS.register(eventBus);
 	}
 }
