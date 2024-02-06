@@ -232,11 +232,11 @@ public class LI {
 		@SideOnly(Side.CLIENT)
 		public static void onModelRegistry(ModelRegistryEvent event) {
 			for (Item item : CONTENT) {
-				ResourceLocation resourceLocation = item.getRegistryName();
-				String resourceFileName = (resourceLocation + "_large.json").replace("legendarium:", "");
+				ResourceLocation registryName = item.getRegistryName();
+				String resourceFileName = (registryName + "_large.json").replace("legendarium:", "");
 				try (InputStream inputStream = LI.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
-					ModelResourceLocation smallResourceLocation = new ModelResourceLocation(resourceLocation, "inventory");
-					ModelResourceLocation largeResourceLocation = new ModelResourceLocation(resourceLocation + "_large", "inventory");
+					ModelResourceLocation smallResourceLocation = new ModelResourceLocation(registryName, "inventory");
+					ModelResourceLocation largeResourceLocation = new ModelResourceLocation(registryName + "_large", "inventory");
 					if (inputStream != null) {
 						COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
 						ModelBakery.registerItemVariants(item, smallResourceLocation, largeResourceLocation);
