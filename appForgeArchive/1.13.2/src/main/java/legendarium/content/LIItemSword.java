@@ -1,4 +1,4 @@
-package legendarium;
+package legendarium.content;
 
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTier;

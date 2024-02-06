@@ -53,4 +53,4 @@ item.weapon_thranduil.name=Thranduil's Sword
 item.weapon_thror.name=Thror's Axe
 item.weapon_urfael.name=Urfael
 item.weapon_witchking.name=Sword of the Witch-king of Angmar
-itemGroup.artifacts=Middle-Earth Artifacts
+itemGroup.legendarium.artifacts=Middle-Earth Artifacts

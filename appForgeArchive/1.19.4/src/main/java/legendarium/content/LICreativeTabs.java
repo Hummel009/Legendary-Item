@@ -11,7 +11,7 @@ public class LICreativeTabs {
 	}
 
 	public static void onCreativeModeTabRegistry(CreativeModeTabEvent.Register event) {
-		event.registerCreativeModeTab(new ResourceLocation("legendarium", "artifacts"), builder -> builder.title(Component.translatable("itemGroup.legendarium.artifacts")).icon(() -> new ItemStack(LI.WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
+		event.registerCreativeModeTab(new ResourceLocation("legendarium", "legendarium.artifacts"), builder -> builder.title(Component.translatable("itemGroup.legendarium.artifacts")).icon(() -> new ItemStack(LI.WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
 			for (var item : LI.CONTENT) {
 				populator.accept(item);
 			}
