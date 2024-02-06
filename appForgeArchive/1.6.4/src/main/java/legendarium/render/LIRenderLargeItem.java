@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.Resource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -16,8 +15,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +32,6 @@ public class LIRenderLargeItem implements IItemRenderer {
 	private final String folderName;
 	private final float largeIconScale;
 	private Icon largeIcon;
-	private final Collection<ExtraLargeIconToken> extraTokens = new ArrayList<ExtraLargeIconToken>();
 
 	private LIRenderLargeItem(Item item, String dir, float f) {
 		theItem = item;
@@ -56,7 +52,7 @@ public class LIRenderLargeItem implements IItemRenderer {
 			float iconScale = folder.getValue();
 			try {
 				ResourceLocation resLoc = getLargeTexturePath(item, folder.getKey());
-				Resource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
+				Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
 				return new LIRenderLargeItem(item, folder.getKey(), iconScale);
 			} catch (Exception ignored) {
 			}
@@ -105,12 +101,6 @@ public class LIRenderLargeItem implements IItemRenderer {
 		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
 	}
 
-	public LIRenderLargeItem.ExtraLargeIconToken extraIcon(String name) {
-		LIRenderLargeItem.ExtraLargeIconToken token = new LIRenderLargeItem.ExtraLargeIconToken(name);
-		extraTokens.add(token);
-		return token;
-	}
-
 	@Override
 	public boolean handleRenderType(ItemStack itemstack, IItemRenderer.ItemRenderType type) {
 		return type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
@@ -118,9 +108,6 @@ public class LIRenderLargeItem implements IItemRenderer {
 
 	public void registerIcons(IconRegister register) {
 		largeIcon = registerLargeIcon(register, null);
-		for (LIRenderLargeItem.ExtraLargeIconToken token : extraTokens) {
-			token.setIcon(registerLargeIcon(register, token.getName()));
-		}
 	}
 
 	private Icon registerLargeIcon(IconRegister register, String extra) {
@@ -147,17 +134,6 @@ public class LIRenderLargeItem implements IItemRenderer {
 		GL11.glPopMatrix();
 	}
 
-	private void renderLargeItem(ItemStack itemstack) {
-		if (largeIcon == null) {
-			largeIcon = LARGE_ICONS_MAP.get(itemstack.getItem());
-		}
-		renderLargeItem(largeIcon);
-	}
-
-	public void renderLargeItem(ExtraLargeIconToken token) {
-		renderLargeItem(token.getIcon());
-	}
-
 	private void renderLargeItem(Icon icon) {
 		doTransformations();
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationItemsTexture);
@@ -166,33 +142,15 @@ public class LIRenderLargeItem implements IItemRenderer {
 		ItemRenderer.renderItemIn2D(tess, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625f);
 	}
 
+	private void renderLargeItem(ItemStack itemstack) {
+		if (largeIcon == null) {
+			largeIcon = LARGE_ICONS_MAP.get(itemstack.getItem());
+		}
+		renderLargeItem(largeIcon);
+	}
+
 	@Override
 	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack itemstack, IItemRenderer.ItemRendererHelper helper) {
 		return false;
-	}
-
-	private static class ExtraLargeIconToken {
-		private String name;
-		private Icon icon;
-
-		private ExtraLargeIconToken(String s) {
-			name = s;
-		}
-
-		private Icon getIcon() {
-			return icon;
-		}
-
-		private void setIcon(Icon icon) {
-			this.icon = icon;
-		}
-
-		private String getName() {
-			return name;
-		}
-
-		private void setName(String name) {
-			this.name = name;
-		}
 	}
 }

@@ -24,6 +24,21 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 	}
 
 	@Override
+	public List<BakedQuad> getFaceQuads(EnumFacing facing) {
+		return smallBakedModel.getFaceQuads(facing);
+	}
+
+	@Override
+	public VertexFormat getFormat() {
+		return ((IFlexibleBakedModel) smallBakedModel).getFormat();
+	}
+
+	@Override
+	public List<BakedQuad> getGeneralQuads() {
+		return null;
+	}
+
+	@Override
 	public ItemCameraTransforms getItemCameraTransforms() {
 		return smallBakedModel.getItemCameraTransforms();
 	}
@@ -31,16 +46,6 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
 		return smallBakedModel.getParticleTexture();
-	}
-
-	@Override
-	public List<BakedQuad> getFaceQuads(EnumFacing facing) {
-		return smallBakedModel.getFaceQuads(facing);
-	}
-
-	@Override
-	public List<BakedQuad> getGeneralQuads() {
-		return null;
 	}
 
 	@Override
@@ -65,10 +70,5 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 	@Override
 	public boolean isGui3d() {
 		return smallBakedModel.isGui3d();
-	}
-
-	@Override
-	public VertexFormat getFormat() {
-		return ((IFlexibleBakedModel) smallBakedModel).getFormat();
 	}
 }

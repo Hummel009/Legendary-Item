@@ -23,6 +23,21 @@ public class LILargeItemModel implements IBakedModel {
 	}
 
 	@Override
+	public ItemOverrideList getOverrides() {
+		return smallBakedModel.getOverrides();
+	}
+
+	@Override
+	public TextureAtlasSprite getParticleIcon() {
+		return smallBakedModel.getParticleIcon();
+	}
+
+	@Override
+	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
+		return smallBakedModel.getQuads(blockState, direction, random);
+	}
+
+	@Override
 	public IBakedModel handlePerspective(ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack) {
 		IBakedModel bakedModel = smallBakedModel;
 		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
@@ -32,13 +47,8 @@ public class LILargeItemModel implements IBakedModel {
 	}
 
 	@Override
-	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
-		return smallBakedModel.getQuads(blockState, direction, random);
-	}
-
-	@Override
-	public boolean useAmbientOcclusion() {
-		return smallBakedModel.useAmbientOcclusion();
+	public boolean isCustomRenderer() {
+		return smallBakedModel.isCustomRenderer();
 	}
 
 	@Override
@@ -47,22 +57,12 @@ public class LILargeItemModel implements IBakedModel {
 	}
 
 	@Override
+	public boolean useAmbientOcclusion() {
+		return smallBakedModel.useAmbientOcclusion();
+	}
+
+	@Override
 	public boolean usesBlockLight() {
 		return smallBakedModel.usesBlockLight();
-	}
-
-	@Override
-	public boolean isCustomRenderer() {
-		return smallBakedModel.isCustomRenderer();
-	}
-
-	@Override
-	public TextureAtlasSprite getParticleIcon() {
-		return smallBakedModel.getParticleIcon();
-	}
-
-	@Override
-	public ItemOverrideList getOverrides() {
-		return smallBakedModel.getOverrides();
 	}
 }
