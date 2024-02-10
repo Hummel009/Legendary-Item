@@ -13,28 +13,28 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class LILargeItemModel implements IBakedModel {
+public class EpicBakedModel implements IBakedModel {
 	private final IBakedModel smallBakedModel;
 	private final IBakedModel largeBakedModel;
 
-	public LILargeItemModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
+	public EpicBakedModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
 		this.smallBakedModel = smallBakedModel;
 		this.largeBakedModel = largeBakedModel;
 	}
 
 	@Override
 	public ItemOverrideList getOverrides() {
-		return smallBakedModel.getOverrides();
+		return largeBakedModel.getOverrides();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleIcon() {
-		return smallBakedModel.getParticleIcon();
+		return largeBakedModel.getParticleIcon();
 	}
 
 	@Override
 	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
-		return smallBakedModel.getQuads(blockState, direction, random);
+		return largeBakedModel.getQuads(blockState, direction, random);
 	}
 
 	@Override
@@ -48,21 +48,21 @@ public class LILargeItemModel implements IBakedModel {
 
 	@Override
 	public boolean isCustomRenderer() {
-		return smallBakedModel.isCustomRenderer();
+		return largeBakedModel.isCustomRenderer();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallBakedModel.isGui3d();
+		return largeBakedModel.isGui3d();
 	}
 
 	@Override
 	public boolean useAmbientOcclusion() {
-		return smallBakedModel.useAmbientOcclusion();
+		return largeBakedModel.useAmbientOcclusion();
 	}
 
 	@Override
 	public boolean usesBlockLight() {
-		return smallBakedModel.usesBlockLight();
+		return largeBakedModel.usesBlockLight();
 	}
 }
