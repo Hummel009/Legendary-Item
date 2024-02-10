@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public record LILargeItemModel(BakedModel smallBakedModel, BakedModel largeBakedModel) implements BakedModel {
+public record EpicBakedModel(BakedModel smallBakedModel, BakedModel largeBakedModel) implements BakedModel {
 	@Override
 	public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack poseStack) {
 		var bakedModel = smallBakedModel;
@@ -25,36 +25,36 @@ public record LILargeItemModel(BakedModel smallBakedModel, BakedModel largeBaked
 
 	@Override
 	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
-		return smallBakedModel.getQuads(blockState, direction, random);
+		return largeBakedModel.getQuads(blockState, direction, random);
 	}
 
 	@Override
 	public boolean useAmbientOcclusion() {
-		return smallBakedModel.useAmbientOcclusion();
+		return largeBakedModel.useAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallBakedModel.isGui3d();
+		return largeBakedModel.isGui3d();
 	}
 
 	@Override
 	public boolean usesBlockLight() {
-		return smallBakedModel.usesBlockLight();
+		return largeBakedModel.usesBlockLight();
 	}
 
 	@Override
 	public boolean isCustomRenderer() {
-		return smallBakedModel.isCustomRenderer();
+		return largeBakedModel.isCustomRenderer();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleIcon() {
-		return smallBakedModel.getParticleIcon();
+		return largeBakedModel.getParticleIcon();
 	}
 
 	@Override
 	public ItemOverrides getOverrides() {
-		return smallBakedModel.getOverrides();
+		return largeBakedModel.getOverrides();
 	}
 }
