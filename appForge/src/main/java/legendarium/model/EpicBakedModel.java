@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public record LILargeItemModel(BakedModel smallBakedModel, BakedModel largeBakedModel) implements BakedModel {
+public record EpicBakedModel(BakedModel smallBakedModel, BakedModel largeBakedModel) implements BakedModel {
 	@Override
 	public BakedModel applyTransform(ItemDisplayContext itemDisplayContext, PoseStack poseStack, boolean b) {
 		var bakedModel = smallBakedModel;
@@ -25,36 +25,36 @@ public record LILargeItemModel(BakedModel smallBakedModel, BakedModel largeBaked
 
 	@Override
 	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, RandomSource randomSource) {
-		return smallBakedModel.getQuads(blockState, direction, randomSource);
+		return largeBakedModel.getQuads(blockState, direction, randomSource);
 	}
 
 	@Override
 	public boolean useAmbientOcclusion() {
-		return smallBakedModel.useAmbientOcclusion();
+		return largeBakedModel.useAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallBakedModel.isGui3d();
+		return largeBakedModel.isGui3d();
 	}
 
 	@Override
 	public boolean usesBlockLight() {
-		return smallBakedModel.usesBlockLight();
+		return largeBakedModel.usesBlockLight();
 	}
 
 	@Override
 	public boolean isCustomRenderer() {
-		return smallBakedModel.isCustomRenderer();
+		return largeBakedModel.isCustomRenderer();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleIcon() {
-		return smallBakedModel.getParticleIcon();
+		return largeBakedModel.getParticleIcon();
 	}
 
 	@Override
 	public ItemOverrides getOverrides() {
-		return smallBakedModel.getOverrides();
+		return largeBakedModel.getOverrides();
 	}
 }
