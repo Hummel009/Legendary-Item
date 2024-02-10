@@ -31,15 +31,16 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
+		var models = event.getModels();
 		for (var compliance : COMPLIANCES.entrySet()) {
 			var smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			var smallBakedModel = event.getModels().get(smallResourceLocation);
+			var smallBakedModel = models.get(smallResourceLocation);
 			if (smallBakedModel != null) {
 				var largeResourceLocation = compliance.getValue();
-				var largeBakedModel = event.getModels().get(largeResourceLocation);
+				var largeBakedModel = models.get(largeResourceLocation);
 				if (largeBakedModel != null) {
 					var epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
-					event.getModels().put(smallResourceLocation, epicBakedModel);
+					models.put(smallResourceLocation, epicBakedModel);
 				}
 			}
 		}
