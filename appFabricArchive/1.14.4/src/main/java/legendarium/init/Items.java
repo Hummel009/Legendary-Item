@@ -132,6 +132,5 @@ public class Items {
 
 	private static void register(Item item, String name) {
 		Registry.register(Registry.ITEM, new ResourceLocation("legendarium", name), item);
-		CONTENT.add(item);
 	}
 }
