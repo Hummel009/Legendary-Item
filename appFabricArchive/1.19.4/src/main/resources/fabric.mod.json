@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"legendarium.LI"
+			"legendarium.Main"
 		],
 		"client": [
-			"legendarium.proxy.LIClient"
+			"legendarium.MainClient"
 		]
 	},
 	"mixins": [
