@@ -1,7 +1,7 @@
 package legendarium;
 
 import legendarium.handler.ModEventHandler;
-import legendarium.init.CreativeTabs;
+import legendarium.init.ItemGroups;
 import legendarium.init.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -15,6 +15,6 @@ public class Main {
 		modEventBus.register(modEventHandler);
 
 		Items.register(modEventBus);
-		CreativeTabs.register(modEventBus);
+		ItemGroups.register(modEventBus);
 	}
 }
