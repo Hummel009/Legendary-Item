@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"legendarium.LI"
+			"legendarium.Main"
 		]
 	},
 	"depends": {
