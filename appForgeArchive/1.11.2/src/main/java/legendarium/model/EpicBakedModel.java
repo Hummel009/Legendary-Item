@@ -7,40 +7,33 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
 import java.util.List;
 
-@SuppressWarnings("deprecation")
-public class LILargeItemModel implements IPerspectiveAwareModel {
+public class EpicBakedModel implements IBakedModel {
 	private final IBakedModel smallBakedModel;
 	private final IBakedModel largeBakedModel;
 
-	public LILargeItemModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
+	public EpicBakedModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
 		this.smallBakedModel = smallBakedModel;
 		this.largeBakedModel = largeBakedModel;
 	}
 
 	@Override
-	public ItemCameraTransforms getItemCameraTransforms() {
-		return smallBakedModel.getItemCameraTransforms();
-	}
-
-	@Override
 	public ItemOverrideList getOverrides() {
-		return smallBakedModel.getOverrides();
+		return largeBakedModel.getOverrides();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
-		return smallBakedModel.getParticleTexture();
+		return largeBakedModel.getParticleTexture();
 	}
 
 	@Override
 	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long l) {
-		return smallBakedModel.getQuads(blockState, facing, l);
+		return largeBakedModel.getQuads(blockState, facing, l);
 	}
 
 	@Override
@@ -49,21 +42,21 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
 			bakedModel = largeBakedModel;
 		}
-		return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
+		return bakedModel.handlePerspective(transformType);
 	}
 
 	@Override
 	public boolean isAmbientOcclusion() {
-		return smallBakedModel.isAmbientOcclusion();
+		return largeBakedModel.isAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isBuiltInRenderer() {
-		return smallBakedModel.isBuiltInRenderer();
+		return largeBakedModel.isBuiltInRenderer();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallBakedModel.isGui3d();
+		return largeBakedModel.isGui3d();
 	}
 }
