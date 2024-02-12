@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -47,14 +48,16 @@ public class ForgeEventHandler {
 
 	@SubscribeEvent
 	public void onModelBake(ModelBakeEvent event) {
+		IRegistry<ModelResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
 			ModelResourceLocation smallResourceLocation = compliance.getKey();
-			IBakedModel smallBakedModel = event.getModelRegistry().getObject(smallResourceLocation);
+			IBakedModel smallBakedModel = modelRegistry.getObject(smallResourceLocation);
 			if (smallBakedModel != null) {
 				ModelResourceLocation largeResourceLocation = compliance.getValue();
-				IBakedModel largeBakedModel = event.getModelRegistry().getObject(largeResourceLocation);
+				IBakedModel largeBakedModel = modelRegistry.getObject(largeResourceLocation);
 				if (largeBakedModel != null) {
-					event.getModelRegistry().putObject(smallResourceLocation, new EpicBakedModel(smallBakedModel, largeBakedModel));
+					IBakedModel epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
+					modelRegistry.putObject(smallResourceLocation, epicBakedModel);
 				}
 			}
 		}

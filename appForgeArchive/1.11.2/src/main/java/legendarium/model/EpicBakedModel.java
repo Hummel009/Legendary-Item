@@ -7,18 +7,25 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
 import java.util.List;
 
-public class EpicBakedModel implements IBakedModel {
+@SuppressWarnings("deprecation")
+public class EpicBakedModel implements IPerspectiveAwareModel {
 	private final IBakedModel smallBakedModel;
 	private final IBakedModel largeBakedModel;
 
 	public EpicBakedModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
 		this.smallBakedModel = smallBakedModel;
 		this.largeBakedModel = largeBakedModel;
+	}
+
+	@Override
+	public ItemCameraTransforms getItemCameraTransforms() {
+		return largeBakedModel.getItemCameraTransforms();
 	}
 
 	@Override
@@ -42,7 +49,7 @@ public class EpicBakedModel implements IBakedModel {
 		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
 			bakedModel = largeBakedModel;
 		}
-		return bakedModel.handlePerspective(transformType);
+		return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
 	}
 
 	@Override
