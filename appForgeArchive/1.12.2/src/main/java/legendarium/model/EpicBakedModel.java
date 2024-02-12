@@ -12,28 +12,28 @@ import org.apache.commons.lang3.tuple.Pair;
 import javax.vecmath.Matrix4f;
 import java.util.List;
 
-public class LILargeItemModel implements IBakedModel {
+public class EpicBakedModel implements IBakedModel {
 	private final IBakedModel smallBakedModel;
 	private final IBakedModel largeBakedModel;
 
-	public LILargeItemModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
+	public EpicBakedModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
 		this.smallBakedModel = smallBakedModel;
 		this.largeBakedModel = largeBakedModel;
 	}
 
 	@Override
 	public ItemOverrideList getOverrides() {
-		return smallBakedModel.getOverrides();
+		return largeBakedModel.getOverrides();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
-		return smallBakedModel.getParticleTexture();
+		return largeBakedModel.getParticleTexture();
 	}
 
 	@Override
 	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long l) {
-		return smallBakedModel.getQuads(blockState, facing, l);
+		return largeBakedModel.getQuads(blockState, facing, l);
 	}
 
 	@Override
@@ -47,16 +47,16 @@ public class LILargeItemModel implements IBakedModel {
 
 	@Override
 	public boolean isAmbientOcclusion() {
-		return smallBakedModel.isAmbientOcclusion();
+		return largeBakedModel.isAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isBuiltInRenderer() {
-		return smallBakedModel.isBuiltInRenderer();
+		return largeBakedModel.isBuiltInRenderer();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallBakedModel.isGui3d();
+		return largeBakedModel.isGui3d();
 	}
 }

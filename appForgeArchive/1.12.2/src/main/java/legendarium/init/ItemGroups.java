@@ -1,17 +1,16 @@
-package legendarium.content;
+package legendarium.init;
 
-import legendarium.LI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-public class LICreativeTabs {
+public class ItemGroups {
 	public static final CreativeTabs TAB_ARTIFACTS = new CreativeTabs("legendarium.artifacts") {
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(LI.weaponFaramir);
+			return new ItemStack(Items.weaponFaramir);
 		}
 	};
 
-	private LICreativeTabs() {
+	private ItemGroups() {
 	}
 }
