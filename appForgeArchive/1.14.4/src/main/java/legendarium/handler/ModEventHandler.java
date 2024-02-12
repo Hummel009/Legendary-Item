@@ -18,7 +18,7 @@ public class ModEventHandler {
 	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
-	public void onRegisterAdditional(ModelRegistryEvent event) {
+	public void onModelRegistry(ModelRegistryEvent event) {
 		Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
 		for (ResourceLocation resourceLocation : resourceLocations) {
 			String itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
@@ -30,7 +30,7 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
-	public void onModifyBakingResult(ModelBakeEvent event) {
+	public void onModelBake(ModelBakeEvent event) {
 		Map<ResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
 			ModelResourceLocation smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");

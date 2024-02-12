@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -29,8 +28,8 @@ public class ForgeEventHandler {
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event) {
 		for (Item item : Items.CONTENT) {
-			ResourceLocation registryName = item.getRegistryName();
-			String resourceFileName = (registryName + "_large.json").replace("legendarium:", "");
+			String registryName = item.getRegistryName().toString();
+			String resourceFileName = registryName.replace("legendarium:", "") + "_large.json";
 			try (InputStream inputStream = Main.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
 				ModelResourceLocation smallResourceLocation = new ModelResourceLocation(registryName, "inventory");
 				ModelResourceLocation largeResourceLocation = new ModelResourceLocation(registryName + "_large", "inventory");
