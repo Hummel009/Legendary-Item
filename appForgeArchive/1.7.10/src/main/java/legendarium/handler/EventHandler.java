@@ -6,7 +6,7 @@ import legendarium.render.RenderEpicItem;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
-public class ForgeEventHandler {
+public class EventHandler {
 	@SubscribeEvent
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;

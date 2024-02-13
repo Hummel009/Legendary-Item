@@ -1,11 +1,12 @@
 package legendarium;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.EventBus;
-import legendarium.handler.ForgeEventHandler;
+import legendarium.handler.EventHandler;
 import legendarium.init.Items;
 import legendarium.proxy.CommonProxy;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,8 +20,10 @@ public class Main {
 
 	public Main() {
 		EventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-		ForgeEventHandler forgeEventHandler = new ForgeEventHandler();
-		forgeEventBus.register(forgeEventHandler);
+		EventBus fmlEventBus = FMLCommonHandler.instance().bus();
+		EventHandler eventHandler = new EventHandler();
+		forgeEventBus.register(eventHandler);
+		fmlEventBus.register(eventHandler);
 	}
 
 	@Mod.EventHandler
