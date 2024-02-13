@@ -72,7 +72,7 @@ public class Items {
 	private Items() {
 	}
 
-	public static void register() {
+	public static void preInit() {
 		weaponAcharn = new ItemColdWeapon();
 		weaponAeglos = new ItemColdWeapon();
 		weaponAlatar = new ItemColdWeapon();

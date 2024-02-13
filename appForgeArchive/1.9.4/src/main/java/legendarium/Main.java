@@ -25,7 +25,7 @@ public class Main {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		Items.register();
+		Items.preInit();
 	}
 
 	@Mod.EventHandler
