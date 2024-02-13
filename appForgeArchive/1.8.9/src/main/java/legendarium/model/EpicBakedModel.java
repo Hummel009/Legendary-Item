@@ -14,23 +14,23 @@ import javax.vecmath.Matrix4f;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public class LILargeItemModel implements IPerspectiveAwareModel {
+public class EpicBakedModel implements IPerspectiveAwareModel {
 	private final IBakedModel smallBakedModel;
 	private final IBakedModel largeBakedModel;
 
-	public LILargeItemModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
+	public EpicBakedModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
 		this.smallBakedModel = smallBakedModel;
 		this.largeBakedModel = largeBakedModel;
 	}
 
 	@Override
 	public List<BakedQuad> getFaceQuads(EnumFacing facing) {
-		return smallBakedModel.getFaceQuads(facing);
+		return largeBakedModel.getFaceQuads(facing);
 	}
 
 	@Override
 	public VertexFormat getFormat() {
-		return ((IFlexibleBakedModel) smallBakedModel).getFormat();
+		return ((IFlexibleBakedModel) largeBakedModel).getFormat();
 	}
 
 	@Override
@@ -40,12 +40,12 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 
 	@Override
 	public ItemCameraTransforms getItemCameraTransforms() {
-		return smallBakedModel.getItemCameraTransforms();
+		return largeBakedModel.getItemCameraTransforms();
 	}
 
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
-		return smallBakedModel.getParticleTexture();
+		return largeBakedModel.getParticleTexture();
 	}
 
 	@Override
@@ -59,16 +59,16 @@ public class LILargeItemModel implements IPerspectiveAwareModel {
 
 	@Override
 	public boolean isAmbientOcclusion() {
-		return smallBakedModel.isAmbientOcclusion();
+		return largeBakedModel.isAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isBuiltInRenderer() {
-		return smallBakedModel.isBuiltInRenderer();
+		return largeBakedModel.isBuiltInRenderer();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return smallBakedModel.isGui3d();
+		return largeBakedModel.isGui3d();
 	}
 }

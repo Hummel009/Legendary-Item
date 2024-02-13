@@ -1,29 +1,17 @@
-package legendarium;
+package legendarium.init;
 
 import com.google.common.base.CaseFormat;
-import legendarium.content.LIItemEmpty;
-import legendarium.content.LIItemSword;
-import legendarium.proxy.LICommonProxy;
+import legendarium.item.ItemColdWeapon;
+import legendarium.item.ItemGem;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
-@Mod(modid = "legendarium", useMetadata = true)
-public class LI {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
-
+public class Items {
 	public static final Collection<Item> CONTENT = new ArrayList<>();
-
-	@SidedProxy(serverSide = "legendarium.proxy.LICommonProxy", clientSide = "legendarium.proxy.LIClientProxy")
-	public static LICommonProxy proxy;
 
 	public static Item weaponAcharn;
 	public static Item weaponAeglos;
@@ -81,78 +69,65 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	private static void register(Item item, String name) {
-		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		item.setUnlocalizedName(itemName);
-		item.setRegistryName(itemName);
-		GameRegistry.registerItem(item, itemName);
-		CONTENT.add(item);
+	private Items() {
 	}
 
-	@Mod.EventHandler
-	public void onInit(FMLInitializationEvent event) {
-		proxy.onInit();
-	}
+	public static void register() {
+		weaponAcharn = new ItemColdWeapon();
+		weaponAeglos = new ItemColdWeapon();
+		weaponAlatar = new ItemColdWeapon();
+		weaponAngrist = new ItemColdWeapon();
+		weaponAnguirel = new ItemColdWeapon();
+		weaponAranruth = new ItemColdWeapon();
+		weaponAzog = new ItemColdWeapon();
+		weaponBalin = new ItemColdWeapon();
+		weaponBarazanthual = new ItemColdWeapon();
+		weaponBolg = new ItemColdWeapon();
+		weaponBoromir = new ItemColdWeapon();
+		weaponCeleborn = new ItemColdWeapon();
+		weaponDagmor = new ItemColdWeapon();
+		weaponDain = new ItemColdWeapon();
+		weaponDenethor = new ItemColdWeapon();
+		weaponDori = new ItemColdWeapon();
+		weaponDramborleg = new ItemColdWeapon();
+		weaponDurin = new ItemColdWeapon();
+		weaponDwalin = new ItemColdWeapon();
+		weaponEothain = new ItemColdWeapon();
+		weaponEowyn = new ItemColdWeapon();
+		weaponFaramir = new ItemColdWeapon();
+		weaponGamling = new ItemColdWeapon();
+		weaponGimli = new ItemColdWeapon();
+		weaponGirion = new ItemColdWeapon();
+		weaponGoblinking = new ItemColdWeapon();
+		weaponGorbag = new ItemColdWeapon();
+		weaponGothmog = new ItemColdWeapon();
+		weaponGrima = new ItemColdWeapon();
+		weaponGurthang = new ItemColdWeapon();
+		weaponGuthwine = new ItemColdWeapon();
+		weaponHadhafang = new ItemColdWeapon();
+		weaponHerugrim = new ItemColdWeapon();
+		weaponKhamul = new ItemColdWeapon();
+		weaponKili = new ItemColdWeapon();
+		weaponLegolas = new ItemColdWeapon();
+		weaponMelkor = new ItemColdWeapon();
+		weaponMouthofsauron = new ItemColdWeapon();
+		weaponNarcil = new ItemColdWeapon();
+		weaponNazgul = new ItemColdWeapon();
+		weaponOrcrist = new ItemColdWeapon();
+		weaponPallando = new ItemColdWeapon();
+		weaponRadagast = new ItemColdWeapon();
+		weaponSaruman = new ItemColdWeapon();
+		weaponShagrat = new ItemColdWeapon();
+		weaponThorin = new ItemColdWeapon();
+		weaponThorondun = new ItemColdWeapon();
+		weaponThrain = new ItemColdWeapon();
+		weaponThranduil = new ItemColdWeapon();
+		weaponThror = new ItemColdWeapon();
+		weaponUrfael = new ItemColdWeapon();
+		weaponWitchking = new ItemColdWeapon();
 
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(proxy);
-
-		weaponAcharn = new LIItemSword();
-		weaponAeglos = new LIItemSword();
-		weaponAlatar = new LIItemSword();
-		weaponAngrist = new LIItemSword();
-		weaponAnguirel = new LIItemSword();
-		weaponAranruth = new LIItemSword();
-		weaponAzog = new LIItemSword();
-		weaponBalin = new LIItemSword();
-		weaponBarazanthual = new LIItemSword();
-		weaponBolg = new LIItemSword();
-		weaponBoromir = new LIItemSword();
-		weaponCeleborn = new LIItemSword();
-		weaponDagmor = new LIItemSword();
-		weaponDain = new LIItemSword();
-		weaponDenethor = new LIItemSword();
-		weaponDori = new LIItemSword();
-		weaponDramborleg = new LIItemSword();
-		weaponDurin = new LIItemSword();
-		weaponDwalin = new LIItemSword();
-		weaponEothain = new LIItemSword();
-		weaponEowyn = new LIItemSword();
-		weaponFaramir = new LIItemSword();
-		weaponGamling = new LIItemSword();
-		weaponGimli = new LIItemSword();
-		weaponGirion = new LIItemSword();
-		weaponGoblinking = new LIItemSword();
-		weaponGorbag = new LIItemSword();
-		weaponGothmog = new LIItemSword();
-		weaponGrima = new LIItemSword();
-		weaponGurthang = new LIItemSword();
-		weaponGuthwine = new LIItemSword();
-		weaponHadhafang = new LIItemSword();
-		weaponHerugrim = new LIItemSword();
-		weaponKhamul = new LIItemSword();
-		weaponKili = new LIItemSword();
-		weaponLegolas = new LIItemSword();
-		weaponMelkor = new LIItemSword();
-		weaponMouthofsauron = new LIItemSword();
-		weaponNarcil = new LIItemSword();
-		weaponNazgul = new LIItemSword();
-		weaponOrcrist = new LIItemSword();
-		weaponPallando = new LIItemSword();
-		weaponRadagast = new LIItemSword();
-		weaponSaruman = new LIItemSword();
-		weaponShagrat = new LIItemSword();
-		weaponThorin = new LIItemSword();
-		weaponThorondun = new LIItemSword();
-		weaponThrain = new LIItemSword();
-		weaponThranduil = new LIItemSword();
-		weaponThror = new LIItemSword();
-		weaponUrfael = new LIItemSword();
-		weaponWitchking = new LIItemSword();
-
-		arkenstone = new LIItemEmpty();
-		silmaril = new LIItemEmpty();
+		arkenstone = new ItemGem();
+		silmaril = new ItemGem();
 
 		register(weaponAcharn, "weaponAcharn");
 		register(weaponAeglos, "weaponAeglos");
@@ -209,5 +184,13 @@ public class LI {
 
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
+	}
+
+	private static void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setUnlocalizedName(itemName);
+		item.setRegistryName(itemName);
+		GameRegistry.registerItem(item);
+		CONTENT.add(item);
 	}
 }
