@@ -10,11 +10,11 @@ import legendarium.init.Items;
 import legendarium.proxy.CommonProxy;
 import net.minecraftforge.common.MinecraftForge;
 
+@SuppressWarnings({"PublicField", "WeakerAccess"})
 @Mod(modid = "legendarium", useMetadata = true)
 public class Main {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
 
-	@SuppressWarnings({"PublicField", "WeakerAccess"})
 	@SidedProxy(clientSide = "legendarium.proxy.ClientProxy", serverSide = "legendarium.proxy.ServerProxy")
 	public static CommonProxy proxy;
 
