@@ -4,6 +4,7 @@ import com.google.common.base.CaseFormat;
 import legendarium.Config;
 import legendarium.item.ItemColdWeapon;
 import legendarium.item.ItemGem;
+import net.minecraft.src.EnumRarity;
 import net.minecraft.src.Item;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
@@ -121,8 +122,8 @@ public class Items {
 		weaponUrfael = new ItemColdWeapon(Config.idWeaponUrfael - 256);
 		weaponWitchking = new ItemColdWeapon(Config.idWeaponWitchking - 256);
 
-		arkenstone = new ItemGem(Config.idArkenstone - 256);
-		silmaril = new ItemGem(Config.idSilmaril - 256);
+		arkenstone = new ItemGem(Config.idArkenstone - 256, EnumRarity.rare);
+		silmaril = new ItemGem(Config.idSilmaril - 256, EnumRarity.epic);
 
 		int id = 0;
 		arkenstone.setIconIndex(id++);
