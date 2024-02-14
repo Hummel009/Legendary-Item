@@ -10,9 +10,9 @@ public class Langs {
 	public static void preInit() {
 		LanguageRegistry instance = LanguageRegistry.instance();
 
-		UnicodeHelper.loadLocalization(instance, "/assets/trop/lang/en_US.lang", "en_US");
-		UnicodeHelper.loadLocalization(instance, "/assets/trop/lang/ru_RU.lang", "ru_RU");
-		UnicodeHelper.loadLocalization(instance, "/assets/trop/lang/uk_UA.lang", "uk_UA");
-		UnicodeHelper.loadLocalization(instance, "/assets/trop/lang/zh_CN.lang", "zh_CN");
+		UnicodeHelper.loadLocalization(instance, "/assets/legendarium/lang/en_US.lang", "en_US");
+		UnicodeHelper.loadLocalization(instance, "/assets/legendarium/lang/ru_RU.lang", "ru_RU");
+		UnicodeHelper.loadLocalization(instance, "/assets/legendarium/lang/uk_UA.lang", "uk_UA");
+		UnicodeHelper.loadLocalization(instance, "/assets/legendarium/lang/zh_CN.lang", "zh_CN");
 	}
 }
