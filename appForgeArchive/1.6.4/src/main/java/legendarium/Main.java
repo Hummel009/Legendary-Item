@@ -4,11 +4,11 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.EventBus;
 import legendarium.handler.ForgeEventHandler;
 import legendarium.init.Items;
 import legendarium.proxy.CommonProxy;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.EventBus;
 
 @Mod(modid = "legendarium", useMetadata = true)
 public class Main {
@@ -25,6 +25,8 @@ public class Main {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		Config.preInit(event);
+
 		Items.preInit();
 	}
 

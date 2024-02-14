@@ -18,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LIRenderLargeItem implements IItemRenderer {
+public class RenderEpicItem implements IItemRenderer {
 	private static final ResourceLocation ENCHANTMENT_TEXTURE = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 	private static final Map<String, Float> SIZE_FOLDERS = new HashMap<String, Float>();
 	private static final Map<Item, Icon> LARGE_ICONS_MAP = new HashMap<Item, Icon>();
@@ -28,32 +28,32 @@ public class LIRenderLargeItem implements IItemRenderer {
 		SIZE_FOLDERS.put("large-3x", 3.0f);
 	}
 
-	private final Item theItem;
+	private final Item item;
 	private final String folderName;
-	private final float largeIconScale;
+	private final float scale;
 	private Icon largeIcon;
 
-	private LIRenderLargeItem(Item item, String dir, float f) {
-		theItem = item;
-		folderName = dir;
-		largeIconScale = f;
+	private RenderEpicItem(Item item, String folderName, float scale) {
+		this.item = item;
+		this.folderName = folderName;
+		this.scale = scale;
 	}
 
 	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
 		String itemIconString = item.getUnlocalizedName().substring("item.".length());
 		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
-		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
-		String modID = isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
-		return new ResourceLocation(modID, "textures/items/" + folder + '/' + itemIconString + ".png");
+		GameRegistry.UniqueIdentifier uniqueIdentifier = GameRegistry.findUniqueIdentifierFor(item);
+		String modId = isNullOrEmpty(uniqueIdentifier.modId) ? "minecraft" : uniqueIdentifier.modId;
+		return new ResourceLocation(modId, "textures/items/" + folder + '/' + itemIconString + ".png");
 	}
 
-	public static LIRenderLargeItem getRendererIfLarge(Item item) {
+	public static RenderEpicItem getRendererIfLarge(Item item) {
 		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
 			float iconScale = folder.getValue();
 			try {
 				ResourceLocation resLoc = getLargeTexturePath(item, folder.getKey());
 				Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				return new LIRenderLargeItem(item, folder.getKey(), iconScale);
+				return new RenderEpicItem(item, folder.getKey(), iconScale);
 			} catch (Exception ignored) {
 			}
 		}
@@ -97,8 +97,8 @@ public class LIRenderLargeItem implements IItemRenderer {
 	}
 
 	private void doTransformations() {
-		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
-		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
+		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
+		GL11.glScalef(scale, scale, 1.0f);
 	}
 
 	@Override
@@ -111,16 +111,16 @@ public class LIRenderLargeItem implements IItemRenderer {
 	}
 
 	private Icon registerLargeIcon(IconRegister register, String extra) {
-		String itemName = theItem.getUnlocalizedName().substring("item.".length());
+		String itemName = item.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
-		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
-		String modID = (isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ':';
-		StringBuilder path = new StringBuilder().append(modID).append(folderName).append('/').append(itemName);
+		GameRegistry.UniqueIdentifier uniqueIdentifier = GameRegistry.findUniqueIdentifierFor(item);
+		String modId = (isNullOrEmpty(uniqueIdentifier.modId) ? "minecraft" : uniqueIdentifier.modId) + ':';
+		StringBuilder path = new StringBuilder().append(modId).append(folderName).append('/').append(itemName);
 		if (!isNullOrEmpty(extra)) {
 			path.append('_').append(extra);
 		}
 		Icon icon = register.registerIcon(path.toString());
-		LARGE_ICONS_MAP.put(theItem, icon);
+		LARGE_ICONS_MAP.put(item, icon);
 		return icon;
 	}
 

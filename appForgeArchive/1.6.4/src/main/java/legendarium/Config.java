@@ -7,7 +7,7 @@ import net.minecraftforge.common.Configuration;
 import java.util.logging.Level;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
-public class LIConfig {
+public class Config {
 	private static Configuration configuration;
 
 	private static boolean loaded;
@@ -68,7 +68,7 @@ public class LIConfig {
 	public static int idArkenstone;
 	public static int idSilmaril;
 
-	private LIConfig() {
+	private Config() {
 	}
 
 	public static void preInit(FMLPreInitializationEvent event) {

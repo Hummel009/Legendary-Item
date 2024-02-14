@@ -1,13 +1,13 @@
 package legendarium.handler;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import legendarium.listener.ReloadListener;
 import legendarium.render.RenderEpicItem;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.ForgeSubscribe;
 
-public class EventHandler {
-	@SubscribeEvent
+public class ForgeEventHandler {
+	@ForgeSubscribe
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;
 		if (map.getTextureType() == 1) {
