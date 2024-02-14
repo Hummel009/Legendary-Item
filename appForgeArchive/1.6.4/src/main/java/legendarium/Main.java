@@ -14,8 +14,9 @@ import net.minecraftforge.event.EventBus;
 public class Main {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
 
+	@SuppressWarnings({"PublicField", "WeakerAccess"})
 	@SidedProxy(clientSide = "legendarium.proxy.ClientProxy", serverSide = "legendarium.proxy.ServerProxy")
-	private static CommonProxy proxy;
+	public static CommonProxy proxy;
 
 	public Main() {
 		EventBus forgeEventBus = MinecraftForge.EVENT_BUS;

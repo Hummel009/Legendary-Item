@@ -1,21 +1,14 @@
-package legendarium;
+package legendarium.init;
 
 import com.google.common.base.CaseFormat;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import legendarium.content.LIItemEmpty;
-import legendarium.content.LIItemSword;
-import legendarium.util.LILang;
-import net.minecraft.src.EnumRarity;
-import net.minecraft.src.Item;
+import cpw.mods.fml.common.registry.GameRegistry;
+import legendarium.Config;
+import legendarium.item.ItemColdWeapon;
+import legendarium.item.ItemGem;
+import net.minecraft.item.Item;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
-@Mod(modid = "legendarium", useMetadata = true)
-public class LI {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
-
+public class Items {
 	public static Item weaponAcharn;
 	public static Item weaponAeglos;
 	public static Item weaponAlatar;
@@ -72,69 +65,65 @@ public class LI {
 	public static Item arkenstone;
 	public static Item silmaril;
 
-	private static void register(Item item, String name) {
-		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		item.setTextureFile("/assets/legendarium/textures/items/sprite.png");
-		item.setItemName(itemName);
+	private Items() {
 	}
 
-	@Mod.Init
-	public void onInit(FMLInitializationEvent event) {
-		weaponAcharn = new LIItemSword(LIConfig.idWeaponAcharn - 256);
-		weaponAeglos = new LIItemSword(LIConfig.idWeaponAeglos - 256);
-		weaponAlatar = new LIItemSword(LIConfig.idWeaponAlatar - 256);
-		weaponAngrist = new LIItemSword(LIConfig.idWeaponAngrist - 256);
-		weaponAnguirel = new LIItemSword(LIConfig.idWeaponAnguirel - 256);
-		weaponAranruth = new LIItemSword(LIConfig.idWeaponAranruth - 256);
-		weaponAzog = new LIItemSword(LIConfig.idWeaponAzog - 256);
-		weaponBalin = new LIItemSword(LIConfig.idWeaponBalin - 256);
-		weaponBarazanthual = new LIItemSword(LIConfig.idWeaponBarazanthual - 256);
-		weaponBolg = new LIItemSword(LIConfig.idWeaponBolg - 256);
-		weaponBoromir = new LIItemSword(LIConfig.idWeaponBoromir - 256);
-		weaponCeleborn = new LIItemSword(LIConfig.idWeaponCeleborn - 256);
-		weaponDagmor = new LIItemSword(LIConfig.idWeaponDagmor - 256);
-		weaponDain = new LIItemSword(LIConfig.idWeaponDain - 256);
-		weaponDenethor = new LIItemSword(LIConfig.idWeaponDenethor - 256);
-		weaponDori = new LIItemSword(LIConfig.idWeaponDori - 256);
-		weaponDramborleg = new LIItemSword(LIConfig.idWeaponDramborleg - 256);
-		weaponDurin = new LIItemSword(LIConfig.idWeaponDurin - 256);
-		weaponDwalin = new LIItemSword(LIConfig.idWeaponDwalin - 256);
-		weaponEothain = new LIItemSword(LIConfig.idWeaponEothain - 256);
-		weaponEowyn = new LIItemSword(LIConfig.idWeaponEowyn - 256);
-		weaponFaramir = new LIItemSword(LIConfig.idWeaponFaramir - 256);
-		weaponGamling = new LIItemSword(LIConfig.idWeaponGamling - 256);
-		weaponGimli = new LIItemSword(LIConfig.idWeaponGimli - 256);
-		weaponGirion = new LIItemSword(LIConfig.idWeaponGirion - 256);
-		weaponGoblinking = new LIItemSword(LIConfig.idWeaponGoblinking - 256);
-		weaponGorbag = new LIItemSword(LIConfig.idWeaponGorbag - 256);
-		weaponGothmog = new LIItemSword(LIConfig.idWeaponGothmog - 256);
-		weaponGrima = new LIItemSword(LIConfig.idWeaponGrima - 256);
-		weaponGurthang = new LIItemSword(LIConfig.idWeaponGurthang - 256);
-		weaponGuthwine = new LIItemSword(LIConfig.idWeaponGuthwine - 256);
-		weaponHadhafang = new LIItemSword(LIConfig.idWeaponHadhafang - 256);
-		weaponHerugrim = new LIItemSword(LIConfig.idWeaponHerugrim - 256);
-		weaponKhamul = new LIItemSword(LIConfig.idWeaponKhamul - 256);
-		weaponKili = new LIItemSword(LIConfig.idWeaponKili - 256);
-		weaponLegolas = new LIItemSword(LIConfig.idWeaponLegolas - 256);
-		weaponMelkor = new LIItemSword(LIConfig.idWeaponMelkor - 256);
-		weaponMouthofsauron = new LIItemSword(LIConfig.idWeaponMouthofsauron - 256);
-		weaponNarcil = new LIItemSword(LIConfig.idWeaponNarcil - 256);
-		weaponNazgul = new LIItemSword(LIConfig.idWeaponNazgul - 256);
-		weaponOrcrist = new LIItemSword(LIConfig.idWeaponOrcrist - 256);
-		weaponPallando = new LIItemSword(LIConfig.idWeaponPallando - 256);
-		weaponRadagast = new LIItemSword(LIConfig.idWeaponRadagast - 256);
-		weaponSaruman = new LIItemSword(LIConfig.idWeaponSaruman - 256);
-		weaponShagrat = new LIItemSword(LIConfig.idWeaponShagrat - 256);
-		weaponThorin = new LIItemSword(LIConfig.idWeaponThorin - 256);
-		weaponThorondun = new LIItemSword(LIConfig.idWeaponThorondun - 256);
-		weaponThrain = new LIItemSword(LIConfig.idWeaponThrain - 256);
-		weaponThranduil = new LIItemSword(LIConfig.idWeaponThranduil - 256);
-		weaponThror = new LIItemSword(LIConfig.idWeaponThror - 256);
-		weaponUrfael = new LIItemSword(LIConfig.idWeaponUrfael - 256);
-		weaponWitchking = new LIItemSword(LIConfig.idWeaponWitchking - 256);
+	public static void preInit() {
+		weaponAcharn = new ItemColdWeapon(Config.idWeaponAcharn - 256);
+		weaponAeglos = new ItemColdWeapon(Config.idWeaponAeglos - 256);
+		weaponAlatar = new ItemColdWeapon(Config.idWeaponAlatar - 256);
+		weaponAngrist = new ItemColdWeapon(Config.idWeaponAngrist - 256);
+		weaponAnguirel = new ItemColdWeapon(Config.idWeaponAnguirel - 256);
+		weaponAranruth = new ItemColdWeapon(Config.idWeaponAranruth - 256);
+		weaponAzog = new ItemColdWeapon(Config.idWeaponAzog - 256);
+		weaponBalin = new ItemColdWeapon(Config.idWeaponBalin - 256);
+		weaponBarazanthual = new ItemColdWeapon(Config.idWeaponBarazanthual - 256);
+		weaponBolg = new ItemColdWeapon(Config.idWeaponBolg - 256);
+		weaponBoromir = new ItemColdWeapon(Config.idWeaponBoromir - 256);
+		weaponCeleborn = new ItemColdWeapon(Config.idWeaponCeleborn - 256);
+		weaponDagmor = new ItemColdWeapon(Config.idWeaponDagmor - 256);
+		weaponDain = new ItemColdWeapon(Config.idWeaponDain - 256);
+		weaponDenethor = new ItemColdWeapon(Config.idWeaponDenethor - 256);
+		weaponDori = new ItemColdWeapon(Config.idWeaponDori - 256);
+		weaponDramborleg = new ItemColdWeapon(Config.idWeaponDramborleg - 256);
+		weaponDurin = new ItemColdWeapon(Config.idWeaponDurin - 256);
+		weaponDwalin = new ItemColdWeapon(Config.idWeaponDwalin - 256);
+		weaponEothain = new ItemColdWeapon(Config.idWeaponEothain - 256);
+		weaponEowyn = new ItemColdWeapon(Config.idWeaponEowyn - 256);
+		weaponFaramir = new ItemColdWeapon(Config.idWeaponFaramir - 256);
+		weaponGamling = new ItemColdWeapon(Config.idWeaponGamling - 256);
+		weaponGimli = new ItemColdWeapon(Config.idWeaponGimli - 256);
+		weaponGirion = new ItemColdWeapon(Config.idWeaponGirion - 256);
+		weaponGoblinking = new ItemColdWeapon(Config.idWeaponGoblinking - 256);
+		weaponGorbag = new ItemColdWeapon(Config.idWeaponGorbag - 256);
+		weaponGothmog = new ItemColdWeapon(Config.idWeaponGothmog - 256);
+		weaponGrima = new ItemColdWeapon(Config.idWeaponGrima - 256);
+		weaponGurthang = new ItemColdWeapon(Config.idWeaponGurthang - 256);
+		weaponGuthwine = new ItemColdWeapon(Config.idWeaponGuthwine - 256);
+		weaponHadhafang = new ItemColdWeapon(Config.idWeaponHadhafang - 256);
+		weaponHerugrim = new ItemColdWeapon(Config.idWeaponHerugrim - 256);
+		weaponKhamul = new ItemColdWeapon(Config.idWeaponKhamul - 256);
+		weaponKili = new ItemColdWeapon(Config.idWeaponKili - 256);
+		weaponLegolas = new ItemColdWeapon(Config.idWeaponLegolas - 256);
+		weaponMelkor = new ItemColdWeapon(Config.idWeaponMelkor - 256);
+		weaponMouthofsauron = new ItemColdWeapon(Config.idWeaponMouthofsauron - 256);
+		weaponNarcil = new ItemColdWeapon(Config.idWeaponNarcil - 256);
+		weaponNazgul = new ItemColdWeapon(Config.idWeaponNazgul - 256);
+		weaponOrcrist = new ItemColdWeapon(Config.idWeaponOrcrist - 256);
+		weaponPallando = new ItemColdWeapon(Config.idWeaponPallando - 256);
+		weaponRadagast = new ItemColdWeapon(Config.idWeaponRadagast - 256);
+		weaponSaruman = new ItemColdWeapon(Config.idWeaponSaruman - 256);
+		weaponShagrat = new ItemColdWeapon(Config.idWeaponShagrat - 256);
+		weaponThorin = new ItemColdWeapon(Config.idWeaponThorin - 256);
+		weaponThorondun = new ItemColdWeapon(Config.idWeaponThorondun - 256);
+		weaponThrain = new ItemColdWeapon(Config.idWeaponThrain - 256);
+		weaponThranduil = new ItemColdWeapon(Config.idWeaponThranduil - 256);
+		weaponThror = new ItemColdWeapon(Config.idWeaponThror - 256);
+		weaponUrfael = new ItemColdWeapon(Config.idWeaponUrfael - 256);
+		weaponWitchking = new ItemColdWeapon(Config.idWeaponWitchking - 256);
 
-		arkenstone = new LIItemEmpty(LIConfig.idArkenstone - 256, EnumRarity.rare);
-		silmaril = new LIItemEmpty(LIConfig.idSilmaril - 256, EnumRarity.epic);
+		arkenstone = new ItemGem(Config.idArkenstone - 256);
+		silmaril = new ItemGem(Config.idSilmaril - 256);
 
 		int id = 0;
 		arkenstone.setIconIndex(id++);
@@ -247,15 +236,12 @@ public class LI {
 
 		register(arkenstone, "arkenstone");
 		register(silmaril, "silmaril");
-
-		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/en_US.lang", "en_US");
-		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/ru_RU.lang", "ru_RU");
-		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/uk_UA.lang", "uk_UA");
-		LILang.loadLocalization(LanguageRegistry.instance(), "/assets/legendarium/lang/zh_CN.lang", "zh_CN");
 	}
 
-	@Mod.PreInit
-	public void preInit(FMLPreInitializationEvent event) {
-		LIConfig.preInit(event);
+	private static void register(Item item, String name) {
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setTextureFile("/assets/legendarium/textures/items/sprite.png");
+		item.setItemName(itemName);
+		GameRegistry.registerItem(item, itemName);
 	}
 }

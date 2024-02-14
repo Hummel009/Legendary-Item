@@ -9,8 +9,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Properties;
 
-public class LILang {
-	private LILang() {
+public class UnicodeHelper {
+	private UnicodeHelper() {
 	}
 
 	public static void loadLocalization(LanguageRegistry registry, String langFile, String langName) {
