@@ -7,6 +7,8 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,6 +20,7 @@ public class ModEventHandler {
 	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
 		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json")).keySet();
 		for (var resourceLocation : resourceLocations) {
@@ -30,6 +33,7 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
 		var models = event.getModels();
 		for (var compliance : COMPLIANCES.entrySet()) {

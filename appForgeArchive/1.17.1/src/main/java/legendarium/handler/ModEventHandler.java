@@ -4,6 +4,8 @@ import legendarium.model.EpicBakedModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -16,6 +18,7 @@ public class ModEventHandler {
 	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
 		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
 		for (var resourceLocation : resourceLocations) {
@@ -28,6 +31,7 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
 		var modelRegistry = event.getModelRegistry();
 		for (var compliance : COMPLIANCES.entrySet()) {

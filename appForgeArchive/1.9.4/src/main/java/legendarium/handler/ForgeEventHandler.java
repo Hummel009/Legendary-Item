@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +16,7 @@ public class ForgeEventHandler {
 	public static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {

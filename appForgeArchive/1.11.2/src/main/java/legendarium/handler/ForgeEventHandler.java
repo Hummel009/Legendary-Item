@@ -13,6 +13,8 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -27,6 +29,7 @@ public class ForgeEventHandler {
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
 		for (Item item : Items.CONTENT) {
 			String registryName = item.getRegistryName().toString();
@@ -47,6 +50,7 @@ public class ForgeEventHandler {
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
