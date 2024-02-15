@@ -1,5 +1,6 @@
 package legendarium;
 
+import legendarium.init.ItemGroups;
 import legendarium.init.Items;
 import net.fabricmc.api.ModInitializer;
 
@@ -9,5 +10,6 @@ public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		Items.register();
+		ItemGroups.forceClassLoad();
 	}
 }
