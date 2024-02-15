@@ -4,9 +4,8 @@ import legendarium.model.EpicBakedModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.ModelEvent;
 
 import java.util.HashMap;
@@ -16,8 +15,10 @@ public class ModEventHandler {
 	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
+		if (!FMLEnvironment.dist.isClient()) {
+			return;
+		}
 		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json")).keySet();
 		for (var resourceLocation : resourceLocations) {
 			var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
@@ -29,8 +30,10 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
+		if (!FMLEnvironment.dist.isClient()) {
+			return;
+		}
 		var models = event.getModels();
 		for (var compliance : COMPLIANCES.entrySet()) {
 			var smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
