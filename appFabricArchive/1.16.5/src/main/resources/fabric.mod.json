@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"legendarium.Main"
+			"com.github.hummel.legendarium.Main"
 		]
 	},
 	"depends": {

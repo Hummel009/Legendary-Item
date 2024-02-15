@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"legendarium.Main"
+			"com.github.hummel.legendarium.Main"
 		],
 		"client": [
-			"legendarium.MainClient"
+			"com.github.hummel.legendarium.MainClient"
 		]
 	},
 	"depends": {

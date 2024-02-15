@@ -16,14 +16,14 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"legendarium.Main"
+			"com.github.hummel.legendarium.Main"
 		],
 		"client": [
-			"legendarium.MainClient"
+			"com.github.hummel.legendarium.MainClient"
 		]
 	},
 	"mixins": [
-		"legendarium.mixins.json"
+		"com.github.hummel.legendarium.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.6",
