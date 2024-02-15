@@ -6,13 +6,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 @SuppressWarnings("WeakerAccess")
 public class Items {
-	public static final Collection<Item> CONTENT = new ArrayList<>();
-
 	public static final Item WEAPON_ACHARN = new ItemColdWeapon();
 	public static final Item WEAPON_AEGLOS = new ItemColdWeapon();
 	public static final Item WEAPON_ALATAR = new ItemColdWeapon();
