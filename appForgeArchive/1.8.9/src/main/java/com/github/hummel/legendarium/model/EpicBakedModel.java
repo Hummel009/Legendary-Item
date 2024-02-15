@@ -24,6 +24,17 @@ public class EpicBakedModel implements IPerspectiveAwareModel {
 	}
 
 	@Override
+	public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
+		IBakedModel bakedModel;
+		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON) {
+			bakedModel = largeBakedModel;
+		} else {
+			bakedModel = smallBakedModel;
+		}
+		return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
+	}
+
+	@Override
 	public List<BakedQuad> getFaceQuads(EnumFacing facing) {
 		return largeBakedModel.getFaceQuads(facing);
 	}
@@ -35,12 +46,7 @@ public class EpicBakedModel implements IPerspectiveAwareModel {
 
 	@Override
 	public List<BakedQuad> getGeneralQuads() {
-		return null;
-	}
-
-	@Override
-	public ItemCameraTransforms getItemCameraTransforms() {
-		return largeBakedModel.getItemCameraTransforms();
+		return largeBakedModel.getGeneralQuads();
 	}
 
 	@Override
@@ -49,12 +55,8 @@ public class EpicBakedModel implements IPerspectiveAwareModel {
 	}
 
 	@Override
-	public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
-		IBakedModel bakedModel = smallBakedModel;
-		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON) {
-			bakedModel = largeBakedModel;
-		}
-		return ((IPerspectiveAwareModel) bakedModel).handlePerspective(transformType);
+	public ItemCameraTransforms getItemCameraTransforms() {
+		return largeBakedModel.getItemCameraTransforms();
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import javax.vecmath.Matrix4f;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class EpicBakedModel implements IBakedModel {
 	private final IBakedModel smallBakedModel;
 	private final IBakedModel largeBakedModel;
@@ -19,6 +20,17 @@ public class EpicBakedModel implements IBakedModel {
 	public EpicBakedModel(IBakedModel smallBakedModel, IBakedModel largeBakedModel) {
 		this.smallBakedModel = smallBakedModel;
 		this.largeBakedModel = largeBakedModel;
+	}
+
+	@Override
+	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
+		IBakedModel bakedModel;
+		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
+			bakedModel = largeBakedModel;
+		} else {
+			bakedModel = smallBakedModel;
+		}
+		return bakedModel.handlePerspective(transformType);
 	}
 
 	@Override
@@ -32,17 +44,13 @@ public class EpicBakedModel implements IBakedModel {
 	}
 
 	@Override
-	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long l) {
-		return largeBakedModel.getQuads(blockState, facing, l);
+	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing facing, long random) {
+		return largeBakedModel.getQuads(blockState, facing, random);
 	}
 
 	@Override
-	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
-		IBakedModel bakedModel = smallBakedModel;
-		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-			bakedModel = largeBakedModel;
-		}
-		return bakedModel.handlePerspective(transformType);
+	public ItemCameraTransforms getItemCameraTransforms() {
+		return largeBakedModel.getItemCameraTransforms();
 	}
 
 	@Override

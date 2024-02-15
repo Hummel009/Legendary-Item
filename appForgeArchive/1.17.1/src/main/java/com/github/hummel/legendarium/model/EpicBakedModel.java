@@ -16,36 +16,18 @@ import java.util.Random;
 public record EpicBakedModel(BakedModel smallBakedModel, BakedModel largeBakedModel) implements BakedModel {
 	@Override
 	public BakedModel handlePerspective(ItemTransforms.TransformType transformType, PoseStack poseStack) {
-		var bakedModel = smallBakedModel;
+		BakedModel bakedModel;
 		if (transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
 			bakedModel = largeBakedModel;
+		} else {
+			bakedModel = smallBakedModel;
 		}
 		return bakedModel.handlePerspective(transformType, poseStack);
 	}
 
 	@Override
-	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
-		return largeBakedModel.getQuads(blockState, direction, random);
-	}
-
-	@Override
-	public boolean useAmbientOcclusion() {
-		return largeBakedModel.useAmbientOcclusion();
-	}
-
-	@Override
-	public boolean isGui3d() {
-		return largeBakedModel.isGui3d();
-	}
-
-	@Override
-	public boolean usesBlockLight() {
-		return largeBakedModel.usesBlockLight();
-	}
-
-	@Override
-	public boolean isCustomRenderer() {
-		return largeBakedModel.isCustomRenderer();
+	public ItemOverrides getOverrides() {
+		return largeBakedModel.getOverrides();
 	}
 
 	@Override
@@ -54,7 +36,32 @@ public record EpicBakedModel(BakedModel smallBakedModel, BakedModel largeBakedMo
 	}
 
 	@Override
-	public ItemOverrides getOverrides() {
-		return largeBakedModel.getOverrides();
+	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, Random random) {
+		return largeBakedModel.getQuads(blockState, direction, random);
+	}
+
+	@Override
+	public ItemTransforms getTransforms() {
+		return largeBakedModel.getTransforms();
+	}
+
+	@Override
+	public boolean isCustomRenderer() {
+		return largeBakedModel.isCustomRenderer();
+	}
+
+	@Override
+	public boolean isGui3d() {
+		return largeBakedModel.isGui3d();
+	}
+
+	@Override
+	public boolean useAmbientOcclusion() {
+		return largeBakedModel.useAmbientOcclusion();
+	}
+
+	@Override
+	public boolean usesBlockLight() {
+		return largeBakedModel.usesBlockLight();
 	}
 }

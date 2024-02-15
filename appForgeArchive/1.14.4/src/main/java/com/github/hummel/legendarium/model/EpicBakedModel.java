@@ -24,6 +24,17 @@ public class EpicBakedModel implements IBakedModel {
 	}
 
 	@Override
+	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
+		IBakedModel bakedModel;
+		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
+			bakedModel = largeBakedModel;
+		} else {
+			bakedModel = smallBakedModel;
+		}
+		return bakedModel.handlePerspective(transformType);
+	}
+
+	@Override
 	public ItemOverrideList getOverrides() {
 		return largeBakedModel.getOverrides();
 	}
@@ -39,12 +50,8 @@ public class EpicBakedModel implements IBakedModel {
 	}
 
 	@Override
-	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType transformType) {
-		IBakedModel bakedModel = smallBakedModel;
-		if (transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || transformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-			bakedModel = largeBakedModel;
-		}
-		return bakedModel.handlePerspective(transformType);
+	public ItemCameraTransforms getTransforms() {
+		return largeBakedModel.getTransforms();
 	}
 
 	@Override
