@@ -16,25 +16,51 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public record EpicBakedModel(BakedModel smallBakedModel, BakedModel largeBakedModel) implements BakedModel {
 	@Override
-	@SuppressWarnings({"CastToIncompatibleInterface", "deprecation"})
-	public void emitItemQuads(ItemStack itemStack, Supplier<RandomSource> randomSupplier, RenderContext context) {
+	@SuppressWarnings("CastToIncompatibleInterface")
+	public void emitItemQuads(ItemStack itemStack, Supplier<RandomSource> randomSupplier, RenderContext renderContext) {
 		BakedModel bakedModel;
 
-		var transformMode = ((ContextAccessor) context).getTransformMode();
+		var transformMode = ((ContextAccessor) renderContext).getTransformMode();
 		if (transformMode == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || transformMode == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND || transformMode == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || transformMode == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
 			bakedModel = largeBakedModel;
 		} else {
 			bakedModel = smallBakedModel;
 		}
 
-		context.bakedModelConsumer().accept(bakedModel, null);
+		renderContext.bakedModelConsumer().accept(bakedModel, null);
+	}
+
+	@Override
+	public ItemOverrides getOverrides() {
+		return largeBakedModel.getOverrides();
+	}
+
+	@Override
+	public TextureAtlasSprite getParticleIcon() {
+		return largeBakedModel.getParticleIcon();
 	}
 
 	@Override
 	public List<BakedQuad> getQuads(BlockState blockState, Direction direction, RandomSource randomSource) {
 		return largeBakedModel.getQuads(blockState, direction, randomSource);
+	}
+
+	@Override
+	public ItemTransforms getTransforms() {
+		return largeBakedModel.getTransforms();
+	}
+
+	@Override
+	public boolean isCustomRenderer() {
+		return largeBakedModel.isCustomRenderer();
+	}
+
+	@Override
+	public boolean isGui3d() {
+		return largeBakedModel.isGui3d();
 	}
 
 	@Override
@@ -48,32 +74,7 @@ public record EpicBakedModel(BakedModel smallBakedModel, BakedModel largeBakedMo
 	}
 
 	@Override
-	public boolean isGui3d() {
-		return largeBakedModel.isGui3d();
-	}
-
-	@Override
 	public boolean usesBlockLight() {
 		return largeBakedModel.usesBlockLight();
-	}
-
-	@Override
-	public boolean isCustomRenderer() {
-		return largeBakedModel.isCustomRenderer();
-	}
-
-	@Override
-	public TextureAtlasSprite getParticleIcon() {
-		return largeBakedModel.getParticleIcon();
-	}
-
-	@Override
-	public ItemTransforms getTransforms() {
-		return largeBakedModel.getTransforms();
-	}
-
-	@Override
-	public ItemOverrides getOverrides() {
-		return largeBakedModel.getOverrides();
 	}
 }
