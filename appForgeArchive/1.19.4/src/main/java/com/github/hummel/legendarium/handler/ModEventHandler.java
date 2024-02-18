@@ -53,8 +53,8 @@ public class ModEventHandler {
 	@SubscribeEvent
 	public void onCreativeModeTabRegistry(CreativeModeTabEvent.Register event) {
 		event.registerCreativeModeTab(new ResourceLocation("legendarium", "legendarium.artifacts"), builder -> builder.title(Component.translatable("itemGroup.legendarium.artifacts")).icon(() -> new ItemStack(Items.WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
-			for (var item : Items.CONTENT) {
-				populator.accept(item);
+			for (var item : Items.REGISTRY.getEntries()) {
+				populator.accept(item.get());
 			}
 		}));
 	}
