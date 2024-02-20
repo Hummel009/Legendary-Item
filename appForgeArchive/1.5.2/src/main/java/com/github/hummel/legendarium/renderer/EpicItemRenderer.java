@@ -46,9 +46,9 @@ public class EpicItemRenderer implements IItemRenderer {
 		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(scale, scale, 1.0f);
 		RenderEngine renderEngine = Minecraft.getMinecraft().renderEngine;
-		String itemTextureLocation = getItemTextureLocation(item, folder);
-		renderEngine.bindTexture(itemTextureLocation);
-		int textureSize = TextureFXManager.instance().getTextureDimensions(itemTextureLocation).width;
+		String itemTexturePath = getItemTexturePath(item, folder);
+		renderEngine.bindTexture(itemTexturePath);
+		int textureSize = TextureFXManager.instance().getTextureDimensions(itemTexturePath).width;
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tessellator = Tessellator.instance;
 		ItemRenderer.renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625F);
@@ -92,10 +92,10 @@ public class EpicItemRenderer implements IItemRenderer {
 	public static EpicItemRenderer getRendererIfLarge(Item item) {
 		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
 			try {
-				String itemTextureLocation = getItemTextureLocation(item, folder.getKey());
+				String itemTexturePath = getItemTexturePath(item, folder.getKey());
 				InputStream inputStream = null;
 				try {
-					inputStream = Main.class.getResourceAsStream(itemTextureLocation);
+					inputStream = Main.class.getResourceAsStream(itemTexturePath);
 					if (inputStream != null) {
 						return new EpicItemRenderer(item, folder.getKey(), folder.getValue());
 					}
@@ -114,11 +114,11 @@ public class EpicItemRenderer implements IItemRenderer {
 		return null;
 	}
 
-	private static String getItemTextureLocation(Item item, String folder) {
-		return "/textures/items/" + folder + '/' + getItemTextureName(item) + ".png";
+	private static String getItemTexturePath(Item item, String folder) {
+		return "/textures/items/" + folder + '/' + getItemName(item) + ".png";
 	}
 
-	private static String getItemTextureName(Item item) {
+	private static String getItemName(Item item) {
 		return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, item.getUnlocalizedName().substring("item.".length()));
 	}
 }
