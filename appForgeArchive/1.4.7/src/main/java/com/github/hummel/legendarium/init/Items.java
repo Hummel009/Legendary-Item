@@ -7,8 +7,13 @@ import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @SuppressWarnings({"WeakerAccess", "PublicField"})
 public class Items {
+	public static final Collection<Item> CONTENT = new ArrayList<Item>();
+
 	public static Item weaponAcharn;
 	public static Item weaponAeglos;
 	public static Item weaponAlatar;
@@ -243,5 +248,6 @@ public class Items {
 		item.setTextureFile("/assets/legendarium/textures/items/sprite.png");
 		item.setItemName(itemName);
 		GameRegistry.registerItem(item, itemName);
+		CONTENT.add(item);
 	}
 }
