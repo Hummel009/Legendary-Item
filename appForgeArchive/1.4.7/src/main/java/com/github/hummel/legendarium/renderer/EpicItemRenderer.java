@@ -120,33 +120,33 @@ public class EpicItemRenderer implements IItemRenderer {
 	private static void renderItemIn2D(Tessellator par0Tessellator, float par1, float par2, float par3, float par4, int par5, int par6, float par7) {
 		par0Tessellator.startDrawingQuads();
 		par0Tessellator.setNormal(0.0F, 0.0F, 1.0F);
-		par0Tessellator.addVertexWithUV(0.0, 0.0, 0.0, (double) par1, (double) par4);
-		par0Tessellator.addVertexWithUV(1.0, 0.0, 0.0, (double) par3, (double) par4);
-		par0Tessellator.addVertexWithUV(1.0, 1.0, 0.0, (double) par3, (double) par2);
-		par0Tessellator.addVertexWithUV(0.0, 1.0, 0.0, (double) par1, (double) par2);
+		par0Tessellator.addVertexWithUV(0.0, 0.0, 0.0, par1, par4);
+		par0Tessellator.addVertexWithUV(1.0, 0.0, 0.0, par3, par4);
+		par0Tessellator.addVertexWithUV(1.0, 1.0, 0.0, par3, par2);
+		par0Tessellator.addVertexWithUV(0.0, 1.0, 0.0, par1, par2);
 		par0Tessellator.draw();
 		par0Tessellator.startDrawingQuads();
 		par0Tessellator.setNormal(0.0F, 0.0F, -1.0F);
-		par0Tessellator.addVertexWithUV(0.0, 1.0, (double) (0.0F - par7), (double) par1, (double) par2);
-		par0Tessellator.addVertexWithUV(1.0, 1.0, (double) (0.0F - par7), (double) par3, (double) par2);
-		par0Tessellator.addVertexWithUV(1.0, 0.0, (double) (0.0F - par7), (double) par3, (double) par4);
-		par0Tessellator.addVertexWithUV(0.0, 0.0, (double) (0.0F - par7), (double) par1, (double) par4);
+		par0Tessellator.addVertexWithUV(0.0, 1.0, 0.0F - par7, par1, par2);
+		par0Tessellator.addVertexWithUV(1.0, 1.0, 0.0F - par7, par3, par2);
+		par0Tessellator.addVertexWithUV(1.0, 0.0, 0.0F - par7, par3, par4);
+		par0Tessellator.addVertexWithUV(0.0, 0.0, 0.0F - par7, par1, par4);
 		par0Tessellator.draw();
-		float f5 = (float) par5 * (par1 - par3);
-		float f6 = (float) par6 * (par4 - par2);
+		float f5 = par5 * (par1 - par3);
+		float f6 = par6 * (par4 - par2);
 		par0Tessellator.startDrawingQuads();
 		par0Tessellator.setNormal(-1.0F, 0.0F, 0.0F);
 
 		int k;
 		float f7;
 		float f8;
-		for (k = 0; (float) k < f5; ++k) {
-			f7 = (float) k / f5;
-			f8 = par1 + (par3 - par1) * f7 - 0.5F / (float) par5;
-			par0Tessellator.addVertexWithUV((double) f7, 0.0, (double) (0.0F - par7), (double) f8, (double) par4);
-			par0Tessellator.addVertexWithUV((double) f7, 0.0, 0.0, (double) f8, (double) par4);
-			par0Tessellator.addVertexWithUV((double) f7, 1.0, 0.0, (double) f8, (double) par2);
-			par0Tessellator.addVertexWithUV((double) f7, 1.0, (double) (0.0F - par7), (double) f8, (double) par2);
+		for (k = 0; k < f5; ++k) {
+			f7 = k / f5;
+			f8 = par1 + (par3 - par1) * f7 - 0.5F / par5;
+			par0Tessellator.addVertexWithUV(f7, 0.0, 0.0F - par7, f8, par4);
+			par0Tessellator.addVertexWithUV(f7, 0.0, 0.0, f8, par4);
+			par0Tessellator.addVertexWithUV(f7, 1.0, 0.0, f8, par2);
+			par0Tessellator.addVertexWithUV(f7, 1.0, 0.0F - par7, f8, par2);
 		}
 
 		par0Tessellator.draw();
@@ -154,41 +154,41 @@ public class EpicItemRenderer implements IItemRenderer {
 		par0Tessellator.setNormal(1.0F, 0.0F, 0.0F);
 
 		float f9;
-		for (k = 0; (float) k < f5; ++k) {
-			f7 = (float) k / f5;
-			f8 = par1 + (par3 - par1) * f7 - 0.5F / (float) par5;
+		for (k = 0; k < f5; ++k) {
+			f7 = k / f5;
+			f8 = par1 + (par3 - par1) * f7 - 0.5F / par5;
 			f9 = f7 + 1.0F / f5;
-			par0Tessellator.addVertexWithUV((double) f9, 1.0, (double) (0.0F - par7), (double) f8, (double) par2);
-			par0Tessellator.addVertexWithUV((double) f9, 1.0, 0.0, (double) f8, (double) par2);
-			par0Tessellator.addVertexWithUV((double) f9, 0.0, 0.0, (double) f8, (double) par4);
-			par0Tessellator.addVertexWithUV((double) f9, 0.0, (double) (0.0F - par7), (double) f8, (double) par4);
+			par0Tessellator.addVertexWithUV(f9, 1.0, 0.0F - par7, f8, par2);
+			par0Tessellator.addVertexWithUV(f9, 1.0, 0.0, f8, par2);
+			par0Tessellator.addVertexWithUV(f9, 0.0, 0.0, f8, par4);
+			par0Tessellator.addVertexWithUV(f9, 0.0, 0.0F - par7, f8, par4);
 		}
 
 		par0Tessellator.draw();
 		par0Tessellator.startDrawingQuads();
 		par0Tessellator.setNormal(0.0F, 1.0F, 0.0F);
 
-		for (k = 0; (float) k < f6; ++k) {
-			f7 = (float) k / f6;
-			f8 = par4 + (par2 - par4) * f7 - 0.5F / (float) par6;
+		for (k = 0; k < f6; ++k) {
+			f7 = k / f6;
+			f8 = par4 + (par2 - par4) * f7 - 0.5F / par6;
 			f9 = f7 + 1.0F / f6;
-			par0Tessellator.addVertexWithUV(0.0, (double) f9, 0.0, (double) par1, (double) f8);
-			par0Tessellator.addVertexWithUV(1.0, (double) f9, 0.0, (double) par3, (double) f8);
-			par0Tessellator.addVertexWithUV(1.0, (double) f9, (double) (0.0F - par7), (double) par3, (double) f8);
-			par0Tessellator.addVertexWithUV(0.0, (double) f9, (double) (0.0F - par7), (double) par1, (double) f8);
+			par0Tessellator.addVertexWithUV(0.0, f9, 0.0, par1, f8);
+			par0Tessellator.addVertexWithUV(1.0, f9, 0.0, par3, f8);
+			par0Tessellator.addVertexWithUV(1.0, f9, 0.0F - par7, par3, f8);
+			par0Tessellator.addVertexWithUV(0.0, f9, 0.0F - par7, par1, f8);
 		}
 
 		par0Tessellator.draw();
 		par0Tessellator.startDrawingQuads();
 		par0Tessellator.setNormal(0.0F, -1.0F, 0.0F);
 
-		for (k = 0; (float) k < f6; ++k) {
-			f7 = (float) k / f6;
-			f8 = par4 + (par2 - par4) * f7 - 0.5F / (float) par6;
-			par0Tessellator.addVertexWithUV(1.0, (double) f7, 0.0, (double) par3, (double) f8);
-			par0Tessellator.addVertexWithUV(0.0, (double) f7, 0.0, (double) par1, (double) f8);
-			par0Tessellator.addVertexWithUV(0.0, (double) f7, (double) (0.0F - par7), (double) par1, (double) f8);
-			par0Tessellator.addVertexWithUV(1.0, (double) f7, (double) (0.0F - par7), (double) par3, (double) f8);
+		for (k = 0; k < f6; ++k) {
+			f7 = k / f6;
+			f8 = par4 + (par2 - par4) * f7 - 0.5F / par6;
+			par0Tessellator.addVertexWithUV(1.0, f7, 0.0, par3, f8);
+			par0Tessellator.addVertexWithUV(0.0, f7, 0.0, par1, f8);
+			par0Tessellator.addVertexWithUV(0.0, f7, 0.0F - par7, par1, f8);
+			par0Tessellator.addVertexWithUV(1.0, f7, 0.0F - par7, par3, f8);
 		}
 
 		par0Tessellator.draw();
