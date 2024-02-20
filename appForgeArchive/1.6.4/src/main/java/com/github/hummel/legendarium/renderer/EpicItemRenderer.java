@@ -66,10 +66,10 @@ public class EpicItemRenderer implements IItemRenderer {
 
 	private static void renderEnchantmentEffect() {
 		Tessellator tessellator = Tessellator.instance;
-		TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
+		TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
 		GL11.glDepthFunc(514);
 		GL11.glDisable(2896);
-		texturemanager.bindTexture(ENCHANTMENT_TEXTURE);
+		textureManager.bindTexture(ENCHANTMENT_TEXTURE);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(768, 1);
 		float shade = 0.76F;
@@ -115,11 +115,11 @@ public class EpicItemRenderer implements IItemRenderer {
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier uniqueIdentifier = GameRegistry.findUniqueIdentifierFor(item);
 		String modId = (isNullOrEmpty(uniqueIdentifier.modId) ? "minecraft" : uniqueIdentifier.modId) + ':';
-		StringBuilder path = new StringBuilder().append(modId).append(folderName).append('/').append(itemName);
+		String path = modId + folderName + '/' + itemName;
 		if (!isNullOrEmpty(extra)) {
-			path.append('_').append(extra);
+			path += '_' + extra;
 		}
-		Icon icon = register.registerIcon(path.toString());
+		Icon icon = register.registerIcon(path);
 		LARGE_ICONS_MAP.put(item, icon);
 		return icon;
 	}
@@ -136,7 +136,8 @@ public class EpicItemRenderer implements IItemRenderer {
 
 	private void renderLargeItem(Icon icon) {
 		doTransformations();
-		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationItemsTexture);
+		TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+		textureManager.bindTexture(TextureMap.locationItemsTexture);
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tess = Tessellator.instance;
 		ItemRenderer.renderItemIn2D(tess, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625f);
