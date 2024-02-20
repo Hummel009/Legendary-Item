@@ -102,8 +102,8 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public boolean handleRenderType(ItemStack itemstack, IItemRenderer.ItemRenderType type) {
-		return type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
+	public boolean handleRenderType(ItemStack itemstack, ItemRenderType type) {
+		return type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
 	}
 
 	public void registerIcons(IIconRegister register) {
@@ -125,7 +125,7 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack itemstack, Object... data) {
+	public void renderItem(ItemRenderType type, ItemStack itemstack, Object... data) {
 		GL11.glPushMatrix();
 		renderLargeItem(itemstack);
 		if (itemstack.hasEffect(0)) {
@@ -151,7 +151,7 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack itemstack, IItemRenderer.ItemRendererHelper helper) {
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack itemstack, IItemRenderer.ItemRendererHelper helper) {
 		return false;
 	}
 }
