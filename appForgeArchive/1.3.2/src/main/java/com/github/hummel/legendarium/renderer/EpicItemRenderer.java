@@ -115,32 +115,32 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	private static String getItemTexturePath(Item item, String folder) {
-		return "/textures/items/" + folder + '/' + getItemName(item) + ".png";
+		return "/assets/legendarium/textures/items/" + folder + '/' + getItemName(item) + ".png";
 	}
 
 	private static String getItemName(Item item) {
 		return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, item.getItemName().substring("item.".length()));
 	}
 
-	private static void renderItemIn2D(Tessellator par0Tessellator, float par1, float par2, float par3, float par4, int par5, int par6, float par7) {
-		par0Tessellator.startDrawingQuads();
-		par0Tessellator.setNormal(0.0F, 0.0F, 1.0F);
-		par0Tessellator.addVertexWithUV(0.0, 0.0, 0.0, par1, par4);
-		par0Tessellator.addVertexWithUV(1.0, 0.0, 0.0, par3, par4);
-		par0Tessellator.addVertexWithUV(1.0, 1.0, 0.0, par3, par2);
-		par0Tessellator.addVertexWithUV(0.0, 1.0, 0.0, par1, par2);
-		par0Tessellator.draw();
-		par0Tessellator.startDrawingQuads();
-		par0Tessellator.setNormal(0.0F, 0.0F, -1.0F);
-		par0Tessellator.addVertexWithUV(0.0, 1.0, 0.0F - par7, par1, par2);
-		par0Tessellator.addVertexWithUV(1.0, 1.0, 0.0F - par7, par3, par2);
-		par0Tessellator.addVertexWithUV(1.0, 0.0, 0.0F - par7, par3, par4);
-		par0Tessellator.addVertexWithUV(0.0, 0.0, 0.0F - par7, par1, par4);
-		par0Tessellator.draw();
+	private static void renderItemIn2D(Tessellator tessellator, float par1, float par2, float par3, float par4, int par5, int par6, float par7) {
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, 1.0F);
+		tessellator.addVertexWithUV(0.0, 0.0, 0.0, par1, par4);
+		tessellator.addVertexWithUV(1.0, 0.0, 0.0, par3, par4);
+		tessellator.addVertexWithUV(1.0, 1.0, 0.0, par3, par2);
+		tessellator.addVertexWithUV(0.0, 1.0, 0.0, par1, par2);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, -1.0F);
+		tessellator.addVertexWithUV(0.0, 1.0, 0.0F - par7, par1, par2);
+		tessellator.addVertexWithUV(1.0, 1.0, 0.0F - par7, par3, par2);
+		tessellator.addVertexWithUV(1.0, 0.0, 0.0F - par7, par3, par4);
+		tessellator.addVertexWithUV(0.0, 0.0, 0.0F - par7, par1, par4);
+		tessellator.draw();
 		float f5 = par5 * (par1 - par3);
 		float f6 = par6 * (par4 - par2);
-		par0Tessellator.startDrawingQuads();
-		par0Tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(-1.0F, 0.0F, 0.0F);
 
 		int k;
 		float f7;
@@ -148,54 +148,54 @@ public class EpicItemRenderer implements IItemRenderer {
 		for (k = 0; k < f5; ++k) {
 			f7 = k / f5;
 			f8 = par1 + (par3 - par1) * f7 - 0.5F / par5;
-			par0Tessellator.addVertexWithUV(f7, 0.0, 0.0F - par7, f8, par4);
-			par0Tessellator.addVertexWithUV(f7, 0.0, 0.0, f8, par4);
-			par0Tessellator.addVertexWithUV(f7, 1.0, 0.0, f8, par2);
-			par0Tessellator.addVertexWithUV(f7, 1.0, 0.0F - par7, f8, par2);
+			tessellator.addVertexWithUV(f7, 0.0, 0.0F - par7, f8, par4);
+			tessellator.addVertexWithUV(f7, 0.0, 0.0, f8, par4);
+			tessellator.addVertexWithUV(f7, 1.0, 0.0, f8, par2);
+			tessellator.addVertexWithUV(f7, 1.0, 0.0F - par7, f8, par2);
 		}
 
-		par0Tessellator.draw();
-		par0Tessellator.startDrawingQuads();
-		par0Tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(1.0F, 0.0F, 0.0F);
 
 		float f9;
 		for (k = 0; k < f5; ++k) {
 			f7 = k / f5;
 			f8 = par1 + (par3 - par1) * f7 - 0.5F / par5;
 			f9 = f7 + 1.0F / f5;
-			par0Tessellator.addVertexWithUV(f9, 1.0, 0.0F - par7, f8, par2);
-			par0Tessellator.addVertexWithUV(f9, 1.0, 0.0, f8, par2);
-			par0Tessellator.addVertexWithUV(f9, 0.0, 0.0, f8, par4);
-			par0Tessellator.addVertexWithUV(f9, 0.0, 0.0F - par7, f8, par4);
+			tessellator.addVertexWithUV(f9, 1.0, 0.0F - par7, f8, par2);
+			tessellator.addVertexWithUV(f9, 1.0, 0.0, f8, par2);
+			tessellator.addVertexWithUV(f9, 0.0, 0.0, f8, par4);
+			tessellator.addVertexWithUV(f9, 0.0, 0.0F - par7, f8, par4);
 		}
 
-		par0Tessellator.draw();
-		par0Tessellator.startDrawingQuads();
-		par0Tessellator.setNormal(0.0F, 1.0F, 0.0F);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 1.0F, 0.0F);
 
 		for (k = 0; k < f6; ++k) {
 			f7 = k / f6;
 			f8 = par4 + (par2 - par4) * f7 - 0.5F / par6;
 			f9 = f7 + 1.0F / f6;
-			par0Tessellator.addVertexWithUV(0.0, f9, 0.0, par1, f8);
-			par0Tessellator.addVertexWithUV(1.0, f9, 0.0, par3, f8);
-			par0Tessellator.addVertexWithUV(1.0, f9, 0.0F - par7, par3, f8);
-			par0Tessellator.addVertexWithUV(0.0, f9, 0.0F - par7, par1, f8);
+			tessellator.addVertexWithUV(0.0, f9, 0.0, par1, f8);
+			tessellator.addVertexWithUV(1.0, f9, 0.0, par3, f8);
+			tessellator.addVertexWithUV(1.0, f9, 0.0F - par7, par3, f8);
+			tessellator.addVertexWithUV(0.0, f9, 0.0F - par7, par1, f8);
 		}
 
-		par0Tessellator.draw();
-		par0Tessellator.startDrawingQuads();
-		par0Tessellator.setNormal(0.0F, -1.0F, 0.0F);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, -1.0F, 0.0F);
 
 		for (k = 0; k < f6; ++k) {
 			f7 = k / f6;
 			f8 = par4 + (par2 - par4) * f7 - 0.5F / par6;
-			par0Tessellator.addVertexWithUV(1.0, f7, 0.0, par3, f8);
-			par0Tessellator.addVertexWithUV(0.0, f7, 0.0, par1, f8);
-			par0Tessellator.addVertexWithUV(0.0, f7, 0.0F - par7, par1, f8);
-			par0Tessellator.addVertexWithUV(1.0, f7, 0.0F - par7, par3, f8);
+			tessellator.addVertexWithUV(1.0, f7, 0.0, par3, f8);
+			tessellator.addVertexWithUV(0.0, f7, 0.0, par1, f8);
+			tessellator.addVertexWithUV(0.0, f7, 0.0F - par7, par1, f8);
+			tessellator.addVertexWithUV(1.0, f7, 0.0F - par7, par3, f8);
 		}
 
-		par0Tessellator.draw();
+		tessellator.draw();
 	}
 }
