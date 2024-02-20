@@ -1,4 +1,4 @@
-package com.github.hummel.legendarium.render;
+package com.github.hummel.legendarium.renderer;
 
 import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -18,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RenderEpicItem implements IItemRenderer {
+public class EpicItemRenderer implements IItemRenderer {
 	private static final ResourceLocation ENCHANTMENT_TEXTURE = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 	private static final Map<String, Float> SIZE_FOLDERS = new HashMap<String, Float>();
 	private static final Map<Item, Icon> LARGE_ICONS_MAP = new HashMap<Item, Icon>();
@@ -33,7 +33,7 @@ public class RenderEpicItem implements IItemRenderer {
 	private final float scale;
 	private Icon largeIcon;
 
-	private RenderEpicItem(Item item, String folderName, float scale) {
+	private EpicItemRenderer(Item item, String folderName, float scale) {
 		this.item = item;
 		this.folderName = folderName;
 		this.scale = scale;
@@ -47,13 +47,13 @@ public class RenderEpicItem implements IItemRenderer {
 		return new ResourceLocation(modId, "textures/items/" + folder + '/' + itemIconString + ".png");
 	}
 
-	public static RenderEpicItem getRendererIfLarge(Item item) {
+	public static EpicItemRenderer getRendererIfLarge(Item item) {
 		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
 			float iconScale = folder.getValue();
 			try {
 				ResourceLocation resLoc = getLargeTexturePath(item, folder.getKey());
 				Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				return new RenderEpicItem(item, folder.getKey(), iconScale);
+				return new EpicItemRenderer(item, folder.getKey(), iconScale);
 			} catch (Exception ignored) {
 			}
 		}

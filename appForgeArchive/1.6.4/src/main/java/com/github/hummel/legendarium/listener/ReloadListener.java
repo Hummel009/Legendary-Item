@@ -1,27 +1,23 @@
 package com.github.hummel.legendarium.listener;
 
+import com.github.hummel.legendarium.handler.ForgeEventHandler;
 import com.github.hummel.legendarium.init.Items;
-import com.github.hummel.legendarium.render.RenderEpicItem;
+import com.github.hummel.legendarium.renderer.EpicItemRenderer;
 import net.minecraft.client.resources.ResourceManager;
 import net.minecraft.client.resources.ResourceManagerReloadListener;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class ReloadListener implements ResourceManagerReloadListener {
-	public static final Collection<RenderEpicItem> LARGE_ITEM_RENDERS = new ArrayList<RenderEpicItem>();
-
 	@Override
 	public void onResourceManagerReload(ResourceManager resourceManager) {
-		LARGE_ITEM_RENDERS.clear();
+		ForgeEventHandler.EPIC_ITEM_RENDERERS.clear();
 		for (Item item : Items.CONTENT) {
 			MinecraftForgeClient.registerItemRenderer(item.itemID, null);
-			RenderEpicItem largeItemRenderer = RenderEpicItem.getRendererIfLarge(item);
+			EpicItemRenderer largeItemRenderer = EpicItemRenderer.getRendererIfLarge(item);
 			if (largeItemRenderer != null) {
 				MinecraftForgeClient.registerItemRenderer(item.itemID, largeItemRenderer);
-				LARGE_ITEM_RENDERS.add(largeItemRenderer);
+				ForgeEventHandler.EPIC_ITEM_RENDERERS.add(largeItemRenderer);
 			}
 		}
 	}
