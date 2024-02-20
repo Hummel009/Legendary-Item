@@ -2,7 +2,6 @@ package com.github.hummel.legendarium.renderer;
 
 import com.github.hummel.legendarium.Main;
 import com.google.common.base.CaseFormat;
-import cpw.mods.fml.client.TextureFXManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderEngine;
