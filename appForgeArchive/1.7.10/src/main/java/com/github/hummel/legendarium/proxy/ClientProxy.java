@@ -1,17 +1,18 @@
 package com.github.hummel.legendarium.proxy;
 
-import com.github.hummel.legendarium.listener.ReloadListener;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.resources.IResourceManagerReloadListener;
+import com.github.hummel.legendarium.init.Items;
+import com.github.hummel.legendarium.renderer.EpicItemRenderer;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy implements CommonProxy {
 	@Override
 	public void onInit() {
-		IResourceManagerReloadListener reloadListener = new ReloadListener();
-		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
-		reloadListener.onResourceManagerReload(resourceManager);
-		((IReloadableResourceManager) resourceManager).registerReloadListener(reloadListener);
+		for (Item item : Items.CONTENT) {
+			EpicItemRenderer epicItemRenderer = EpicItemRenderer.getRendererIfLarge(item);
+			if (epicItemRenderer != null) {
+				MinecraftForgeClient.registerItemRenderer(item, epicItemRenderer);
+			}
+		}
 	}
 }
