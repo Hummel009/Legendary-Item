@@ -25,17 +25,17 @@ public class MainClient implements ClientModInitializer {
 
 			pluginContext.addModels(compliances.values());
 
-			pluginContext.modifyModelAfterBake().register((original, bakeContext) -> {
+			pluginContext.modifyModelAfterBake().register((smallBakedModel, bakeContext) -> {
 				for (var compliance : compliances.entrySet()) {
 					var smallResourceLocation = compliance.getKey();
 					var largeResourceLocation = compliance.getValue();
 
 					if (bakeContext.id().getPath().equals(smallResourceLocation.getPath())) {
 						var largeBakedModel = bakeContext.baker().bake(largeResourceLocation, bakeContext.settings());
-						return new EpicBakedModel(original, largeBakedModel);
+						return new EpicBakedModel(smallBakedModel, largeBakedModel);
 					}
 				}
-				return original;
+				return smallBakedModel;
 			});
 		});
 	}
