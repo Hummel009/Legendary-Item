@@ -33,44 +33,6 @@ public class EpicItemRenderer implements IItemRenderer {
 		this.scale = scale;
 	}
 
-	public static EpicItemRenderer getRendererIfLarge(Item item) {
-		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
-			try {
-				String itemTexturePath = getItemTexturePath(item, folder.getKey());
-				InputStream inputStream = null;
-				try {
-					inputStream = Main.class.getResourceAsStream(itemTexturePath);
-					if (inputStream != null) {
-						return new EpicItemRenderer(item, folder.getKey(), folder.getValue());
-					}
-				} finally {
-					try {
-						if (inputStream != null) {
-							inputStream.close();
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			} catch (Exception ignored) {
-			}
-		}
-		return null;
-	}
-
-	private static String getItemTexturePath(Item item, String folder) {
-		return "/textures/items/" + folder + '/' + getItemName(item) + ".png";
-	}
-
-	private static String getItemName(Item item) {
-		return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, item.getItemName().substring("item.".length()));
-	}
-
-	@Override
-	public boolean handleRenderType(ItemStack itemstack, ItemRenderType type) {
-		return type == ItemRenderType.EQUIPPED;
-	}
-
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack itemstack, Object... data) {
 		GL11.glPushMatrix();
@@ -115,6 +77,49 @@ public class EpicItemRenderer implements IItemRenderer {
 			GL11.glDepthFunc(515);
 		}
 		GL11.glPopMatrix();
+	}
+
+	@Override
+	public boolean handleRenderType(ItemStack itemstack, ItemRenderType type) {
+		return type == ItemRenderType.EQUIPPED;
+	}
+
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack itemstack, IItemRenderer.ItemRendererHelper helper) {
+		return false;
+	}
+
+	public static EpicItemRenderer getRendererIfLarge(Item item) {
+		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
+			try {
+				String itemTexturePath = getItemTexturePath(item, folder.getKey());
+				InputStream inputStream = null;
+				try {
+					inputStream = Main.class.getResourceAsStream(itemTexturePath);
+					if (inputStream != null) {
+						return new EpicItemRenderer(item, folder.getKey(), folder.getValue());
+					}
+				} finally {
+					try {
+						if (inputStream != null) {
+							inputStream.close();
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		return null;
+	}
+
+	private static String getItemTexturePath(Item item, String folder) {
+		return "/textures/items/" + folder + '/' + getItemName(item) + ".png";
+	}
+
+	private static String getItemName(Item item) {
+		return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, item.getItemName().substring("item.".length()));
 	}
 
 	private static void renderItemIn2D(Tessellator par0Tessellator, float par1, float par2, float par3, float par4, int par5, int par6, float par7) {
@@ -192,10 +197,5 @@ public class EpicItemRenderer implements IItemRenderer {
 		}
 
 		par0Tessellator.draw();
-	}
-
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack itemstack, IItemRenderer.ItemRendererHelper helper) {
-		return false;
 	}
 }

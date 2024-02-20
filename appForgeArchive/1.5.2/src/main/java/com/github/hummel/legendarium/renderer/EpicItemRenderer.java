@@ -35,11 +35,6 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public boolean handleRenderType(ItemStack itemstack, ItemRenderType type) {
-		return type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
-	}
-
-	@Override
 	public void renderItem(ItemRenderType type, ItemStack itemstack, Object... data) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
@@ -81,6 +76,11 @@ public class EpicItemRenderer implements IItemRenderer {
 			GL11.glDepthFunc(515);
 		}
 		GL11.glPopMatrix();
+	}
+
+	@Override
+	public boolean handleRenderType(ItemStack itemstack, ItemRenderType type) {
+		return type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
 	}
 
 	@Override
