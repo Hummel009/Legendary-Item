@@ -48,7 +48,7 @@ public class EpicItemRenderer implements IItemRenderer {
 		RenderEngine renderEngine = Minecraft.getMinecraft().renderEngine;
 		String itemTexturePath = getItemTexturePath(item, folder);
 		renderEngine.bindTexture(itemTexturePath);
-		int textureSize = TextureFXManager.instance().getTextureDimensions(itemTexturePath).width;
+		int textureSize = itemTexturePath.contains("2x") ? 32 : 48;
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tessellator = Tessellator.instance;
 		ItemRenderer.renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625F);

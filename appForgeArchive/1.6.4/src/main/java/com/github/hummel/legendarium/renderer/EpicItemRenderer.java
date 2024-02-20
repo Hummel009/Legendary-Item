@@ -2,7 +2,6 @@ package com.github.hummel.legendarium.renderer;
 
 import com.github.hummel.legendarium.Main;
 import com.google.common.base.CaseFormat;
-import cpw.mods.fml.client.TextureFXManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
@@ -46,18 +45,18 @@ public class EpicItemRenderer implements IItemRenderer {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(scale, scale, 1.0f);
-		TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+		TextureManager renderEngine = Minecraft.getMinecraft().getTextureManager();
 		ResourceLocation itemResourceLocation = getItemResourceLocation(item, folder);
 		String itemTexturePath = getItemTexturePath(item, folder);
-		textureManager.bindTexture(itemResourceLocation);
-		int textureSize = TextureFXManager.instance().getTextureDimensions(itemTexturePath).width;
+		renderEngine.bindTexture(itemResourceLocation);
+		int textureSize = itemTexturePath.contains("2x") ? 32 : 48;
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tessellator = Tessellator.instance;
 		ItemRenderer.renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625F);
 		if (itemstack.hasEffect(0)) {
 			GL11.glDepthFunc(514);
 			GL11.glDisable(2896);
-			textureManager.bindTexture(ENCHANTMENT_TEXTURE);
+			renderEngine.bindTexture(ENCHANTMENT_TEXTURE);
 			GL11.glEnable(3042);
 			GL11.glBlendFunc(768, 1);
 			float shade = 0.76F;
