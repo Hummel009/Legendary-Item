@@ -7,8 +7,13 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.Item;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @SuppressWarnings({"WeakerAccess", "PublicField"})
 public class Items {
+	public static final Collection<Item> CONTENT = new ArrayList<Item>();
+
 	public static Item weaponAcharn;
 	public static Item weaponAeglos;
 	public static Item weaponAlatar;
@@ -242,5 +247,6 @@ public class Items {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setTextureFile("/assets/legendarium/textures/items/sprite.png");
 		item.setItemName(itemName);
+		CONTENT.add(item);
 	}
 }
