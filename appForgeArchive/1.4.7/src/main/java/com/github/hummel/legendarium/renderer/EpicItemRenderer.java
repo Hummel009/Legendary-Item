@@ -34,7 +34,7 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public void renderItem(ItemRenderType type, ItemStack itemstack, Object... data) {
+	public void renderItem(ItemRenderType itemRenderType, ItemStack itemStack, Object... data) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(scale, scale, 1.0f);
@@ -46,7 +46,7 @@ public class EpicItemRenderer implements IItemRenderer {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tessellator = Tessellator.instance;
 		renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625f);
-		if (itemstack.hasEffect()) {
+		if (itemStack.hasEffect()) {
 			GL11.glDepthFunc(514);
 			GL11.glDisable(2896);
 			int enchantmentTextureInt = renderEngine.getTexture(ENCHANTMENT_TEXTURE);
@@ -80,12 +80,12 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public boolean handleRenderType(ItemStack itemstack, ItemRenderType type) {
-		return type == ItemRenderType.EQUIPPED;
+	public boolean handleRenderType(ItemStack itemStack, ItemRenderType itemRenderType) {
+		return itemRenderType == ItemRenderType.EQUIPPED;
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack itemstack, ItemRendererHelper helper) {
+	public boolean shouldUseRenderHelper(ItemRenderType itemRenderType, ItemStack itemStack, ItemRendererHelper itemRendererHelper) {
 		return false;
 	}
 
