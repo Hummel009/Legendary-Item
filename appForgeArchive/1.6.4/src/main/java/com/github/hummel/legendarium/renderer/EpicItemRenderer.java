@@ -37,20 +37,24 @@ public class EpicItemRenderer implements IItemRenderer {
 	@Override
 	public void renderItem(ItemRenderType itemRenderType, ItemStack itemStack, Object... data) {
 		GL11.glPushMatrix();
-		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
-		GL11.glScalef(scale, scale, 1.0f);
-		TextureManager renderEngine = Minecraft.getMinecraft().getTextureManager();
+
+		TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
 		ResourceLocation itemResourceLocation = getItemResourceLocation(item, folder);
 		String itemTexturePath = getItemTexturePath(item, folder);
-		renderEngine.bindTexture(itemResourceLocation);
-		int textureSize = itemTexturePath.contains("2x") ? 32 : 48;
+		textureManager.bindTexture(itemResourceLocation);
+
+		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
+		GL11.glScalef(scale, scale, 1.0f);
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
 		Tessellator tessellator = Tessellator.instance;
+		int textureSize = itemTexturePath.contains("2x") ? 32 : 48;
 		ItemRenderer.renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625f);
+
 		if (itemStack.hasEffect(0)) {
 			GL11.glDepthFunc(514);
 			GL11.glDisable(2896);
-			renderEngine.bindTexture(ENCHANTMENT_TEXTURE);
+			textureManager.bindTexture(ENCHANTMENT_TEXTURE);
 			GL11.glEnable(3042);
 			GL11.glBlendFunc(768, 1);
 			float shade = 0.76f;
@@ -76,6 +80,7 @@ public class EpicItemRenderer implements IItemRenderer {
 			GL11.glEnable(2896);
 			GL11.glDepthFunc(515);
 		}
+
 		GL11.glPopMatrix();
 	}
 

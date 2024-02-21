@@ -35,16 +35,20 @@ public class EpicItemRenderer implements IItemRenderer {
 	@Override
 	public void renderItem(ItemRenderType itemRenderType, ItemStack itemStack, Object... data) {
 		GL11.glPushMatrix();
-		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
-		GL11.glScalef(scale, scale, 1.0f);
+
 		RenderEngine renderEngine = Minecraft.getMinecraft().renderEngine;
 		String itemTexturePath = getItemTexturePath(item, folder);
 		int itemTextureInt = renderEngine.getTexture(itemTexturePath);
 		renderEngine.bindTexture(itemTextureInt);
-		int textureSize = itemTexturePath.contains("2x") ? 32 : 48;
+
+		GL11.glTranslatef(-(scale - 1.0f) / 2.0f, -(scale - 1.0f) / 2.0f, 0.0f);
+		GL11.glScalef(scale, scale, 1.0f);
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
 		Tessellator tessellator = Tessellator.instance;
+		int textureSize = itemTexturePath.contains("2x") ? 32 : 48;
 		renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625f);
+
 		if (itemStack.hasEffect()) {
 			GL11.glDepthFunc(514);
 			GL11.glDisable(2896);
@@ -75,6 +79,7 @@ public class EpicItemRenderer implements IItemRenderer {
 			GL11.glEnable(2896);
 			GL11.glDepthFunc(515);
 		}
+
 		GL11.glPopMatrix();
 	}
 
