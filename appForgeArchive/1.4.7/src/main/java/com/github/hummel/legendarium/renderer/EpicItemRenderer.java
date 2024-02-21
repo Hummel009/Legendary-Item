@@ -45,7 +45,7 @@ public class EpicItemRenderer implements IItemRenderer {
 		int textureSize = itemTexturePath.contains("2x") ? 32 : 48;
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tessellator = Tessellator.instance;
-		renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625F);
+		renderItemIn2D(tessellator, 1.0f, 0.0f, 0.0f, 1.0f, textureSize, textureSize, 0.0625f);
 		if (itemstack.hasEffect()) {
 			GL11.glDepthFunc(514);
 			GL11.glDisable(2896);
@@ -53,23 +53,23 @@ public class EpicItemRenderer implements IItemRenderer {
 			renderEngine.bindTexture(enchantmentTextureInt);
 			GL11.glEnable(3042);
 			GL11.glBlendFunc(768, 1);
-			float shade = 0.76F;
-			GL11.glColor4f(0.5f * shade, 0.25F * shade, 0.8f * shade, 1.0f);
+			float shade = 0.76f;
+			GL11.glColor4f(0.5f * shade, 0.25f * shade, 0.8f * shade, 1.0f);
 			GL11.glMatrixMode(5890);
 			GL11.glPushMatrix();
-			float scale = 0.125F;
+			float scale = 0.125f;
 			GL11.glScalef(scale, scale, scale);
 			float randomShift = Minecraft.getSystemTime() % 3000L / 3000.0f * 8.0f;
 			GL11.glTranslatef(randomShift, 0.0f, 0.0f);
 			GL11.glRotatef(-50.0f, 0.0f, 0.0f, 1.0f);
-			renderItemIn2D(tessellator, 0.0f, 0.0f, 1.0f, 1.0f, 256, 256, 0.0625F);
+			renderItemIn2D(tessellator, 0.0f, 0.0f, 1.0f, 1.0f, 256, 256, 0.0625f);
 			GL11.glPopMatrix();
 			GL11.glPushMatrix();
 			GL11.glScalef(scale, scale, scale);
 			randomShift = Minecraft.getSystemTime() % 4873L / 4873.0f * 8.0f;
 			GL11.glTranslatef(-randomShift, 0.0f, 0.0f);
 			GL11.glRotatef(10.0f, 0.0f, 0.0f, 1.0f);
-			renderItemIn2D(tessellator, 0.0f, 0.0f, 1.0f, 1.0f, 256, 256, 0.0625F);
+			renderItemIn2D(tessellator, 0.0f, 0.0f, 1.0f, 1.0f, 256, 256, 0.0625f);
 			GL11.glPopMatrix();
 			GL11.glMatrixMode(5888);
 			GL11.glDisable(3042);
@@ -121,75 +121,75 @@ public class EpicItemRenderer implements IItemRenderer {
 
 	private static void renderItemIn2D(Tessellator tessellator, float par1, float par2, float par3, float par4, int par5, int par6, float par7) {
 		tessellator.startDrawingQuads();
-		tessellator.setNormal(0.0F, 0.0F, 1.0F);
+		tessellator.setNormal(0.0f, 0.0f, 1.0f);
 		tessellator.addVertexWithUV(0.0, 0.0, 0.0, par1, par4);
 		tessellator.addVertexWithUV(1.0, 0.0, 0.0, par3, par4);
 		tessellator.addVertexWithUV(1.0, 1.0, 0.0, par3, par2);
 		tessellator.addVertexWithUV(0.0, 1.0, 0.0, par1, par2);
 		tessellator.draw();
 		tessellator.startDrawingQuads();
-		tessellator.setNormal(0.0F, 0.0F, -1.0F);
-		tessellator.addVertexWithUV(0.0, 1.0, 0.0F - par7, par1, par2);
-		tessellator.addVertexWithUV(1.0, 1.0, 0.0F - par7, par3, par2);
-		tessellator.addVertexWithUV(1.0, 0.0, 0.0F - par7, par3, par4);
-		tessellator.addVertexWithUV(0.0, 0.0, 0.0F - par7, par1, par4);
+		tessellator.setNormal(0.0f, 0.0f, -1.0f);
+		tessellator.addVertexWithUV(0.0, 1.0, 0.0f - par7, par1, par2);
+		tessellator.addVertexWithUV(1.0, 1.0, 0.0f - par7, par3, par2);
+		tessellator.addVertexWithUV(1.0, 0.0, 0.0f - par7, par3, par4);
+		tessellator.addVertexWithUV(0.0, 0.0, 0.0f - par7, par1, par4);
 		tessellator.draw();
 		float f5 = par5 * (par1 - par3);
 		float f6 = par6 * (par4 - par2);
 		tessellator.startDrawingQuads();
-		tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+		tessellator.setNormal(-1.0f, 0.0f, 0.0f);
 
 		int k;
 		float f7;
 		float f8;
 		for (k = 0; k < f5; ++k) {
 			f7 = k / f5;
-			f8 = par1 + (par3 - par1) * f7 - 0.5F / par5;
-			tessellator.addVertexWithUV(f7, 0.0, 0.0F - par7, f8, par4);
+			f8 = par1 + (par3 - par1) * f7 - 0.5f / par5;
+			tessellator.addVertexWithUV(f7, 0.0, 0.0f - par7, f8, par4);
 			tessellator.addVertexWithUV(f7, 0.0, 0.0, f8, par4);
 			tessellator.addVertexWithUV(f7, 1.0, 0.0, f8, par2);
-			tessellator.addVertexWithUV(f7, 1.0, 0.0F - par7, f8, par2);
+			tessellator.addVertexWithUV(f7, 1.0, 0.0f - par7, f8, par2);
 		}
 
 		tessellator.draw();
 		tessellator.startDrawingQuads();
-		tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		tessellator.setNormal(1.0f, 0.0f, 0.0f);
 
 		float f9;
 		for (k = 0; k < f5; ++k) {
 			f7 = k / f5;
-			f8 = par1 + (par3 - par1) * f7 - 0.5F / par5;
-			f9 = f7 + 1.0F / f5;
-			tessellator.addVertexWithUV(f9, 1.0, 0.0F - par7, f8, par2);
+			f8 = par1 + (par3 - par1) * f7 - 0.5f / par5;
+			f9 = f7 + 1.0f / f5;
+			tessellator.addVertexWithUV(f9, 1.0, 0.0f - par7, f8, par2);
 			tessellator.addVertexWithUV(f9, 1.0, 0.0, f8, par2);
 			tessellator.addVertexWithUV(f9, 0.0, 0.0, f8, par4);
-			tessellator.addVertexWithUV(f9, 0.0, 0.0F - par7, f8, par4);
+			tessellator.addVertexWithUV(f9, 0.0, 0.0f - par7, f8, par4);
 		}
 
 		tessellator.draw();
 		tessellator.startDrawingQuads();
-		tessellator.setNormal(0.0F, 1.0F, 0.0F);
+		tessellator.setNormal(0.0f, 1.0f, 0.0f);
 
 		for (k = 0; k < f6; ++k) {
 			f7 = k / f6;
-			f8 = par4 + (par2 - par4) * f7 - 0.5F / par6;
-			f9 = f7 + 1.0F / f6;
+			f8 = par4 + (par2 - par4) * f7 - 0.5f / par6;
+			f9 = f7 + 1.0f / f6;
 			tessellator.addVertexWithUV(0.0, f9, 0.0, par1, f8);
 			tessellator.addVertexWithUV(1.0, f9, 0.0, par3, f8);
-			tessellator.addVertexWithUV(1.0, f9, 0.0F - par7, par3, f8);
-			tessellator.addVertexWithUV(0.0, f9, 0.0F - par7, par1, f8);
+			tessellator.addVertexWithUV(1.0, f9, 0.0f - par7, par3, f8);
+			tessellator.addVertexWithUV(0.0, f9, 0.0f - par7, par1, f8);
 		}
 
 		tessellator.draw();
 		tessellator.startDrawingQuads();
-		tessellator.setNormal(0.0F, -1.0F, 0.0F);
+		tessellator.setNormal(0.0f, -1.0f, 0.0f);
 
 		for (k = 0; k < f6; ++k) {
 			f7 = k / f6;
-			f8 = par4 + (par2 - par4) * f7 - 0.5F / par6;
+			f8 = par4 + (par2 - par4) * f7 - 0.5f / par6;
 			tessellator.addVertexWithUV(1.0, f7, 0.0, par3, f8);
 			tessellator.addVertexWithUV(0.0, f7, 0.0, par1, f8);
-			tessellator.addVertexWithUV(0.0, f7, 0.0F - par7, par1, f8);
+			tessellator.addVertexWithUV(0.0, f7, 0.0f - par7, par1, f8);
 			tessellator.addVertexWithUV(1.0, f7, 0.0F - par7, par3, f8);
 		}
 
