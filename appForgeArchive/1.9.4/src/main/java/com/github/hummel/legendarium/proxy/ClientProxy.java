@@ -9,25 +9,39 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 
 import java.io.InputStream;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class ClientProxy implements CommonProxy {
 	@Override
 	public void onInit() {
+		Collection<ModelResourceLocation> modelResourceLocations = new HashSet<>();
+
 		for (Item item : Items.CONTENT) {
-			String registryName = item.getRegistryName().toString();
-			String resourceFileName = registryName.replace("legendarium:", "") + "_large.json";
-			try (InputStream inputStream = Main.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
-				ModelResourceLocation smallResourceLocation = new ModelResourceLocation(registryName, "inventory");
-				ModelResourceLocation largeResourceLocation = new ModelResourceLocation(registryName + "_large", "inventory");
+			String name = item.getUnlocalizedName().substring("item.".length());
+			String smallResourceLocation = String.format("legendarium:%s", name);
+			String largeResourceLocation = String.format("legendarium:%s_large", name);
+			String largeJsonModelPath = String.format("/assets/legendarium/models/item/%s_large.json", name);
+
+			ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
+
+			modelResourceLocations.clear();
+
+			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonModelPath)) {
 				if (inputStream != null) {
-					ForgeEventHandler.COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
-					ModelBakery.registerItemVariants(item, smallResourceLocation, largeResourceLocation);
-				} else {
-					ModelBakery.registerItemVariants(item, smallResourceLocation);
+					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+
+					ForgeEventHandler.COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
+					modelResourceLocations.add(largeModelResourceLocation);
 				}
-				Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, smallResourceLocation);
 			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				modelResourceLocations.add(smallModelResourceLocation);
 			}
+
+			ModelBakery.registerItemVariants(item, modelResourceLocations.toArray(new ModelResourceLocation[0]));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, smallModelResourceLocation);
 		}
 	}
 }

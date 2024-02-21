@@ -1,7 +1,6 @@
 package com.github.hummel.legendarium.renderer;
 
 import com.github.hummel.legendarium.Main;
-import com.google.common.base.CaseFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
@@ -89,7 +88,7 @@ public class EpicItemRenderer implements IItemRenderer {
 		return false;
 	}
 
-	public static EpicItemRenderer getRendererIfLarge(Item item) {
+	public static EpicItemRenderer getRendererIfEpic(Item item) {
 		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
 			String itemTexturePath = getItemTexturePath(item, folder.getKey());
 			InputStream inputStream = null;
@@ -98,6 +97,8 @@ public class EpicItemRenderer implements IItemRenderer {
 				if (inputStream != null) {
 					return new EpicItemRenderer(item, folder.getKey(), folder.getValue());
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			} finally {
 				try {
 					if (inputStream != null) {
@@ -116,7 +117,7 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	private static String getItemName(Item item) {
-		return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, item.getItemName().substring("item.".length()));
+		return item.getItemName().substring("item.".length());
 	}
 
 	private static void renderItemIn2D(Tessellator tessellator, float uMin, float vMin, float uMax, float vMax, int width, int height, float f) {

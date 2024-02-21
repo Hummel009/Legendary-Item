@@ -9,7 +9,7 @@ public class ClientProxy implements CommonProxy {
 	@Override
 	public void onInit() {
 		for (Item item : Items.CONTENT) {
-			EpicItemRenderer epicItemRenderer = EpicItemRenderer.getRendererIfLarge(item);
+			EpicItemRenderer epicItemRenderer = EpicItemRenderer.getRendererIfEpic(item);
 			if (epicItemRenderer != null) {
 				MinecraftForgeClient.registerItemRenderer(item.shiftedIndex, epicItemRenderer);
 			}

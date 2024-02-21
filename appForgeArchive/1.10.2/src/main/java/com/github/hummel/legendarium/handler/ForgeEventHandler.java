@@ -3,6 +3,7 @@ package com.github.hummel.legendarium.handler;
 import com.github.hummel.legendarium.Main;
 import com.github.hummel.legendarium.init.Items;
 import com.github.hummel.legendarium.model.EpicBakedModel;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -10,14 +11,15 @@ import net.minecraft.item.Item;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class ForgeEventHandler {
@@ -31,21 +33,33 @@ public class ForgeEventHandler {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
+		Collection<ModelResourceLocation> modelResourceLocations = new HashSet<>();
+
 		for (Item item : Items.CONTENT) {
-			String registryName = item.getRegistryName().toString();
-			String resourceFileName = registryName.replace("legendarium:", "") + "_large.json";
-			try (InputStream inputStream = Main.class.getResourceAsStream("/assets/legendarium/models/item/" + resourceFileName)) {
-				ModelResourceLocation smallResourceLocation = new ModelResourceLocation(registryName, "inventory");
-				ModelResourceLocation largeResourceLocation = new ModelResourceLocation(registryName + "_large", "inventory");
+			String name = item.getUnlocalizedName().substring("item.".length());
+			String smallResourceLocation = String.format("legendarium:%s", name);
+			String largeResourceLocation = String.format("legendarium:%s_large", name);
+			String largeJsonModelPath = String.format("/assets/legendarium/models/item/%s_large.json", name);
+
+			ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
+
+			modelResourceLocations.clear();
+
+			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonModelPath)) {
 				if (inputStream != null) {
-					COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
-					ModelBakery.registerItemVariants(item, smallResourceLocation, largeResourceLocation);
-				} else {
-					ModelBakery.registerItemVariants(item, smallResourceLocation);
+					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+
+					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
+					modelResourceLocations.add(largeModelResourceLocation);
 				}
-				ModelLoader.setCustomModelResourceLocation(item, 0, smallResourceLocation);
 			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				modelResourceLocations.add(smallModelResourceLocation);
 			}
+
+			ModelBakery.registerItemVariants(item, modelResourceLocations.toArray(new ModelResourceLocation[0]));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, smallModelResourceLocation);
 		}
 	}
 
