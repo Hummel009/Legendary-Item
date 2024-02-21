@@ -20,14 +20,14 @@ public class ForgeEventHandler {
 	public void onModelBake(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
-			ModelResourceLocation smallResourceLocation = compliance.getKey();
-			IBakedModel smallBakedModel = modelRegistry.getObject(smallResourceLocation);
+			ModelResourceLocation smallModelResourceLocation = compliance.getKey();
+			IBakedModel smallBakedModel = modelRegistry.getObject(smallModelResourceLocation);
 			if (smallBakedModel != null) {
-				ModelResourceLocation largeResourceLocation = compliance.getValue();
-				IBakedModel largeBakedModel = modelRegistry.getObject(largeResourceLocation);
+				ModelResourceLocation largeModelResourceLocation = compliance.getValue();
+				IBakedModel largeBakedModel = modelRegistry.getObject(largeModelResourceLocation);
 				if (largeBakedModel != null) {
 					IBakedModel epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
-					modelRegistry.putObject(smallResourceLocation, epicBakedModel);
+					modelRegistry.putObject(smallModelResourceLocation, epicBakedModel);
 				}
 			}
 		}

@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -17,9 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 public class ForgeEventHandler {
@@ -33,32 +32,33 @@ public class ForgeEventHandler {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
-		Collection<ModelResourceLocation> modelResourceLocations = new HashSet<>();
-
 		for (Item item : Items.CONTENT) {
-			String name = item.getUnlocalizedName().substring("item.".length());
-			String smallResourceLocation = String.format("legendarium:%s", name);
-			String largeResourceLocation = String.format("legendarium:%s_large", name);
-			String largeJsonModelPath = String.format("/assets/legendarium/models/item/%s_large.json", name);
+			String itemName = item.getUnlocalizedName().substring("item.".length());
+			String smallResourceName = String.format("legendarium:%s", itemName);
+			String largeResourceName = String.format("legendarium:%s_large", itemName);
+			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
+			ResourceLocation smallResourceLocation = new ResourceLocation(smallResourceName);
+			ResourceLocation largeResourceLocation = new ResourceLocation(largeResourceName);
 			ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
+			ModelResourceLocation largeModelResourceLocation = null;
 
-			modelResourceLocations.clear();
-
-			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonModelPath)) {
+			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 				if (inputStream != null) {
-					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+					largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
 
 					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
-					modelResourceLocations.add(largeModelResourceLocation);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-			} finally {
-				modelResourceLocations.add(smallModelResourceLocation);
 			}
 
-			ModelBakery.registerItemVariants(item, modelResourceLocations.toArray(new ModelResourceLocation[0]));
+			if (largeModelResourceLocation != null) {
+				ModelBakery.registerItemVariants(item, smallModelResourceLocation, largeModelResourceLocation);
+			} else {
+				ModelBakery.registerItemVariants(item, smallModelResourceLocation);
+			}
+
 			ModelLoader.setCustomModelResourceLocation(item, 0, smallModelResourceLocation);
 		}
 	}
@@ -68,14 +68,14 @@ public class ForgeEventHandler {
 	public void onModelBake(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
-			ModelResourceLocation smallResourceLocation = compliance.getKey();
-			IBakedModel smallBakedModel = modelRegistry.getObject(smallResourceLocation);
+			ModelResourceLocation smallModelResourceLocation = compliance.getKey();
+			IBakedModel smallBakedModel = modelRegistry.getObject(smallModelResourceLocation);
 			if (smallBakedModel != null) {
-				ModelResourceLocation largeResourceLocation = compliance.getValue();
-				IBakedModel largeBakedModel = modelRegistry.getObject(largeResourceLocation);
+				ModelResourceLocation largeModelResourceLocation = compliance.getValue();
+				IBakedModel largeBakedModel = modelRegistry.getObject(largeModelResourceLocation);
 				if (largeBakedModel != null) {
 					IBakedModel epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
-					modelRegistry.putObject(smallResourceLocation, epicBakedModel);
+					modelRegistry.putObject(smallModelResourceLocation, epicBakedModel);
 				}
 			}
 		}

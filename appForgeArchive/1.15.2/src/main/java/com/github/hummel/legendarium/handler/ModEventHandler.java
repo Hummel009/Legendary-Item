@@ -1,9 +1,11 @@
 package com.github.hummel.legendarium.handler;
 
+import com.github.hummel.legendarium.Main;
+import com.github.hummel.legendarium.init.Items;
 import com.github.hummel.legendarium.model.EpicBakedModel;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -11,24 +13,38 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 
-import java.util.Collection;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ModEventHandler {
-	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
+	private static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
-		Collection<ResourceLocation> resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
-		for (ResourceLocation resourceLocation : resourceLocations) {
-			String itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-			ResourceLocation smallResourceLocation = new ResourceLocation("legendarium", itemName);
-			ResourceLocation largeResourceLocation = new ResourceLocation("legendarium", "item/" + itemName + "_large");
-			COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
-			ModelLoader.addSpecialModel(largeResourceLocation);
+		for (RegistryObject<Item> registryObject : Items.REGISTRY.getEntries()) {
+			String itemName = registryObject.get().getDescriptionId().substring("item.legendarium.".length());
+			String smallResourceName = String.format("legendarium:%s", itemName);
+			String largeResourceName = String.format("legendarium:%s_large", itemName);
+			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
+
+			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
+				if (inputStream != null) {
+					ResourceLocation smallResourceLocation = new ResourceLocation(smallResourceName);
+					ResourceLocation largeResourceLocation = new ResourceLocation(largeResourceName);
+					ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
+					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+
+					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
+
+					ModelLoader.addSpecialModel(largeResourceLocation);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -36,15 +52,15 @@ public class ModEventHandler {
 	@OnlyIn(Dist.CLIENT)
 	public void onModelBake(ModelBakeEvent event) {
 		Map<ResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
-		for (Map.Entry<ResourceLocation, ResourceLocation> compliance : COMPLIANCES.entrySet()) {
-			ModelResourceLocation smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			IBakedModel smallBakedModel = modelRegistry.get(smallResourceLocation);
+		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {
+			ModelResourceLocation smallModelResourceLocation = compliance.getKey();
+			IBakedModel smallBakedModel = modelRegistry.get(smallModelResourceLocation);
 			if (smallBakedModel != null) {
-				ResourceLocation largeResourceLocation = compliance.getValue();
-				IBakedModel largeBakedModel = modelRegistry.get(largeResourceLocation);
+				ModelResourceLocation largeModelResourceLocation = compliance.getValue();
+				IBakedModel largeBakedModel = modelRegistry.get(largeModelResourceLocation);
 				if (largeBakedModel != null) {
 					IBakedModel epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
-					modelRegistry.put(smallResourceLocation, epicBakedModel);
+					modelRegistry.put(smallModelResourceLocation, epicBakedModel);
 				}
 			}
 		}

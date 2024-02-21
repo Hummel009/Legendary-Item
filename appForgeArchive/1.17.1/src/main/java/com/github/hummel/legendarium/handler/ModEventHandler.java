@@ -1,7 +1,8 @@
 package com.github.hummel.legendarium.handler;
 
+import com.github.hummel.legendarium.Main;
+import com.github.hummel.legendarium.init.Items;
 import com.github.hummel.legendarium.model.EpicBakedModel;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,18 +16,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ModEventHandler {
-	private static final Map<ResourceLocation, ResourceLocation> COMPLIANCES = new HashMap<>();
+	private static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
-		var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> loc.endsWith("_large.json"));
-		for (var resourceLocation : resourceLocations) {
-			var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-			var smallResourceLocation = new ResourceLocation("legendarium", itemName);
-			var largeResourceLocation = new ResourceLocation("legendarium", "item/" + itemName + "_large");
-			COMPLIANCES.put(smallResourceLocation, largeResourceLocation);
-			ModelLoader.addSpecialModel(largeResourceLocation);
+		for (var registryObject : Items.REGISTRY.getEntries()) {
+			var itemName = registryObject.get().getDescriptionId().substring("item.legendarium.".length());
+			var smallResourceName = String.format("legendarium:%s", itemName);
+			var largeResourceName = String.format("legendarium:%s_large", itemName);
+			var largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
+
+			try (var inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
+				if (inputStream != null) {
+					var smallResourceLocation = new ResourceLocation(smallResourceName);
+					var largeResourceLocation = new ResourceLocation(largeResourceName);
+					var smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
+					var largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+
+					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
+
+					ModelLoader.addSpecialModel(largeResourceLocation);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -35,14 +49,14 @@ public class ModEventHandler {
 	public void onModelBake(ModelBakeEvent event) {
 		var modelRegistry = event.getModelRegistry();
 		for (var compliance : COMPLIANCES.entrySet()) {
-			var smallResourceLocation = new ModelResourceLocation(compliance.getKey(), "inventory");
-			var smallBakedModel = modelRegistry.get(smallResourceLocation);
+			var smallModelResourceLocation = compliance.getKey();
+			var smallBakedModel = modelRegistry.get(smallModelResourceLocation);
 			if (smallBakedModel != null) {
-				var largeResourceLocation = compliance.getValue();
-				var largeBakedModel = modelRegistry.get(largeResourceLocation);
+				var largeModelResourceLocation = compliance.getValue();
+				var largeBakedModel = modelRegistry.get(largeModelResourceLocation);
 				if (largeBakedModel != null) {
 					var epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
-					modelRegistry.put(smallResourceLocation, epicBakedModel);
+					modelRegistry.put(smallModelResourceLocation, epicBakedModel);
 				}
 			}
 		}

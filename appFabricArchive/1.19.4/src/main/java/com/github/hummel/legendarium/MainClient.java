@@ -1,9 +1,10 @@
 package com.github.hummel.legendarium;
 
+import com.github.hummel.legendarium.init.Items;
 import com.github.hummel.legendarium.model.EpicBakedModel;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashMap;
@@ -15,24 +16,38 @@ public class MainClient implements ClientModInitializer {
 		ModelLoadingPlugin.register(pluginContext -> {
 			Map<ResourceLocation, ResourceLocation> compliances = new HashMap<>();
 
-			var resourceLocations = Minecraft.getInstance().getResourceManager().listResources("models", loc -> "legendarium".equals(loc.getNamespace()) && loc.getPath().endsWith("_large.json")).keySet();
-			for (var resourceLocation : resourceLocations) {
-				var itemName = resourceLocation.getPath().replace("models/item/", "").replace("_large.json", "");
-				var smallResourceLocation = new ResourceLocation("legendarium", itemName);
-				var largeResourceLocation = new ResourceLocation("legendarium", "item/" + itemName + "_large");
-				compliances.put(smallResourceLocation, largeResourceLocation);
+			for (var item : Items.CONTENT) {
+				var itemName = item.getDescriptionId().substring("item.legendarium.".length());
+				var smallResourceName = String.format("legendarium:%s", itemName);
+				var largeResourceName = String.format("legendarium:%s_large", itemName);
+				var largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
+
+				try (var inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
+					if (inputStream != null) {
+						var smallResourceLocation = new ResourceLocation(smallResourceName);
+						var largeResourceLocation = new ResourceLocation(largeResourceName);
+						var smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
+						var largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+
+						compliances.put(smallModelResourceLocation, largeModelResourceLocation);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 
 			pluginContext.addModels(compliances.values());
 
 			pluginContext.modifyModelAfterBake().register((smallBakedModel, bakeContext) -> {
 				for (var compliance : compliances.entrySet()) {
-					var smallResourceLocation = compliance.getKey();
-					var largeResourceLocation = compliance.getValue();
-
-					if (bakeContext.id().getPath().equals(smallResourceLocation.getPath())) {
-						var largeBakedModel = bakeContext.baker().bake(largeResourceLocation, bakeContext.settings());
-						return new EpicBakedModel(smallBakedModel, largeBakedModel);
+					var smallModelResourceLocation = compliance.getKey();
+					if (bakeContext.id().getPath().equals(smallModelResourceLocation.getPath())) {
+						var largeModelResourceLocation = compliance.getValue();
+						var largeBakedModel = bakeContext.baker().bake(largeModelResourceLocation, bakeContext.settings());
+						if (largeBakedModel != null) {
+							var epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
+							return new EpicBakedModel(smallBakedModel, largeBakedModel);
+						}
 					}
 				}
 				return smallBakedModel;
