@@ -119,23 +119,23 @@ public class EpicItemRenderer implements IItemRenderer {
 		return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, item.getItemName().substring("item.".length()));
 	}
 
-	private static void renderItemIn2D(Tessellator tessellator, float par1, float par2, float par3, float par4, int par5, int par6, float par7) {
+	private static void renderItemIn2D(Tessellator tessellator, float uMin, float vMin, float uMax, float vMax, int width, int height, float f) {
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0f, 0.0f, 1.0f);
-		tessellator.addVertexWithUV(0.0, 0.0, 0.0, par1, par4);
-		tessellator.addVertexWithUV(1.0, 0.0, 0.0, par3, par4);
-		tessellator.addVertexWithUV(1.0, 1.0, 0.0, par3, par2);
-		tessellator.addVertexWithUV(0.0, 1.0, 0.0, par1, par2);
+		tessellator.addVertexWithUV(0.0, 0.0, 0.0, uMin, vMax);
+		tessellator.addVertexWithUV(1.0, 0.0, 0.0, uMax, vMax);
+		tessellator.addVertexWithUV(1.0, 1.0, 0.0, uMax, vMin);
+		tessellator.addVertexWithUV(0.0, 1.0, 0.0, uMin, vMin);
 		tessellator.draw();
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0f, 0.0f, -1.0f);
-		tessellator.addVertexWithUV(0.0, 1.0, 0.0f - par7, par1, par2);
-		tessellator.addVertexWithUV(1.0, 1.0, 0.0f - par7, par3, par2);
-		tessellator.addVertexWithUV(1.0, 0.0, 0.0f - par7, par3, par4);
-		tessellator.addVertexWithUV(0.0, 0.0, 0.0f - par7, par1, par4);
+		tessellator.addVertexWithUV(0.0, 1.0, 0.0f - f, uMin, vMin);
+		tessellator.addVertexWithUV(1.0, 1.0, 0.0f - f, uMax, vMin);
+		tessellator.addVertexWithUV(1.0, 0.0, 0.0f - f, uMax, vMax);
+		tessellator.addVertexWithUV(0.0, 0.0, 0.0f - f, uMin, vMax);
 		tessellator.draw();
-		float f5 = par5 * (par1 - par3);
-		float f6 = par6 * (par4 - par2);
+		float f5 = width * (uMin - uMax);
+		float f6 = height * (vMax - vMin);
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(-1.0f, 0.0f, 0.0f);
 
@@ -144,11 +144,11 @@ public class EpicItemRenderer implements IItemRenderer {
 		float f8;
 		for (k = 0; k < f5; ++k) {
 			f7 = k / f5;
-			f8 = par1 + (par3 - par1) * f7 - 0.5f / par5;
-			tessellator.addVertexWithUV(f7, 0.0, 0.0f - par7, f8, par4);
-			tessellator.addVertexWithUV(f7, 0.0, 0.0, f8, par4);
-			tessellator.addVertexWithUV(f7, 1.0, 0.0, f8, par2);
-			tessellator.addVertexWithUV(f7, 1.0, 0.0f - par7, f8, par2);
+			f8 = uMin + (uMax - uMin) * f7 - 0.5f / width;
+			tessellator.addVertexWithUV(f7, 0.0, 0.0f - f, f8, vMax);
+			tessellator.addVertexWithUV(f7, 0.0, 0.0, f8, vMax);
+			tessellator.addVertexWithUV(f7, 1.0, 0.0, f8, vMin);
+			tessellator.addVertexWithUV(f7, 1.0, 0.0f - f, f8, vMin);
 		}
 
 		tessellator.draw();
@@ -158,12 +158,12 @@ public class EpicItemRenderer implements IItemRenderer {
 		float f9;
 		for (k = 0; k < f5; ++k) {
 			f7 = k / f5;
-			f8 = par1 + (par3 - par1) * f7 - 0.5f / par5;
+			f8 = uMin + (uMax - uMin) * f7 - 0.5f / width;
 			f9 = f7 + 1.0f / f5;
-			tessellator.addVertexWithUV(f9, 1.0, 0.0f - par7, f8, par2);
-			tessellator.addVertexWithUV(f9, 1.0, 0.0, f8, par2);
-			tessellator.addVertexWithUV(f9, 0.0, 0.0, f8, par4);
-			tessellator.addVertexWithUV(f9, 0.0, 0.0f - par7, f8, par4);
+			tessellator.addVertexWithUV(f9, 1.0, 0.0f - f, f8, vMin);
+			tessellator.addVertexWithUV(f9, 1.0, 0.0, f8, vMin);
+			tessellator.addVertexWithUV(f9, 0.0, 0.0, f8, vMax);
+			tessellator.addVertexWithUV(f9, 0.0, 0.0f - f, f8, vMax);
 		}
 
 		tessellator.draw();
@@ -172,12 +172,12 @@ public class EpicItemRenderer implements IItemRenderer {
 
 		for (k = 0; k < f6; ++k) {
 			f7 = k / f6;
-			f8 = par4 + (par2 - par4) * f7 - 0.5f / par6;
+			f8 = vMax + (vMin - vMax) * f7 - 0.5f / height;
 			f9 = f7 + 1.0f / f6;
-			tessellator.addVertexWithUV(0.0, f9, 0.0, par1, f8);
-			tessellator.addVertexWithUV(1.0, f9, 0.0, par3, f8);
-			tessellator.addVertexWithUV(1.0, f9, 0.0f - par7, par3, f8);
-			tessellator.addVertexWithUV(0.0, f9, 0.0f - par7, par1, f8);
+			tessellator.addVertexWithUV(0.0, f9, 0.0, uMin, f8);
+			tessellator.addVertexWithUV(1.0, f9, 0.0, uMax, f8);
+			tessellator.addVertexWithUV(1.0, f9, 0.0f - f, uMax, f8);
+			tessellator.addVertexWithUV(0.0, f9, 0.0f - f, uMin, f8);
 		}
 
 		tessellator.draw();
@@ -186,11 +186,11 @@ public class EpicItemRenderer implements IItemRenderer {
 
 		for (k = 0; k < f6; ++k) {
 			f7 = k / f6;
-			f8 = par4 + (par2 - par4) * f7 - 0.5f / par6;
-			tessellator.addVertexWithUV(1.0, f7, 0.0, par3, f8);
-			tessellator.addVertexWithUV(0.0, f7, 0.0, par1, f8);
-			tessellator.addVertexWithUV(0.0, f7, 0.0f - par7, par1, f8);
-			tessellator.addVertexWithUV(1.0, f7, 0.0F - par7, par3, f8);
+			f8 = vMax + (vMin - vMax) * f7 - 0.5f / height;
+			tessellator.addVertexWithUV(1.0, f7, 0.0, uMax, f8);
+			tessellator.addVertexWithUV(0.0, f7, 0.0, uMin, f8);
+			tessellator.addVertexWithUV(0.0, f7, 0.0f - f, uMin, f8);
+			tessellator.addVertexWithUV(1.0, f7, 0.0F - f, uMax, f8);
 		}
 
 		tessellator.draw();
