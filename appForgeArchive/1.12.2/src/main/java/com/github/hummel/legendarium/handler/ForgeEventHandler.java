@@ -39,12 +39,14 @@ public class ForgeEventHandler {
 			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
 			ResourceLocation smallResourceLocation = new ResourceLocation(smallResourceName);
-			ResourceLocation largeResourceLocation = new ResourceLocation(largeResourceName);
 			ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
+
+			ResourceLocation largeResourceLocation = null;
 			ModelResourceLocation largeModelResourceLocation = null;
 
 			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 				if (inputStream != null) {
+					largeResourceLocation = new ResourceLocation(largeResourceName);
 					largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
 
 					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
@@ -53,7 +55,7 @@ public class ForgeEventHandler {
 				e.printStackTrace();
 			}
 
-			if (largeModelResourceLocation != null) {
+			if (largeResourceLocation != null && largeModelResourceLocation != null) {
 				ModelBakery.registerItemVariants(item, smallModelResourceLocation, largeModelResourceLocation);
 			} else {
 				ModelBakery.registerItemVariants(item, smallModelResourceLocation);
