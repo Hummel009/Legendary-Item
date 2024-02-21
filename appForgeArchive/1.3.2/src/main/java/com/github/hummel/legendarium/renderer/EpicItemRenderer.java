@@ -3,10 +3,10 @@ package com.github.hummel.legendarium.renderer;
 import com.github.hummel.legendarium.Main;
 import com.google.common.base.CaseFormat;
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.RenderEngine;
-import net.minecraft.src.Tessellator;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.RenderEngine;
+import net.minecraft.src.Tessellator;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
@@ -91,24 +91,21 @@ public class EpicItemRenderer implements IItemRenderer {
 
 	public static EpicItemRenderer getRendererIfLarge(Item item) {
 		for (Map.Entry<String, Float> folder : SIZE_FOLDERS.entrySet()) {
+			String itemTexturePath = getItemTexturePath(item, folder.getKey());
+			InputStream inputStream = null;
 			try {
-				String itemTexturePath = getItemTexturePath(item, folder.getKey());
-				InputStream inputStream = null;
-				try {
-					inputStream = Main.class.getResourceAsStream(itemTexturePath);
-					if (inputStream != null) {
-						return new EpicItemRenderer(item, folder.getKey(), folder.getValue());
-					}
-				} finally {
-					try {
-						if (inputStream != null) {
-							inputStream.close();
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+				inputStream = Main.class.getResourceAsStream(itemTexturePath);
+				if (inputStream != null) {
+					return new EpicItemRenderer(item, folder.getKey(), folder.getValue());
 				}
-			} catch (Exception ignored) {
+			} finally {
+				try {
+					if (inputStream != null) {
+						inputStream.close();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;
