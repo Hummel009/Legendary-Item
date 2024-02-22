@@ -11,8 +11,12 @@ public class Main {
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
 
 	public Main(IEventBus modEventBus) {
-		var modEventHandler = new ModEventHandler();
-		modEventBus.register(modEventHandler);
+		try {
+			var modEventHandler = new ModEventHandler();
+			modEventBus.register(modEventHandler);
+		} catch (IllegalArgumentException e) {
+			System.err.println("Hummel009: Prevent NeoForge from crash on client-side event handler.");
+		}
 
 		Items.register(modEventBus);
 		ItemGroups.register(modEventBus);

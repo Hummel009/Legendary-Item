@@ -5,8 +5,9 @@ import com.github.hummel.legendarium.init.Items;
 import com.github.hummel.legendarium.model.EpicBakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.ModelEvent;
 
 import java.util.HashMap;
@@ -16,12 +17,10 @@ public class ModEventHandler {
 	private static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
-		if (!FMLEnvironment.dist.isClient()) {
-			return;
-		}
-		for (var registryObject : Items.REGISTRY.getEntries()) {
-			var itemName = registryObject.get().toString();
+		for (var deferredHolder : Items.REGISTRY.getEntries()) {
+			var itemName = deferredHolder.get().toString().substring("legendarium:".length());
 			var largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
 			try (var inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
@@ -46,10 +45,8 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
-		if (!FMLEnvironment.dist.isClient()) {
-			return;
-		}
 		var models = event.getModels();
 		for (var compliance : COMPLIANCES.entrySet()) {
 			var smallModelResourceLocation = compliance.getKey();
