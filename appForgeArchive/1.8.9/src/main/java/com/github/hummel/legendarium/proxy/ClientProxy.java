@@ -17,34 +17,28 @@ public class ClientProxy implements CommonProxy {
 	public void onInit() {
 		for (Item item : Items.CONTENT) {
 			String itemName = item.getUnlocalizedName().substring("item.".length());
-			String smallResourceName = String.format("legendarium:%s", itemName);
-			String largeResourceName = String.format("legendarium:%s_large", itemName);
 			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
+			String smallResourceName = String.format("legendarium:%s", itemName);
 			ResourceLocation smallResourceLocation = new ResourceLocation(smallResourceName);
 			ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
 
-			ResourceLocation largeResourceLocation = null;
-			ModelResourceLocation largeModelResourceLocation = null;
-
 			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 				if (inputStream != null) {
-					largeResourceLocation = new ResourceLocation(largeResourceName);
-					largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+					String largeResourceName = String.format("legendarium:%s_large", itemName);
+					ResourceLocation largeResourceLocation = new ResourceLocation(largeResourceName);
+					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
 
 					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
+
+					ModelBakery.registerItemVariants(item, largeModelResourceLocation);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-
-			if (largeResourceLocation != null && largeModelResourceLocation != null) {
-				ModelBakery.registerItemVariants(item, smallModelResourceLocation, largeModelResourceLocation);
-			} else {
+			} finally {
 				ModelBakery.registerItemVariants(item, smallModelResourceLocation);
+				Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, smallModelResourceLocation);
 			}
-
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, smallModelResourceLocation);
 		}
 	}
 }

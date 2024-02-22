@@ -26,21 +26,23 @@ public class ModEventHandler {
 	@OnlyIn(Dist.CLIENT)
 	public void onModelRegistry(ModelRegistryEvent event) {
 		for (RegistryObject<Item> registryObject : Items.REGISTRY.getEntries()) {
-			String itemName = registryObject.get().getDescriptionId().substring("item.legendarium.".length());
-			String smallResourceName = String.format("legendarium:%s", itemName);
-			String largeResourceName = String.format("legendarium:%s_large", itemName);
+			String itemName = registryObject.get().toString();
 			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
 			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 				if (inputStream != null) {
+					String smallResourceName = String.format("legendarium:%s", itemName);
+					String largeResourceName = String.format("legendarium:%s_large", itemName);
+
 					ResourceLocation smallResourceLocation = new ResourceLocation(smallResourceName);
 					ResourceLocation largeResourceLocation = new ResourceLocation(largeResourceName);
+
 					ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
 					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
 
 					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
 
-					ModelLoader.addSpecialModel(largeResourceLocation);
+					ModelLoader.addSpecialModel(largeModelResourceLocation);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
