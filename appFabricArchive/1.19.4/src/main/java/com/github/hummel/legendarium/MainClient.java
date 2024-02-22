@@ -43,7 +43,7 @@ public class MainClient implements ClientModInitializer {
 			pluginContext.modifyModelAfterBake().register((smallBakedModel, bakeContext) -> {
 				for (var compliance : compliances.entrySet()) {
 					var smallModelResourceLocation = compliance.getKey();
-					if (bakeContext.id().getPath().equals(smallModelResourceLocation.getPath())) {
+					if (bakeContext.id().equals(smallModelResourceLocation)) {
 						var largeModelResourceLocation = compliance.getValue();
 						var largeBakedModel = bakeContext.baker().bake(largeModelResourceLocation, bakeContext.settings());
 						if (largeBakedModel != null) {
