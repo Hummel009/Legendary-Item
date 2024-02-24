@@ -26,7 +26,7 @@
 		"legendarium.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.6",
+		"fabricloader": "*",
 		"minecraft": "~1.19.4",
 		"java": ">=17",
 		"fabric-api": "*"
