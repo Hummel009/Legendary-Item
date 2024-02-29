@@ -10,7 +10,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @SuppressWarnings({"PublicField", "WeakerAccess"})
 @Mod(modid = "legendarium", useMetadata = true)
 public class Main {
-	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "131829122023";
+	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "111229022024";
 
 	@SidedProxy(clientSide = "com.github.hummel.legendarium.proxy.ClientProxy", serverSide = "com.github.hummel.legendarium.proxy.ServerProxy")
 	public static CommonProxy proxy;
