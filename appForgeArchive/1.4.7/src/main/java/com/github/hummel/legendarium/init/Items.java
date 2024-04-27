@@ -73,6 +73,7 @@ public class Items {
 	private Items() {
 	}
 
+	@SuppressWarnings("ValueOfIncrementOrDecrementUsed")
 	public static void preInit() {
 		weaponAcharn = new ItemColdWeapon(Config.idWeaponAcharn - 256);
 		weaponAeglos = new ItemColdWeapon(Config.idWeaponAeglos - 256);
