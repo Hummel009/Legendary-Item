@@ -48,7 +48,7 @@ public class MainClient implements ClientModInitializer {
 						var largeBakedModel = bakeContext.baker().bake(largeModelResourceLocation, bakeContext.settings());
 						if (largeBakedModel != null) {
 							var epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
-							return new EpicBakedModel(smallBakedModel, largeBakedModel);
+							return new EpicBakedModel(smallBakedModel, epicBakedModel);
 						}
 					}
 				}
