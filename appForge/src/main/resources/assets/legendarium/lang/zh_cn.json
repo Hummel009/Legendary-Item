@@ -1,7 +1,7 @@
 {
 	"item.legendarium.arkenstone": "§b阿肯宝钻§r",
 	"item.legendarium.silmaril": "§d精灵宝钻§r",
-	"item.legendarium.weapon_acharn": "塔里昂之剑-复仇者(Acharn)",
+	"item.legendarium.weapon_acharn": "塔里昂之剑-阿肯恩",
 	"item.legendarium.weapon_aeglos": "艾格洛斯",
 	"item.legendarium.weapon_alatar": "蓝袍阿拉塔尔的手杖",
 	"item.legendarium.weapon_angrist": "安格锐斯特",
@@ -9,7 +9,7 @@
 	"item.legendarium.weapon_aranruth": "阿兰如斯",
 	"item.legendarium.weapon_azog": "阿佐格的钉头锤",
 	"item.legendarium.weapon_balin": "巴林之剑",
-	"item.legendarium.weapon_barazanthual": "戴因二世的巨斧(Barazanthual)",
+	"item.legendarium.weapon_barazanthual": "戴因二世的红斧-巴拉扎苏尔",
 	"item.legendarium.weapon_bolg": "波尔格的钉头锤",
 	"item.legendarium.weapon_boromir": "波洛米尔之剑",
 	"item.legendarium.weapon_celeborn": "凯勒博恩之剑",
@@ -47,11 +47,11 @@
 	"item.legendarium.weapon_saruman": "白袍萨茹曼的手杖",
 	"item.legendarium.weapon_shagrat": "沙格拉特的弯刀",
 	"item.legendarium.weapon_thorin": "梭林之剑",
-	"item.legendarium.weapon_thorondun": "格洛芬德尔之剑(Thorondún)",
+	"item.legendarium.weapon_thorondun": "格洛芬德尔的匕首-梭隆顿",
 	"item.legendarium.weapon_thrain": "瑟莱因之斧",
 	"item.legendarium.weapon_thranduil": "瑟兰杜伊之剑",
 	"item.legendarium.weapon_thror": "瑟罗尔之斧",
-	"item.legendarium.weapon_urfael": "塔里昂之剑-焰之辉(Urfael)",
+	"item.legendarium.weapon_urfael": "塔里昂之剑-乌菲尔",
 	"item.legendarium.weapon_witchking": "安格玛巫王之剑",
-	"itemGroup.legendarium.artifacts": "中土世界文物"
+	"itemGroup.legendarium.artifacts": "中洲传说"
 }
