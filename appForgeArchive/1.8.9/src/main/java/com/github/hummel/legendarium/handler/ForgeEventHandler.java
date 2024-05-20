@@ -17,6 +17,7 @@ public class ForgeEventHandler {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onModelBake(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> modelRegistry = event.modelRegistry;
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {

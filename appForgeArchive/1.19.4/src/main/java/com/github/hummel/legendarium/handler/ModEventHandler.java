@@ -21,6 +21,7 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
 		for (var registryObject : Items.REGISTRY.getEntries()) {
 			var itemName = registryObject.get().toString();
@@ -49,6 +50,7 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
 		var models = event.getModels();
 		for (var compliance : COMPLIANCES.entrySet()) {
@@ -66,6 +68,7 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onCreativeModeTabRegistry(CreativeModeTabEvent.Register event) {
 		event.registerCreativeModeTab(new ResourceLocation("legendarium", "legendarium.artifacts"), builder -> builder.title(Component.translatable("itemGroup.legendarium.artifacts")).icon(() -> new ItemStack(Items.WEAPON_FARAMIR.get())).displayItems((enabledFlags, populator) -> {
 			for (var item : Items.REGISTRY.getEntries()) {

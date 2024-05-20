@@ -24,6 +24,7 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onModelRegistry(ModelRegistryEvent event) {
 		for (RegistryObject<Item> registryObject : Items.REGISTRY.getEntries()) {
 			String itemName = registryObject.get().toString();
@@ -52,6 +53,7 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onModelBake(ModelBakeEvent event) {
 		Map<ResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {

@@ -73,7 +73,7 @@ public class Items {
 	private Items() {
 	}
 
-	@SuppressWarnings("ValueOfIncrementOrDecrementUsed")
+	@SuppressWarnings({"ValueOfIncrementOrDecrementUsed", "UnusedAssignment"})
 	public static void preInit() {
 		weaponAcharn = new ItemColdWeapon(Config.idWeaponAcharn - 256);
 		weaponAeglos = new ItemColdWeapon(Config.idWeaponAeglos - 256);
@@ -185,7 +185,7 @@ public class Items {
 		weaponThranduil.setIconIndex(id++);
 		weaponThror.setIconIndex(id++);
 		weaponUrfael.setIconIndex(id++);
-		weaponWitchking.setIconIndex(id);
+		weaponWitchking.setIconIndex(id++);
 
 		register(weaponAcharn, "weaponAcharn");
 		register(weaponAeglos, "weaponAeglos");

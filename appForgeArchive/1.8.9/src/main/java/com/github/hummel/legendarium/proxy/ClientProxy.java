@@ -14,6 +14,7 @@ import static com.github.hummel.legendarium.handler.ForgeEventHandler.COMPLIANCE
 
 public class ClientProxy implements CommonProxy {
 	@Override
+	@SuppressWarnings("NewExpressionSideOnly")
 	public void onInit() {
 		for (Item item : Items.CONTENT) {
 			String itemName = item.getUnlocalizedName().substring("item.".length());

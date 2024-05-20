@@ -7,15 +7,17 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@SuppressWarnings({"PublicField", "WeakerAccess"})
 @Mod(modid = "legendarium", useMetadata = true)
 public class Main {
+	@SuppressWarnings("unused")
 	public static final String DISABLE_CURSEFORGE_DUPLICATE_NOTICE = "111229022024";
 
 	@SidedProxy(clientSide = "com.github.hummel.legendarium.proxy.ClientProxy", serverSide = "com.github.hummel.legendarium.proxy.ServerProxy")
+	@SuppressWarnings({"PublicField", "WeakerAccess"})
 	public static CommonProxy proxy;
 
 	@Mod.EventHandler
+	@SuppressWarnings("MethodMayBeStatic")
 	public void preInit(FMLPreInitializationEvent event) {
 		Config.preInit(event);
 
@@ -23,6 +25,7 @@ public class Main {
 	}
 
 	@Mod.EventHandler
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onInit(FMLInitializationEvent event) {
 		proxy.onInit();
 	}

@@ -25,12 +25,14 @@ public class ForgeEventHandler {
 	private static final Map<ModelResourceLocation, ModelResourceLocation> COMPLIANCES = new HashMap<>();
 
 	@SubscribeEvent
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onItemRegistry(RegistryEvent.Register<Item> event) {
 		Items.register();
 	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onModelRegistry(ModelRegistryEvent event) {
 		for (Item item : Items.CONTENT) {
 			String itemName = item.getUnlocalizedName().substring("item.".length());
@@ -60,6 +62,7 @@ public class ForgeEventHandler {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onModelBake(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> modelRegistry = event.getModelRegistry();
 		for (Map.Entry<ModelResourceLocation, ModelResourceLocation> compliance : COMPLIANCES.entrySet()) {

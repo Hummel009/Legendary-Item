@@ -18,6 +18,7 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
 		for (var registryObject : Items.REGISTRY.getEntries()) {
 			var itemName = registryObject.get().toString();
@@ -46,6 +47,7 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
 		var models = event.getModels();
 		for (var compliance : COMPLIANCES.entrySet()) {

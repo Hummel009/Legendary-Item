@@ -138,7 +138,7 @@ public class Config {
 			idArkenstone = configuration.get("item", "Arkenstone", 887).getInt(887);
 			idSilmaril = configuration.get("item", "Silmaril", 888).getInt(888);
 		} catch (Exception e) {
-			FMLLog.log(Level.SEVERE, e, "Legendary Item has a problem loading it's configuration");
+			FMLLog.log(Level.SEVERE, e, "Mod has a problem loading it's configuration");
 		} finally {
 			configuration.save();
 			loaded = true;
