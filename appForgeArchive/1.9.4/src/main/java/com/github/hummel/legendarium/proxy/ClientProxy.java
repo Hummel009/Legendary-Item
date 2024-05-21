@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.InputStream;
 
@@ -14,6 +16,7 @@ import static com.github.hummel.legendarium.handler.ForgeEventHandler.COMPLIANCE
 
 public class ClientProxy implements CommonProxy {
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onInit() {
 		for (Item item : Items.CONTENT) {
 			String itemName = item.getUnlocalizedName().substring("item.".length());
