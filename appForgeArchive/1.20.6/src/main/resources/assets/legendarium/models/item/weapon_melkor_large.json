@@ -1,0 +1,6 @@
+{
+	"parent": "legendarium:item/handheld_large_3x",
+	"textures": {
+		"layer0": "legendarium:item/weapon_melkor_large"
+	}
+}
