@@ -20,6 +20,6 @@ public class ItemGroups {
 	}
 
 	public static void register() {
-		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation("legendarium", "artifacts"), TAB_ARTIFACTS);
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath("legendarium", "artifacts"), TAB_ARTIFACTS);
 	}
 }

@@ -27,16 +27,16 @@ public class ModEventHandler {
 	@SuppressWarnings("MethodMayBeStatic")
 	public void onModelRegistry(ModelRegistryEvent event) {
 		for (RegistryObject<Item> registryObject : Items.REGISTRY.getEntries()) {
-			String itemName = registryObject.get().toString();
+			String itemName = registryObject.get().getDescriptionId().substring("item.legendarium.".length());
 			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
 			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 				if (inputStream != null) {
-					String smallResourceName = String.format("legendarium:%s", itemName);
-					String largeResourceName = String.format("legendarium:%s_large", itemName);
+					String smallResourceName = String.format("%s", itemName);
+					String largeResourceName = String.format("%s_large", itemName);
 
-					ResourceLocation smallResourceLocation = new ResourceLocation(smallResourceName);
-					ResourceLocation largeResourceLocation = new ResourceLocation(largeResourceName);
+					ResourceLocation smallResourceLocation = new ResourceLocation("legendarium", smallResourceName);
+					ResourceLocation largeResourceLocation = new ResourceLocation("legendarium", largeResourceName);
 
 					ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
 					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");

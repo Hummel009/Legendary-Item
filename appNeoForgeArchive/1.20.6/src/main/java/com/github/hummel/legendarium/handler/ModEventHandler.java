@@ -21,16 +21,16 @@ public class ModEventHandler {
 	@SuppressWarnings("MethodMayBeStatic")
 	public void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
 		for (var deferredHolder : Items.REGISTRY.getEntries()) {
-			var itemName = deferredHolder.get().toString().substring("legendarium:".length());
+			var itemName = deferredHolder.get().getDescriptionId().substring("item.legendarium.".length());
 			var largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
 			try (var inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 				if (inputStream != null) {
-					var smallResourceName = String.format("legendarium:%s", itemName);
-					var largeResourceName = String.format("legendarium:%s_large", itemName);
+					var smallResourceName = String.format("%s", itemName);
+					var largeResourceName = String.format("%s_large", itemName);
 
-					var smallResourceLocation = new ResourceLocation(smallResourceName);
-					var largeResourceLocation = new ResourceLocation(largeResourceName);
+					var smallResourceLocation = new ResourceLocation("legendarium", smallResourceName);
+					var largeResourceLocation = new ResourceLocation("legendarium", largeResourceName);
 
 					var smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
 					var largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");

@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "legendarium",
-	"version": "24.05.05",
+	"version": "24.07.19",
 	"name": "Legendary Item",
 	"description": "This mod adds legendary artifacts from the Lord of the Rings to Minecraft.",
 	"authors": [
@@ -24,7 +24,7 @@
 	},
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": "~1.20.6",
+		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*"
 	}

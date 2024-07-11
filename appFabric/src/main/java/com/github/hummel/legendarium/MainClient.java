@@ -14,7 +14,7 @@ public class MainClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ModelLoadingPlugin.register(pluginContext -> {
-			Map<ResourceLocation, ResourceLocation> compliances = new HashMap<>();
+			Map<ModelResourceLocation, ModelResourceLocation> compliances = new HashMap<>();
 
 			for (var item : Items.CONTENT) {
 				var itemName = item.getDescriptionId().substring("item.legendarium.".length());
@@ -22,14 +22,14 @@ public class MainClient implements ClientModInitializer {
 
 				try (var inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 					if (inputStream != null) {
-						var smallResourceName = String.format("legendarium:%s", itemName);
-						var largeResourceName = String.format("legendarium:%s_large", itemName);
+						var smallResourceName = String.format("%s", itemName);
+						var largeResourceName = String.format("item/%s_large", itemName);
 
-						var smallResourceLocation = new ResourceLocation(smallResourceName);
-						var largeResourceLocation = new ResourceLocation(largeResourceName);
+						var smallResourceLocation = ResourceLocation.fromNamespaceAndPath("legendarium", smallResourceName);
+						var largeResourceLocation = ResourceLocation.fromNamespaceAndPath("legendarium", largeResourceName);
 
 						var smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
-						var largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
+						var largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "standalone");
 
 						compliances.put(smallModelResourceLocation, largeModelResourceLocation);
 					}
@@ -38,17 +38,18 @@ public class MainClient implements ClientModInitializer {
 				}
 			}
 
-			pluginContext.addModels(compliances.values());
+			for (var modelResourceLocation : compliances.values()) {
+				pluginContext.addModels(modelResourceLocation.id());
+			}
 
 			pluginContext.modifyModelAfterBake().register((smallBakedModel, bakeContext) -> {
 				for (var compliance : compliances.entrySet()) {
 					var smallModelResourceLocation = compliance.getKey();
-					if (bakeContext.id().equals(smallModelResourceLocation)) {
+					if (smallModelResourceLocation.equals(bakeContext.topLevelId())) {
 						var largeModelResourceLocation = compliance.getValue();
-						var largeBakedModel = bakeContext.baker().bake(largeModelResourceLocation, bakeContext.settings());
+						var largeBakedModel = bakeContext.baker().bake(largeModelResourceLocation.id(), bakeContext.settings());
 						if (largeBakedModel != null) {
-							var epicBakedModel = new EpicBakedModel(smallBakedModel, largeBakedModel);
-							return new EpicBakedModel(smallBakedModel, epicBakedModel);
+							return new EpicBakedModel(smallBakedModel, largeBakedModel);
 						}
 					}
 				}

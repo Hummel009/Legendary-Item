@@ -119,7 +119,7 @@ public class EpicItemRenderer implements IItemRenderer {
 	}
 
 	private static ResourceLocation getItemResourceLocation(Item item, String folder) {
-		return new ResourceLocation("legendarium:textures/items/" + folder + '/' + getItemName(item) + ".png");
+		return new ResourceLocation("legendarium", "textures/items/" + folder + '/' + getItemName(item) + ".png");
 	}
 
 	private static String getItemTexturePath(Item item, String folder) {

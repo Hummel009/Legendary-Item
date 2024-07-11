@@ -38,14 +38,14 @@ public class ForgeEventHandler {
 			String itemName = item.getTranslationKey().substring("item.".length());
 			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
-			String smallResourceName = String.format("legendarium:%s", itemName);
-			ResourceLocation smallResourceLocation = new ResourceLocation(smallResourceName);
+			String smallResourceName = String.format("%s", itemName);
+			ResourceLocation smallResourceLocation = new ResourceLocation("legendarium", smallResourceName);
 			ModelResourceLocation smallModelResourceLocation = new ModelResourceLocation(smallResourceLocation, "inventory");
 
 			try (InputStream inputStream = Main.class.getResourceAsStream(largeJsonPath)) {
 				if (inputStream != null) {
-					String largeResourceName = String.format("legendarium:%s_large", itemName);
-					ResourceLocation largeResourceLocation = new ResourceLocation(largeResourceName);
+					String largeResourceName = String.format("%s_large", itemName);
+					ResourceLocation largeResourceLocation = new ResourceLocation("legendarium", largeResourceName);
 					ModelResourceLocation largeModelResourceLocation = new ModelResourceLocation(largeResourceLocation, "inventory");
 
 					COMPLIANCES.put(smallModelResourceLocation, largeModelResourceLocation);
