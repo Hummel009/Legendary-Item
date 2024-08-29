@@ -5,7 +5,7 @@ logoFile = "logo.png"
 
 [[mods]]
 modId = "legendarium"
-version = "24.07.19"
+version = "24.08.29"
 displayName = "Legendary Item"
 authors = "Hummel009"
 description = '''This mod adds legendary artifacts from the Lord of the Rings to Minecraft.'''
