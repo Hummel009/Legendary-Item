@@ -35,7 +35,7 @@ public class ForgeEventHandler {
 	@SuppressWarnings("MethodMayBeStatic")
 	public void onModelRegistry(ModelRegistryEvent event) {
 		for (Item item : Items.CONTENT) {
-			String itemName = item.getTranslationKey().substring("item.".length());
+			String itemName = item.getUnlocalizedName().substring("item.".length());
 			String largeJsonPath = String.format("/assets/legendarium/models/item/%s_large.json", itemName);
 
 			String smallResourceName = String.format("%s", itemName);
